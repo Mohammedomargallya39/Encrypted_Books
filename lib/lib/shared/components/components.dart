@@ -46,6 +46,23 @@ Color toastColor(toastStates state){
   return color;
 }
 
+
+// Color toastColor(toastStates state){
+//   Color color ;
+//   switch (state){
+//     case toastStates.SUCCESS:
+//       color = Colors.green;
+//       break;
+//     case toastStates.ERROR:
+//       color = Colors.white;
+//       break;
+//     case toastStates.WARNING:
+//       color = Colors.yellow;
+//       break;
+//   }
+//   return color;
+// }
+
 Widget defaultFormField({
 
   required String text,
