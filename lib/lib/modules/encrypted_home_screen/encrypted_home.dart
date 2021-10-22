@@ -1,0 +1,445 @@
+import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:social/lib/modules/login_screen/login_screen.dart';
+import 'package:social/lib/modules/profile_screen/profile_screen.dart';
+import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
+import 'package:social/lib/shared/styles/colors.dart';
+import 'books/your_book_screen.dart';
+class EncryptionLayout extends StatelessWidget {
+  const EncryptionLayout({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Encrypted Books'),
+          ),
+          drawer: Drawer(
+            child: Container(
+              // التوجل لسه فيه مشكلة
+              //color:ThemeCubit.get(context).isDark ? Colors.grey.shade900: Colors.blue,
+              color: HexColor('#396691'),
+              child: ListView(
+                children:  <Widget>[
+                   DrawerHeader(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(colors: <Color>
+                      [
+                        Colors.grey,
+                        Colors.blueGrey,
+                      ]),
+                    ),
+                      child: Row(
+                        children:  <Widget>[
+                          Container(
+                            margin: const EdgeInsets.all(10),
+                            width: 85.45,
+                            height: 85.45,
+                            decoration:  const BoxDecoration(shape: BoxShape.circle,
+                            image:
+                            DecorationImage(image:
+                            NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t39.30808-6/238882960_1176013169492391_5072941271790244082_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHCO-p1ixoRqId9sspm6bhQ_jFSmEOR4a_-MVKYQ5Hhr5rmNp0DG9FzWhlQV-bM24IAPfZhrhb3QCtjgrz5Yjph&_nc_ohc=FxpbbG2MlpoAX_V0rmy&_nc_ht=scontent.fcai20-5.fna&oh=002060ad2ae580b86e38d96a5ad463ae&oe=617252BE'),
+                                fit: BoxFit.fill
+                            ),
+                            ),
+                            ),
+                          const SizedBox(width: 7.5,),
+                          Column(
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 150.0,
+                                child: const Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold ,
+                                    fontSize: 22.22 ,
+                                    color: Colors.white
+                                ),
+                                ),
+                              ),
+                              const SizedBox(height: 5,),
+                              Container(
+                                width: 150.0,
+                                child: const Text('42018183' ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold ,
+                                      fontSize: 22.22 ,
+                                      color: Colors.white
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                  ),
+                  //                 سكرينات ال drawer
+                  const SizedBox(height: 11.11,),
+                  const CustomListDarkMode(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListProfile(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListHome(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListHelp(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListSettings(),
+                  const SizedBox(height: 22.22,),
+                  //const CustomListRateUs(),
+                  //const SizedBox(height: 22.22,),
+                  const CustomListSignOut(),
+                ],
+              ),
+            ),
+          ),
+          body: Center(
+            child: Column(
+              children:
+              [
+                const Image(
+                  image: AssetImage("assets/images/lockedbooks.png"),
+                  width: 400.0,
+                  height: 400.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 55.55,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                      elevation: 17.5,
+                      color: defaultColor,
+                      onPressed: ()
+                      {
+                        navigateTo(context, BooksScreen());
+                      },
+                      child: const Text('Your Books',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 44.44,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+  }
+  // محتاج يتعدل لسه.....................
+class CustomListDarkMode extends StatelessWidget{
+  const CustomListDarkMode({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      child: Container(
+        decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey))
+        ),
+        child: InkWell(
+          splashColor: defaultColor,
+          child: Container(
+            height: 33.33,
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.brightness_4_outlined,color: Colors.white
+                ),
+                SizedBox(width: 10.0,),
+                Text('Dark Mode', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+              ],
+            ),
+          ),
+          onTap: ()
+          {
+             ThemeCubit.get(context).changeAppMode();
+          },
+        ),
+      ),
+    );
+  }
+}
+class CustomListHome extends StatelessWidget{
+  const CustomListHome({Key? key}) : super(key: key);
+
+
+    @override
+    Widget build(BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+        child: Container(
+          decoration: const BoxDecoration(
+              border: Border(bottom:  BorderSide(color: Colors.grey))),
+          child: InkWell(
+            splashColor: defaultColor,
+            child: Container(
+              height: 44.44,
+              child: Row(
+                children: const <Widget>[
+                  Icon(Icons.home,color: Colors.white
+                  ),
+                  SizedBox(width: 10.0,),
+                  Text('Home', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                  Spacer(),
+                  Icon(Icons.arrow_forward_ios,color: Colors.white
+                  ),
+                ],
+              ),
+            ),
+            onTap: ()
+            {
+             // navigateTo(context, EncryptionLayout());
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      );
+    }
+  }
+class CustomListProfile extends StatelessWidget{
+  const CustomListProfile({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      child: Container(
+        decoration: const BoxDecoration(
+            border: Border(bottom:  BorderSide(color: Colors.grey))),
+        child: InkWell(
+          splashColor: defaultColor,
+          child: Container(
+            height: 44.44,
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.person,color: Colors.white
+                ),
+                SizedBox(width: 10.0,),
+                Text('Profile', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios,color: Colors.white
+                ),
+              ],
+            ),
+          ),
+          onTap: ()
+          {
+            navigateTo(context, const ProfileScreen());
+          },
+        ),
+      ),
+    );
+  }
+}
+class CustomListSettings extends StatelessWidget{
+  const CustomListSettings({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border(bottom:  BorderSide(color: Colors.grey))),
+        child: InkWell(
+          splashColor: defaultColor,
+          child: Container(
+            height: 44.44,
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.settings,color: Colors.white
+                ),
+                SizedBox(width: 10.0,),
+                Text('Settings', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios,color: Colors.white
+                ),
+              ],
+            ),
+          ),
+          onTap: (){},
+        ),
+      ),
+    );
+  }
+}
+class CustomListHelp extends StatelessWidget{
+  const CustomListHelp({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      child: Container(
+        decoration: const BoxDecoration(
+            border: Border(bottom:  BorderSide(color: Colors.grey))),
+        child: InkWell(
+          splashColor: defaultColor,
+          child: Container(
+            height: 44.44,
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.help,color: Colors.white
+                ),
+                SizedBox(width: 10.0,),
+                Text('Help', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios,color: Colors.white
+                ),
+              ],
+            ),
+          ),
+          onTap: (){},
+        ),
+      ),
+    );
+  }
+}
+// class CustomListRateUs extends StatelessWidget{
+//   const CustomListRateUs({Key? key}) : super(key: key);
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+//       child: Container(
+//         decoration: const BoxDecoration(
+//             border: Border(bottom:  BorderSide(color: Colors.grey))),
+//         child: InkWell(
+//           splashColor: defaultColor,
+//           child: Container(
+//             height: 44.44,
+//             child: Row(
+//               children: const <Widget>[
+//                 Icon(Icons.rate_review,color: Colors.white
+//                 ),
+//                 SizedBox(width: 10.0,),
+//                 Text('Rate Us', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+//                 Spacer(),
+//                 Icon(Icons.arrow_forward_ios,color: Colors.white
+//                 ),
+//               ],
+//             ),
+//           ),
+//           onTap: (){},
+//         ),
+//       ),
+//     );
+//   }
+// }
+class CustomListSignOut extends StatelessWidget{
+  const CustomListSignOut({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      child: Container(
+        decoration: const BoxDecoration(
+            border: Border(bottom:  BorderSide(color: Colors.grey))),
+        child: InkWell(
+          splashColor: defaultColor,
+          child: Container(
+            height: 44.44,
+            child: Row(
+              children:  const <Widget>[
+                Icon(Icons.logout,color: Colors.white
+                ),
+                SizedBox(width: 10.0,),
+                Text('Sign Out', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios,color: Colors.white,
+                  ),
+              ],
+            ),
+          ),
+          onTap: ()
+          {
+            navigateAndEnd(context, EncryptionLoginScreen());
+          }
+          ,
+        ),
+      ),
+    );
+  }
+}
+// class CustomList extends StatelessWidget {
+//
+//   IconData icon;
+//   String text;
+//   Function onTap;
+//
+//   CustomList(this.icon , this.text , this.onTap);
+//
+//   @override
+//     Widget build(BuildContext context) {
+//       return Padding(
+//         padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+//         child: Container(
+//           decoration: const BoxDecoration(
+//             border: Border(bottom: BorderSide(color: Colors.grey))
+//           ),
+//           child: InkWell(
+//             splashColor: defaultColor,
+//             child: Container(
+//               height: 55.55,
+//               child: Row(
+//                 children:<Widget>[
+//                   Icon(icon),
+//                   const SizedBox(width: 10.0,),
+//                   Text(text),
+//                   const Spacer(),
+//                   const Icon(Icons.arrow_forward_ios),
+//                 ],
+//               ),
+//             ),
+//             onTap: onTap(),
+//           ),
+//         ),
+//       );
+//     }
+//   }
+
+
+
+// class CustomListDarkMode extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+//       child: InkWell(
+//         splashColor: defaultColor,
+//         child: Container(
+//           height: 44.44,
+//           child: Row(
+//             children: const <Widget>[
+//               Icon(Icons.brightness_4_outlined),
+//               SizedBox(width: 10.0,),
+//               Text('Dark Mode'),
+//             ],
+//           ),
+//         ),
+//         onTap: (){},
+//       ),
+//     );
+//   }
+// }
