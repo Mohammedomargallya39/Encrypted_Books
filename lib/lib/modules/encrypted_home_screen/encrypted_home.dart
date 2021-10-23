@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:social/lib/modules/help_screen/help_screen.dart';
 import 'package:social/lib/modules/login_screen/login_screen.dart';
 import 'package:social/lib/modules/profile_screen/profile_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -38,7 +39,7 @@ class EncryptionLayout extends StatelessWidget {
                             decoration:  const BoxDecoration(shape: BoxShape.circle,
                             image:
                             DecorationImage(image:
-                            NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t39.30808-6/238882960_1176013169492391_5072941271790244082_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHCO-p1ixoRqId9sspm6bhQ_jFSmEOR4a_-MVKYQ5Hhr5rmNp0DG9FzWhlQV-bM24IAPfZhrhb3QCtjgrz5Yjph&_nc_ohc=FxpbbG2MlpoAX_V0rmy&_nc_ht=scontent.fcai20-5.fna&oh=002060ad2ae580b86e38d96a5ad463ae&oe=617252BE'),
+                            NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
                                 fit: BoxFit.fill
                             ),
                             ),
@@ -305,7 +306,10 @@ class CustomListHelp extends StatelessWidget{
               ],
             ),
           ),
-          onTap: (){},
+          onTap: ()
+          {
+            navigateTo(context, const HelpScreen());
+          },
         ),
       ),
     );
