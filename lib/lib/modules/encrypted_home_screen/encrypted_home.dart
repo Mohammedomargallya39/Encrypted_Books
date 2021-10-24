@@ -276,7 +276,7 @@ class CustomListSettings extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, const SettingsScreen());
+            navigateTo(context, SettingsScreen());
           },
         ),
       ),
