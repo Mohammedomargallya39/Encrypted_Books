@@ -65,8 +65,8 @@ class EncryptionLoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 33.0,),
                     defaultFormField(
-                       // context:const TextStyle() ,
-                        text: 'E-mail',
+                      maxLines: 1,
+                       text: 'E-mail',
                         controller: emailController,
                         prefix: Icons.email_outlined,
                         validate: (String value)
@@ -109,7 +109,7 @@ class EncryptionLoginScreen extends StatelessWidget {
 // ),
 
                     defaultFormField(
-                      // context: const TextStyle(),
+                        maxLines: 1,
                         isPassword: cubit.isPassword,
                         text: 'Password',
                         controller: passwordController,

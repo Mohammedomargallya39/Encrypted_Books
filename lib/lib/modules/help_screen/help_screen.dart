@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:social/lib/modules/help_screen/connect_us.dart';
-import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({Key? key}) : super(key: key);
@@ -23,8 +22,7 @@ class HelpScreen extends StatelessWidget {
             [
               const SizedBox(
                 width: double.infinity,
-                child: Text('If you have any issue while using our app, you have to contact us by sending a mail to us to solve this problem at top speed. '
-                    'send mail to mohammed.gallya39@gmail.com',
+                child: Text('If you have any issue while using our app, you have to contact us by sending a mail to us to solve this problem at top speed. ',
                   maxLines: 11,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -34,7 +32,9 @@ class HelpScreen extends StatelessWidget {
               TextButton(
                   onPressed: ()
                   {
-                   navigateTo(context, const ConnectUs());
+                    launch('mailto:mohammed.gallya39@gmail.com?'
+                        'subject=This is Subject title'
+                        'body = This is Body Email');
                   },
                   child: const Text('Connect Us',
                     style: TextStyle(
