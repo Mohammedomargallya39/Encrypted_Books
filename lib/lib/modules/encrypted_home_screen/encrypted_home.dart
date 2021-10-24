@@ -3,6 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/modules/help_screen/help_screen.dart';
 import 'package:social/lib/modules/login_screen/login_screen.dart';
 import 'package:social/lib/modules/profile_screen/profile_screen.dart';
+import 'package:social/lib/modules/settings_screen/settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -273,7 +274,10 @@ class CustomListSettings extends StatelessWidget{
               ],
             ),
           ),
-          onTap: (){},
+          onTap: ()
+          {
+            navigateTo(context, const SettingsScreen());
+          },
         ),
       ),
     );

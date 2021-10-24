@@ -75,17 +75,19 @@ Widget defaultFormField({
   Function? onSubmit,
   required TextInputType type ,
   required context,
+  int maxLines = 1,
+
 
 })
 {
   return TextFormField(
 
-
+    maxLines: maxLines,
     controller: controller,
     obscureText: isPassword,
-    onFieldSubmitted: (value){
-      return onSubmit!(value);
-    },
+    // onFieldSubmitted: (value){
+    //   return onSubmit!(value);
+    // },
     validator:(value){
       return validate!(value);
     },
