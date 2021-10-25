@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:social/lib/modules/login_screen/login_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/network/local/cache_helper.dart';
 
-import '../login_screen/login_screen.dart';
+import '../login_screen/user_login_screen.dart';
 class onBoardingModel{
   final String title;
   final String image;
@@ -39,7 +40,7 @@ class OnBoardingScreen extends StatelessWidget {
      {
        if(value)
        {
-         navigateAndEnd(context, EncryptionLoginScreen());
+         navigateAndEnd(context, const LoginScreen());
        }
      });
    }

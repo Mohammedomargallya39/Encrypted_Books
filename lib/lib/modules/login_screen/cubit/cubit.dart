@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/modules/login_screen/cubit/states.dart';
 
-
+//                         'user login'
 class EncryptionLoginCubit extends Cubit<EncryptionStates>
 {
   EncryptionLoginCubit() : super(EncryptionLoginInitialState());
@@ -32,5 +32,8 @@ class EncryptionLoginCubit extends Cubit<EncryptionStates>
     emit(EncryptionChangeLoginSuffixState());
   }
 }
+
+
+//                        'admin login'
 
 

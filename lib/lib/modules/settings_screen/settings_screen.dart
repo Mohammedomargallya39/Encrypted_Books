@@ -34,13 +34,13 @@ class SettingsScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(11, 0, 11, 11),
               child: Column(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 11, 0, 0),
-                    child: Center(
-                      child: GestureDetector(
-                        child: Stack(
-                          children:[
-                            Container(
+                  Center(
+                    child: GestureDetector(
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children:[
+                          Center(
+                            child: Container(
                             margin: const EdgeInsets.all(10),
                             width: 225,
                             height: 225,
@@ -50,29 +50,25 @@ class SettingsScreen extends StatelessWidget {
                                   fit: BoxFit.fill
                               ),
                             ),
-                          ),
-                             Align(
-                              alignment: Alignment.bottomRight,
-                              child: IconButton(
-                                  onPressed: (){},
-                                  icon: const Icon(Icons.camera_alt),
-                              ),
-                            ),
-                          ] ,
                         ),
-                        onTap: ()
-                        {
-                          Navigator.push(context, MaterialPageRoute(builder: (_){
-                            return const DetailsPhotoDetails() ;
-                          }));
-                        },
-
-                        onLongPress: ()
-                        {
-
-                        },
-
+                          ),
+                           Align(
+                            //alignment: AlignmentDirectional.bottomEnd,
+                            child: IconButton(
+                                color: defaultColor,
+                                iconSize: 33,
+                                onPressed: (){},
+                                icon: const Icon(Icons.camera_alt),
+                            ),
+                          ),
+                        ] ,
                       ),
+                      onTap: ()
+                      {
+                        Navigator.push(context, MaterialPageRoute(builder: (_){
+                          return const DetailsPhotoDetails() ;
+                        }));
+                      },
                     ),
                   ),
                   const SizedBox(height: 22.5,),
