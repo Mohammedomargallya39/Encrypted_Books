@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/modules/help_screen/help_screen.dart';
-import 'package:social/lib/modules/login_screen/login_screen.dart';
+import 'package:social/lib/modules/login_screen/user_login_screen.dart';
 import 'package:social/lib/modules/profile_screen/profile_screen.dart';
 import 'package:social/lib/modules/settings_screen/settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -381,7 +381,7 @@ class CustomListSignOut extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateAndEnd(context, EncryptionLoginScreen());
+            navigateAndEnd(context, UserLoginScreen());
           }
           ,
         ),

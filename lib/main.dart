@@ -3,10 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
-import 'package:social/lib/modules/login_screen/login_screen.dart';
+import 'package:social/lib/modules/login_screen/user_login_screen.dart';
 import 'package:social/lib/modules/onboarding_screen/on_boarding_screen.dart';
 import 'package:social/lib/shared/bloc_observer.dart';
 import 'package:social/lib/shared/styles/themes.dart';
+import 'lib/modules/login_screen/login_screen.dart';
 import 'lib/shared/cubit/cubit.dart';
 import 'lib/shared/cubit/states.dart';
 import 'lib/shared/network/local/cache_helper.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: ThemeCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            home: onBoarding ? EncryptionLoginScreen() : OnBoardingScreen(),
+            home: onBoarding ? const LoginScreen() : OnBoardingScreen(),
           );
         },
       ),
