@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:social/lib/modules/login_screen/user_login_screen.dart';
+import 'package:social/lib/modules/login_screens/user_login_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                   color: defaultColor,
                   onPressed: ()
                   {
-                    navigateTo(context, const AdminLoginScreen());
+                    navigateTo(context, AdminLoginScreen());
                   },
 
                   child: const Text('Admin login',

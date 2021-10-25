@@ -3,11 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social/lib/modules/encrypted_home_screen/encrypted_home.dart';
-import 'package:social/lib/modules/login_screen/cubit/cubit.dart';
-import 'package:social/lib/modules/login_screen/cubit/states.dart';
+import 'package:social/lib/modules/user_screens/encrypted_home_screen/encrypted_home.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
+
+import 'cubit/cubit.dart';
+import 'cubit/states.dart';
 
 
 
@@ -25,15 +26,15 @@ class UserLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EncryptionLoginCubit(),
-      child: BlocConsumer<EncryptionLoginCubit,EncryptionStates>
+      create: (context) => UserLoginCubit(),
+      child: BlocConsumer<UserLoginCubit,UserLoginStates>
         (
         listener: (context,state){},
         builder: (context,state)
         {
-          var cubit = EncryptionLoginCubit.get(context);
+          var cubit = UserLoginCubit.get(context);
           return Scaffold(
-            appBar: AppBar(title: const Text('Encrypted Books'),),
+            appBar: AppBar(title: const Text('User Login'),),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(22.0),
@@ -42,11 +43,11 @@ class UserLoginScreen extends StatelessWidget {
                   children:
                   [
 
-                    Center(
-                      child: Container(
+                    const Center(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 300.0,
-                        child: const Image(
+                        child: Image(
                           color: defaultColor,
                           image: AssetImage('assets/images/ebook.png',),
                           height: 90.0,
@@ -80,33 +81,6 @@ class UserLoginScreen extends StatelessWidget {
                       context: context,),
 
                     const SizedBox(height: 27.5,),
-
-//
-// defaultFormField(
-//     text: 'Password',
-//
-//     controller: passwordController,
-//     prefix: Icons.lock,
-//    // suffix: cubit.suffix,
-//     suffixPressed: ()
-//     {
-//    //   cubit.changeSuffix();
-//     },
-//     // onSubmit: (String value)
-//     // {
-//     //
-//     // },
-//     validate: (String value)
-//     {
-//       if (value.isEmpty)
-//       {
-//         return 'password must not be empty';
-//       }
-//     },
-//     type: TextInputType.visiblePassword,
-//  // isPassword: cubit.isPassword,
-//
-// ),
 
                     defaultFormField(
                         maxLines: 1,
@@ -143,12 +117,12 @@ class UserLoginScreen extends StatelessWidget {
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(55,10,55,0),
-                        child: Container(
+                        child: SizedBox(
                           //color: Colors.blue.shade400,
                           width: double.infinity,
                           height: 55.55,
                           child: ConditionalBuilder(
-                            condition: state is! EncryptionLoginLoadingState ,
+                            condition: state is! UserLoginLoadingState ,
                             builder: (context)=>
                                 MaterialButton(
                                   shape: RoundedRectangleBorder(
@@ -158,7 +132,7 @@ class UserLoginScreen extends StatelessWidget {
                                   color: defaultColor,
                               onPressed: ()
                               {
-                                 navigateAndEnd(context, const EncryptionLayout());
+                                 navigateAndEnd(context, const UserHomeScreen());
                               },
 
                                 child: const Text('LOGIN',
@@ -175,18 +149,6 @@ class UserLoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // const SizedBox(height: 33.33,),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     const Text('Don\'t have an account?'),
-                    //     TextButton(onPressed: ()
-                    //     {
-                    //       navigateTo(context, EncryptionRegisterScreen());
-                    //     },
-                    //         child: const Text('Register now'))
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
