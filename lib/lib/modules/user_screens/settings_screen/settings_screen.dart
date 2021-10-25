@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/modules/profile_screen/details_photo_screen.dart';
+import 'package:social/lib/modules/user_screens/profile_screen/details_photo_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 
@@ -31,37 +31,39 @@ class SettingsScreen extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(11, 0, 11, 11),
+              padding: const EdgeInsets.fromLTRB(11, 11, 11, 11),
               child: Column(
                 children: <Widget>[
                   Center(
                     child: GestureDetector(
-                      child: Stack(
-                        alignment: AlignmentDirectional.bottomEnd,
-                        children:[
-                          Center(
-                            child: Container(
-                            margin: const EdgeInsets.all(10),
-                            width: 225,
-                            height: 225,
-                            decoration:  const BoxDecoration(shape: BoxShape.circle,
-                              image: DecorationImage(image:
-                              NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
-                                  fit: BoxFit.fill
+                      child: SizedBox(
+                        width:  275,
+                        height: 275,
+                        child: Stack(
+                          alignment: AlignmentDirectional.bottomEnd,
+                          children:[
+                            Center(
+                              child: Container(
+                              margin: const EdgeInsets.all(10),
+                              width:  275,
+                              height: 275,
+                              decoration:  const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(image:
+                                NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
+                                    fit: BoxFit.fill
+                                ),
                               ),
+                          ),
                             ),
+                             IconButton(
+                                 color: defaultColor,
+                                 iconSize: 33,
+                                 onPressed: (){},
+                                 icon: const Icon(Icons.camera_alt),
+                             ),
+                          ] ,
                         ),
-                          ),
-                           Align(
-                            //alignment: AlignmentDirectional.bottomEnd,
-                            child: IconButton(
-                                color: defaultColor,
-                                iconSize: 33,
-                                onPressed: (){},
-                                icon: const Icon(Icons.camera_alt),
-                            ),
-                          ),
-                        ] ,
                       ),
                       onTap: ()
                       {

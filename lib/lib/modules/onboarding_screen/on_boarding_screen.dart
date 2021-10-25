@@ -1,18 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:social/lib/modules/login_screen/login_screen.dart';
+import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/network/local/cache_helper.dart';
 
-import '../login_screen/user_login_screen.dart';
-class onBoardingModel{
+
+class OnBoardingModel{
   final String title;
   final String image;
   final String body;
 
-  onBoardingModel(
+  OnBoardingModel(
       this.title,
       this.image,
       this.body
@@ -24,12 +23,12 @@ class OnBoardingScreen extends StatelessWidget {
   bool isLast = false;
 
   var boardingController = PageController();
-  List<onBoardingModel> boarding = [
-    onBoardingModel(
+  List<OnBoardingModel> boarding = [
+    OnBoardingModel(
         'E-Books',
         'assets/images/encryptedbook.png',
         'Many people turn to e-books because they find them very time-saving, as the individual uses the phone most of his time at a time when everyone is turning to technology.'),
-    onBoardingModel(
+    OnBoardingModel(
         'Encrypted Books',
         'assets/images/e-book.png',
         'And with this happening, books must be encrypted to preserve the ownership of the books for their owners and so that they are not stolen, we had to program this program.'),
@@ -116,7 +115,7 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Widget BoardingItem(onBoardingModel model)=> Column(
+  Widget BoardingItem(OnBoardingModel model)=> Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Expanded(

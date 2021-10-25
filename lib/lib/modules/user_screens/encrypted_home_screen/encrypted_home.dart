@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:social/lib/modules/help_screen/help_screen.dart';
-import 'package:social/lib/modules/login_screen/user_login_screen.dart';
-import 'package:social/lib/modules/profile_screen/profile_screen.dart';
-import 'package:social/lib/modules/settings_screen/settings_screen.dart';
+import 'package:social/lib/modules/login_screens/login_screen.dart';
+import 'package:social/lib/modules/user_screens/help_screen/help_screen.dart';
+import 'package:social/lib/modules/user_screens/profile_screen/profile_screen.dart';
+import 'package:social/lib/modules/user_screens/settings_screen/settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 import 'books/your_book_screen.dart';
-class EncryptionLayout extends StatelessWidget {
-  const EncryptionLayout({Key? key}) : super(key: key);
+class UserHomeScreen extends StatelessWidget {
+  const UserHomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
         return Scaffold(
@@ -49,10 +49,10 @@ class EncryptionLayout extends StatelessWidget {
                           Column(
                             //crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
+                            children: const [
+                              SizedBox(
                                 width: 150.0,
-                                child: const Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
+                                child: Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -62,10 +62,10 @@ class EncryptionLayout extends StatelessWidget {
                                 ),
                                 ),
                               ),
-                              const SizedBox(height: 5,),
-                              Container(
+                              SizedBox(height: 5,),
+                              SizedBox(
                                 width: 150.0,
-                                child: const Text('42018183' ,
+                                child: Text('42018183' ,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -110,7 +110,7 @@ class EncryptionLayout extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(22.0),
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
                     height: 55.55,
                     child: MaterialButton(
@@ -154,7 +154,7 @@ class CustomListDarkMode extends StatelessWidget{
         ),
         child: InkWell(
           splashColor: defaultColor,
-          child: Container(
+          child: SizedBox(
             height: 33.33,
             child: Row(
               children: const <Widget>[
@@ -187,7 +187,7 @@ class CustomListHome extends StatelessWidget{
               border: Border(bottom:  BorderSide(color: Colors.grey))),
           child: InkWell(
             splashColor: defaultColor,
-            child: Container(
+            child: SizedBox(
               height: 44.44,
               child: Row(
                 children: const <Widget>[
@@ -224,7 +224,7 @@ class CustomListProfile extends StatelessWidget{
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
-          child: Container(
+          child: SizedBox(
             height: 44.44,
             child: Row(
               children: const <Widget>[
@@ -260,7 +260,7 @@ class CustomListSettings extends StatelessWidget{
           border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
-          child: Container(
+          child: SizedBox(
             height: 44.44,
             child: Row(
               children: const <Widget>[
@@ -296,7 +296,7 @@ class CustomListHelp extends StatelessWidget{
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
-          child: Container(
+          child: SizedBox(
             height: 44.44,
             child: Row(
               children: const <Widget>[
@@ -365,7 +365,7 @@ class CustomListSignOut extends StatelessWidget{
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
-          child: Container(
+          child: SizedBox(
             height: 44.44,
             child: Row(
               children:  const <Widget>[
@@ -381,7 +381,7 @@ class CustomListSignOut extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateAndEnd(context, UserLoginScreen());
+            navigateAndEnd(context, const LoginScreen());
           }
           ,
         ),

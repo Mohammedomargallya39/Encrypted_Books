@@ -1,6 +1,21 @@
-class EncryptionLoginModel
+
+//              user
+
+class UserLoginModel
 {
 
 
 
 }
+
+
+
+//            admin
+
+class AdminLoginModel
+{
+
+
+
+}
+
