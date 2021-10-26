@@ -5,7 +5,9 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/books_model.dart';
 
-class OnlineBooksScreen extends StatelessWidget {
+class AdminOnlineBooksScreen extends StatelessWidget {
+  const AdminOnlineBooksScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,10 @@ class OnlineBooksScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state)
         {
-          var cubit = AppCubit.get(context);
+          //var cubit = AppCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Online books'),
+              title: const Text('Books'),
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
@@ -59,20 +61,16 @@ class OnlineBooksScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(width: 20.0,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                const Text(
-                  'كتاب حياتي ياعين',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                'كتاب حياتي ياعين',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                const Spacer(),
-                IconButton(onPressed: (){}, icon: const Icon(Icons.file_download))
-              ],
+              ),
             ),
           ),
           const SizedBox(height: 10.0,)

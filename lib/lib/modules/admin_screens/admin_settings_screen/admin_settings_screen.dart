@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/modules/user_screens/profile_screen/details_photo_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_details_photo_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 
-class SettingsScreen extends StatelessWidget {
+class AdminSettingsScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   var nameController = TextEditingController();
   var passwordController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
-  SettingsScreen({Key? key}) : super(key: key);
+  AdminSettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +68,11 @@ class SettingsScreen extends StatelessWidget {
                       onTap: ()
                       {
                         Navigator.push(context, MaterialPageRoute(builder: (_){
-                          return const DetailsPhotoDetails() ;
+                          return const AdminDetailsPhotoDetails() ;
                         }));
                       },
                     ),
                   ),
-                  const SizedBox(height: 22.5,),
-
-                  const Text('42018183',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.22),),
 
                   const SizedBox(height: 33.3,),
 

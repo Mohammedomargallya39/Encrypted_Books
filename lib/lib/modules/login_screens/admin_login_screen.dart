@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social/lib/modules/admin_screens/home_screen/home_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 import 'cubit/cubit.dart';
@@ -40,11 +40,11 @@ class AdminLoginScreen extends StatelessWidget {
                   children:
                   [
 
-                    Center(
+                    const Center(
                       child: SizedBox(
                         width: double.infinity,
                         height: 300.0,
-                        child: const Image(
+                        child: Image(
                           color: defaultColor,
                           image: AssetImage('assets/images/ebook.png',),
                           height: 90.0,
