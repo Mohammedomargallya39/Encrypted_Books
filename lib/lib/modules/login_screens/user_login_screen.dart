@@ -3,10 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social/lib/modules/user_screens/encrypted_home_screen/encrypted_home.dart';
+import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
-
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 

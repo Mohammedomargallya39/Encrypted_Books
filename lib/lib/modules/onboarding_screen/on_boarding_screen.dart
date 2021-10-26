@@ -115,6 +115,9 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
+  
+  
+  
   Widget BoardingItem(OnBoardingModel model)=> Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

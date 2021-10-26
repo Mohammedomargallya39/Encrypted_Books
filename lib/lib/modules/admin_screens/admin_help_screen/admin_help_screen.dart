@@ -4,8 +4,8 @@ import 'package:social/lib/shared/styles/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-class HelpScreen extends StatelessWidget {
-  const HelpScreen({Key? key}) : super(key: key);
+class AdminHelpScreen extends StatelessWidget {
+  const AdminHelpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class HelpScreen extends StatelessWidget {
         title: const Text('Help'),),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(17.5,22,17.5,0),
-        child: Center(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:

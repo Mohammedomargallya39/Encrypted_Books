@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AdminHomeScreen extends StatelessWidget {
-  const AdminHomeScreen({Key? key}) : super(key: key);
+class StudentsScreen extends StatelessWidget {
+  const StudentsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text(
+            'Students'),
       ),
     );
   }

@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:social/lib/modules/admin_screens/admin_help_screen/admin_help_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/sudents_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
-import 'package:social/lib/modules/user_screens/help_screen/help_screen.dart';
-import 'package:social/lib/modules/user_screens/profile_screen/profile_screen.dart';
-import 'package:social/lib/modules/user_screens/settings_screen/settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/styles/colors.dart';
-import 'books/your_book_screen.dart';
-class UserHomeScreen extends StatelessWidget {
-  const UserHomeScreen({Key? key}) : super(key: key);
-  @override
+
+import 'admin_books_screen.dart';
+
+class AdminHomeScreen extends StatelessWidget {
+  const AdminHomeScreen({Key? key}) : super(key: key);
+
+
+
+   @override
   Widget build(BuildContext context) {
         return Scaffold(
           appBar: AppBar(
@@ -62,24 +68,12 @@ class UserHomeScreen extends StatelessWidget {
                                 ),
                                 ),
                               ),
-                              SizedBox(height: 5,),
-                              SizedBox(
-                                width: 150.0,
-                                child: Text('42018183' ,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold ,
-                                      fontSize: 22.22 ,
-                                      color: Colors.white
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ],
                       ),
                   ),
+
                   //                 سكرينات ال drawer
                   const SizedBox(height: 11.11,),
                   const CustomListDarkMode(),
@@ -99,7 +93,7 @@ class UserHomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: Center(
+          body: SingleChildScrollView(
             child: Column(
               children:
               [
@@ -121,9 +115,9 @@ class UserHomeScreen extends StatelessWidget {
                       color: defaultColor,
                       onPressed: ()
                       {
-                        navigateTo(context, BooksScreen());
+                        navigateTo(context, const StudentsScreen());
                       },
-                      child: const Text('Your Books',
+                      child: const Text('Students',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 44.44,
@@ -131,8 +125,37 @@ class UserHomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
                   ),
                 ),
+                const SizedBox(height: 22,),
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 55.55,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                      elevation: 17.5,
+                      color: defaultColor,
+                      onPressed: ()
+                      {
+                        navigateTo(context, const AdminOnlineBooksScreen());
+                      },
+                      child: const Text('Books',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 44.44,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                  ),
+                ),
+
               ],
             ),
           ),
@@ -240,7 +263,7 @@ class CustomListProfile extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, const ProfileScreen());
+            navigateTo(context, const AdminProfileScreen());
           },
         ),
       ),
@@ -276,7 +299,7 @@ class CustomListSettings extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, SettingsScreen());
+            navigateTo(context, AdminSettingsScreen());
           },
         ),
       ),
@@ -312,7 +335,7 @@ class CustomListHelp extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, const HelpScreen());
+            navigateTo(context, const AdminHelpScreen());
           },
         ),
       ),
@@ -451,3 +474,4 @@ class CustomListSignOut extends StatelessWidget{
 //     );
 //   }
 // }
+
