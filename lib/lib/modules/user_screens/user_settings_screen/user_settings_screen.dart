@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_details_photo_screen.dart';
+import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 
@@ -68,7 +68,7 @@ class UserSettingsScreen extends StatelessWidget {
                       onTap: ()
                       {
                         Navigator.push(context, MaterialPageRoute(builder: (_){
-                          return const AdminDetailsPhotoDetails() ;
+                          return const UserDetailsPhotoDetails() ;
                         }));
                       },
                     ),

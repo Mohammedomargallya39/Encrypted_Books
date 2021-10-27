@@ -1,6 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
-// import 'package:social/lib/models/books_model.dart';
+// import 'package:social/lib/models/user_books_model.dart';
 //
 // class OfflineBooksScreen extends StatelessWidget {
 //
