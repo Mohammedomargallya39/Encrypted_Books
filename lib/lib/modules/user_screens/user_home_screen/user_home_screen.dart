@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/modules/admin_screens/admin_help_screen/admin_help_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
+import 'package:social/lib/modules/user_screens/user_profile_screen/user_profile_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -244,7 +244,7 @@ class CustomListProfile extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, const AdminProfileScreen());
+            navigateTo(context, const UserProfileScreen());
           },
         ),
       ),

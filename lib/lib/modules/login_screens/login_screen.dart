@@ -33,10 +33,10 @@ class LoginScreen extends StatelessWidget {
                   color: defaultColor,
                   onPressed: ()
                   {
-                    navigateTo(context, UserLoginScreen());
+                    navigateTo(context, AdminLoginScreen());
                   },
 
-                  child: const Text('User login',
+                  child: const Text('Admin login',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 33.33,
@@ -57,10 +57,10 @@ class LoginScreen extends StatelessWidget {
                   color: defaultColor,
                   onPressed: ()
                   {
-                    navigateTo(context, AdminLoginScreen());
+                    navigateTo(context, UserLoginScreen());
                   },
 
-                  child: const Text('Admin login',
+                  child: const Text('Students login',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 33.33,
@@ -69,7 +69,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
 
             ],
           ),

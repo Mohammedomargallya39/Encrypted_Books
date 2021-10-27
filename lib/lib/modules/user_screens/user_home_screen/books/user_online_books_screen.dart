@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/models/books_model.dart';
+import 'package:social/lib/models/user_books_model.dart';
 
 class UserOnlineBooksScreen extends StatelessWidget {
   const UserOnlineBooksScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context,index) => onlineBooksItem(BooksModel()),
+                itemBuilder: (context,index) => userOnlineBooksItem(UserBooksModel()),
                 separatorBuilder:(context,index)=> Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -33,7 +33,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                itemCount: 10),
+                itemCount: 11),
 
 
 
@@ -45,7 +45,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
   }
 
 
-  Widget onlineBooksItem(BooksModel model) => Column(
+  Widget userOnlineBooksItem(UserBooksModel model) => Column(
         children: [
           const SizedBox(height: 10.0,),
           Column(
