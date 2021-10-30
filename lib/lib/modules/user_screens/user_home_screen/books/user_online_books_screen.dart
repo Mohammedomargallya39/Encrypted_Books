@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/user_books_model.dart';
+import 'package:social/lib/modules/user_screens/user_home_screen/books/user_pdf_books_screen.dart';
+import 'package:social/lib/shared/components/components.dart';
 
 class UserOnlineBooksScreen extends StatelessWidget {
   const UserOnlineBooksScreen({Key? key}) : super(key: key);
@@ -24,7 +26,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context,index) => userOnlineBooksItem(UserBooksModel()),
+                itemBuilder: (context,index) => userOnlineBooksItem(UserBooksModel() , context),
                 separatorBuilder:(context,index)=> Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -45,36 +47,43 @@ class UserOnlineBooksScreen extends StatelessWidget {
   }
 
 
-  Widget userOnlineBooksItem(UserBooksModel model) => Column(
-        children: [
-          const SizedBox(height: 10.0,),
-          Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Image(
-                  image: AssetImage("assets/images/life_book.jpg"),
-                  width: double.infinity,
-                  height: 200.0,
+  Widget userOnlineBooksItem(UserBooksModel model , context) =>
+      InkWell(
+        child: Column(
+          children: [
+            const SizedBox(height: 10.0,),
+            Column(
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Image(
+                    image: AssetImage("assets/images/life_book.jpg"),
+                    width: double.infinity,
+                    height: 200.0,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(width: 20.0,),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                'كتاب حياتي ياعين',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+              ],
+            ),
+            const SizedBox(width: 20.0,),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  'كتاب حياتي ياعين',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0,)
-        ],
+            const SizedBox(height: 10.0,)
+          ],
+        ),
+        onTap: ()
+        {
+          navigateTo(context, UserPDFBooksScreen());
+        },
       );
 
 }

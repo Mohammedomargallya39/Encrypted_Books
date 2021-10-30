@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
-import 'package:social/lib/models/user_books_model.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_pdf_book_screen.dart';
+import 'package:social/lib/shared/components/components.dart';
 
 class AdminOnlineBooksScreen extends StatelessWidget {
   const AdminOnlineBooksScreen({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class AdminOnlineBooksScreen extends StatelessWidget {
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context,index) => adminBooksItem(AdminBooksModel()),
+                itemBuilder: (context,index) => adminBooksItem(AdminBooksModel() , context),
                 separatorBuilder:(context,index)=> Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -58,37 +59,43 @@ class AdminOnlineBooksScreen extends StatelessWidget {
   }
 
 
-  Widget adminBooksItem(AdminBooksModel model) =>
-      Column(
-        children: [
-          const SizedBox(height: 10.0,),
-          Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Image(
-                  image: AssetImage("assets/images/life_book.jpg"),
-                  width: double.infinity,
-                  height: 200.0,
+  Widget adminBooksItem(AdminBooksModel model , context) =>
+      InkWell(
+        child: Column(
+          children: [
+            const SizedBox(height: 10.0,),
+            Column(
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Image(
+                    image: AssetImage("assets/images/life_book.jpg"),
+                    width: double.infinity,
+                    height: 200.0,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(width: 20.0,),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                'كتاب حياتي ياعين',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+              ],
+            ),
+            const SizedBox(width: 20.0,),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  'كتاب حياتي ياعين',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0,)
-        ],
+            const SizedBox(height: 10.0,)
+          ],
+        ),
+        onTap: ()
+        {
+          navigateTo(context, AdminPDFBooksScreen());
+        },
       );
 
 }
