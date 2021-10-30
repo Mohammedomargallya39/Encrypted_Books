@@ -142,7 +142,7 @@ class AdminHomeScreen extends StatelessWidget {
                       color: defaultColor,
                       onPressed: ()
                       {
-                        navigateTo(context, const AdminOnlineBooksScreen());
+                        navigateTo(context, const AdminBooksScreen());
                       },
                       child: const Text('Books',
                         style: TextStyle(

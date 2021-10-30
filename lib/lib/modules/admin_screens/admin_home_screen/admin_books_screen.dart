@@ -7,8 +7,8 @@ import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_pdf_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 
-class AdminOnlineBooksScreen extends StatelessWidget {
-  const AdminOnlineBooksScreen({Key? key}) : super(key: key);
+class AdminBooksScreen extends StatelessWidget {
+  const AdminBooksScreen({Key? key}) : super(key: key);
 
 
   @override
