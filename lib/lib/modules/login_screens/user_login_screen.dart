@@ -33,7 +33,7 @@ class UserLoginScreen extends StatelessWidget {
         {
           var cubit = UserLoginCubit.get(context);
           return Scaffold(
-            appBar: AppBar(title: const Text('User Login'),),
+            appBar: AppBar(title: const Text('Login as student'),),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(22.0),

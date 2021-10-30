@@ -31,7 +31,7 @@ class AdminLoginScreen extends StatelessWidget {
         {
           var cubit = AdminLoginCubit.get(context);
           return Scaffold(
-            appBar: AppBar(title: const Text('Admin Login'),),
+            appBar: AppBar(title: const Text('Login as admin'),),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(22.0),

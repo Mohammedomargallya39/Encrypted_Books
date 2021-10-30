@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:social/lib/modules/admin_screens/admin_help_screen/admin_help_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/user_screens/user_help_screen/user_help_screen.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_profile_screen.dart';
