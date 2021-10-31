@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/modules/admin_screens/admin_help_screen/admin_help_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/sudents_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/students_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
