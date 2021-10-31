@@ -173,7 +173,7 @@ class CustomListDarkMode extends StatelessWidget{
       padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
       child: Container(
         decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey))
+            border: Border(bottom: BorderSide(color: Colors.grey ))
         ),
         child: InkWell(
           splashColor: defaultColor,

@@ -77,17 +77,34 @@ class AdminBooksScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(width: 20.0,),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  'كتاب حياتي ياعين',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+            Row(
+              children:  [
+                IconButton(
+                    onPressed: (){},
+                    icon:
+                    const Icon(Icons.remove)
+                ),
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                  child: Text(
+                      'كتاب حياتي ياعين',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const Spacer(),
+                IconButton(
+                    onPressed: (){},
+                    icon:
+                    const Icon(Icons.add)
+                ),
+
+              ],
             ),
             const SizedBox(height: 10.0,)
           ],
