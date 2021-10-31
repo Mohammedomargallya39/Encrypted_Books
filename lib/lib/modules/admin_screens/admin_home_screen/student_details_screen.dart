@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/user_books_model.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -48,9 +49,6 @@ class StudentDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-
-
               const SizedBox(height: 33.33,),
               const Text('Name :',
                 style: TextStyle(
@@ -87,7 +85,6 @@ class StudentDetailsScreen extends StatelessWidget {
                   border: Border(bottom:  BorderSide(color: Colors.grey),),
                 ),
               ),
-
               const SizedBox(height: 22,),
               const Text('NO. of books :',
                 style: TextStyle(
@@ -104,18 +101,45 @@ class StudentDetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 33,),
-
               Center(
-                child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  elevation: 17.5,
-                  color: defaultColor,
-                  onPressed: () {},
-                  child:
-                  const Text('Add books',
-                    style: TextStyle(fontSize: 22 , fontWeight: FontWeight.bold
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    elevation: 17.5,
+                    color: defaultColor,
+                    onPressed: ()
+                    {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context)
+                          {
+                            return Scaffold(
+                              appBar: AppBar(title: const Text('Add books'),),
+                              body: ListView.separated(
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context,index) => addBooksForStudentsItem(AdminBooksModel() , context),
+                                separatorBuilder:(context,index)=> Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 1.0,
+                                    width: double.infinity,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                itemCount: 22,
+                              ),
+                            );
+                          }
+                      );
+                    },
+                    child:
+                    const Text('Add books',
+                      style: TextStyle(fontSize: 22 , fontWeight: FontWeight.bold , color: Colors.white
+                      ),
                     ),
                   ),
                 ),
@@ -126,10 +150,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
                 ),
               ),
-
               const SizedBox(height: 22,),
-
-
               ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -144,17 +165,13 @@ class StudentDetailsScreen extends StatelessWidget {
                   ),
                   itemCount: 7),
 
-
-
             ],
           ),
         ),
       ),
     );
   }
-
-  Widget studentBooksItem(userBooksModel,  context)
-  {
+  Widget studentBooksItem(userBooksModel,  context) {
     return SizedBox(
       height: 66,
       child: Row(
@@ -176,6 +193,46 @@ class StudentDetailsScreen extends StatelessWidget {
     );
 
   }
+
+
+
+  Widget addBooksForStudentsItem(AdminBooksModel model , context) => InkWell(
+    child: Column(
+      children: [
+        const SizedBox(height: 10.0,),
+        Column(
+          children: const [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Image(
+                image: AssetImage("assets/images/life_book.jpg"),
+                width: double.infinity,
+                height: 200.0,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(width: 20.0,),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  'كتاب حياتي ياعين',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+
+          ],
+    ),
+    onTap: ()
+    {
+    },
+  );
+
 }
 
 
