@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 
 
 class UserPDFBooksScreen extends StatelessWidget {
 
   String url = 'http://africau.edu/images/default/sample.pdf';
+  bool night = true;
+  bool light = false;
 
   UserPDFBooksScreen({Key? key}) : super(key: key);
 
@@ -16,7 +19,8 @@ class UserPDFBooksScreen extends StatelessWidget {
         title: const Text('كتاب حياتي يعين'
         ),
       ),
-      body: const PDF(
+      body:  PDF(
+        nightMode: ThemeCubit.get(context).isDark? night : light ,
         enableSwipe: true,
         swipeHorizontal: true,
         autoSpacing: false,
