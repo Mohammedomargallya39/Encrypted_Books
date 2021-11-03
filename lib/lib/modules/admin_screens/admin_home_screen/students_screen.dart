@@ -36,58 +36,63 @@ class StudentsScreen extends StatelessWidget {
     );
   }
 
-  Widget studentsItem(StudentsModel model , context) => Row(
+  Widget studentsItem(StudentsModel model , context) => InkWell(
+    child: Row(
 
-   children: <Widget>
-   [
-     Container(
-       margin: const EdgeInsets.all(10),
-       width: 75,
-       height:75,
-       decoration:  const BoxDecoration(shape: BoxShape.circle,
-         image: DecorationImage(image:
-         NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
-             fit: BoxFit.fill
+     children: <Widget>
+     [
+       Container(
+         margin: const EdgeInsets.all(10),
+         width: 75,
+         height:75,
+         decoration:  const BoxDecoration(shape: BoxShape.circle,
+           image: DecorationImage(image:
+           NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
+               fit: BoxFit.fill
+           ),
          ),
        ),
-     ),
-     const SizedBox(width: 5,),
-     SizedBox(
-       width: 280,
-       child: Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children:   const <Widget>
-         [
-           Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
-             maxLines: 1,
-             overflow: TextOverflow.ellipsis,
-             style: TextStyle(
-                 fontWeight: FontWeight.bold ,
-                 fontSize: 22.22 ,
+       const SizedBox(width: 5,),
+       Expanded(
+         child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           children:   const <Widget>
+           [
+             Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
+               maxLines: 1,
+               overflow: TextOverflow.ellipsis,
+               style: TextStyle(
+                   fontWeight: FontWeight.bold ,
+                   fontSize: 22.22 ,
+               ),
              ),
-           ),
 
-           SizedBox(height: 5,),
+             SizedBox(height: 5,),
 
-           Text('42018183' ,
-             maxLines: 1,
-             overflow: TextOverflow.ellipsis,
-             style: TextStyle(
-                 fontWeight: FontWeight.bold ,
-                 fontSize: 22.22 ,
+             Text('42018183' ,
+               maxLines: 1,
+               overflow: TextOverflow.ellipsis,
+               style: TextStyle(
+                   fontWeight: FontWeight.bold ,
+                   fontSize: 22.22 ,
+               ),
              ),
-           ),
-         ],
+           ],
+         ),
        ),
-     ),
-     const Spacer(),
-     IconButton(
-       onPressed: ()
-       {
-         navigateTo(context, const StudentDetailsScreen());
-       },
-       icon: const Icon(Icons.arrow_forward_ios),
-     ),
-   ],
+       const Spacer(),
+       IconButton(
+         onPressed: ()
+         {
+           navigateTo(context, const StudentDetailsScreen());
+         },
+         icon: const Icon(Icons.arrow_forward_ios),
+       ),
+     ],
+    ),
+    onTap: ()
+    {
+      navigateTo(context, const StudentDetailsScreen());
+    },
   );
 }
