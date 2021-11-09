@@ -107,7 +107,7 @@ Widget defaultFormField({
       prefixIcon: Icon(prefix , color: defaultColor,),
       suffixIcon: IconButton(onPressed: (){
         return suffixPressed!();
-        }, icon: Icon(suffix),color: defaultColor,),
+        }, icon: Icon(suffix),color:defaultColor,),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0 ),
         borderSide: const BorderSide(color: defaultColor , width: 2),

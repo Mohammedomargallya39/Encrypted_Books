@@ -120,7 +120,7 @@ class AdminHomeScreen extends StatelessWidget {
                       child: const Text('Students',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 44.44,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -147,7 +147,7 @@ class AdminHomeScreen extends StatelessWidget {
                       child: const Text('Books',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 44.44,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -405,8 +405,7 @@ class CustomListSignOut extends StatelessWidget{
           onTap: ()
           {
             navigateAndEnd(context, const LoginScreen());
-          }
-          ,
+          },
         ),
       ),
     );

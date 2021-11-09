@@ -130,7 +130,7 @@ class UserHomeScreen extends StatelessWidget {
                       child: const Text('Your Books',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 44.44,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
