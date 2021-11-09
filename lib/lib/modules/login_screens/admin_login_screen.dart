@@ -31,7 +31,9 @@ class AdminLoginScreen extends StatelessWidget {
         {
           var cubit = AdminLoginCubit.get(context);
           return Scaffold(
-            appBar: AppBar(title: const Text('Login as admin'),),
+            appBar: AppBar(
+              // title: const Text('Login as admin'),
+              ),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(22.0),
@@ -43,25 +45,24 @@ class AdminLoginScreen extends StatelessWidget {
                     const Center(
                       child: SizedBox(
                         width: double.infinity,
-                        height: 300.0,
+                        height: 200.0,
                         child: Image(
                           color: defaultColor,
                           image: AssetImage('assets/images/ebook.png',),
-                          height: 90.0,
-                          width: 90.0,
+                          height: 80.0,
+                          width: 80.0,
                         ),
                       ),
                     ),
 
-                    const SizedBox(
-                      height: 15.0,
-                    ),
+                    SizedBox(
+                      height: 40.0,),
 
-                    const Text('LOGIN', style: TextStyle(fontSize: 44 , fontWeight: FontWeight.bold),),
-                    Text('Login to your account',
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    const SizedBox(height: 33.0,),
+                    Center(child: const Text('Login as admin', style: TextStyle(fontSize: 30 , fontWeight: FontWeight.bold),)),
+                    // Text('Login to your account',
+                    //   style: Theme.of(context).textTheme.bodyText2,
+                    // ),
+                    const SizedBox(height: 50.0,),
                     defaultFormField(
                       maxLines: 1,
                       text: 'E-mail',
@@ -122,6 +123,7 @@ class AdminLoginScreen extends StatelessWidget {
                               condition: state is! AdminLoginLoadingState ,
                               builder: (context)=>
                                   MaterialButton(
+
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(18.0),
                                     ),
@@ -135,7 +137,7 @@ class AdminLoginScreen extends StatelessWidget {
                                     child: const Text('LOGIN',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 33.33,
+                                        fontSize: 25.0,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
