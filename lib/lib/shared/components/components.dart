@@ -81,7 +81,6 @@ Widget defaultFormField({
 })
 {
   return TextFormField(
-
     maxLines: maxLines,
     controller: controller,
     obscureText: isPassword,
@@ -94,7 +93,7 @@ Widget defaultFormField({
     keyboardType: type,
 
     style: TextStyle(
-        color: ThemeCubit.get(context).isDark ? Colors.white: Colors.black,
+        color: ThemeCubit.get(context).darkTheme ? Colors.white: Colors.black,
         fontWeight: FontWeight.bold),
 
     decoration: InputDecoration(

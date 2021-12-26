@@ -39,7 +39,7 @@ class OnBoardingScreen extends StatelessWidget {
      {
        if(value)
        {
-         navigateAndEnd(context, const LoginScreen());
+         navigateAndEnd(context, LoginScreen());
        }
      });
    }

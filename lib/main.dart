@@ -10,12 +10,14 @@ import 'lib/modules/login_screens/login_screen.dart';
 import 'lib/shared/cubit/cubit.dart';
 import 'lib/shared/cubit/states.dart';
 import 'lib/shared/network/local/cache_helper.dart';
+import 'lib/shared/network/shared/dio_helper.dart';
 void main () async
 {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
+  DioHelper.init();
 
   bool isDark= CacheHelper.getData(key: 'isDark') == true;
 
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers:
       [
-        BlocProvider(create: (BuildContext context) => ThemeCubit()..changeAppMode(fromShared: isDark),),
+        BlocProvider(create: (BuildContext context) => ThemeCubit()..changeTheme(fromShared: isDark),),
         BlocProvider(create: (BuildContext context) => AppCubit(),),
         //BlocProvider(create: (BuildContext context) => EncryptionLoginCubit(),),
       ],
@@ -51,8 +53,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
-            themeMode: ThemeCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            home: onBoarding ? const LoginScreen() : OnBoardingScreen(),
+            themeMode: ThemeCubit.get(context).darkTheme ? ThemeMode.dark : ThemeMode.light,
+            home: onBoarding ? LoginScreen() : OnBoardingScreen(),
           );
         },
       ),

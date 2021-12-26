@@ -20,7 +20,7 @@ class UserPDFBooksScreen extends StatelessWidget {
         ),
       ),
       body:  PDF(
-        nightMode: ThemeCubit.get(context).isDark? night : light ,
+        nightMode: ThemeCubit.get(context).darkTheme? night : light ,
         enableSwipe: true,
         swipeHorizontal: true,
         autoSpacing: false,

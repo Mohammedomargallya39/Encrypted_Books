@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/user_screens/user_help_screen/user_help_screen.dart';
@@ -6,6 +7,7 @@ import 'package:social/lib/modules/user_screens/user_profile_screen/user_profile
 import 'package:social/lib/modules/user_screens/user_settings_screen/user_settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
+import 'package:social/lib/shared/cubit/states.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 import 'books/user_online_books_screen.dart';
 class UserHomeScreen extends StatelessWidget {
@@ -15,131 +17,135 @@ class UserHomeScreen extends StatelessWidget {
 
    @override
   Widget build(BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Encrypted Books'),
-          ),
-          drawer: Drawer(
-            child: Container(
-              // التوجل لسه فيه مشكلة
-              //color:ThemeCubit.get(context).isDark ? Colors.grey.shade900: Colors.blue,
-              color: HexColor('#396691'),
-              child: ListView(
-                children:  <Widget>[
-                   DrawerHeader(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(colors: <Color>
-                      [
-                        Colors.grey,
-                        Colors.blueGrey,
-                      ]),
-                    ),
-                      child: Row(
-                        children:  <Widget>[
-                          Container(
-                            margin: const EdgeInsets.all(10),
-                            width: 85.45,
-                            height: 85.45,
-                            decoration:  const BoxDecoration(shape: BoxShape.circle,
-                            image:
-                            DecorationImage(image:
-                            NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
-                                fit: BoxFit.fill
-                            ),
-                            ),
-                            ),
-                          const SizedBox(width: 7.5,),
-                          Column(
-                            //crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              SizedBox(
-                                width: 150.0,
-                                child: Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold ,
-                                    fontSize: 22.22 ,
-                                    color: Colors.white
-                                ),
+        return BlocBuilder<ThemeCubit, ThemeStates>(
+          builder: (BuildContext context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Encrypted Books'),
+              ),
+              drawer: Drawer(
+                child: Container(
+                  // التوجل لسه فيه مشكلة
+                  color:ThemeCubit.get(context).darkTheme ? Colors.grey.shade800: HexColor('#396691'),
+                  // color: HexColor('#396691'),
+                  child: ListView(
+                    children:  <Widget>[
+                      DrawerHeader(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(colors: <Color>
+                          [
+                            Colors.grey,
+                            Colors.blueGrey,
+                          ]),
+                        ),
+                        child: Row(
+                          children:  <Widget>[
+                            Container(
+                              margin: const EdgeInsets.all(10),
+                              width: 85.45,
+                              height: 85.45,
+                              decoration:  const BoxDecoration(shape: BoxShape.circle,
+                                image:
+                                DecorationImage(image:
+                                NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
+                                    fit: BoxFit.fill
                                 ),
                               ),
-                              SizedBox(height: 5,),
-                              SizedBox(
-                                width: 150.0,
-                                child: Text('42018183' ,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold ,
-                                      fontSize: 22.22 ,
-                                      color: Colors.white
+                            ),
+                            const SizedBox(width: 7.5,),
+                            Column(
+                              //crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                SizedBox(
+                                  width: 150.0,
+                                  child: Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold ,
+                                        fontSize: 22.22 ,
+                                        color: Colors.white
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                SizedBox(height: 5,),
+                                SizedBox(
+                                  width: 150.0,
+                                  child: Text('42018183' ,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold ,
+                                        fontSize: 22.22 ,
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                  ),
 
-                  //                 سكرينات ال drawer
-                  const SizedBox(height: 11.11,),
-                  const CustomListDarkMode(),
-                  const SizedBox(height: 22.22,),
-                  const CustomListProfile(),
-                  const SizedBox(height: 22.22,),
-                  const CustomListHome(),
-                  const SizedBox(height: 22.22,),
-                  const CustomListHelp(),
-                  const SizedBox(height: 22.22,),
-                  const CustomListSettings(),
-                  const SizedBox(height: 22.22,),
-                  //const CustomListRateUs(),
-                  //const SizedBox(height: 22.22,),
-                  const CustomListSignOut(),
-                ],
-              ),
-            ),
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              children:
-              [
-                const Image(
-                  image: AssetImage("assets/images/lockedbooks.png"),
-                  width: 400.0,
-                  height: 400.0,
+                      //                 سكرينات ال drawer
+                      const SizedBox(height: 11.11,),
+                      const CustomListDarkMode(),
+                      const SizedBox(height: 22.22,),
+                      const CustomListProfile(),
+                      const SizedBox(height: 22.22,),
+                      const CustomListHome(),
+                      const SizedBox(height: 22.22,),
+                      const CustomListHelp(),
+                      const SizedBox(height: 22.22,),
+                      const CustomListSettings(),
+                      const SizedBox(height: 22.22,),
+                      //const CustomListRateUs(),
+                      //const SizedBox(height: 22.22,),
+                      const CustomListSignOut(),
+                    ],
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 55.55,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      elevation: 17.5,
-                      color: defaultColor,
-                      onPressed: ()
-                      {
-                        navigateTo(context, const UserOnlineBooksScreen());
-                      },
-                      child: const Text('Your Books',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
+              ),
+              body: SingleChildScrollView(
+                child: Column(
+                  children:
+                  [
+                    const Image(
+                      image: AssetImage("assets/images/lockedbooks.png"),
+                      width: 400.0,
+                      height: 400.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(22.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 55.55,
+                        child: MaterialButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
+                          elevation: 17.5,
+                          color: defaultColor,
+                          onPressed: ()
+                          {
+                            navigateTo(context, const UserOnlineBooksScreen());
+                          },
+                          child: const Text('Your Books',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       }
   }
@@ -171,7 +177,7 @@ class CustomListDarkMode extends StatelessWidget{
           ),
           onTap: ()
           {
-             ThemeCubit.get(context).changeAppMode();
+             ThemeCubit.get(context).changeTheme();
           },
         ),
       ),
@@ -385,7 +391,7 @@ class CustomListSignOut extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateAndEnd(context, const LoginScreen());
+            navigateAndEnd(context, LoginScreen());
           }
           ,
         ),
