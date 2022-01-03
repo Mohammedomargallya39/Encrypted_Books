@@ -18,7 +18,7 @@ class OnBoardingModel{
       );
 }
 
-class OnBoardingScreen extends StatelessWidget {
+class onBoardingScreen extends StatelessWidget {
 
   bool isLast = false;
 

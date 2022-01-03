@@ -7,6 +7,7 @@ import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_prof
 import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -409,7 +410,7 @@ class CustomListSignOut extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateAndEnd(context,  LoginScreen());
+            signOut(context);
           },
         ),
       ),

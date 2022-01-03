@@ -3,11 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/login_screens/register_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
+import 'package:social/lib/shared/components/constants.dart';
+import 'package:social/lib/shared/network/local/cache_helper.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
@@ -25,32 +28,32 @@ class LoginScreen extends StatelessWidget {
       create: (context) => UserLoginCubit(),
       child: BlocConsumer<UserLoginCubit, UserLoginStates>(
         listener: (context, state) {
+              print("1"+'$token');
           if (state is UserLoginSuccessState) {
-            navigateAndEnd(
-              context,
-              UserLoginCubit.get(context).loginModel!.isAdmin
-                  ? AdminHomeScreen()
-                  : UserHomeScreen(),
-            );
+              print("2"+'$token');
 
-            // print('---------done---------------');
-            // if(state.status)
-            // {
-            //   CacheHelper.saveData(key: 'token', value: state.userLoginModel.data!.token).then((value)
-            //   {
-            //     token = state.userLoginModel.data!.token;
-            //     print('----------------loginToken: $token ------------');
-            //     navigateAndEnd(context, UserLoginCubit.get(context).loginModel!.data!.isAdmin ? AdminHomeScreen() : UserHomeScreen(), );
-            //     print('------------------success login------------------------');
-            //   });
-            // }
-            // else {
-            //   showToast(
-            //       message: UserLoginCubit.get(context).loginModel!.message!,
-            //       state: toastStates.ERROR
-            //   );
-            // }
-          }
+              CacheHelper.saveData(key: 'isAdmin', value: state.loginModel.isAdmin).then((value) {
+                isAdmin = state.loginModel.isAdmin;
+                print('is admin saved successfully');
+              });
+              CacheHelper.saveData(key: 'token', value: state.loginModel.token).then((value)
+              {
+
+                token = state.loginModel.token ;
+                navigateAndEnd(
+                  context,
+                  UserLoginCubit.get(context).loginModel!.isAdmin
+                      ? AdminHomeScreen()
+                      : UserHomeScreen(),);
+              } );
+
+              {
+                showToast(message: 'Login Successfully.', state: toastStates.SUCCESS);
+              }
+          }else
+            {
+              showToast(message: 'Please, try again.', state: toastStates.ERROR);
+            }
         },
         builder: (context, state) {
           var cubit = UserLoginCubit.get(context);
