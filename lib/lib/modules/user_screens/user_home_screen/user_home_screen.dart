@@ -6,6 +6,7 @@ import 'package:social/lib/modules/user_screens/user_help_screen/user_help_scree
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_profile_screen.dart';
 import 'package:social/lib/modules/user_screens/user_settings_screen/user_settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -391,7 +392,7 @@ class CustomListSignOut extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateAndEnd(context, LoginScreen());
+            signOut(context);
           }
           ,
         ),

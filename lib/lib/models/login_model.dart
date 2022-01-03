@@ -1,13 +1,10 @@
-class UserLoginModel {
-  late bool status;
-  UserData? data;
-
-  String? message;
-
-  UserLoginModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? UserData.fromJson(json['data']) : null;
-  }
-}
+//  class UserLoginModel {
+//    UserData? data;
+//
+//   UserLoginModel.fromJson(Map<String, dynamic> json) {
+//     data = json['data'] != null ? UserData.fromJson(json['data']) : null;
+//   }
+// }
 
 class UserData {
   late String id;
@@ -28,25 +25,18 @@ class UserData {
     print('name done');
     email = json["email"] ?? '';
     print('email done');
-
     phone = json["phone"] ?? '';
     print('phone done');
-
     isAdmin = json["isAdmin"] ?? false;
     print('is admin done');
-
     isMan = json["isManagmentsection"] ?? false;
     print('ismanage done');
-
     isEng = json["isEnginneringsection"] ?? false;
     print('is eng  done');
-
     isCom = json["isComputerSciencesection"] ?? false;
     print('is computer  done');
-
     image = json["pic"] ?? '';
     print('pic done');
-
     token = json["token"] ?? '';
     print('token done');
   }

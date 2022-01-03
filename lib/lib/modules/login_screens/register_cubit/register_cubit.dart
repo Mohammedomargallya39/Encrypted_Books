@@ -15,7 +15,7 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
   bool isPassword = true;
 
   IconData suffix = Icons.visibility_outlined;
-  UserLoginModel? loginModel;
+  UserData? loginModel;
   int currentIndex = 0;
   bool isEng = false;
   bool isMan = false;
