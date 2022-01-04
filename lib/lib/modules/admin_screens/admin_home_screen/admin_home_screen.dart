@@ -5,7 +5,6 @@ import 'package:social/lib/modules/admin_screens/admin_help_screen/admin_help_sc
 import 'package:social/lib/modules/admin_screens/admin_home_screen/students_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
-import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';

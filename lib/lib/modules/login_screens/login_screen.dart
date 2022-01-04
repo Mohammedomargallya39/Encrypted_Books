@@ -3,12 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/login_screens/register_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
-import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/local/cache_helper.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -50,10 +48,7 @@ class LoginScreen extends StatelessWidget {
               {
                 showToast(message: 'Login Successfully.', state: toastStates.SUCCESS);
               }
-          }else
-            {
-              showToast(message: 'Please, try again.', state: toastStates.ERROR);
-            }
+          }
         },
         builder: (context, state) {
           var cubit = UserLoginCubit.get(context);

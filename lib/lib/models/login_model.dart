@@ -1,11 +1,3 @@
-//  class UserLoginModel {
-//    UserData? data;
-//
-//   UserLoginModel.fromJson(Map<String, dynamic> json) {
-//     data = json['data'] != null ? UserData.fromJson(json['data']) : null;
-//   }
-// }
-
 class UserData {
   late String id;
   late String name;

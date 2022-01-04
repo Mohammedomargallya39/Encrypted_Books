@@ -8,7 +8,6 @@ import 'package:social/lib/modules/onboarding_screen/on_boarding_screen.dart';
 import 'package:social/lib/shared/bloc_observer.dart';
 import 'package:social/lib/shared/styles/themes.dart';
 import 'lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
-import 'lib/modules/login_screens/cubit/cubit.dart';
 import 'lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'lib/shared/components/constants.dart';
 import 'lib/shared/cubit/cubit.dart';
@@ -26,7 +25,7 @@ void main() async {
   bool isDark = CacheHelper.getData(key: 'isDark') == true;
   Widget? widget;
   bool onBoarding = CacheHelper.getData(key: 'onBoarding') == true;
-  isAdmin = CacheHelper.getData(key: 'isAdmin') == false;
+  isAdmin = CacheHelper.getData(key: 'isAdmin') == true;
   token = CacheHelper.getData(key: 'token');
 
   //print(onBoarding);
