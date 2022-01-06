@@ -32,6 +32,8 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
       print(value!.data['token']);
       loginModel = UserData.fromJson(value.data);
       print(loginModel!.token);
+      print(loginModel!.id);
+
       print('-------------------------UserLogin-------------------- success');
       emit(UserLoginSuccessState(loginModel!));
     }).catchError((error) {

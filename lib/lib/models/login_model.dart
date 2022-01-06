@@ -9,6 +9,7 @@ class UserData {
   late bool isMan;
   late bool isCom;
   late String token;
+  String? password;
 
   UserData.fromJson(Map<String, dynamic> json) {
     id = json["_id"] ?? '';
@@ -31,5 +32,6 @@ class UserData {
     print('pic done');
     token = json["token"] ?? '';
     print('token done');
+    password = json['password'];
   }
 }
