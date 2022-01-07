@@ -9,13 +9,10 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 
 class UserSettingsScreen extends StatelessWidget {
-  UserSettingsScreen({Key? key}) : super(key: key);
-
   var formKey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
-  var passwordController = TextEditingController();
-  var emailController = TextEditingController();
+  var nameController = TextEditingController() ;
   var phoneController = TextEditingController();
+  UserSettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,147 +20,137 @@ class UserSettingsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state)
       {
+        print(AppCubit.get(context).userModel!.name);
+        print(AppCubit.get(context).userModel!.phone);
         nameController.text =AppCubit.get(context).userModel!.name;
-        emailController.text =AppCubit.get(context).userModel!.email;
         phoneController.text =AppCubit.get(context).userModel!.phone;
+
         return ConditionalBuilder(
-          condition: AppCubit.get(context).userModel!= null,
+          condition: AppCubit.get(context).userModel != null,
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: const Text('Settings'),
             ),
-            body: Form(
-              key: formKey,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(11, 11, 11, 11),
-                  child: Column(
-                    children: <Widget>[
-                      Center(
-                        child: GestureDetector(
-                          child: SizedBox(
-                            width:  275,
-                            height: 275,
-                            child: Stack(
-                              alignment: AlignmentDirectional.bottomEnd,
-                              children:[
-                                Center(
-                                  child: Container(
-                                    margin: const EdgeInsets.all(10),
-                                    width:  275,
-                                    height: 275,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(image:
-                                      NetworkImage(AppCubit.get(context).userModel!.image),
-                                          fit: BoxFit.fill
-                                      ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(11, 44, 11, 11),
+                child: Column(
+                  children: <Widget>[
+                    Center(
+                      child: GestureDetector(
+                        child: SizedBox(
+                          width:  275,
+                          height: 275,
+                          child: Stack(
+                            alignment: AlignmentDirectional.bottomEnd,
+                            children:[
+                              Center(
+                                child: Container(
+                                  margin: const EdgeInsets.all(10),
+                                  width:  275,
+                                  height: 275,
+                                  decoration:   BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(image:
+                                    NetworkImage(AppCubit.get(context).userModel!.image),
+                                        fit: BoxFit.fill
                                     ),
                                   ),
                                 ),
-                                IconButton(
-                                  color: defaultColor,
-                                  iconSize: 33,
-                                  onPressed: (){},
-                                  icon: const Icon(Icons.camera_alt),
-                                ),
-                              ] ,
-                            ),
+                              ),
+                              IconButton(
+                                color: defaultColor,
+                                iconSize: 33,
+                                onPressed: (){},
+                                icon: const Icon(Icons.camera_alt),
+                              ),
+                            ] ,
                           ),
-                          onTap: ()
-                          {
-                            Navigator.push(context, MaterialPageRoute(builder: (_){
-                              return const UserDetailsPhotoDetails() ;
-                            }));
-                          },
                         ),
-                      ),
-                      const SizedBox(height: 22.5,),
-
-                       Text(AppCubit.get(context).userModel!.email.split('@').first,
-                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.22),),
-
-                      const SizedBox(height: 33.3,),
-
-                      defaultFormField(
-                        type: TextInputType.name,
-                        controller: nameController,
-                        prefix: Icons.person,
-                        text: 'Name',
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'Name must not be empty';
-                          }
+                        onTap: ()
+                        {
+                          Navigator.push(context, MaterialPageRoute(builder: (_){
+                            return const UserDetailsPhotoDetails() ;
+                          }));
                         },
-                        context: context,
                       ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
+                    ),
+                    const SizedBox(height: 22.5,),
+
+                    Text(
+                      AppCubit.get(context).userModel!.email.split('@').first,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.22),),
+
+                    const SizedBox(height: 33.3,),
+
+                    defaultFormField(
+                      type: TextInputType.name,
+                      controller: nameController,
+                      prefix: Icons.person,
+                      text: 'Name',
+                      validate: (String value) {
+                        if (value.isEmpty) {
+                          return 'Name must not be empty';
+                        }
+                      },
+                      context: context,
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+
+
+                    defaultFormField(
+                      type: TextInputType.phone,
+                      controller: phoneController,
+                      prefix: Icons.phone,
+                      text: 'Phone',
+                      validate: (String value) {
+                        if (value.isEmpty) {
+                          return 'Phone must not be empty';
+                        }
+                      },
+                      context: context,
+                    ),
 
 
 
-                      defaultFormField(
-                        type: TextInputType.emailAddress,
-                        controller: emailController,
-                        prefix: Icons.email,
-                        text: 'Email Address',
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'Email Address must not be empty';
-                          }
+                    const SizedBox(
+                      height: 100,
+                    ),
+
+                    SizedBox(
+                      width: double.infinity,
+                      height: 55.55,
+                      child: MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        elevation: 17.5,
+                        color: defaultColor,
+                        onPressed: ()
+                        {
                         },
-                        context: context,
-
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      defaultFormField(
-                        type: TextInputType.phone,
-                        controller: phoneController,
-                        prefix: Icons.phone,
-                        text: 'Phone',
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'Phone must not be empty';
-                          }
-                        },
-                        context: context,
-                      ),
-
-
-
-                      const SizedBox(
-                        height: 44.44,
-                      ),
-
-                      SizedBox(
-                        width: double.infinity,
-                        height: 55.55,
-                        child: MaterialButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                          elevation: 17.5,
-                          color: defaultColor,
-                          onPressed: ()
-                          {
-                          },
-                          child: const Text('Save changes',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.22,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        child: const Text('Update Profile Settings',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22.22,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+
+
+
+
+
+                  ],
                 ),
               ),
             ) ,
+
+
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),
         );
