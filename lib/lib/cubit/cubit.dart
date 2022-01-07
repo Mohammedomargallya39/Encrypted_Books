@@ -8,15 +8,15 @@ import 'package:social/lib/shared/network/shared/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates>
 {
-
   AppCubit() : super(EncryptionAppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
-
   UserData? userModel;
-
   void getUserData() {
     emit(EncryptionLoadingUserDataState());
-    DioHelper.getData(url: PROFILE,token: token).then((value) {
+    DioHelper.getData(
+      url: PROFILE,
+      token: token,
+    ).then((value) {
       userModel = UserData.fromJson(value!.data);
       print(userModel!.name);
       emit(EncryptionSuccessUserDataState(userModel!));
@@ -25,9 +25,5 @@ class AppCubit extends Cubit<AppStates>
       emit(EncryptionErrorUserDataState());
     });
   }
-
-
-
-
 }
 

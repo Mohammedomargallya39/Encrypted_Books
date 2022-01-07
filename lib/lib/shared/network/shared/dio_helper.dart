@@ -1,9 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:social/lib/shared/components/components.dart';
-
-import '../end_points.dart';
-
 
 class DioHelper{
   static late Dio dio;
