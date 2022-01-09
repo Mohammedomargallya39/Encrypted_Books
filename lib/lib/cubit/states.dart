@@ -12,3 +12,14 @@ class EncryptionSuccessUserDataState extends AppStates
 class EncryptionErrorUserDataState extends AppStates{}
 
 
+class EncryptionLoadingUpdateUserDataState extends AppStates{}
+class EncryptionSuccessUpdateUserDataState extends AppStates
+{
+  final UserData userData ;
+  EncryptionSuccessUpdateUserDataState(this.userData);
+}
+class EncryptionErrorUpdateUserDataState extends AppStates{}
+
+
+class EncryptionSelectProfileImageState extends AppStates{}
+

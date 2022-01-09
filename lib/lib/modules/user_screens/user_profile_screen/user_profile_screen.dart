@@ -34,15 +34,42 @@ class  UserProfileScreen extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0, 33, 0, 0),
                       child: Center(
                         child: GestureDetector(
-                          child: Container(
-                            margin: const EdgeInsets.all(10),
-                            width: 275,
-                            height: 275,
-                            decoration:   BoxDecoration(shape: BoxShape.circle,
-                              image: DecorationImage(image:
-                              NetworkImage(AppCubit.get(context).userModel!.image),
-                                  fit: BoxFit.fill
-                              ),
+                          child: SizedBox(
+                            width:  220,
+                            height: 235,
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomEnd,
+                              children:[
+                                // Center(
+                                //   child: Container(
+                                //     margin: const EdgeInsets.all(10),
+                                //     width:  275,
+                                //     height: 275,
+                                //     decoration:   BoxDecoration(
+                                //       shape: BoxShape.circle,
+                                //       image: DecorationImage(image:
+                                //       NetworkImage(AppCubit.get(context).userModel!.image),
+                                //           fit: BoxFit.fill
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                if (AppCubit.get(context).imageFile != null)
+                                  Center(
+                                    child: CircleAvatar(
+                                      radius: 111,
+                                      backgroundImage:  FileImage(AppCubit.get(context).imageFile!),
+                                    ),
+                                  ),
+                                if (AppCubit.get(context).imageFile == null)
+                                  Center(
+                                    child: CircleAvatar(
+                                      radius: 111,
+                                      backgroundImage:  NetworkImage(AppCubit.get(context).userModel!.image),
+                                    ),
+                                  ),
+
+                              ] ,
                             ),
                           ),
                           onTap: ()
@@ -94,21 +121,21 @@ class  UserProfileScreen extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(height: 22,),
-                    const Text('NO. of books :',
-                      style: TextStyle(
-                          fontSize: 33,
-                          fontWeight: FontWeight.bold),),
-                    const SizedBox(height: 8,),
-                    const Text('7',
-                      style: TextStyle(
-                        fontSize: 19,),),
-                    const SizedBox(height: 8,),
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(bottom:  BorderSide(color: Colors.grey),),
-                      ),
-                    ),
+                    // const SizedBox(height: 22,),
+                    // const Text('NO. of books :',
+                    //   style: TextStyle(
+                    //       fontSize: 33,
+                    //       fontWeight: FontWeight.bold),),
+                    // const SizedBox(height: 8,),
+                    // const Text('7',
+                    //   style: TextStyle(
+                    //     fontSize: 19,),),
+                    // const SizedBox(height: 8,),
+                    // Container(
+                    //   decoration: const BoxDecoration(
+                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
+                    //   ),
+                    // ),
 
 
                   ],
