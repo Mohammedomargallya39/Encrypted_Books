@@ -1,3 +1,24 @@
+// import 'dart:io';
+//
+// class UpdateImageModel{
+//   late bool status;
+//   String? message;
+//   File? image;
+//   UpdateImageModel.fromJson(Map<String,dynamic> json){
+//     message = json['message'];
+//     image = (json['pic'] != null ? UpdateUserImage.fromJson(json['pic']) : null) as File?;
+//   }
+//
+// }
+//
+// class UpdateUserImage {
+//   File? image;
+//   UpdateUserImage.fromJson(Map<String , dynamic> json)
+//   {
+//     image = 'pic' as File?;
+//   }
+// }
+
 class UserData {
   late String id;
   late String name;
@@ -9,7 +30,6 @@ class UserData {
   late bool isMan;
   late bool isCom;
   late String token;
-  String? password;
 
   UserData.fromJson(Map<String, dynamic> json) {
     id = json["_id"] ?? '';
@@ -32,6 +52,5 @@ class UserData {
     print('pic done');
     token = json["token"] ?? '';
     print('token done');
-    password = json['password'];
   }
 }

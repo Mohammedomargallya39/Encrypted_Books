@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:social/lib/shared/components/components.dart';
 
@@ -81,6 +83,33 @@ class DioHelper{
   {
     try{
       return await dio.put(
+        url,
+        data: data,
+        queryParameters: query,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer ${token??''}'
+          },
+        ),
+      );
+    }on DioError catch(e){
+      var message =  e.response!.data['message'].toString();
+      showToast(message: message, state: toastStates.ERROR);
+    }
+
+  }
+
+  static Future<Response?> patchData({
+    required String url,
+    required Map<String, dynamic> data,
+    Map<String, dynamic>? query,
+    String? token,
+    File? pic,
+  })async
+  {
+    try{
+      return await dio.patch(
         url,
         data: data,
         queryParameters: query,

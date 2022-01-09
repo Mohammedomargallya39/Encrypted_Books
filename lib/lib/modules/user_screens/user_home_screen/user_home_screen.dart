@@ -53,11 +53,44 @@ class UserHomeScreen extends StatelessWidget {
                                  margin: const EdgeInsets.all(10),
                                  width: 85.45,
                                  height: 85.45,
-                                 decoration:  BoxDecoration(shape: BoxShape.circle,
-                                   image:
-                                   DecorationImage(image:
-                                   NetworkImage(AppCubit.get(context).userModel!.image),
-                                       fit: BoxFit.fill
+                                 child: GestureDetector(
+                                   child: SizedBox(
+                                     width:  85.45,
+                                     height: 85.45,
+                                     child: Stack(
+                                       alignment: AlignmentDirectional.bottomEnd,
+                                       children:[
+                                         // Center(
+                                         //   child: Container(
+                                         //     margin: const EdgeInsets.all(10),
+                                         //     width:  275,
+                                         //     height: 275,
+                                         //     decoration:   BoxDecoration(
+                                         //       shape: BoxShape.circle,
+                                         //       image: DecorationImage(image:
+                                         //       NetworkImage(AppCubit.get(context).userModel!.image),
+                                         //           fit: BoxFit.fill
+                                         //       ),
+                                         //     ),
+                                         //   ),
+                                         // ),
+                                         if (AppCubit.get(context).imageFile != null)
+                                           Center(
+                                             child: CircleAvatar(
+                                               radius: 44,
+                                               backgroundImage:  FileImage(AppCubit.get(context).imageFile!),
+                                             ),
+                                           ),
+                                         if (AppCubit.get(context).imageFile == null)
+                                           Center(
+                                             child: CircleAvatar(
+                                               radius: 111,
+                                               backgroundImage:  NetworkImage(AppCubit.get(context).userModel!.image),
+                                             ),
+                                           ),
+
+                                       ] ,
+                                     ),
                                    ),
                                  ),
                                ),
@@ -104,13 +137,13 @@ class UserHomeScreen extends StatelessWidget {
                    const SizedBox(height: 11.11,),
                    const CustomListDarkMode(),
                    const SizedBox(height: 22.22,),
-                   const CustomListProfile(),
-                   const SizedBox(height: 22.22,),
                    const CustomListHome(),
                    const SizedBox(height: 22.22,),
-                   const CustomListHelp(),
+                   const CustomListProfile(),
                    const SizedBox(height: 22.22,),
                    const CustomListSettings(),
+                   const SizedBox(height: 22.22,),
+                   const CustomListHelp(),
                    const SizedBox(height: 22.22,),
                    //const CustomListRateUs(),
                    //const SizedBox(height: 22.22,),
