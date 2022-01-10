@@ -98,7 +98,7 @@ class AdminSettingsScreen extends StatelessWidget {
                     type: TextInputType.visiblePassword,
                     controller: passwordController,
                     prefix: Icons.lock,
-                    text: 'Password',
+                    text: 'Change password',
                     validate: (String value) {
                       if (value.isEmpty) {
                         return 'Password must not be empty';
