@@ -102,8 +102,7 @@ class DioHelper{
 
   static Future<Response?> patchData({
     required String url,
-    required Map<String, dynamic> data,
-    Map<String, dynamic>? query,
+    dynamic data,
     String? token,
     File? pic,
   })async
@@ -112,7 +111,6 @@ class DioHelper{
       return await dio.patch(
         url,
         data: data,
-        queryParameters: query,
         options: Options(
           headers: {
             'Content-Type': 'application/json',

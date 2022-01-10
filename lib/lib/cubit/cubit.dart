@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
-
 class AppCubit extends Cubit<AppStates>
 {
   AppCubit() : super(EncryptionAppInitialState());
@@ -29,15 +27,15 @@ class AppCubit extends Cubit<AppStates>
       emit(EncryptionErrorUserDataState());
     });
   }
-
-  void updateUserData({required String name, required String phone,}) {
+  void updateUserData({required String name, required String phone, required String password,}) {
     emit(EncryptionLoadingUpdateUserDataState());
     DioHelper.putData(
       url: UPDATE_PROFILE,
       token: token,
       data: {
-        name : 'name',
-        phone : 'phone',
+        'name'  : name,
+        'phone' : phone,
+        'password' : password,
       },
     ).then((value) {
       userModel = UserData.fromJson(value!.data);
@@ -48,34 +46,37 @@ class AppCubit extends Cubit<AppStates>
       emit(EncryptionErrorUpdateUserDataState());
     });
   }
-
-  void updateUserImage({File? image,}) async{
-    emit(EncryptionLoadingUpdateUserDataState());
+  void updateUserImage({File? pic,}) async{
+    emit(EncryptionLoadingUpdateUserImageState());
     DioHelper.patchData(
       url: UPDATE_PIC_PROFILE,
       token: token,
-      data: {
-        if (image != null)
-        'pic' : await MultipartFile.fromFile(
-          image.path,
-          filename: Uri.file(image.path).pathSegments.last,
-        ),
-      },
+      data: FormData.fromMap({
+        if (pic != null)
+          'pic': await MultipartFile.fromFile(
+            pic.path,
+            filename: Uri.file(pic.path).pathSegments.last,
+          ),
+      }),
+        // data: {
+      //   if (pic != null)
+      //     'pic' : [await MultipartFile.fromFile(
+      //       pic.path,
+      //       filename: Uri.file(pic.path).pathSegments.last,
+      //     ),]
+      // },
     ).then((value) {
       userModel = UserData.fromJson(value!.data);
-      print(userModel!.name);
-      emit(EncryptionSuccessUpdateUserDataState(userModel!));
+      print(userModel!.image);
+      emit(EncryptionSuccessUpdateUserImageState(userModel!));
     }).catchError((error) {
       print(error.toString());
-      emit(EncryptionErrorUpdateUserDataState());
+      emit(EncryptionErrorUpdateUserImageState());
     });
   }
-
-
   final ImagePicker _picker = ImagePicker();
   File? imageFile;
-  void selectImage() async
-   {
+  void selectImage() async {
     _picker.pickImage(source: ImageSource.gallery).then((value)
     {
       imageFile = File(value!.path);
@@ -84,4 +85,3 @@ class AppCubit extends Cubit<AppStates>
   }
 
 }
-

@@ -54,21 +54,12 @@ class  UserProfileScreen extends StatelessWidget {
                                 //     ),
                                 //   ),
                                 // ),
-                                if (AppCubit.get(context).imageFile != null)
-                                  Center(
-                                    child: CircleAvatar(
-                                      radius: 111,
-                                      backgroundImage:  FileImage(AppCubit.get(context).imageFile!),
-                                    ),
-                                  ),
-                                if (AppCubit.get(context).imageFile == null)
                                   Center(
                                     child: CircleAvatar(
                                       radius: 111,
                                       backgroundImage:  NetworkImage(AppCubit.get(context).userModel!.image),
                                     ),
                                   ),
-
                               ] ,
                             ),
                           ),
@@ -81,63 +72,90 @@ class  UserProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
-
-
                     const SizedBox(height: 33.33,),
-                    const Text('Name :',
-                      style: TextStyle(
-                          fontSize: 33,
-                          fontWeight: FontWeight.bold),),
-                    const SizedBox(height: 8,),
-                    Container(
-                      width: double.infinity,
-                      child: Text( AppCubit.get(context).userModel!.name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 19,),),
+                    Center(
+                      child: Text(
+                        AppCubit.get(context).userModel!.email.split('@').first,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),),
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 44.4,),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(bottom:  BorderSide(color: Colors.grey),),
                       ),
                     ),
-
-                    const SizedBox(height: 22,),
-                    const Text('ID :',
-                      style: TextStyle(fontSize: 33,
-                          fontWeight:
-                          FontWeight.bold),),
-                    const SizedBox(height: 8,),
-                     Text(AppCubit.get(context).userModel!.email.split('@').first,
-                      style: TextStyle(
-                        fontSize: 19,),),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 12,),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          const Text('Name:',
+                            style: TextStyle(
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold),),
+                          const SizedBox(width: 8,),
+                          Text( AppCubit.get(context).userModel!.name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 20,),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12,),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(bottom:  BorderSide(color: Colors.grey),),
                       ),
                     ),
-
-                    // const SizedBox(height: 22,),
-                    // const Text('NO. of books :',
-                    //   style: TextStyle(
-                    //       fontSize: 33,
-                    //       fontWeight: FontWeight.bold),),
-                    // const SizedBox(height: 8,),
-                    // const Text('7',
-                    //   style: TextStyle(
-                    //     fontSize: 19,),),
-                    // const SizedBox(height: 8,),
-                    // Container(
-                    //   decoration: const BoxDecoration(
-                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
-                    //   ),
-                    // ),
-
-
+                    const SizedBox(height: 12,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text('E-mail:',
+                            style: TextStyle(
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold),),
+                          const SizedBox(width: 8,),
+                          Text( AppCubit.get(context).userModel!.email,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 20,),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12,),
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(bottom:  BorderSide(color: Colors.grey),),
+                      ),
+                    ),
+                    const SizedBox(height: 12,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text('Phone:',
+                            style: TextStyle(
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold),),
+                          const SizedBox(width: 8,),
+                          Text( AppCubit.get(context).userModel!.phone,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 20,),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12,),
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(bottom:  BorderSide(color: Colors.grey),),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -147,7 +165,6 @@ class  UserProfileScreen extends StatelessWidget {
         ) ;
       },
     );
-
   }
 }
 

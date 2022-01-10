@@ -60,31 +60,9 @@ class UserHomeScreen extends StatelessWidget {
                                      child: Stack(
                                        alignment: AlignmentDirectional.bottomEnd,
                                        children:[
-                                         // Center(
-                                         //   child: Container(
-                                         //     margin: const EdgeInsets.all(10),
-                                         //     width:  275,
-                                         //     height: 275,
-                                         //     decoration:   BoxDecoration(
-                                         //       shape: BoxShape.circle,
-                                         //       image: DecorationImage(image:
-                                         //       NetworkImage(AppCubit.get(context).userModel!.image),
-                                         //           fit: BoxFit.fill
-                                         //       ),
-                                         //     ),
-                                         //   ),
-                                         // ),
-                                         if (AppCubit.get(context).imageFile != null)
                                            Center(
                                              child: CircleAvatar(
                                                radius: 44,
-                                               backgroundImage:  FileImage(AppCubit.get(context).imageFile!),
-                                             ),
-                                           ),
-                                         if (AppCubit.get(context).imageFile == null)
-                                           Center(
-                                             child: CircleAvatar(
-                                               radius: 111,
                                                backgroundImage:  NetworkImage(AppCubit.get(context).userModel!.image),
                                              ),
                                            ),
