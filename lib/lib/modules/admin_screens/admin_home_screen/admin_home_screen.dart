@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:social/lib/modules/admin_screens/admin_help_screen/admin_help_screen.dart';
+import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/students_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_settings_screen/admin_settings_screen.dart';
+import 'package:social/lib/modules/user_screens/user_help_screen/user_help_screen.dart';
+import 'package:social/lib/modules/user_screens/user_settings_screen/user_settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
@@ -18,156 +19,173 @@ class AdminHomeScreen extends StatelessWidget {
 
 
 
-   @override
+  @override
   Widget build(BuildContext context) {
-        return BlocBuilder<ThemeCubit, ThemeStates>(
-          builder: (context, state){
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('Encrypted Books'),
-              ),
-              drawer: Drawer(
-                child: Container(
-                   color:ThemeCubit.get(context).darkTheme ? Colors.grey.shade800: HexColor('#396691'),
-                  //color: HexColor('#396691'),
-                  child: ListView(
-                    children:  <Widget>[
-                      DrawerHeader(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(colors: <Color>
-                          [
-                            Colors.grey,
-                            Colors.blueGrey,
-                          ]),
+    return BlocBuilder<ThemeCubit, ThemeStates>(
+      builder: (context, state){
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Encrypted Books'),
+          ),
+          drawer: Drawer(
+            child: Container(
+              color:ThemeCubit.get(context).darkTheme ? Colors.grey.shade800: HexColor('#396691'),
+              //color: HexColor('#396691'),
+              child: ListView(
+                children:  <Widget>[
+                  DrawerHeader(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(colors: <Color>
+                      [
+                        Colors.grey,
+                        Colors.blueGrey,
+                      ]),
+                    ),
+                    child: Row(
+                      children:  <Widget>[
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          width: 85.45,
+                          height: 85.45,
+                          decoration:   BoxDecoration(shape: BoxShape.circle,
+                            image:
+                            DecorationImage(image:
+                            NetworkImage(
+                              AppCubit.get(context).userModel!.image
+                            ),
+                                fit: BoxFit.fill
+                            ),
+                          ),
                         ),
-                        child: Row(
-                          children:  <Widget>[
-                            Container(
-                              margin: const EdgeInsets.all(10),
-                              width: 85.45,
-                              height: 85.45,
-                              decoration:  const BoxDecoration(shape: BoxShape.circle,
-                                image:
-                                DecorationImage(image:
-                                NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
-                                    fit: BoxFit.fill
+                        const SizedBox(width: 7.5,),
+                        Column(
+                          //crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children:  [
+                            SizedBox(
+                              width: 150.0,
+                              child: Text(
+                                AppCubit.get(context).homeModel!.name! ,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold ,
+                                    fontSize: 22.22 ,
+                                    color: Colors.white
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 7.5,),
-                            Column(
-                              //crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                SizedBox(
-                                  width: 150.0,
-                                  child: Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold ,
-                                        fontSize: 22.22 ,
-                                        color: Colors.white
-                                    ),
-                                  ),
+                            SizedBox(height: 10,),
+                            SizedBox(
+                              width: 150.0,
+                              child: Text(
+                                AppCubit.get(context).homeModel!.email!.split('@').first ,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold ,
+                                    fontSize: 22.22 ,
+                                    color: Colors.white
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                      ],
+                    ),
+                  ),
 
-                      //                 سكرينات ال drawer
-                      const SizedBox(height: 11.11,),
-                      const CustomListDarkMode(),
-                      const SizedBox(height: 22.22,),
-                      const CustomListProfile(),
-                      const SizedBox(height: 22.22,),
-                      const CustomListHome(),
-                      const SizedBox(height: 22.22,),
-                      const CustomListHelp(),
-                      const SizedBox(height: 22.22,),
-                      const CustomListSettings(),
-                      const SizedBox(height: 22.22,),
-                      //const CustomListRateUs(),
-                      //const SizedBox(height: 22.22,),
-                      const CustomListSignOut(),
-                    ],
+                  //                 سكرينات ال drawer
+                  const SizedBox(height: 11.11,),
+                  const CustomListDarkMode(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListProfile(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListHome(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListHelp(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListSettings(),
+                  const SizedBox(height: 22.22,),
+                  //const CustomListRateUs(),
+                  //const SizedBox(height: 22.22,),
+                  const CustomListSignOut(),
+                ],
+              ),
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children:
+              [
+                const Image(
+                  image: AssetImage("assets/images/lockedbooks.png"),
+                  width: 400.0,
+                  height: 400.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 55.55,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                      elevation: 17.5,
+                      color: defaultColor,
+                      onPressed: ()
+                      {
+                        navigateTo(context, const StudentsScreen());
+                      },
+                      child: const Text('Students',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
                   ),
                 ),
-              ),
-              body: SingleChildScrollView(
-                child: Column(
-                  children:
-                  [
-                    const Image(
-                      image: AssetImage("assets/images/lockedbooks.png"),
-                      width: 400.0,
-                      height: 400.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(22.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 55.55,
-                        child: MaterialButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                          elevation: 17.5,
-                          color: defaultColor,
-                          onPressed: ()
-                          {
-                            navigateTo(context, const StudentsScreen());
-                          },
-                          child: const Text('Students',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-
+                const SizedBox(height: 22,),
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 55.55,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
                       ),
-                    ),
-                    const SizedBox(height: 22,),
-                    Padding(
-                      padding: const EdgeInsets.all(22.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 55.55,
-                        child: MaterialButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                          elevation: 17.5,
-                          color: defaultColor,
-                          onPressed: ()
-                          {
-                            navigateTo(context, const AdminBooksScreen());
-                          },
-                          child: const Text('Books',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                      elevation: 17.5,
+                      color: defaultColor,
+                      onPressed: ()
+                      {
+                        navigateTo(context, const AdminBooksScreen());
+                      },
+                      child: const Text('Books',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
                         ),
-
                       ),
                     ),
 
-                  ],
+                  ),
                 ),
-              ),
-            );
-          },
+
+              ],
+            ),
+          ),
         );
-      }
+      },
+    );
   }
-  // محتاج يتعدل لسه.....................
+}
+// محتاج يتعدل لسه.....................
 class CustomListDarkMode extends StatelessWidget{
   const CustomListDarkMode({Key? key}) : super(key: key);
 
@@ -195,7 +213,7 @@ class CustomListDarkMode extends StatelessWidget{
           ),
           onTap: ()
           {
-             ThemeCubit.get(context).changeTheme();
+            ThemeCubit.get(context).changeTheme();
           },
         ),
       ),
@@ -206,39 +224,39 @@ class CustomListHome extends StatelessWidget{
   const CustomListHome({Key? key}) : super(key: key);
 
 
-    @override
-    Widget build(BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
-        child: Container(
-          decoration: const BoxDecoration(
-              border: Border(bottom:  BorderSide(color: Colors.grey))),
-          child: InkWell(
-            splashColor: defaultColor,
-            child: SizedBox(
-              height: 44.44,
-              child: Row(
-                children: const <Widget>[
-                  Icon(Icons.home,color: Colors.white
-                  ),
-                  SizedBox(width: 10.0,),
-                  Text('Home', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
-                  Spacer(),
-                  Icon(Icons.arrow_forward_ios,color: Colors.white
-                  ),
-                ],
-              ),
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      child: Container(
+        decoration: const BoxDecoration(
+            border: Border(bottom:  BorderSide(color: Colors.grey))),
+        child: InkWell(
+          splashColor: defaultColor,
+          child: SizedBox(
+            height: 44.44,
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.home,color: Colors.white
+                ),
+                SizedBox(width: 10.0,),
+                Text('Home', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios,color: Colors.white
+                ),
+              ],
             ),
-            onTap: ()
-            {
-             // navigateTo(context, EncryptionLayout());
-              Navigator.pop(context);
-            },
           ),
+          onTap: ()
+          {
+            // navigateTo(context, EncryptionLayout());
+            Navigator.pop(context);
+          },
         ),
-      );
-    }
+      ),
+    );
   }
+}
 class CustomListProfile extends StatelessWidget{
   const CustomListProfile({Key? key}) : super(key: key);
 
@@ -268,7 +286,7 @@ class CustomListProfile extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, const AdminProfileScreen());
+            navigateTo(context, AdminProfileScreen());
           },
         ),
       ),
@@ -285,7 +303,7 @@ class CustomListSettings extends StatelessWidget{
       padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
       child: Container(
         decoration: const BoxDecoration(
-          border: Border(bottom:  BorderSide(color: Colors.grey))),
+            border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
@@ -304,7 +322,7 @@ class CustomListSettings extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, AdminSettingsScreen());
+            navigateTo(context, UserSettingsScreen());
           },
         ),
       ),
@@ -340,7 +358,7 @@ class CustomListHelp extends StatelessWidget{
           ),
           onTap: ()
           {
-            navigateTo(context, const AdminHelpScreen());
+            navigateTo(context, const UserHelpScreen());
           },
         ),
       ),
@@ -403,7 +421,7 @@ class CustomListSignOut extends StatelessWidget{
                 Text('Sign Out', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios,color: Colors.white,
-                  ),
+                ),
               ],
             ),
           ),
@@ -478,4 +496,3 @@ class CustomListSignOut extends StatelessWidget{
 //     );
 //   }
 // }
-

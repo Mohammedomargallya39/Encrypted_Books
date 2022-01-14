@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
               ThemeCubit()..changeTheme(fromShared: isDark),
         ),
         BlocProvider(
-          create: (BuildContext context) => AppCubit()..getUserData(),
+          create: (BuildContext context) => AppCubit()..getUserData()..getUserBooks(context),
         ),
         //BlocProvider(create: (BuildContext context) => EncryptionLoginCubit(),),
       ],

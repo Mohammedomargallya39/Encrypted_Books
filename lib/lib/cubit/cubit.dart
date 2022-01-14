@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/login_model.dart';
+import 'package:social/lib/models/user_books_model.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
@@ -82,6 +83,26 @@ class AppCubit extends Cubit<AppStates>
       imageFile = File(value!.path);
     });
     emit(EncryptionSelectProfileImageState());
+  }
+  HomeModel? homeModel;
+  void getUserBooks(
+      dynamic bookId,
+      ) {
+    emit(EncryptionLoadingGetUserBooksState());
+    DioHelper.getData(
+      url: GET_USER_BOOKS,
+      token: token,
+      query: {
+        'id': userModel!.id
+      },
+    ).then((value) {
+      homeModel = HomeModel.fromJson(value!.data);
+      print(homeModel!.toString());
+      emit(EncryptionSuccessGetUserBooksState(homeModel!));
+    }).catchError((error) {
+      print(error.toString());
+      emit(EncryptionErrorGetUserBooksState());
+    });
   }
 
 }

@@ -154,7 +154,7 @@ class StudentDetailsScreen extends StatelessWidget {
               ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemBuilder: (context,index) => studentBooksItem(UserBooksModel() , context),
+                  itemBuilder: (context,index) => studentBooksItem(AdminBooksModel() , context),
                   separatorBuilder:(context,index)=> Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
