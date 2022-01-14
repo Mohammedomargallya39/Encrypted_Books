@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,25 +21,42 @@ class UserOnlineBooksScreen extends StatelessWidget {
         builder: (context, state)
         {
           //var cubit = AppCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Books'),
+          return ConditionalBuilder(
+            condition: AppCubit.get(context).homeModel != null,
+            builder: (context) =>  Scaffold(
+              appBar: AppBar(
+                title: const Text('Books'),
+              ),
+              body: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context,index) => userOnlineBooksItem(AppCubit.get(context).homeModel!.books![index].bookInfo! , context),
+                  separatorBuilder:(context,index)=> Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 1.0,
+                      width: double.infinity,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  itemCount: AppCubit.get(context).homeModel!.books!.length),
+
+
+
             ),
-            body: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context,index) => userOnlineBooksItem(UserBooksModel() , context),
-                separatorBuilder:(context,index)=> Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 1.0,
-                    width: double.infinity,
-                    color: Colors.grey,
+            fallback:(context) => Scaffold(
+              appBar: AppBar(title: Text('Your Books'
+              ),
+              ),
+              body: Center(
+                child: Text('You Do not have any books yet',
+                  style:
+                  TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22
                   ),
                 ),
-                itemCount: 11),
-
-
-
+              ),
+            ),
           );
         },
       ),
@@ -47,17 +65,19 @@ class UserOnlineBooksScreen extends StatelessWidget {
   }
 
 
-  Widget userOnlineBooksItem(UserBooksModel model , context) =>
+  Widget userOnlineBooksItem(BooksInfoModel booksInfoModel , context) =>
       InkWell(
         child: Column(
           children: [
             const SizedBox(height: 10.0,),
             Column(
-              children: const [
+              children:  [
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Image(
-                    image: AssetImage("assets/images/life_book.jpg"),
+                    image: NetworkImage(
+                      '${booksInfoModel.cover}'
+                    ),
                     width: double.infinity,
                     height: 200.0,
                   ),
@@ -65,11 +85,11 @@ class UserOnlineBooksScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(width: 20.0,),
-            const Padding(
+        Padding(
               padding: EdgeInsets.all(8.0),
               child: Center(
                 child: Text(
-                  'كتاب حياتي ياعين',
+                  '${booksInfoModel.name}',
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
@@ -82,7 +102,9 @@ class UserOnlineBooksScreen extends StatelessWidget {
         ),
         onTap: ()
         {
-          navigateTo(context, UserPDFBooksScreen());
+          navigateTo(context, UserPDFBooksScreen(
+            bookId : booksInfoModel.id,
+          ));
         },
       );
 
