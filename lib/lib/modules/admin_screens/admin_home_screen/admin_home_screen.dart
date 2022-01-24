@@ -1,7 +1,9 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/students_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
 import 'package:social/lib/modules/user_screens/user_help_screen/user_help_screen.dart';
@@ -41,57 +43,66 @@ class AdminHomeScreen extends StatelessWidget {
                         Colors.blueGrey,
                       ]),
                     ),
-                    child: Row(
-                      children:  <Widget>[
-                        Container(
-                          margin: const EdgeInsets.all(10),
-                          width: 85.45,
-                          height: 85.45,
-                          decoration:   BoxDecoration(shape: BoxShape.circle,
-                            image:
-                            DecorationImage(image:
-                            NetworkImage(
-                              AppCubit.get(context).userModel!.image
-                            ),
-                                fit: BoxFit.fill
-                            ),
+                    child: BlocConsumer<AppCubit , AppStates>(
+                      listener: (context, state) {},
+                      builder: (context, state) {
+                        return ConditionalBuilder(
+                          condition: AppCubit.get(context).userModel != null,
+                          builder: (context) =>  Row(
+                            children:  <Widget>[
+                              Container(
+                                margin: const EdgeInsets.all(10),
+                                width: 85.45,
+                                height: 85.45,
+                                decoration:   BoxDecoration(shape: BoxShape.circle,
+                                  image:
+                                  DecorationImage(image:
+                                  NetworkImage(
+                                     '${AppCubit.get(context).userModel!.image}'
+                                  ),
+                                      fit: BoxFit.fill
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 7.5,),
+                              Column(
+                                //crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:  [
+                                  SizedBox(
+                                    width: 150.0,
+                                    child: Text(
+                                      '${AppCubit.get(context).homeModel!.name}' ,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold ,
+                                          fontSize: 22.22 ,
+                                          color: Colors.white
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  SizedBox(
+                                    width: 150.0,
+                                    child: Text(
+                                      AppCubit.get(context).homeModel!.email!.split('@').first ,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold ,
+                                          fontSize: 22.22 ,
+                                          color: Colors.white
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        const SizedBox(width: 7.5,),
-                        Column(
-                          //crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:  [
-                            SizedBox(
-                              width: 150.0,
-                              child: Text(
-                                AppCubit.get(context).homeModel!.name! ,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold ,
-                                    fontSize: 22.22 ,
-                                    color: Colors.white
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            SizedBox(
-                              width: 150.0,
-                              child: Text(
-                                AppCubit.get(context).homeModel!.email!.split('@').first ,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold ,
-                                    fontSize: 22.22 ,
-                                    color: Colors.white
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                          fallback: (context) => Center(child: CircularProgressIndicator()),
+                        );
+                      },
                     ),
                   ),
 
@@ -99,13 +110,13 @@ class AdminHomeScreen extends StatelessWidget {
                   const SizedBox(height: 11.11,),
                   const CustomListDarkMode(),
                   const SizedBox(height: 22.22,),
-                  const CustomListProfile(),
-                  const SizedBox(height: 22.22,),
                   const CustomListHome(),
                   const SizedBox(height: 22.22,),
-                  const CustomListHelp(),
+                  const CustomListProfile(),
                   const SizedBox(height: 22.22,),
                   const CustomListSettings(),
+                  const SizedBox(height: 22.22,),
+                  const CustomListHelp(),
                   const SizedBox(height: 22.22,),
                   //const CustomListRateUs(),
                   //const SizedBox(height: 22.22,),

@@ -11,7 +11,7 @@ class AdminDetailsPhotoDetails extends StatelessWidget {
       body: GestureDetector(
         child: Center(
           child: Image.network(
-           AppCubit.get(context).userModel!.image,
+           '${AppCubit.get(context).userModel!.image}',
           ),
         ),
         onTap: ()

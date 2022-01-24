@@ -33,24 +33,24 @@ class UserData {
 
   UserData.fromJson(Map<String, dynamic> json) {
     id = json["_id"] ?? '';
-    print('id done');
+    print('id is $id');
     name = json["name"] ?? '';
-    print('name done');
+    print('name is $name');
     email = json["email"] ?? '';
-    print('email done');
+    print('email is $email');
     phone = json["phone"] ?? '';
-    print('phone done');
+    print('phone is $phone');
     isAdmin = json["isAdmin"] ?? false;
-    print('is admin done');
+    print('is Admin $isAdmin');
     isMan = json["isManagmentsection"] ?? false;
-    print('ismanage done');
+    print('is Man $isMan');
     isEng = json["isEnginneringsection"] ?? false;
-    print('is eng  done');
+    print('is Eng $isEng');
     isCom = json["isComputerSciencesection"] ?? false;
-    print('is computer  done');
+    print('is com $isCom');
     image = json["pic"] ?? '';
-    print('pic done');
+    print('image is $image');
     token = json["token"] ?? '';
-    print('token done');
+    print('token is $token');
   }
 }

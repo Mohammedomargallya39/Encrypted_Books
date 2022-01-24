@@ -39,76 +39,78 @@ class UserHomeScreen extends StatelessWidget {
                         Colors.blueGrey,
                       ]),
                     ),
-                    child: BlocProvider(
-                      create: (context) => AppCubit(),
-                      child: BlocConsumer<AppCubit,AppStates>(
-                        listener: (context,state){},
-                        builder: (context,state)
-                        {
-                          return  ConditionalBuilder(
-                            condition: AppCubit.get(context).userModel != null,
-                            builder: (context) => Row(
-                              children:  <Widget>[
-                                Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 85.45,
-                                  height: 85.45,
-                                  child: GestureDetector(
-                                    child: SizedBox(
-                                      width:  85.45,
-                                      height: 85.45,
-                                      child: Stack(
-                                        alignment: AlignmentDirectional.bottomEnd,
-                                        children:[
-                                          Center(
-                                            child: CircleAvatar(
-                                              radius: 44,
-                                              backgroundImage:  NetworkImage(AppCubit.get(context).userModel!.image),
+                    child: BlocConsumer<AppCubit,AppStates>(
+                      listener: (context,state){},
+                      builder: (context,state)
+                      {
+                        return  ConditionalBuilder(
+                          condition: AppCubit.get(context).userModel != null,
+                                     //                &&
+                                     // AppCubit.get(context).homeModel != null,
+                          builder: (context) => Row(
+                            children:  <Widget>[
+                              Container(
+                                margin: const EdgeInsets.all(10),
+                                width: 85.45,
+                                height: 85.45,
+                                child: GestureDetector(
+                                  child: SizedBox(
+                                    width:  85.45,
+                                    height: 85.45,
+                                    child: Stack(
+                                      alignment: AlignmentDirectional.bottomEnd,
+                                      children:[
+                                        Center(
+                                          child: CircleAvatar(
+                                            radius: 44,
+                                            backgroundImage:  NetworkImage(
+                                                '${AppCubit.get(context).userModel!.image}'
                                             ),
                                           ),
-                                        ] ,
-                                      ),
+                                        ),
+                                      ] ,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 7.5,),
-                                Column(
-                                  //crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 150.0,
-                                      child: Text(AppCubit.get(context).userModel!.name ,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold ,
-                                            fontSize: 22.22 ,
-                                            color: Colors.white
-                                        ),
+                              ),
+                              const SizedBox(width: 7.5,),
+                              Column(
+                                //crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 150.0,
+                                    child: Text(
+                                     ' ${AppCubit.get(context).userModel!.name}',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold ,
+                                          fontSize: 22.22 ,
+                                          color: Colors.white
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
-                                    SizedBox(
-                                      width: 150.0,
-                                      child: Text(AppCubit.get(context).userModel!.email.split('@').first ,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold ,
-                                            fontSize: 22.22 ,
-                                            color: Colors.white
-                                        ),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    width: 150.0,
+                                    child: Text(AppCubit.get(context).userModel!.email.split('@').first ,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold ,
+                                          fontSize: 22.22 ,
+                                          color: Colors.white
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            fallback: (context) => Center(child: CircularProgressIndicator()),
-                          );
-                        },
-                      ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          fallback: (context) => Center(child: CircularProgressIndicator()),
+                        );
+                      },
                     ),
                   ),
                   //                 سكرينات ال drawer
