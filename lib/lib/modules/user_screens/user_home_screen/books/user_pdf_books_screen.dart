@@ -4,29 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 
 class UserPDFBooksScreen extends StatelessWidget {
 
-  final dynamic bookId;
+  final int bookId;
   bool night = true;
   bool light = false;
-  get index => index;
+  //late BookId idToGetBook;
 
-  UserPDFBooksScreen({Key? key ,this.bookId}) : super(key: key);
 
+  UserPDFBooksScreen({Key? key ,required this.bookId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
+
         return  ConditionalBuilder(
-          condition: AppCubit.get(context).homeModel!.books![index].bookInfo! != null,
+          condition:  AppCubit.get(context).homeModel!.books![bookId].bookId!.pdf  != null,
           builder: (context) =>Scaffold(
             appBar: AppBar(
               title: Text(
-                  AppCubit.get(context).homeModel!.books![index].bookInfo!.name!
+                '${AppCubit.get(context).homeModel!.books![bookId].bookId!.name}',
               ),
             ),
             body:  PDF(
@@ -36,7 +38,7 @@ class UserPDFBooksScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).homeModel!.books![index].bookInfo!.pdf!,
+              '${AppCubit.get(context).homeModel!.books![bookId].bookId!.pdf}',
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
             ),

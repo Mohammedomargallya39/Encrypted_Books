@@ -11,25 +11,30 @@ import 'package:social/lib/shared/components/components.dart';
 class UserOnlineBooksScreen extends StatelessWidget {
   const UserOnlineBooksScreen({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return
-      BlocProvider(create: (BuildContext context) => AppCubit(),
-      child: BlocConsumer<AppCubit,AppStates>(
+      BlocConsumer<AppCubit,AppStates>(
         listener: (context, state) {},
         builder: (context, state)
         {
-          //var cubit = AppCubit.get(context);
+          var cubit = AppCubit.get(context);
           return ConditionalBuilder(
-            condition: AppCubit.get(context).homeModel != null,
+            condition: cubit.homeModel != null,
             builder: (context) =>  Scaffold(
               appBar: AppBar(
                 title: const Text('Books'),
               ),
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context,index) => userOnlineBooksItem(AppCubit.get(context).homeModel!.books![index].bookInfo! , context),
+                  itemBuilder: (context,index) => InkWell(child: userOnlineBooksItem(
+                      cubit.homeModel!.books![index].bookId! , context),
+                  onTap: ()
+                  {
+                    navigateTo(context, UserPDFBooksScreen(
+                      bookId : index,
+                    ));
+                  },),
                   separatorBuilder:(context,index)=> Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -38,10 +43,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  itemCount: AppCubit.get(context).homeModel!.books!.length),
-
-
-
+                  itemCount: cubit.homeModel!.books!.length),
             ),
             fallback:(context) => Scaffold(
               appBar: AppBar(title: Text('Your Books'
@@ -59,53 +61,42 @@ class UserOnlineBooksScreen extends StatelessWidget {
             ),
           );
         },
-      ),
-
-    );
+      );
   }
 
-
-  Widget userOnlineBooksItem(BooksInfoModel booksInfoModel , context) =>
+  Widget userOnlineBooksItem(BookId bookId , context) =>
       InkWell(
-        child: Column(
-          children: [
-            const SizedBox(height: 10.0,),
-            Column(
-              children:  [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Image(
-                    image: NetworkImage(
-                      '${booksInfoModel.cover}'
-                    ),
-                    width: double.infinity,
-                    height: 200.0,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(height: 20.0,),
+                Image(
+                  image: NetworkImage(
+                    '${bookId.cover}'
+                  ),
+                  width: double.infinity,
+                  height: 200.0,
+                ),
+                const SizedBox(height: 10.0,),
+            Text(
+              '${bookId.name}',
+              style: TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+                const SizedBox(height: 20.0,),
+
+                Container(
+                  decoration: const BoxDecoration(
+                    border: Border(bottom:  BorderSide(color: Colors.grey),),
                   ),
                 ),
               ],
             ),
-            const SizedBox(width: 20.0,),
-        Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  '${booksInfoModel.name}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10.0,)
-          ],
+          ),
         ),
-        onTap: ()
-        {
-          navigateTo(context, UserPDFBooksScreen(
-            bookId : booksInfoModel.id,
-          ));
-        },
       );
-
 }

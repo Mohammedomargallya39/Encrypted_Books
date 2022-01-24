@@ -11,7 +11,11 @@ class UserDetailsPhotoDetails extends StatelessWidget {
       body: GestureDetector(
         child: Stack(
           children: [
-              Center(child: Image(image: NetworkImage(AppCubit.get(context).userModel!.image))),
+              Center(child: Image(image: NetworkImage(
+                  '${AppCubit.get(context).userModel!.image}'
+              ),
+              ),
+              ),
           ],
         ),
         onTap: ()

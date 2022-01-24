@@ -43,12 +43,12 @@ ThemeData darkTheme = ThemeData(
   ),),
   fontFamily: 'EncryptionFont',
   primarySwatch: defaultColor,
-  scaffoldBackgroundColor: Colors.black54,
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.black54,
+  scaffoldBackgroundColor: Colors.grey.shade900,
+  appBarTheme:  AppBarTheme(
+    backgroundColor: Colors.grey.shade800,
     elevation: 20,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.black,
+      statusBarColor: Colors.grey.shade800,
       statusBarIconBrightness: Brightness.light,
     )
   ),
