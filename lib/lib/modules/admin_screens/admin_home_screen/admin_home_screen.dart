@@ -72,7 +72,7 @@ class AdminHomeScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 150.0,
                                     child: Text(
-                                      '${AppCubit.get(context).homeModel!.name}' ,
+                                      '${AppCubit.get(context).userModel!.name}' ,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -86,7 +86,7 @@ class AdminHomeScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 150.0,
                                     child: Text(
-                                      AppCubit.get(context).homeModel!.email!.split('@').first ,
+                                      AppCubit.get(context).userModel!.email.split('@').first ,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(

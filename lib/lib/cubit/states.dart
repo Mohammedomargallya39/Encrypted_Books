@@ -1,4 +1,5 @@
 import 'package:social/lib/models/login_model.dart';
+import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/models/user_books_model.dart';
 
 abstract class AppStates {}
@@ -22,6 +23,16 @@ class EncryptionSuccessGetUserBooksState extends AppStates
   EncryptionSuccessGetUserBooksState(this.homeModel);
 }
 class EncryptionErrorGetUserBooksState extends AppStates{}
+
+//Get Students
+class EncryptionLoadingGetStudentsState extends AppStates{}
+class EncryptionSuccessGetStudentsState extends AppStates
+{
+  final List<StudentsModel> studentsModel ;
+  EncryptionSuccessGetStudentsState(this.studentsModel);
+}
+class EncryptionErrorGetStudentsState extends AppStates{}
+
 
 // UpdateUserData
 class EncryptionLoadingUpdateUserDataState extends AppStates{}

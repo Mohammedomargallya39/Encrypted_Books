@@ -1,19 +1,57 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:social/lib/models/admin_books_model.dart';
-import 'package:social/lib/models/user_books_model.dart';
+import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/models/students_model.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/student_book_screen.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
+import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 
 class StudentDetailsScreen extends StatelessWidget {
-  const StudentDetailsScreen({Key? key}) : super(key: key);
+  const StudentDetailsScreen({Key? key, required this.StudentId}) : super(key: key);
+  final int StudentId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student'),
+        title: Text(
+            AppCubit.get(context).studentsModel![StudentId].name!
+        ),
+        actions: [
+          IconButton(
+            onPressed: ()
+            {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context)
+                  {
+                    return Scaffold(
+                      appBar: AppBar(title: const Text('Add books'),),
+                      body: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context,index) => addBooksForStudentsItem(
+                            StudentsModel(
+
+                            ) , context),
+                        separatorBuilder:(context,index)=> Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 1.0,
+                            width: double.infinity,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        itemCount: 22,
+                      ),
+                    );
+                  }
+              );
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -33,9 +71,12 @@ class StudentDetailsScreen extends StatelessWidget {
                       margin: const EdgeInsets.all(10),
                       width: 275,
                       height: 275,
-                      decoration:  const BoxDecoration(shape: BoxShape.circle,
+                      decoration:  BoxDecoration(shape: BoxShape.circle,
                         image: DecorationImage(image:
-                        NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
+                        NetworkImage(
+                            AppCubit.get(context).studentsModel![StudentId].image!
+
+                        ),
                             fit: BoxFit.fill
                         ),
                       ),
@@ -55,9 +96,11 @@ class StudentDetailsScreen extends StatelessWidget {
                     fontSize: 33,
                     fontWeight: FontWeight.bold),),
               const SizedBox(height: 8,),
-              const SizedBox(
+               SizedBox(
                 width: double.infinity,
-                child: Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya',
+                child: Text(
+                  AppCubit.get(context).studentsModel![StudentId].name!
+                  ,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -76,7 +119,9 @@ class StudentDetailsScreen extends StatelessWidget {
                     fontWeight:
                     FontWeight.bold),),
               const SizedBox(height: 8,),
-              const Text('42018183',
+               Text(
+                AppCubit.get(context).studentsModel![StudentId].email!.split('@').first
+                ,
                 style: TextStyle(
                   fontSize: 19,),),
               const SizedBox(height: 8,),
@@ -91,7 +136,43 @@ class StudentDetailsScreen extends StatelessWidget {
                     fontSize: 33,
                     fontWeight: FontWeight.bold),),
               const SizedBox(height: 8,),
-              const Text('7',
+               Text(
+                '${AppCubit.get(context).studentsModel![StudentId].numberofBooks!}'
+                ,
+                style: TextStyle(
+                  fontSize: 19,),),
+              const SizedBox(height: 8,),
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
+                ),
+              ),
+              const SizedBox(height: 22,),
+              const Text('Acc created in:',
+                style: TextStyle(
+                    fontSize: 33,
+                    fontWeight: FontWeight.bold),),
+              const SizedBox(height: 8,),
+              Text(
+                '${AppCubit.get(context).studentsModel![StudentId].createdAt!}'
+                ,
+                style: TextStyle(
+                  fontSize: 19,),),
+              const SizedBox(height: 8,),
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
+                ),
+              ),
+              const SizedBox(height: 22,),
+              const Text('Last updated in :',
+                style: TextStyle(
+                    fontSize: 33,
+                    fontWeight: FontWeight.bold),),
+              const SizedBox(height: 8,),
+              Text(
+                '${AppCubit.get(context).studentsModel![StudentId].updatedAt!}'
+                ,
                 style: TextStyle(
                   fontSize: 19,),),
               const SizedBox(height: 8,),
@@ -101,10 +182,12 @@ class StudentDetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 33,),
-              Center(
+
+              Padding(
+                padding: const EdgeInsets.all(22.0),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: 55.55,
                   child: MaterialButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
@@ -113,99 +196,79 @@ class StudentDetailsScreen extends StatelessWidget {
                     color: defaultColor,
                     onPressed: ()
                     {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (context)
-                          {
-                            return Scaffold(
-                              appBar: AppBar(title: const Text('Add books'),),
-                              body: ListView.separated(
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context,index) => addBooksForStudentsItem(AdminBooksModel() , context),
-                                separatorBuilder:(context,index)=> Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: 1.0,
-                                    width: double.infinity,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                itemCount: 22,
-                              ),
-                            );
-                          }
-                      );
+                      navigateTo(context, StudentBookScreen());
                     },
-                    child:
-                    const Text('Add books',
-                      style: TextStyle(fontSize: 22 , fontWeight: FontWeight.bold , color: Colors.white
+                    child: const Text('Student books',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
               ),
-              Container(
-                height: 33,
-                decoration: const BoxDecoration(
-                  border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
-                ),
-              ),
-              const SizedBox(height: 22,),
-              ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context,index) => studentBooksItem(AdminBooksModel() , context),
-                  separatorBuilder:(context,index)=> Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 1.0,
-                      width: double.infinity,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  itemCount: 7),
 
+              // ListView.separated(
+              //     physics: const NeverScrollableScrollPhysics(),
+              //     shrinkWrap: true,
+              //     itemBuilder: (context,index) => studentBooksItem(
+              //         StudentsModel(
+              //           books: AppCubit.get(context).studentsModel![index].books!
+              //         ) , context),
+              //     separatorBuilder:(context,index)=> Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: Container(
+              //         height: 1.0,
+              //         width: double.infinity,
+              //         color: Colors.grey,
+              //       ),
+              //     ),
+              //     itemCount: AppCubit.get(context).studentsModel![StudentId].books!.length),
             ],
           ),
         ),
       ),
     );
   }
-  Widget studentBooksItem(userBooksModel,  context) {
-    return SizedBox(
-      height: 66,
-      child: Row(
-        children:  <Widget>[
-          const Text('كتاب حياتي يعين' ,
-            style: TextStyle( fontWeight: FontWeight.bold
-              , fontSize: 22,
-
-            ),
-            ),
-          const Spacer(),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(
-                Icons.remove),
-          ),
-        ],
-      ),
-    );
-
-  }
-
-
-
-  Widget addBooksForStudentsItem(AdminBooksModel model , context) => InkWell(
+  // Widget studentBooksItem(StudentsModel studentsModel,  context) {
+  //   return SizedBox(
+  //     height: 66,
+  //     child: Row(
+  //       children:<Widget>[
+  //         Text(
+  //            studentsModel.books![StudentId].bookId!.name!
+  //            ,
+  //           style: TextStyle( fontWeight: FontWeight.bold
+  //             , fontSize: 22,
+  //
+  //           ),
+  //           ),
+  //         const Spacer(),
+  //         IconButton(
+  //           onPressed: ()
+  //           {
+  //           },
+  //           icon: const Icon(
+  //               Icons.remove),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+  Widget addBooksForStudentsItem(StudentsModel studentsModel, context) => InkWell(
     child: Column(
       children: [
         const SizedBox(height: 10.0,),
         Column(
-          children: const [
+          children:  [
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Image(
-                image: AssetImage("assets/images/life_book.jpg"),
+                image: NetworkImage(
+                    studentsModel.books![StudentId].bookId!.cover!
+
+                ),
                 width: double.infinity,
                 height: 200.0,
               ),
@@ -213,11 +276,12 @@ class StudentDetailsScreen extends StatelessWidget {
           ],
         ),
         const SizedBox(width: 20.0,),
-            const Padding(
+             Padding(
               padding: EdgeInsets.all(8.0),
               child: Center(
                 child: Text(
-                  'كتاب حياتي ياعين',
+                  studentsModel.books![StudentId].bookId!.name!
+                  ,
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,

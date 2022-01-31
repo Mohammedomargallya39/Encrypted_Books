@@ -1,5 +1,9 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/student_details_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -9,45 +13,67 @@ class StudentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-            'Students'),
-        actions: [
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.search_outlined),
-          ),
-        ],
-      ),
-      body: ListView.separated(
-          physics: const BouncingScrollPhysics(),
-          itemBuilder:  (context,index) => studentsItem(StudentsModel() , context),
-          separatorBuilder:(context,index)=> Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 1.0,
-              width: double.infinity,
-              color: Colors.grey,
+    return BlocConsumer<AppCubit,AppStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return ConditionalBuilder(
+          // ignore: unnecessary_null_comparison
+          condition: AppCubit.get(context).studentsModel != null,
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                  'Students'),
+              actions: [
+                IconButton(
+                  onPressed: (){},
+                  icon: const Icon(Icons.search_outlined),
+                ),
+              ],
+            ),
+            body: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder:  (context,index) => InkWell(
+                  child: studentsItem(StudentsModel(
+                    name: AppCubit.get(context).studentsModel![index].name,
+                    email: AppCubit.get(context).studentsModel![index].email!.split('@').first,
+                    image: AppCubit.get(context).studentsModel![index].image,
+
+                  ) , context),
+                  onTap: ()
+                  {
+                    navigateTo(context, StudentDetailsScreen(
+                        StudentId: index),
+                    );
+                  },
+                ),
+                separatorBuilder:(context,index)=> Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 1.0,
+                    width: double.infinity,
+                    color: Colors.grey,
+                  ),
+                ),
+                itemCount: AppCubit.get(context).studentsModel!.length
             ),
           ),
-          itemCount: 22
-      ),
+          fallback: (context) => Center(child: CircularProgressIndicator()),
+        );
+      },
     );
   }
 
-  Widget studentsItem(StudentsModel model , context) => InkWell(
+  Widget studentsItem(StudentsModel studentsModel , context) => InkWell(
     child: Row(
-
      children: <Widget>
      [
        Container(
          margin: const EdgeInsets.all(10),
          width: 75,
          height:75,
-         decoration:  const BoxDecoration(shape: BoxShape.circle,
+         decoration:   BoxDecoration(shape: BoxShape.circle,
            image: DecorationImage(image:
-           NetworkImage('https://scontent.fcai20-5.fna.fbcdn.net/v/t1.6435-9/127647071_1017495768677466_7815514853870818408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeFRgzSgXqtOH1nplAvb_j8rE3Ks6IOpkVgTcqzog6mRWInNV_LK7qlPxrMCf1BvQKxWye6pjuVb81LLAKZZ33AO&_nc_ohc=6blo7UWUIzEAX-oiQlP&_nc_ht=scontent.fcai20-5.fna&oh=a1c9a8601f16af5247813b7dd97093dc&oe=61973284'),
+           NetworkImage(studentsModel.image!),
                fit: BoxFit.fill
            ),
          ),
@@ -56,9 +82,9 @@ class StudentsScreen extends StatelessWidget {
        Expanded(
          child: Column(
            crossAxisAlignment: CrossAxisAlignment.start,
-           children:   const <Widget>
+           children:  <Widget>
            [
-             Text('Mohammed Omar Abdelmonaem Ahmed Hassan Salem Ali Gallya' ,
+             Text(studentsModel.name! ,
                maxLines: 1,
                overflow: TextOverflow.ellipsis,
                style: TextStyle(
@@ -69,7 +95,7 @@ class StudentsScreen extends StatelessWidget {
 
              SizedBox(height: 5,),
 
-             Text('42018183' ,
+             Text(studentsModel.email!.split('@').first ,
                maxLines: 1,
                overflow: TextOverflow.ellipsis,
                style: TextStyle(
@@ -84,15 +110,15 @@ class StudentsScreen extends StatelessWidget {
        IconButton(
          onPressed: ()
          {
-           navigateTo(context, const StudentDetailsScreen());
+           // navigateTo(context, const StudentDetailsScreen());
          },
          icon: const Icon(Icons.arrow_forward_ios),
        ),
      ],
     ),
-    onTap: ()
-    {
-      navigateTo(context, const StudentDetailsScreen());
-    },
+    // onTap: ()
+    // {
+    //   // navigateTo(context, const StudentDetailsScreen());
+    // },
   );
 }

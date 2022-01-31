@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/login_model.dart';
+import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/models/user_books_model.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/end_points.dart';
@@ -28,6 +30,8 @@ class AppCubit extends Cubit<AppStates> {
       print(userModel!.image);
 
       getUserBooks(homeModel);
+      getStudents();
+
       emit(EncryptionSuccessUserDataState(userModel!));
     }).catchError((error) {
       print(error.toString());
@@ -102,13 +106,10 @@ class AppCubit extends Cubit<AppStates> {
 
   void getUserBooks(dynamic bookId) {
     emit(EncryptionLoadingGetUserBooksState());
-    print('------------------test-------------------');
+    print('------------------get users books test-------------------');
     print(userModel!.id);
     DioHelper.getData(
-      url:
-      //'https://lib-hti.herokuapp.com/api/users/61d7d4886f280c00161bfcde',
-      //'https://lib-hti.herokuapp.com/api/users/${userModel!.id}',
-      '${GET_USER_BOOKS}${userModel!.id}',
+      url: '${GET_USER_BOOKS}${userModel!.id}',
       token: token,
     ).then((value) {
       homeModel = HomeModel.fromJson(value!.data);
@@ -119,6 +120,32 @@ class AppCubit extends Cubit<AppStates> {
       print(error.toString());
       print('-------------------------error--------------------');
       emit(EncryptionErrorGetUserBooksState());
+    });
+  }
+
+  List<StudentsModel>? studentsModel =[];
+
+  void getStudents() {
+    emit(EncryptionLoadingGetStudentsState());
+    print('------------------test Loading get students-------------------');
+    DioHelper.getData(
+      url: GET_STUDENTS,
+      token: token,
+    ).then((value) {
+      print('---test before enter model---');
+      // studentsModel = StudentsModel.fromJson(value!.data);
+      if (value !=null)
+      {
+        value.data.forEach((element) {
+          studentsModel!.add(StudentsModel.fromJson(element));
+        });
+      }
+      // print(studentsModel!.toString());
+      print('----------------------getStudentSuccess-------------------- ${value!.data}');
+      emit(EncryptionSuccessGetStudentsState(studentsModel!));
+    }).catchError((error) {
+      debugPrint('-------------------------error-------------------- ${error.toString()}');
+      emit(EncryptionErrorGetStudentsState());
     });
   }
 }
