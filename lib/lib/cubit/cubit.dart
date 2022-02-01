@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/models/user_books_model.dart';
@@ -148,5 +149,26 @@ class AppCubit extends Cubit<AppStates> {
       emit(EncryptionErrorGetStudentsState());
     });
   }
+
+  AdminBooksModel? adminBooksModel;
+
+  void getAdminBooks() {
+    emit(EncryptionLoadingGetAdminBooksState());
+    print('------------------get admin books test-------------------');
+    DioHelper.getData(
+      url: GET_Books,
+      token: token,
+    ).then((value) {
+      adminBooksModel = AdminBooksModel.fromJson(value!.data);
+      print(adminBooksModel!.toString());
+      print('----------------------success get admin books--------------------');
+      emit(EncryptionSuccessGetAdminBooksState(adminBooksModel!));
+    }).catchError((error) {
+      print(error.toString());
+      print('-------------------------error get admin books--------------------');
+      emit(EncryptionErrorGetAdminBooksState());
+    });
+  }
+
 }
 

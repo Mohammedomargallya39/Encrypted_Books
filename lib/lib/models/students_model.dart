@@ -89,7 +89,7 @@ class StudentsModel {
 
 class Books {
   String? sId;
-  BookId? bookId;
+  StudentBookId? bookId;
 
   Books({this.sId, this.bookId});
 
@@ -97,7 +97,7 @@ class Books {
     sId = json['_id'];
     print('studentsId is ${sId}');
     bookId =
-    json['bookId'] != null ? new BookId.fromJson(json['bookId']) : null;
+    json['bookId'] != null ? new StudentBookId.fromJson(json['bookId']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -110,7 +110,7 @@ class Books {
   }
 }
 
-class BookId {
+class StudentBookId {
   String? cover;
   String? pdf;
   String? sId;
@@ -118,7 +118,7 @@ class BookId {
   String? category;
   String? description;
 
-  BookId(
+  StudentBookId(
       {this.cover,
         this.pdf,
         this.sId,
@@ -126,7 +126,7 @@ class BookId {
         this.category,
         this.description});
 
-  BookId.fromJson(Map<String, dynamic> json) {
+  StudentBookId.fromJson(Map<String, dynamic> json) {
     cover = json['cover'];
     print('studentBookCover is ${cover}');
     pdf = json['pdf'];

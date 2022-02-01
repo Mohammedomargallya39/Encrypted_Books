@@ -1,3 +1,4 @@
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class StudentsScreen extends StatelessWidget {
       builder: (context, state) {
         return ConditionalBuilder(
           // ignore: unnecessary_null_comparison
-          condition: AppCubit.get(context).studentsModel != null,
+          condition: AppCubit.get(context).studentsModel !=null,
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: const Text(
