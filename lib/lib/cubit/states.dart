@@ -1,3 +1,4 @@
+import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/models/user_books_model.dart';
@@ -23,6 +24,15 @@ class EncryptionSuccessGetUserBooksState extends AppStates
   EncryptionSuccessGetUserBooksState(this.homeModel);
 }
 class EncryptionErrorGetUserBooksState extends AppStates{}
+
+// GetUserBooks
+class EncryptionLoadingGetAdminBooksState extends AppStates{}
+class EncryptionSuccessGetAdminBooksState extends AppStates
+{
+  final AdminBooksModel adminBooksModel ;
+  EncryptionSuccessGetAdminBooksState(this.adminBooksModel);
+}
+class EncryptionErrorGetAdminBooksState extends AppStates{}
 
 //Get Students
 class EncryptionLoadingGetStudentsState extends AppStates{}
