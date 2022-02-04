@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
               } );
 
               {
-                showToast(message: 'Login Successfully.', state: toastStates.SUCCESS);
+                showToast(message: 'Login Successfully.', state: ToastStates.SUCCESS);
               }
           }
         },

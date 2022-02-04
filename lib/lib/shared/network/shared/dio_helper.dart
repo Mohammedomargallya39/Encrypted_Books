@@ -40,7 +40,7 @@ class DioHelper{
       );
     }on DioError catch(e){
       var message =  e.response!.data['message'].toString();
-      showToast(message: message, state: toastStates.ERROR);
+      showToast(message: message, state: ToastStates.ERROR);
     }
 
   }
@@ -67,7 +67,7 @@ class DioHelper{
       );
     }on DioError catch(e){
       var message =  e.response!.data.toString();
-      showToast(message: message, state: toastStates.ERROR);
+      showToast(message: message, state: ToastStates.ERROR);
     }
 
   }
@@ -95,7 +95,7 @@ class DioHelper{
       );
     }on DioError catch(e){
       var message =  e.response!.data['message'].toString();
-      showToast(message: message, state: toastStates.ERROR);
+      showToast(message: message, state: ToastStates.ERROR);
     }
 
   }
@@ -120,7 +120,7 @@ class DioHelper{
       );
     }on DioError catch(e){
       var message =  e.response!.data['message'].toString();
-      showToast(message: message, state: toastStates.ERROR);
+      showToast(message: message, state: ToastStates.ERROR);
     }
 
   }
@@ -148,7 +148,7 @@ class DioHelper{
       );
     }on DioError catch(e){
       var message =  e.response!.data['message'].toString();
-      showToast(message: message, state: toastStates.ERROR);
+      showToast(message: message, state: ToastStates.ERROR);
     }
 
   }

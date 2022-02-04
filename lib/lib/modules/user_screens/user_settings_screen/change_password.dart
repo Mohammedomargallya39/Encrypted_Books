@@ -78,7 +78,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                     password: passwordController.text
                                 );
                                 navigateAndEnd(context, UserSettingsScreen());
-                                showToast(message: 'password changed', state: toastStates.SUCCESS);
+                                showToast(message: 'password changed', state: ToastStates.SUCCESS);
                               }
 
                             },

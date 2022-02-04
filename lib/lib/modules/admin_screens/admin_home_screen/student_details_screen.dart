@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -49,96 +51,137 @@ class StudentDetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 33.33,),
-              const Text('Name :',
-                style: TextStyle(
-                    fontSize: 33,
-                    fontWeight: FontWeight.bold),),
-              const SizedBox(height: 8,),
-               SizedBox(
-                width: double.infinity,
-                child: Text(
-                  AppCubit.get(context).studentsModel![StudentId].name!
-                  ,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 19,),),
+              //name
+              Row(
+                children: [
+                  Text('Name:',
+                    style: TextStyle(
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold),),
+                  SizedBox(width: 15,),
+                  Text(
+                    AppCubit.get(context).studentsModel![StudentId].name!
+                    ,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 19,),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8,),
+              const SizedBox(height: 17,),
               Container(
                 decoration: const BoxDecoration(
                   border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
                 ),
               ),
-              const SizedBox(height: 22,),
-              const Text('ID :',
-                style: TextStyle(fontSize: 33,
-                    fontWeight:
-                    FontWeight.bold),),
-              const SizedBox(height: 8,),
-               Text(
-                AppCubit.get(context).studentsModel![StudentId].email!.split('@').first
-                ,
-                style: TextStyle(
-                  fontSize: 19,),),
-              const SizedBox(height: 8,),
+              const SizedBox(height: 17,),
+
+              //id
+              Row(
+                children: [
+                  Text('ID:',
+                    style: TextStyle(
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold),),
+                  SizedBox(width: 15,),
+                  Text(
+                    AppCubit.get(context).studentsModel![StudentId].email!.split('@').first
+                    ,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 19,),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 17,),
               Container(
                 decoration: const BoxDecoration(
                   border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
                 ),
               ),
-              const SizedBox(height: 22,),
-              const Text('NO. of books :',
-                style: TextStyle(
-                    fontSize: 33,
-                    fontWeight: FontWeight.bold),),
-              const SizedBox(height: 8,),
-               Text(
-                '${AppCubit.get(context).studentsModel![StudentId].numberofBooks!}'
-                ,
-                style: TextStyle(
-                  fontSize: 19,),),
-              const SizedBox(height: 8,),
+              const SizedBox(height: 17,),
+
+              //number of books
+              Row(
+                children: [
+                  Text('No. of books:',
+                    style: TextStyle(
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold),),
+                  SizedBox(width: 15,),
+                  Text(
+                    '${AppCubit.get(context).studentsModel![StudentId].numberofBooks}'
+                    ,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 19,),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 17,),
               Container(
                 decoration: const BoxDecoration(
                   border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
                 ),
               ),
-              const SizedBox(height: 22,),
-              const Text('Acc created in:',
-                style: TextStyle(
-                    fontSize: 33,
-                    fontWeight: FontWeight.bold),),
-              const SizedBox(height: 8,),
-              Text(
-                '${AppCubit.get(context).studentsModel![StudentId].createdAt!}'
-                ,
-                style: TextStyle(
-                  fontSize: 19,),),
-              const SizedBox(height: 8,),
+              const SizedBox(height: 17,),
+
+              //Acc created in
+              Row(
+                children: [
+                  Text('Acc created in:',
+                    style: TextStyle(
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold),),
+                  SizedBox(width: 15,),
+                  Text(
+                    '${AppCubit.get(context).studentsModel![StudentId].createdAt}'
+                    ,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 19,),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 17,),
               Container(
                 decoration: const BoxDecoration(
                   border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
                 ),
               ),
-              const SizedBox(height: 22,),
-              const Text('Last updated in :',
-                style: TextStyle(
-                    fontSize: 33,
-                    fontWeight: FontWeight.bold),),
-              const SizedBox(height: 8,),
-              Text(
-                '${AppCubit.get(context).studentsModel![StudentId].updatedAt!}'
-                ,
-                style: TextStyle(
-                  fontSize: 19,),),
-              const SizedBox(height: 8,),
+              const SizedBox(height: 17,),
+
+              //Acc updated in
+              Row(
+                children: [
+                  Text('Last updated in:',
+                    style: TextStyle(
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold),),
+                  SizedBox(width: 15,),
+                  Text(
+                    '${AppCubit.get(context).studentsModel![StudentId].updatedAt}'
+                    ,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 19,),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 17,),
               Container(
                 decoration: const BoxDecoration(
                   border: Border(bottom:  BorderSide(color: Colors.grey , width: 3),),
                 ),
               ),
               const SizedBox(height: 33,),
+
+              //button student's books
               Padding(
                 padding: const EdgeInsets.all(22.0),
                 child: SizedBox(
@@ -165,34 +208,144 @@ class StudentDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 33,),
-              Padding(
-                padding: const EdgeInsets.all(22.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 55.55,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
+              const SizedBox(height: 17,),
+
+              //text button delete user acc
+              Center(
+                child: TextButton(onPressed: ()
+                {
+                  AppCubit.get(context).indexStudent= StudentId;
+                  showDialog(
+                      context: context,
+                      builder: (context) =>
+                          DeleteStudentAccountAlertDialog(
+                          title: 'Delete student account',
+                          description: 'Are you sure?',
+                          //StudentIDToDelete: StudentId,
+                          ),
+                  );
+                },
+                  child: Text('Delete student account',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
                     ),
-                    elevation: 17.5,
-                    color: defaultColor,
-                    onPressed: ()
-                    {
-                    },
-                    child: const Text('Delete student Acc',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                ),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+
+
+class DeleteStudentAccountAlertDialog extends StatefulWidget {
+  const DeleteStudentAccountAlertDialog({
+    Key? key,
+    required this.title,
+    required this.description,
+    //required this.StudentIDToDelete,
+  }) : super(key: key);
+
+  final String title, description;
+  //final int? StudentIDToDelete;
+
+  @override
+  _DeleteStudentAccountAlertDialogState createState() => _DeleteStudentAccountAlertDialogState();
+}
+
+class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAlertDialog> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      elevation: 0,
+      //backgroundColor: Color(0xffffffff),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(height: 15),
+          Text(
+            "${widget.title}",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 22),
+          Text("${widget.description},",
+                style: TextStyle(
+            fontSize: 22.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),),
+          SizedBox(height: 20),
+          Divider(
+            height: 1,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: InkWell(
+              highlightColor: Colors.grey[200],
+              onTap: ()
+              {
+                AppCubit.get(context).deleteStudentAccount();
+                showToast(
+                    message: 'Account deleted successfully',
+                    state: ToastStates.SUCCESS );
+                navigateAndEnd(context, AdminHomeScreen(),);
+
+              },
+              child: Center(
+                child: Text(
+                  "Yes",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color:Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Divider(
+            height: 1,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: InkWell(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0),
+              ),
+              highlightColor: Colors.grey[200],
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Center(
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

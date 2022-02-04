@@ -28,12 +28,12 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
         listener: (context, state) {
           if (state is UserRegisterSuccessState) {
-            showToast(message: 'Register Success', state: toastStates.SUCCESS);
+            showToast(message: 'Register Success', state: ToastStates.SUCCESS);
             // navigateTo(context, UserHomeScreen());
             navigateTo(context, LoginScreen());
           } else if (state is UserRegisterErrorState)
           {
-            showToast(message: 'Error!! please try again.', state: toastStates.ERROR);
+            showToast(message: 'Error!! please try again.', state: ToastStates.ERROR);
           }
         },
         builder: (context, state) {

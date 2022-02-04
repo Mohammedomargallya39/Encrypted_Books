@@ -40,7 +40,7 @@ class StudentBookScreen extends StatelessWidget {
                                 itemBuilder: (context,index) => addBooksForStudentsItem(
                                     AdminBooksDetails(
                                         name: cubit.adminBooksModel!.books![index].name,
-                                        cover: cubit.adminBooksModel!.books![index].cover
+                                        cover: cubit.adminBooksModel!.books![index].cover,
                                     ) , context),
                                 separatorBuilder:(context,index)=> Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -62,10 +62,10 @@ class StudentBookScreen extends StatelessWidget {
               ),
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context,index) => InkWell(child: studentBooks(
+                  itemBuilder: (context,index) => InkWell(child:studentBooks(
                     StudentBookId(
-                      name:AppCubit.get(context).studentsModel![index].books![studentBooksId].bookId!.name,
-                      cover:AppCubit.get(context).studentsModel![index].books![studentBooksId].bookId!.cover,
+                      name: AppCubit.get(context).studentsModel![studentBooksId].books![index].bookId!.name,
+                      cover: AppCubit.get(context).studentsModel![studentBooksId].books![index].bookId!.cover,
                     ), context),
                     // onTap: ()
                     // {
@@ -129,9 +129,22 @@ class StudentBookScreen extends StatelessWidget {
               TextButton(
                   onPressed: ()
                   {
-
+                    showDialog(
+                        context: context,
+                        builder: (context) =>
+                            DeleteStudentBooksAlertDialog(
+                              title: 'Delete student book',
+                              description: 'Are you sure?',
+                            ),
+                    );
                   },
-                  child: Text('Remove this book.'),
+                  child: Text('Remove this book',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red
+                  ),
+                  ),
               ),
               const SizedBox(height: 20.0,),
               Container(
@@ -176,7 +189,6 @@ class StudentBookScreen extends StatelessWidget {
             ),
           ),
         ),
-
       ],
     ),
     onTap: ()
@@ -184,4 +196,104 @@ class StudentBookScreen extends StatelessWidget {
     },
   );
 }
+
+
+class DeleteStudentBooksAlertDialog extends StatefulWidget {
+  const DeleteStudentBooksAlertDialog({
+    Key? key,
+    required this.title,
+    required this.description,
+  }) : super(key: key);
+
+  final String title, description;
+
+  @override
+  _DeleteStudentBooksAlertDialogState createState() => _DeleteStudentBooksAlertDialogState();
+}
+class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      elevation: 0,
+      //backgroundColor: Color(0xffffffff),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(height: 15),
+          Text(
+            "${widget.title}",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 22),
+          Text("${widget.description},",
+            style: TextStyle(
+              fontSize: 22.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),),
+          SizedBox(height: 20),
+          Divider(
+            height: 1,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: InkWell(
+              highlightColor: Colors.grey[200],
+              onTap: () {
+
+              },
+              child: Center(
+                child: Text(
+                  "Yes",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color:Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Divider(
+            height: 1,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: InkWell(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0),
+              ),
+              highlightColor: Colors.grey[200],
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Center(
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
 

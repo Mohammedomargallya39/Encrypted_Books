@@ -1,4 +1,3 @@
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,6 @@ class StudentsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          // ignore: unnecessary_null_comparison
           condition: AppCubit.get(context).studentsModel !=null,
           builder: (context) => Scaffold(
             appBar: AppBar(
@@ -33,20 +31,25 @@ class StudentsScreen extends StatelessWidget {
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder:  (context,index) => InkWell(
-                  child: studentsItem(StudentsModel(
-                    name: AppCubit.get(context).studentsModel![index].name,
-                    email: AppCubit.get(context).studentsModel![index].email!.split('@').first,
-                    image: AppCubit.get(context).studentsModel![index].image,
+                itemBuilder:  (context,index) {
+                 // AppCubit.get(context).indexStudent= index;
+                  return InkWell(
+                    child: studentsItem(StudentsModel(
+                      name: AppCubit.get(context).studentsModel![index].name,
+                      email: AppCubit.get(context).studentsModel![index].email!.split('@').first,
+                      image: AppCubit.get(context).studentsModel![index].image,
+                      sId: AppCubit.get(context).studentsModel![index].sId,
 
-                  ) , context),
-                  onTap: ()
-                  {
-                    navigateTo(context, StudentDetailsScreen(
-                        StudentId: index),
-                    );
-                  },
-                ),
+                    ) , context),
+                    onTap: ()
+                    {
+                      navigateTo(context, StudentDetailsScreen(
+                        StudentId: index,
+                      ),
+                      );
+                    },
+                  );
+                },
                 separatorBuilder:(context,index)=> Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -64,62 +67,51 @@ class StudentsScreen extends StatelessWidget {
     );
   }
 
-  Widget studentsItem(StudentsModel studentsModel , context) => InkWell(
-    child: Row(
-     children: <Widget>
-     [
-       Container(
-         margin: const EdgeInsets.all(10),
-         width: 75,
-         height:75,
-         decoration:   BoxDecoration(shape: BoxShape.circle,
-           image: DecorationImage(image:
-           NetworkImage(studentsModel.image!),
-               fit: BoxFit.fill
+  Widget studentsItem(StudentsModel studentsModel , context) => Row(
+   children: <Widget>
+   [
+     Container(
+       margin: const EdgeInsets.all(10),
+       width: 75,
+       height:75,
+       decoration:   BoxDecoration(shape: BoxShape.circle,
+         image: DecorationImage(image:
+         NetworkImage(studentsModel.image!),
+             fit: BoxFit.fill
+         ),
+       ),
+     ),
+     const SizedBox(width: 5,),
+     Expanded(
+       child: Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+         children:  <Widget>
+         [
+           Text(studentsModel.name! ,
+             maxLines: 1,
+             overflow: TextOverflow.ellipsis,
+             style: TextStyle(
+                 fontWeight: FontWeight.bold ,
+                 fontSize: 22.22 ,
+             ),
            ),
-         ),
-       ),
-       const SizedBox(width: 5,),
-       Expanded(
-         child: Column(
-           crossAxisAlignment: CrossAxisAlignment.start,
-           children:  <Widget>
-           [
-             Text(studentsModel.name! ,
-               maxLines: 1,
-               overflow: TextOverflow.ellipsis,
-               style: TextStyle(
-                   fontWeight: FontWeight.bold ,
-                   fontSize: 22.22 ,
-               ),
+           SizedBox(height: 5,),
+           Text(studentsModel.email!.split('@').first ,
+             maxLines: 1,
+             overflow: TextOverflow.ellipsis,
+             style: TextStyle(
+                 fontWeight: FontWeight.bold ,
+                 fontSize: 22.22 ,
              ),
-
-             SizedBox(height: 5,),
-
-             Text(studentsModel.email!.split('@').first ,
-               maxLines: 1,
-               overflow: TextOverflow.ellipsis,
-               style: TextStyle(
-                   fontWeight: FontWeight.bold ,
-                   fontSize: 22.22 ,
-               ),
-             ),
-           ],
-         ),
+           ),
+         ],
        ),
-       const Spacer(),
-       IconButton(
-         onPressed: ()
-         {
-           // navigateTo(context, const StudentDetailsScreen());
-         },
-         icon: const Icon(Icons.arrow_forward_ios),
-       ),
-     ],
-    ),
-    // onTap: ()
-    // {
-    //   // navigateTo(context, const StudentDetailsScreen());
-    // },
+     ),
+     const Spacer(),
+     Padding(
+       padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+       child: Icon(Icons.arrow_forward_ios),
+     ),
+   ],
   );
 }

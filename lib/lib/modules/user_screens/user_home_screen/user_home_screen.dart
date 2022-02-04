@@ -8,7 +8,6 @@ import 'package:social/lib/modules/user_screens/user_help_screen/user_help_scree
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_profile_screen.dart';
 import 'package:social/lib/modules/user_screens/user_settings_screen/user_settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
-import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -353,39 +352,6 @@ class CustomListHelp extends StatelessWidget{
     );
   }
 }
-// class CustomListRateUs extends StatelessWidget{
-//   const CustomListRateUs({Key? key}) : super(key: key);
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
-//       child: Container(
-//         decoration: const BoxDecoration(
-//             border: Border(bottom:  BorderSide(color: Colors.grey))),
-//         child: InkWell(
-//           splashColor: defaultColor,
-//           child: Container(
-//             height: 44.44,
-//             child: Row(
-//               children: const <Widget>[
-//                 Icon(Icons.rate_review,color: Colors.white
-//                 ),
-//                 SizedBox(width: 10.0,),
-//                 Text('Rate Us', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
-//                 Spacer(),
-//                 Icon(Icons.arrow_forward_ios,color: Colors.white
-//                 ),
-//               ],
-//             ),
-//           ),
-//           onTap: (){},
-//         ),
-//       ),
-//     );
-//   }
-// }
 class CustomListSignOut extends StatelessWidget{
   const CustomListSignOut({Key? key}) : super(key: key);
 
@@ -415,7 +381,13 @@ class CustomListSignOut extends StatelessWidget{
           ),
           onTap: ()
           {
-            signOut(context);
+           showDialog(context: context,
+               builder: (context) => SignOutAlertDialog
+                 (
+                   title: 'Sign Out',
+                   description: 'Are you sure?'
+               )
+             ,);
           }
           ,
         ),
@@ -423,66 +395,7 @@ class CustomListSignOut extends StatelessWidget{
     );
   }
 }
-//..........................................................
-// class CustomList extends StatelessWidget {
-//
-//   IconData icon;
-//   String text;
-//   Function onTap;
-//
-//   CustomList(this.icon , this.text , this.onTap);
-//
-//   @override
-//     Widget build(BuildContext context) {
-//       return Padding(
-//         padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
-//         child: Container(
-//           decoration: const BoxDecoration(
-//             border: Border(bottom: BorderSide(color: Colors.grey))
-//           ),
-//           child: InkWell(
-//             splashColor: defaultColor,
-//             child: Container(
-//               height: 55.55,
-//               child: Row(
-//                 children:<Widget>[
-//                   Icon(icon),
-//                   const SizedBox(width: 10.0,),
-//                   Text(text),
-//                   const Spacer(),
-//                   const Icon(Icons.arrow_forward_ios),
-//                 ],
-//               ),
-//             ),
-//             onTap: onTap(),
-//           ),
-//         ),
-//       );
-//     }
-//   }
 
 
 
-// class CustomListDarkMode extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
-//       child: InkWell(
-//         splashColor: defaultColor,
-//         child: Container(
-//           height: 44.44,
-//           child: Row(
-//             children: const <Widget>[
-//               Icon(Icons.brightness_4_outlined),
-//               SizedBox(width: 10.0,),
-//               Text('Dark Mode'),
-//             ],
-//           ),
-//         ),
-//         onTap: (){},
-//       ),
-//     );
-//   }
-// }
+

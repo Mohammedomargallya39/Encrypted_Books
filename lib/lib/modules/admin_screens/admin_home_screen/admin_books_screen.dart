@@ -8,6 +8,8 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/students_model.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_pdf_book_screen.dart';
+import 'package:social/lib/shared/components/components.dart';
 
 class AdminBooksScreen extends StatelessWidget {
   const AdminBooksScreen({Key? key}) : super(key: key);
@@ -21,7 +23,7 @@ class AdminBooksScreen extends StatelessWidget {
         {
           var cubit = AppCubit.get(context);
           return ConditionalBuilder(
-            condition: cubit.adminBooksModel!.books != null,
+            condition: cubit.adminBooksModel != null,
             builder: (context) =>  Scaffold(
               appBar: AppBar(
                 title: const Text('Books'),
@@ -39,10 +41,23 @@ class AdminBooksScreen extends StatelessWidget {
               ),
               body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context,index) => adminBooksItem(AdminBooksDetails(
-                  name:cubit.adminBooksModel!.books![index].name ,
-                  cover:cubit.adminBooksModel!.books![index].cover ,
-                ) , context),
+                itemBuilder: (context,index) {
+                  //AppCubit.get(context).indexBook = index;
+                  return  InkWell(
+                    child: adminBooksItem(AdminBooksDetails(
+                      name:cubit.adminBooksModel!.books![index].name ,
+                      cover:cubit.adminBooksModel!.books![index].cover ,
+                    ) , context),
+                    onTap: ()
+                    {
+                      navigateTo(context, AdminPDFBooksScreen(
+                          BookId: index
+                      ),
+                      );
+                    },
+                  );
+                },
+
                 separatorBuilder:(context,index)=> Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -183,18 +198,24 @@ class AdminBooksScreen extends StatelessWidget {
 
         ],
       ),
-      const SizedBox(height: 10.0,),
-      TextButton(onPressed: ()
-      {
 
-      }, child: Text('Delete this book',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 22,
-          color: Colors.red,
-        ),
-      ),
-      ),
+      // TextButton(onPressed: ()
+      // {
+      //   showDialog(context: context,
+      //       builder: (context) => DeleteBooksAlertDialog(
+      //         description: 'Delete This Book',
+      //         title: 'Are you sure?'
+      //         ,)
+      //     ,);
+      // },
+      //   child: Text('Delete this book',
+      //   style: TextStyle(
+      //     fontWeight: FontWeight.bold,
+      //     fontSize: 18,
+      //     color: Colors.red,
+      //   ),
+      // ),
+      // ),
     ],
   );
   Widget addStudentToBooksItem(StudentsModel studentsAddModel , context) => Row(
@@ -309,3 +330,109 @@ class AdminBooksScreen extends StatelessWidget {
   );
 
 }
+
+
+// class DeleteBooksAlertDialog extends StatefulWidget {
+//   const DeleteBooksAlertDialog({
+//     Key? key,
+//     required this.title,
+//     required this.description,
+//   }) : super(key: key);
+//
+//   final String title, description;
+//
+//   @override
+//   _DeleteBooksAlertDialogState createState() => _DeleteBooksAlertDialogState();
+// }
+// class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Dialog(
+//       elevation: 0,
+//       //backgroundColor: Color(0xffffffff),
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(15.0),
+//       ),
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           SizedBox(height: 15),
+//           Text(
+//             "${widget.title}",
+//             style: TextStyle(
+//               color: Colors.black,
+//               fontSize: 22.0,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//           SizedBox(height: 22),
+//           Text("${widget.description},",
+//             style: TextStyle(
+//               fontSize: 22.0,
+//               color: Colors.black,
+//               fontWeight: FontWeight.bold,
+//             ),),
+//           SizedBox(height: 20),
+//           Divider(
+//             height: 1,
+//           ),
+//           Container(
+//             width: MediaQuery.of(context).size.width,
+//             height: 50,
+//             child: InkWell(
+//               highlightColor: Colors.grey[200],
+//               onTap: ()
+//               {
+//                 AppCubit.get(context).deleteBooks();
+//                 showToast(
+//                     message: 'Book deleted successfully',
+//                     state: ToastStates.SUCCESS );
+//                 navigateAndEnd(context, AdminHomeScreen(),);
+//
+//               },
+//               child: Center(
+//                 child: Text(
+//                   "Yes",
+//                   style: TextStyle(
+//                     fontSize: 18.0,
+//                     color:Colors.red,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//           Divider(
+//             height: 1,
+//           ),
+//           Container(
+//             width: MediaQuery.of(context).size.width,
+//             height: 50,
+//             child: InkWell(
+//               borderRadius: BorderRadius.only(
+//                 bottomLeft: Radius.circular(15.0),
+//                 bottomRight: Radius.circular(15.0),
+//               ),
+//               highlightColor: Colors.grey[200],
+//               onTap: () {
+//                 Navigator.of(context).pop();
+//               },
+//               child: Center(
+//                 child: Text(
+//                   "Cancel",
+//                   style: TextStyle(
+//                     color: Colors.black,
+//                     fontSize: 16.0,
+//                     fontWeight: FontWeight.normal,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+
