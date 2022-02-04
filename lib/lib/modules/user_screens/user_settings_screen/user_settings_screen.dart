@@ -159,7 +159,7 @@ class UserSettingsScreen extends StatelessWidget {
                               if (AppCubit.get(context).imageFile != null)
                               {
                                 AppCubit.get(context).updateUserImage(pic: AppCubit.get(context).imageFile!);
-                                showToast(message: 'Updated', state: toastStates.SUCCESS);
+                                showToast(message: 'Updated', state: ToastStates.SUCCESS);
                               }
                               if (AppCubit.get(context).imageFile == null)
                               {
@@ -170,7 +170,7 @@ class UserSettingsScreen extends StatelessWidget {
                                   phone: phoneController.text,
                                   password: passwordController.text
                               );
-                              showToast(message: 'Updated', state: toastStates.SUCCESS);
+                              showToast(message: 'Updated', state: ToastStates.SUCCESS);
                               AppCubit.get(context).getUserData();
                             }
                           },

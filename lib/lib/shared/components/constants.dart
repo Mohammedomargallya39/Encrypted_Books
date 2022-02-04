@@ -8,10 +8,10 @@ void signOut (context)
   {
     if(value)
     {
-      navigateAndEnd(context, LoginScreen());
+      navigateAndEnd(context, LoginScreen(),);
     }
   });
 }
 String? token = '';
-
 bool? isAdmin = false;
+

@@ -17,6 +17,8 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
+  // int? StudentId;
+
 
   UserData? userModel;
   void getUserData() async{
@@ -30,7 +32,7 @@ class AppCubit extends Cubit<AppStates> {
       print(userModel!.id);
       print(userModel!.image);
 
-      getUserBooks(homeModel);
+      getUserBooks();
       getStudents();
 
       emit(EncryptionSuccessUserDataState(userModel!));
@@ -105,7 +107,7 @@ class AppCubit extends Cubit<AppStates> {
 
   HomeModel? homeModel;
 
-  void getUserBooks(dynamic bookId) {
+  void getUserBooks() {
     emit(EncryptionLoadingGetUserBooksState());
     print('------------------get users books test-------------------');
     print(userModel!.id);
@@ -167,6 +169,50 @@ class AppCubit extends Cubit<AppStates> {
       print(error.toString());
       print('-------------------------error get admin books--------------------');
       emit(EncryptionErrorGetAdminBooksState());
+    });
+  }
+
+  int? indexStudent;
+  void deleteStudentAccount()
+  {
+    emit(EncryptionLoadingDeleteStudentAccountState());
+    print('----------loading delete account test----------- ${studentsModel![indexStudent!].name}');
+    print('----------loading delete account test----------- ${studentsModel![indexStudent!].sId}');
+    print('----------loading delete account test----------- ${indexStudent}');
+    DioHelper.deleteData(
+       //url: '',
+       url: '${DELETE_STUDENT_ACCOUNT}${studentsModel![indexStudent!].sId}',
+        token: token,
+    ).then((value) {
+      print('----------Success delete account test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteStudentAccountState());
+    }).catchError((error)
+    {
+      print(error.toString());
+      print('----------error delete account test-----------');
+      emit(EncryptionErrorDeleteStudentAccountState());
+    });
+  }
+
+  int? indexBook;
+  void deleteBooks()
+  {
+    emit(EncryptionLoadingDeleteBookState());
+    print('----------loading delete book test----------- ${adminBooksModel!.books![indexBook!].name}');
+    print('----------loading delete book test----------- ${adminBooksModel!.books![indexBook!].sId}');
+    print('----------loading delete book test----------- ${indexBook}');
+    DioHelper.deleteData(
+      //url: '',
+      url: '${DELETE_BOOK}${adminBooksModel!.books![indexBook!].sId}',
+      token: token,
+    ).then((value) {
+      print('----------Success delete book test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteBookState());
+    }).catchError((error)
+    {
+      print(error.toString());
+      print('----------error delete book test-----------');
+      emit(EncryptionErrorDeleteBookState());
     });
   }
 

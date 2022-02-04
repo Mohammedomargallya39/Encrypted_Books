@@ -22,6 +22,9 @@ class CacheHelper {
     return sharedPreferences.get(key);
   }
 
+
+
+  // ايرور لما بيعمل sign out و يخش اكونت تاني
   static Future<bool> removeData({required String key}) async {
     return await sharedPreferences.remove(key);
   }

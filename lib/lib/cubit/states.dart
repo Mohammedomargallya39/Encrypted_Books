@@ -62,6 +62,18 @@ class EncryptionSuccessUpdateUserImageState extends AppStates
 }
 class EncryptionErrorUpdateUserImageState extends AppStates{}
 
+// Delete User Account
+class EncryptionLoadingDeleteStudentAccountState extends AppStates{}
+class EncryptionSuccessDeleteStudentAccountState extends AppStates {}
+class EncryptionErrorDeleteStudentAccountState extends AppStates{}
+
+
+// Delete Book
+class EncryptionLoadingDeleteBookState extends AppStates{}
+class EncryptionSuccessDeleteBookState extends AppStates {}
+class EncryptionErrorDeleteBookState extends AppStates{}
+
+
 // SelectProfileImage
 class EncryptionSelectProfileImageState extends AppStates{}
 
