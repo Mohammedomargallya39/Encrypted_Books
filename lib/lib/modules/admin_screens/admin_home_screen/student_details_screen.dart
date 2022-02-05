@@ -17,7 +17,7 @@ class StudentDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            AppCubit.get(context).studentsModel![StudentId].name!
+            AppCubit.get(context).studentsModelWithOutAdmin![StudentId].name!
         ),
       ),
       body: SingleChildScrollView(
@@ -41,7 +41,7 @@ class StudentDetailsScreen extends StatelessWidget {
                       decoration:  BoxDecoration(shape: BoxShape.circle,
                         image: DecorationImage(image:
                         NetworkImage(
-                            AppCubit.get(context).studentsModel![StudentId].image!
+                            AppCubit.get(context).studentsModelWithOutAdmin![StudentId].image!
                         ),
                             fit: BoxFit.fill
                         ),
@@ -60,7 +60,7 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
                   Text(
-                    AppCubit.get(context).studentsModel![StudentId].name!
+                    AppCubit.get(context).studentsModelWithOutAdmin![StudentId].name!
                     ,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -86,7 +86,7 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
                   Text(
-                    AppCubit.get(context).studentsModel![StudentId].email!.split('@').first
+                    AppCubit.get(context).studentsModelWithOutAdmin![StudentId].email!.split('@').first
                     ,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -112,7 +112,7 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
                   Text(
-                    '${AppCubit.get(context).studentsModel![StudentId].numberofBooks}'
+                    '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].numberofBooks}'
                     ,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -138,7 +138,7 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
                   Text(
-                    '${AppCubit.get(context).studentsModel![StudentId].createdAt}'
+                    '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].createdAt}'
                     ,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -164,7 +164,7 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
                   Text(
-                    '${AppCubit.get(context).studentsModel![StudentId].updatedAt}'
+                    '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].updatedAt}'
                     ,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -195,7 +195,7 @@ class StudentDetailsScreen extends StatelessWidget {
                     color: defaultColor,
                     onPressed: ()
                     {
-                      debugPrint('${AppCubit.get(context).studentsModel![StudentId].books!.length}');
+                      debugPrint('${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].books!.length}');
                       navigateTo(context, StudentBookScreen(studentBooksId: StudentId,));
                     },
                     child: const Text('Student books',

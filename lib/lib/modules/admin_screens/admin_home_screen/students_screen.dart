@@ -17,7 +17,10 @@ class StudentsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).studentsModel !=null,
+          condition:
+             // AppCubit.get(context).studentsModel !=null
+             //     &&
+             AppCubit.get(context).studentsModelWithOutAdmin != null,
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: const Text(
@@ -35,10 +38,10 @@ class StudentsScreen extends StatelessWidget {
                  // AppCubit.get(context).indexStudent= index;
                   return InkWell(
                     child: studentsItem(StudentsModel(
-                      name: AppCubit.get(context).studentsModel![index].name,
-                      email: AppCubit.get(context).studentsModel![index].email!.split('@').first,
-                      image: AppCubit.get(context).studentsModel![index].image,
-                      sId: AppCubit.get(context).studentsModel![index].sId,
+                      name: AppCubit.get(context).studentsModelWithOutAdmin![index].name,
+                      email: AppCubit.get(context).studentsModelWithOutAdmin![index].email!.split('@').first,
+                      image: AppCubit.get(context).studentsModelWithOutAdmin![index].image,
+                      sId: AppCubit.get(context).studentsModelWithOutAdmin![index].sId,
 
                     ) , context),
                     onTap: ()
@@ -58,7 +61,7 @@ class StudentsScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                itemCount: AppCubit.get(context).studentsModel!.length
+                itemCount: AppCubit.get(context).studentsModelWithOutAdmin!.length
             ),
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),

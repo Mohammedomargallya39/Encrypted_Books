@@ -17,11 +17,12 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
+
   // int? StudentId;
 
-
   UserData? userModel;
-  void getUserData() async{
+
+  void getUserData() async {
     emit(EncryptionLoadingUserDataState());
     await DioHelper.getData(
       url: PROFILE,
@@ -96,8 +97,10 @@ class AppCubit extends Cubit<AppStates> {
       emit(EncryptionErrorUpdateUserImageState());
     });
   }
+
   final ImagePicker _picker = ImagePicker();
   File? imageFile;
+
   void selectImage() async {
     _picker.pickImage(source: ImageSource.gallery).then((value) {
       imageFile = File(value!.path);
@@ -126,7 +129,13 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  List<StudentsModel>? studentsModel =[];
+  List<StudentsModel>? studentsModel = [];
+  List<StudentsModel>? studentsModelWithOutAdmin = [];
+
+  void getWithoutAdmin() {
+    studentsModelWithOutAdmin =
+        studentsModel!.where((element) => element.isEnginneringsection == true || element.isManagmentsection == true || element.isComputerSciencesection == true).toList();
+  }
 
   void getStudents() {
     emit(EncryptionLoadingGetStudentsState());
@@ -137,17 +146,20 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       print('---test before enter model---');
       // studentsModel = StudentsModel.fromJson(value!.data);
-      if (value !=null)
-      {
+      if (value != null) {
         value.data.forEach((element) {
           studentsModel!.add(StudentsModel.fromJson(element));
         });
       }
+      getWithoutAdmin();
+      print(studentsModelWithOutAdmin!.length);
       // print(studentsModel!.toString());
-      print('----------------------getStudentSuccess-------------------- ${value!.data}');
+      print(
+          '----------------------getStudentSuccess-------------------- ${value!.data}');
       emit(EncryptionSuccessGetStudentsState(studentsModel!));
     }).catchError((error) {
-      debugPrint('-------------------------error-------------------- ${error.toString()}');
+      debugPrint(
+          '-------------------------error-------------------- ${error.toString()}');
       emit(EncryptionErrorGetStudentsState());
     });
   }
@@ -163,31 +175,34 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       adminBooksModel = AdminBooksModel.fromJson(value!.data);
       print(adminBooksModel!.toString());
-      print('----------------------success get admin books--------------------');
+      print(
+          '----------------------success get admin books--------------------');
       emit(EncryptionSuccessGetAdminBooksState(adminBooksModel!));
     }).catchError((error) {
       print(error.toString());
-      print('-------------------------error get admin books--------------------');
+      print(
+          '-------------------------error get admin books--------------------');
       emit(EncryptionErrorGetAdminBooksState());
     });
   }
 
   int? indexStudent;
-  void deleteStudentAccount()
-  {
+
+  void deleteStudentAccount() {
     emit(EncryptionLoadingDeleteStudentAccountState());
-    print('----------loading delete account test----------- ${studentsModel![indexStudent!].name}');
-    print('----------loading delete account test----------- ${studentsModel![indexStudent!].sId}');
+    print(
+        '----------loading delete account test----------- ${studentsModelWithOutAdmin![indexStudent!].name}');
+    print(
+        '----------loading delete account test----------- ${studentsModelWithOutAdmin![indexStudent!].sId}');
     print('----------loading delete account test----------- ${indexStudent}');
     DioHelper.deleteData(
-       //url: '',
-       url: '${DELETE_STUDENT_ACCOUNT}${studentsModel![indexStudent!].sId}',
-        token: token,
+      //url: '',
+      url: '${DELETE_STUDENT_ACCOUNT}${studentsModelWithOutAdmin![indexStudent!].sId}',
+      token: token,
     ).then((value) {
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
-    }).catchError((error)
-    {
+    }).catchError((error) {
       print(error.toString());
       print('----------error delete account test-----------');
       emit(EncryptionErrorDeleteStudentAccountState());
@@ -195,11 +210,13 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   int? indexBook;
-  void deleteBooks()
-  {
+
+  void deleteBooks() {
     emit(EncryptionLoadingDeleteBookState());
-    print('----------loading delete book test----------- ${adminBooksModel!.books![indexBook!].name}');
-    print('----------loading delete book test----------- ${adminBooksModel!.books![indexBook!].sId}');
+    print(
+        '----------loading delete book test----------- ${adminBooksModel!.books![indexBook!].name}');
+    print(
+        '----------loading delete book test----------- ${adminBooksModel!.books![indexBook!].sId}');
     print('----------loading delete book test----------- ${indexBook}');
     DioHelper.deleteData(
       //url: '',
@@ -208,13 +225,10 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       print('----------Success delete book test-----------${value!.data}');
       emit(EncryptionSuccessDeleteBookState());
-    }).catchError((error)
-    {
+    }).catchError((error) {
       print(error.toString());
       print('----------error delete book test-----------');
       emit(EncryptionErrorDeleteBookState());
     });
   }
-
 }
-

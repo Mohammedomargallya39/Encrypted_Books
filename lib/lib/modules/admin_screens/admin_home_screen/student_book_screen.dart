@@ -20,7 +20,7 @@ class StudentBookScreen extends StatelessWidget {
         {
           var cubit = AppCubit.get(context);
           return ConditionalBuilder(
-            condition: cubit.studentsModel![studentBooksId].books != null,
+            condition: cubit.studentsModelWithOutAdmin![studentBooksId].books != null,
             builder: (context) =>  Scaffold(
               appBar: AppBar(
                 title: const Text('Student books'),
@@ -64,8 +64,8 @@ class StudentBookScreen extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context,index) => InkWell(child:studentBooks(
                     StudentBookId(
-                      name: AppCubit.get(context).studentsModel![studentBooksId].books![index].bookId!.name,
-                      cover: AppCubit.get(context).studentsModel![studentBooksId].books![index].bookId!.cover,
+                      name: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![index].bookId!.name,
+                      cover: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![index].bookId!.cover,
                     ), context),
                     // onTap: ()
                     // {
@@ -82,7 +82,7 @@ class StudentBookScreen extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  itemCount: cubit.studentsModel![studentBooksId].books!.length),
+                  itemCount: cubit.studentsModelWithOutAdmin![studentBooksId].books!.length),
             ),
             fallback:(context) => Scaffold(
               appBar: AppBar(title: Text('Your Books'
