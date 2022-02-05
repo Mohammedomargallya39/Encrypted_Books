@@ -34,6 +34,7 @@ class AdminPDFBooksScreen extends StatelessWidget {
               ),
               actions: [
                 IconButton(
+                  color: Colors.red,
                   onPressed: ()
                   {
                     AppCubit.get(context).indexBook= BookId;
