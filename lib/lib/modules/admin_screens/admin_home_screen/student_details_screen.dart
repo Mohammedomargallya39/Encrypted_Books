@@ -145,7 +145,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: 15,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].createdAt}'
+                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].createdAt!.split('T').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -173,7 +173,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: 15,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].updatedAt}'
+                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].updatedAt!.split('T').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

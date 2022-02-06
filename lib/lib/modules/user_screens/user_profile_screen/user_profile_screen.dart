@@ -205,7 +205,7 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
                           Expanded(
-                            child: Text( '${AppCubit.get(context).homeModel!.createdAt}',
+                            child: Text( '${AppCubit.get(context).homeModel!.createdAt!.split('T').first}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -231,7 +231,7 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
                           Expanded(
-                            child: Text( '${AppCubit.get(context).homeModel!.updatedAt}',
+                            child: Text( '${AppCubit.get(context).homeModel!.updatedAt!.split('T').first}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
