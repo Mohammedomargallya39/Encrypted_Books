@@ -143,18 +143,22 @@ class AdminBooksScreen extends StatelessWidget {
               const Icon(Icons.remove)
           ),
           const Spacer(),
-           Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-            child: Text(
-                books.name!,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+           Expanded(
+             child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+              child: Text(
+                  books.name!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
           ),
+           ),
           const Spacer(),
           IconButton(
               onPressed: ()

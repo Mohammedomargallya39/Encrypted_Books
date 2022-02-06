@@ -59,13 +59,15 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontSize: 33,
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
-                  Text(
-                    AppCubit.get(context).studentsModelWithOutAdmin![StudentId].name!
-                    ,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 19,),
+                  Expanded(
+                    child: Text(
+                      AppCubit.get(context).studentsModelWithOutAdmin![StudentId].name!
+                      ,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 19,),
+                    ),
                   ),
                 ],
               ),
@@ -85,13 +87,15 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontSize: 33,
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
-                  Text(
-                    AppCubit.get(context).studentsModelWithOutAdmin![StudentId].email!.split('@').first
-                    ,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 19,),
+                  Expanded(
+                    child: Text(
+                      AppCubit.get(context).studentsModelWithOutAdmin![StudentId].email!.split('@').first
+                      ,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 19,),
+                    ),
                   ),
                 ],
               ),
@@ -111,13 +115,15 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontSize: 33,
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
-                  Text(
-                    '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].numberofBooks}'
-                    ,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 19,),
+                  Expanded(
+                    child: Text(
+                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].numberofBooks}'
+                      ,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 19,),
+                    ),
                   ),
                 ],
               ),
@@ -137,13 +143,15 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontSize: 33,
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
-                  Text(
-                    '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].createdAt}'
-                    ,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 19,),
+                  Expanded(
+                    child: Text(
+                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].createdAt}'
+                      ,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 19,),
+                    ),
                   ),
                 ],
               ),
@@ -163,13 +171,15 @@ class StudentDetailsScreen extends StatelessWidget {
                         fontSize: 33,
                         fontWeight: FontWeight.bold),),
                   SizedBox(width: 15,),
-                  Text(
-                    '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].updatedAt}'
-                    ,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 19,),
+                  Expanded(
+                    child: Text(
+                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].updatedAt}'
+                      ,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 19,),
+                    ),
                   ),
                 ],
               ),

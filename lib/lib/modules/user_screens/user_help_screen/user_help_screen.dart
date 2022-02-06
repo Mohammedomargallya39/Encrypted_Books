@@ -44,10 +44,6 @@ class UserHelpScreen extends StatelessWidget {
                     ),
                   ),
               )
-
-
-
-
             ],
           ),
         ),
