@@ -96,12 +96,14 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
-                          Text(
-                            '${AppCubit.get(context).userModel!.name}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 20,),),
+                          Expanded(
+                            child: Text(
+                              '${AppCubit.get(context).userModel!.name}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,),),
+                          ),
                         ],
                       ),
                     ),
@@ -121,12 +123,14 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
-                          Text(
-                            '${AppCubit.get(context).userModel!.email}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 20,),),
+                          Expanded(
+                            child: Text(
+                              '${AppCubit.get(context).userModel!.email}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,),),
+                          ),
                         ],
                       ),
                     ),
@@ -146,12 +150,14 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
-                          Text(
-                            '${AppCubit.get(context).userModel!.phone}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 20,),),
+                          Expanded(
+                            child: Text(
+                              '${AppCubit.get(context).userModel!.phone}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,),),
+                          ),
                         ],
                       ),
                     ),
@@ -171,12 +177,14 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
-                          Text(
-                            '${AppCubit.get(context).homeModel!.numberofBooks}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 20,),),
+                          Expanded(
+                            child: Text(
+                              '${AppCubit.get(context).homeModel!.numberofBooks}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,),),
+                          ),
                         ],
                       ),
                     ),
@@ -196,11 +204,13 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
-                          Text( '${AppCubit.get(context).homeModel!.createdAt}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 20,),),
+                          Expanded(
+                            child: Text( '${AppCubit.get(context).homeModel!.createdAt}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,),),
+                          ),
                         ],
                       ),
                     ),
@@ -220,11 +230,13 @@ class  UserProfileScreen extends StatelessWidget {
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold),),
                           const SizedBox(width: 8,),
-                          Text( '${AppCubit.get(context).homeModel!.updatedAt}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 20,),),
+                          Expanded(
+                            child: Text( '${AppCubit.get(context).homeModel!.updatedAt}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,),),
+                          ),
                         ],
                       ),
                     ),
