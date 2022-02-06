@@ -10,11 +10,11 @@ import android.os.Bundle;
 
 class MainActivity: FlutterActivity()
 {
-//    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-//        GeneratedPluginRegistrant.registerWith(flutterEngine);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-//
-//    }
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
+    }
 }
 
 
