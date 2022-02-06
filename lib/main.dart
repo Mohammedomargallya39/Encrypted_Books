@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
@@ -17,6 +18,9 @@ import 'lib/shared/network/shared/dio_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
