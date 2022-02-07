@@ -27,7 +27,7 @@ ThemeData lightTheme = ThemeData(
 
   ),
   fontFamily: 'EncryptionFont',
-  primarySwatch: defaultColor,
+  primarySwatch: Colors.blue,
   scaffoldBackgroundColor: Colors.white,
 );
 
@@ -42,7 +42,7 @@ ThemeData darkTheme = ThemeData(
   Colors.white
   ),),
   fontFamily: 'EncryptionFont',
-  primarySwatch: defaultColor,
+  primarySwatch: Colors.blue,
   scaffoldBackgroundColor: Colors.grey.shade900,
   appBarTheme:  AppBarTheme(
     backgroundColor: Colors.grey.shade800,

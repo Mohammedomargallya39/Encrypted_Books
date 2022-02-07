@@ -86,6 +86,7 @@ Widget defaultFormField({
     maxLines: maxLines,
     controller: controller,
     obscureText: isPassword,
+    //cursorColor: ButtonPrimaryColor,
     // onFieldSubmitted: (value){
     //   return onSubmit!(value);
     // },

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_cubit.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_states.dart';
@@ -38,273 +39,328 @@ class RegisterScreen extends StatelessWidget {
         },
         builder: (context, state) {
           var cubit = UserRegisterCubit.get(context);
+          Size size = MediaQuery.of(context).size;
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('Register'),
-            ),
-            body: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.all(22.0),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: Text(
-                          'Register to your account',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      defaultFormField(
-                        maxLines: 1,
-                        text: 'Name',
-                        controller: nameController,
-                        prefix: Icons.person,
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'You have to enter your name';
-                          }
-                        },
-                        type: TextInputType.text,
-                        context: context,
-                      ),
-                      const SizedBox(
-                        height: 27.5,
-                      ),
-
-                      defaultFormField(
-                          maxLines: 1,
-                          text: 'Academic E-mail',
-                          controller: emailController,
-                          prefix: Icons.email_outlined,
-                          validate: (String value) {
-                            if (value.isEmpty ||
-                                !value.contains('hti.edu.eg')) {
-                              return 'You have to enter you academic e-mail. ex: 42018183@hti.edu.eg. then press on send icon.';
-                            }
-                          },
-                          type: TextInputType.emailAddress,
-                          context: context,
-                          suffix: Icons.send_outlined,
-                          suffixPressed: () {
-                            sendOTP();
-                          }
-                        ),
-                      const SizedBox(
-                        height: 27.5,
-                      ),
-
-                      defaultFormField(
-                        maxLines: 1,
-                        text: 'OTP code',
-                        controller: otpController,
-                        prefix: Icons.messenger_outline,
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'You have to enter OTP code right';
-                          }
-                        },
-                        type: TextInputType.phone,
-                        context: context,
-                      ),
-
-                      const SizedBox(
-                        height: 27.5,
-                      ),
-
-                      defaultFormField(
-                          maxLines: 1,
-                          isPassword: cubit.isPassword,
-                          text: 'Password',
-                          controller: passwordController,
-                          prefix: Icons.lock_outline,
-                          suffix: cubit.suffix,
-                          suffixPressed: () {
-                            cubit.changeSuffix();
-                          },
-                          validate: (String value) {
-                            if (value.isEmpty) {
-                              return 'you have to enter your password';
-                            }
-                          },
-                          onSubmit: (String value) {
-                            // if (formKey.currentState!.validate()) {
-                            //   cubit.userLogin(
-                            //       email: emailController.text,
-                            //       password: passwordController.text);
-                            // }
-                          },
-                          type: TextInputType.visiblePassword,
-                          context: context),
-
-                      const SizedBox(
-                        height: 27.5,
-                      ),
-
-                      defaultFormField(
-                        maxLines: 1,
-                        text: 'Phone',
-                        controller: phoneController,
-                        prefix: Icons.phone,
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'You have to enter your phone';
-                          }
-                        },
-                        type: TextInputType.phone,
-                        context: context,
-                      ),
-
-                      const SizedBox(
-                        height: 27.5,
-                      ),
-
-                      Text(
-                        'Select your department:',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                          color: Colors.blue,
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 27.5,
-                      ),
-
-                      // ListTitle
-
-                      ListTile(
-                        title: Text(
-                          'Engineering',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        leading: Radio(
-                          value: 1,
-                          groupValue:
-                              UserRegisterCubit.get(context).currentIndex,
-                          //groupValue: 1,
-                          onChanged: (int?value) {
-                            UserRegisterCubit.get(context)
-                                .changeRadioButton(index: value);
-                          },
-                          activeColor: Colors.blue,
-                          toggleable: true,
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
-                          'Computer Science',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        leading: Radio(
-                          value: 2,
-                          groupValue:
-                              UserRegisterCubit.get(context).currentIndex,
-                          //groupValue: 2,
-                          onChanged: (int? value) {
-                            UserRegisterCubit.get(context)
-                                .changeRadioButton(index: value);
-                            print('change radio buttom value');
-                          },
-                          activeColor: Colors.blue,
-                          toggleable: true,
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
-                          'Commerce',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        leading: Radio(
-                          value: 3,
-                          groupValue:
-                              UserRegisterCubit.get(context).currentIndex,
-                          //groupValue: 3,
-                          onChanged: (int? value) {
-                            UserRegisterCubit.get(context)
-                                .changeRadioButton(index: value);
-                          },
-                          activeColor: Colors.blue,
-                          toggleable: true,
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 33.33,
-                      ),
-                      Center(
+            // appBar: AppBar(
+            //   title: const Text('Register'),
+            // ),
+            body: Container(
+                width: double.infinity,
+                height: size.height,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Image.asset('assets/images/signup_top.png',
+                        width: size.width * 0.35,),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: Image.asset('assets/images/main_bottom.png',
+                        width: size.width * 0.25,),
+                    ),
+                    SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Form(
+                        key: formKey,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(55, 10, 55, 0),
-                          child: SizedBox(
-                            //color: Colors.blue.shade400,
-                            width: double.infinity,
-                            height: 55.55,
-                            child: ConditionalBuilder(
-                              condition: state is! UserLoginLoadingState,
-                              builder: (context) => MaterialButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                ),
-                                elevation: 17.5,
-                                color: defaultColor,
-                                onPressed: () {
-                                  verifyOTP();
-                                  if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
-                                    UserRegisterCubit.get(context).userRegister(
-                                      email: emailController.text,
-                                      name: nameController.text,
-                                      password: passwordController.text,
-                                      phone: phoneController.text,
-                                      isEng:
-                                          UserRegisterCubit.get(context).isEng,
-                                      isMan:
-                                          UserRegisterCubit.get(context).isMan,
-                                      isCom:
-                                          UserRegisterCubit.get(context).isCom,
-                                    );
-                                    // sendOTP();
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context) =>OTPScreen())
-                                    //
-                                    // );
-                                  }
-                                },
-                                child: const Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 33.33,
-                                    fontWeight: FontWeight.bold,
+                          padding: const EdgeInsets.fromLTRB(10, 66, 10, 22),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    'SignUp',
+                                    style: TextStyle(
+                                      //fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+
+                                    ),
                                   ),
                                 ),
                               ),
-                              fallback: (context) => const Center(
-                                  child: CircularProgressIndicator()),
-                            ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
+                              SvgPicture.asset('assets/icons/signup.svg',
+                              height: size.height * 0.35,
+                              ),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              defaultFormField(
+                                maxLines: 1,
+                                text: 'Name',
+                                controller: nameController,
+                                prefix: Icons.person,
+                                validate: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'You have to enter your name';
+                                  }
+                                },
+                                type: TextInputType.text,
+                                context: context,
+                              ),
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+
+                              defaultFormField(
+                                  maxLines: 1,
+                                  text: 'Academic E-mail',
+                                  controller: emailController,
+                                  prefix: Icons.email_outlined,
+                                  validate: (String value) {
+                                    if (value.isEmpty ||
+                                        !value.contains('hti.edu.eg')) {
+                                      return 'You have to enter you academic e-mail. ex: 42018183@hti.edu.eg. then press on send icon.';
+                                    }
+                                  },
+                                  type: TextInputType.emailAddress,
+                                  context: context,
+                                  suffix: Icons.send_outlined,
+                                  suffixPressed: () {
+                                    sendOTP();
+                                  }
+                              ),
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+
+                              defaultFormField(
+                                maxLines: 1,
+                                text: 'OTP code',
+                                controller: otpController,
+                                prefix: Icons.messenger_outline,
+                                validate: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'You have to enter OTP code right';
+                                  }
+                                },
+                                type: TextInputType.phone,
+                                context: context,
+                              ),
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+                              defaultFormField(
+                                  maxLines: 1,
+                                  isPassword: cubit.isPassword,
+                                  text: 'Password',
+                                  controller: passwordController,
+                                  prefix: Icons.lock_outline,
+                                  suffix: cubit.suffix,
+                                  suffixPressed: () {
+                                    cubit.changeSuffix();
+                                  },
+                                  validate: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'you have to enter your password';
+                                    }
+                                  },
+                                  onSubmit: (String value) {
+                                    // if (formKey.currentState!.validate()) {
+                                    //   cubit.userLogin(
+                                    //       email: emailController.text,
+                                    //       password: passwordController.text);
+                                    // }
+                                  },
+                                  type: TextInputType.visiblePassword,
+                                  context: context),
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+                              defaultFormField(
+                                maxLines: 1,
+                                text: 'Phone',
+                                controller: phoneController,
+                                prefix: Icons.phone,
+                                validate: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'You have to enter your phone';
+                                  }
+                                },
+                                type: TextInputType.phone,
+                                context: context,
+                              ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Select your department:',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              // ListTitle
+                              ListTile(
+                                title: Text(
+                                  'Engineering',
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                                leading: Radio(
+                                  value: 1,
+                                  groupValue:
+                                  UserRegisterCubit.get(context).currentIndex,
+                                  //groupValue: 1,
+                                  onChanged: (int?value) {
+                                    UserRegisterCubit.get(context)
+                                        .changeRadioButton(index: value);
+                                  },
+                                  activeColor: Colors.blue,
+                                  toggleable: true,
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(
+                                  'Computer Science',
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                                leading: Radio(
+                                  value: 2,
+                                  groupValue:
+                                  UserRegisterCubit.get(context).currentIndex,
+                                  //groupValue: 2,
+                                  onChanged: (int? value) {
+                                    UserRegisterCubit.get(context)
+                                        .changeRadioButton(index: value);
+                                    print('change radio buttom value');
+                                  },
+                                  activeColor: Colors.blue,
+                                  toggleable: true,
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(
+                                  'Commerce',
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                                leading: Radio(
+                                  value: 3,
+                                  groupValue:
+                                  UserRegisterCubit.get(context).currentIndex,
+                                  //groupValue: 3,
+                                  onChanged: (int? value) {
+                                    UserRegisterCubit.get(context)
+                                        .changeRadioButton(index: value);
+                                  },
+                                  activeColor: Colors.blue,
+                                  toggleable: true,
+                                ),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
+                              Center(
+                                child: ConditionalBuilder(
+                                  condition: state is! UserLoginLoadingState,
+                                  builder: (context) =>
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                                        child: SizedBox(
+                                          width: size.width *0.8,
+                                          child: MaterialButton(
+                                    shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(29),
+                                    ),
+                                    elevation: 5,
+                                    color: defaultColor,
+                                    onPressed: () {
+                                          verifyOTP();
+                                          if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
+                                            UserRegisterCubit.get(context).userRegister(
+                                              email: emailController.text,
+                                              name: nameController.text,
+                                              password: passwordController.text,
+                                              phone: phoneController.text,
+                                              isEng:
+                                              UserRegisterCubit.get(context).isEng,
+                                              isMan:
+                                              UserRegisterCubit.get(context).isMan,
+                                              isCom:
+                                              UserRegisterCubit.get(context).isCom,
+                                            );
+                                            // sendOTP();
+                                            // Navigator.push(context, MaterialPageRoute(builder: (context) =>OTPScreen())
+                                            //
+                                            // );
+                                          }
+                                    },
+                                    child: const Text(
+                                          'SignUp',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                        ),
+                                      ),
+
+
+                                  fallback: (context) => const Center(
+                                      child: CircularProgressIndicator()),
+                                ),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Already have an account?',
+                                    style: TextStyle(
+                                      color: defaultColor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  TextButton(
+                                    onPressed: ()
+                                    {
+                                      navigateTo(context, LoginScreen());
+                                    },
+                                    child: Text('Login',
+                                      style: TextStyle(
+                                        color: defaultColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ),
             ),
           );
         },
       ),
     );
   }
-
   void sendOTP() async {
     var emailAuth = new EmailAuth(sessionName: 'Send OTP');
     var res = await emailAuth.sendOtp(recipientMail: emailController.text);
@@ -314,7 +370,6 @@ class RegisterScreen extends StatelessWidget {
       print('try again later');
     }
   }
-
   void verifyOTP() async {
     var emailAuth = new EmailAuth(sessionName: 'Verify OTP');
     var res = await emailAuth.validateOtp(

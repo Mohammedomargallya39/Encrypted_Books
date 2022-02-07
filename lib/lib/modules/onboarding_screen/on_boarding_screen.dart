@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
+import 'package:social/lib/modules/welcome_screen/welcome_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/network/local/cache_helper.dart';
 
@@ -39,7 +40,7 @@ class onBoardingScreen extends StatelessWidget {
      {
        if(value)
        {
-         navigateAndEnd(context, LoginScreen());
+         navigateAndEnd(context, WelcomeScreen());
        }
      });
    }
