@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
@@ -12,16 +13,14 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import 'package:social/lib/shared/styles/colors.dart';
-
 import 'admin_books_screen.dart';
 
 class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return BlocBuilder<ThemeCubit, ThemeStates>(
       builder: (context, state){
         return Scaffold(
@@ -104,7 +103,6 @@ class AdminHomeScreen extends StatelessWidget {
                       },
                     ),
                   ),
-
                   //                 سكرينات ال drawer
                   const SizedBox(height: 11.11,),
                   const CustomListDarkMode(),
@@ -124,69 +122,92 @@ class AdminHomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children:
-              [
-                const Image(
-                  image: AssetImage("assets/images/lockedbooks.png"),
-                  width: 400.0,
-                  height: 400.0,
+          body: Container(
+            width: double.infinity,
+            height: size.height,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Image.asset('assets/images/main_top.png',
+                    width: size.width * 0.35,),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 55.55,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Image.asset('assets/images/login_bottom.png',
+                    width: size.width * 0.4,),
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                    [
+                     // SizedBox(height: size.height * 0.05,),
+                      Text('Welcome Admin',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                       ),
-                      elevation: 17.5,
-                      color: defaultColor,
-                      onPressed: ()
-                      {
-                        navigateTo(context, const StudentsScreen());
-                      },
-                      child: const Text('Students',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
+                      ),
+                      //SizedBox(height: size.height * 0.3,),
+                      SvgPicture.asset('assets/icons/admin.svg',
+                      height: size.height * 0.5,),
+                      //SizedBox(height: size.height * 0.3,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                        child: SizedBox(
+                          width: size.width * 0.8,
+                          child: MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                            elevation: 17.5,
+                            color: defaultColor,
+                            onPressed: ()
+                            {
+                              navigateTo(context, const StudentsScreen());
+                            },
+                            child: const Text('Students',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-
-                  ),
-                ),
-                const SizedBox(height: 22,),
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 55.55,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      elevation: 17.5,
-                      color: defaultColor,
-                      onPressed: ()
-                      {
-                        navigateTo(context, const AdminBooksScreen());
-                      },
-                      child: const Text('Books',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
+                      //SizedBox(height: size.height * 0.3,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                        child: SizedBox(
+                          width: size.width * 0.8,
+                          child: MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                            elevation: 17.5,
+                            color: defaultColor,
+                            onPressed: ()
+                            {
+                              navigateTo(context, const AdminBooksScreen());
+                            },
+                            child: const Text('Books',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
 
+                    ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -198,8 +219,6 @@ class AdminHomeScreen extends StatelessWidget {
 // محتاج يتعدل لسه.....................
 class CustomListDarkMode extends StatelessWidget{
   const CustomListDarkMode({Key? key}) : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -232,8 +251,6 @@ class CustomListDarkMode extends StatelessWidget{
 }
 class CustomListHome extends StatelessWidget{
   const CustomListHome({Key? key}) : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -269,8 +286,6 @@ class CustomListHome extends StatelessWidget{
 }
 class CustomListProfile extends StatelessWidget{
   const CustomListProfile({Key? key}) : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -305,8 +320,6 @@ class CustomListProfile extends StatelessWidget{
 }
 class CustomListSettings extends StatelessWidget{
   const CustomListSettings({Key? key}) : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -341,8 +354,6 @@ class CustomListSettings extends StatelessWidget{
 }
 class CustomListHelp extends StatelessWidget{
   const CustomListHelp({Key? key}) : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -375,11 +386,8 @@ class CustomListHelp extends StatelessWidget{
     );
   }
 }
-
 class CustomListSignOut extends StatelessWidget{
   const CustomListSignOut({Key? key}) : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -411,7 +419,8 @@ class CustomListSignOut extends StatelessWidget{
                   title: 'Sign Out',
                   description: 'Are you sure?'
               )
-              ,);          },
+              ,);
+            },
         ),
       ),
     );

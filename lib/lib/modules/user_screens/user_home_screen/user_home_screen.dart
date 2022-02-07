@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
@@ -17,6 +18,7 @@ class UserHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return BlocConsumer<ThemeCubit, ThemeStates>(
       listener: (context , state){},
       builder: (BuildContext context, state)
@@ -131,43 +133,71 @@ class UserHomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children:
-              [
-                const Image(
-                  image: AssetImage("assets/images/lockedbooks.png"),
-                  width: 400.0,
-                  height: 400.0,
+          body: Container(
+            width: double.infinity,
+            height: size.height,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Image.asset('assets/images/main_top.png',
+                    width: size.width * 0.35,),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 55.55,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      elevation: 17.5,
-                      color: defaultColor,
-                      onPressed: ()
-                      {
-                        navigateTo(context, const UserOnlineBooksScreen());
-                      },
-                      child: const Text('Your Books',
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Image.asset('assets/images/login_bottom.png',
+                    width: size.width * 0.4,),
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                    [
+                      Text(
+                        'Welcome to HTI Books',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                      SizedBox(height: size.height * 0.03,),
+                      SvgPicture.asset('assets/icons/read.svg',height: size.height * 0.4,),
+                      SizedBox(height: size.height * 0.03,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                        child: SizedBox(
+                          width: size.width * 0.8,
+                          child: MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(29),
+                            ),
+                            elevation: 5,
+                            color: defaultColor,
+                            onPressed: ()
+                            {
+                              navigateTo(context, const UserOnlineBooksScreen());
+                            },
+                            child: const Text('Your Books',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
+
             ),
-          ),
+          )
+
+
         );
       },
     );
