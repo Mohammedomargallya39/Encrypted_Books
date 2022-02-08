@@ -47,54 +47,66 @@ class AdminHomeScreen extends StatelessWidget {
                         return ConditionalBuilder(
                           condition: AppCubit.get(context).userModel != null,
                           builder: (context) =>  Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children:  <Widget>[
                               Container(
                                 margin: const EdgeInsets.all(10),
-                                width: 85.45,
-                                height: 85.45,
-                                decoration:   BoxDecoration(shape: BoxShape.circle,
-                                  image:
-                                  DecorationImage(image:
-                                  NetworkImage(
-                                     '${AppCubit.get(context).userModel!.image}'
-                                  ),
-                                      fit: BoxFit.fill
+                                width: size.width * 0.25,
+                                height: size.height * 0.25,
+                                child: GestureDetector(
+                                  child: SizedBox(
+                                    width: size.width * 0.25,
+                                    height: size.height * 0.25,
+                                    child: Stack(
+                                      alignment: AlignmentDirectional.bottomEnd,
+                                      children:[
+                                        Center(
+                                          child: CircleAvatar(
+                                            radius: 44,
+                                            backgroundImage:  NetworkImage(
+                                                '${AppCubit.get(context).userModel!.image}'
+                                            ),
+                                          ),
+                                        ),
+                                      ] ,
+                                    ),
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 7.5,),
-                              Column(
-                                //crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children:  [
-                                  SizedBox(
-                                    width: 150.0,
-                                    child: Text(
-                                      '${AppCubit.get(context).userModel!.name}' ,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold ,
-                                          fontSize: 22.22 ,
-                                          color: Colors.white
+                              SizedBox(width: size.width * 0.005,),
+                              Expanded(
+                                child: Column(
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: size.width,
+                                      child: Text(
+                                        ' ${AppCubit.get(context).userModel!.name}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold ,
+                                            fontSize: 16 ,
+                                            color: Colors.white
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  SizedBox(
-                                    width: 150.0,
-                                    child: Text(
-                                      AppCubit.get(context).userModel!.email.split('@').first ,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold ,
-                                          fontSize: 22.22 ,
-                                          color: Colors.white
+                                    SizedBox(height: size.height *0.007,),
+                                    SizedBox(
+                                      width: size.width,
+                                      child: Text(AppCubit.get(context).userModel!.email.split('@').first ,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold ,
+                                            fontSize: 16 ,
+                                            color: Colors.white
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -104,19 +116,17 @@ class AdminHomeScreen extends StatelessWidget {
                     ),
                   ),
                   //                 سكرينات ال drawer
-                  const SizedBox(height: 11.11,),
+                  SizedBox(height: size.height * 0.02,),
                   const CustomListDarkMode(),
-                  const SizedBox(height: 22.22,),
+                   SizedBox(height: size.height * 0.02,),
                   const CustomListHome(),
-                  const SizedBox(height: 22.22,),
+                   SizedBox(height: size.height * 0.02,),
                   const CustomListProfile(),
-                  const SizedBox(height: 22.22,),
+                   SizedBox(height: size.height * 0.02,),
                   const CustomListSettings(),
-                  const SizedBox(height: 22.22,),
+                   SizedBox(height: size.height * 0.02,),
                   const CustomListHelp(),
-                  const SizedBox(height: 22.22,),
-                  //const CustomListRateUs(),
-                  //const SizedBox(height: 22.22,),
+                   SizedBox(height: size.height * 0.02,),
                   const CustomListSignOut(),
                 ],
               ),
@@ -218,11 +228,14 @@ class AdminHomeScreen extends StatelessWidget {
 }
 // محتاج يتعدل لسه.....................
 class CustomListDarkMode extends StatelessWidget{
+
   const CustomListDarkMode({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 12),
       child: Container(
         decoration: const BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.grey ))
@@ -230,13 +243,13 @@ class CustomListDarkMode extends StatelessWidget{
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
-            height: 33.33,
+            height: size.height * 0.035,
             child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Icon(Icons.brightness_4_outlined,color: Colors.white
                 ),
-                SizedBox(width: 10.0,),
-                Text('Dark Mode', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                SizedBox(width: size.width *0.025,),
+                Text('Dark Mode', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),),
               ],
             ),
           ),
@@ -253,21 +266,23 @@ class CustomListHome extends StatelessWidget{
   const CustomListHome({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 12),
       child: Container(
         decoration: const BoxDecoration(
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
-            height: 44.44,
+            height: size.height * 0.035,
             child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Icon(Icons.home,color: Colors.white
                 ),
-                SizedBox(width: 10.0,),
-                Text('Home', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                SizedBox(width: size.width *0.025),
+                Text('Home', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold,color: Colors.white),),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios,color: Colors.white
                 ),
@@ -288,21 +303,23 @@ class CustomListProfile extends StatelessWidget{
   const CustomListProfile({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0,12),
       child: Container(
         decoration: const BoxDecoration(
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
-            height: 44.44,
+            height: size.height * 0.035,
             child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Icon(Icons.person,color: Colors.white
                 ),
-                SizedBox(width: 10.0,),
-                Text('Profile', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                SizedBox(width: size.width *0.025),
+                Text('Profile', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios,color: Colors.white
                 ),
@@ -322,21 +339,23 @@ class CustomListSettings extends StatelessWidget{
   const CustomListSettings({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 12),
       child: Container(
         decoration: const BoxDecoration(
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
-            height: 44.44,
+            height: size.height * 0.035,
             child: Row(
-              children: const <Widget>[
+              children:  <Widget>[
                 Icon(Icons.settings,color: Colors.white
                 ),
-                SizedBox(width: 10.0,),
-                Text('Settings', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                SizedBox(width: size.width *0.025),
+                Text('Settings', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold,color: Colors.white),),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios,color: Colors.white
                 ),
@@ -356,21 +375,23 @@ class CustomListHelp extends StatelessWidget{
   const CustomListHelp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 12),
       child: Container(
         decoration: const BoxDecoration(
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
-            height: 44.44,
+            height: size.height * 0.035,
             child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Icon(Icons.help,color: Colors.white
                 ),
-                SizedBox(width: 10.0,),
-                Text('Help', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                SizedBox(width: size.width *0.025),
+                Text('Help', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold,color: Colors.white),),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios,color: Colors.white
                 ),
@@ -390,21 +411,23 @@ class CustomListSignOut extends StatelessWidget{
   const CustomListSignOut({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 8.8),
+      padding: const EdgeInsets.fromLTRB(8.8, 0, 0, 12),
       child: Container(
         decoration: const BoxDecoration(
             border: Border(bottom:  BorderSide(color: Colors.grey))),
         child: InkWell(
           splashColor: defaultColor,
           child: SizedBox(
-            height: 44.44,
+            height: size.height * 0.035,
             child: Row(
-              children:  const <Widget>[
+              children:  <Widget>[
                 Icon(Icons.logout,color: Colors.white
                 ),
-                SizedBox(width: 10.0,),
-                Text('Sign Out', style: TextStyle(fontSize: 22.2 , fontWeight: FontWeight.bold,color: Colors.white),),
+                SizedBox(width: size.width *0.025),
+                Text('Sign Out', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold,color: Colors.white),),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios,color: Colors.white,
                 ),

@@ -9,6 +9,9 @@ class UserHelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Help'),),
@@ -20,15 +23,16 @@ class UserHelpScreen extends StatelessWidget {
             children:
              <Widget>
             [
-              const SizedBox(
-                width: double.infinity,
-                child: Text('If you have any issue while using our app, you have to contact us by sending a mail to us to solve this problem at top speed. ',
-                  maxLines: 11,
+               SizedBox(
+                width: size.width,
+                child:
+                Text('If you have any issue while using our app, you have to contact us by sending a mail to us to solve this problem at top speed. ',
+                  maxLines: 22,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 19,),),
+                    fontSize: 16,),),
               ),
-              const SizedBox(height: 30,),
+               SizedBox(height: size.height * 0.02,),
               TextButton(
                   onPressed: ()
                   {
@@ -39,7 +43,7 @@ class UserHelpScreen extends StatelessWidget {
                   child: const Text('Connect Us',
                     style: TextStyle(
                       color: defaultColor,
-                      fontSize: 22,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

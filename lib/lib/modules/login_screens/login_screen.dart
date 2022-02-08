@@ -101,9 +101,7 @@ class LoginScreen extends StatelessWidget {
                                   SizedBox(
                                     height: size.height * 0.03,
                                   ),
-                                  const SizedBox(
-                                    height: 33.0,
-                                  ),
+                                  SizedBox(height: size.height *0.019,),
                                   defaultFormField(
                                     maxLines: 1,
                                     text: 'E-mail',
@@ -117,9 +115,8 @@ class LoginScreen extends StatelessWidget {
                                     type: TextInputType.emailAddress,
                                     context: context,
                                   ),
-                                  const SizedBox(
-                                    height: 27.5,
-                                  ),
+                                  SizedBox(height: size.height *0.019,),
+
                                   defaultFormField(
 
                                       maxLines: 1,
@@ -145,9 +142,8 @@ class LoginScreen extends StatelessWidget {
                                       },
                                       type: TextInputType.visiblePassword,
                                       context: context),
-                                  const SizedBox(
-                                    height: 33.33,
-                                  ),
+                                  SizedBox(height: size.height *0.038,),
+
                                   Center(
                                     child: ConditionalBuilder(
                                       condition: state is! UserLoginLoadingState,
@@ -155,10 +151,11 @@ class LoginScreen extends StatelessWidget {
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
                                           child: SizedBox(
-                                            width: size.width * 0.8,
+                                            width: size.width ,
+                                            height: size.height * 0.06,
                                             child: MaterialButton(
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(29),
+                                              borderRadius: BorderRadius.circular(22),
                                             ),
                                             elevation: 5,
                                             color: defaultColor,
@@ -173,7 +170,7 @@ class LoginScreen extends StatelessWidget {
                                               'LOGIN',
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -186,7 +183,7 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: size.height * 0.03,
+                                    height: size.height * 0.015,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -196,9 +193,7 @@ class LoginScreen extends StatelessWidget {
                                         color: defaultColor,
                                       ),
                                       ),
-                                      SizedBox(
-                                        width: size.width * 0.01,
-                                      ),
+
                                       TextButton(
                                           onPressed: ()
                                           {

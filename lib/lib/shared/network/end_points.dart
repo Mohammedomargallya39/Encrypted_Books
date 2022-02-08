@@ -9,6 +9,7 @@ const GET_STUDENTS= 'users';
 const GET_Books= 'books?category=computerscience';
 const DELETE_STUDENT_ACCOUNT= 'users/';
 const DELETE_BOOK= 'books/';
+const UPLOAD_BOOK= 'books';
 
 
 

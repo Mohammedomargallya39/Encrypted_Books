@@ -13,14 +13,12 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
 
   static UserRegisterCubit get(context) => BlocProvider.of(context);
   bool isPassword = true;
-
   IconData suffix = Icons.visibility_outlined;
   UserData? loginModel;
   int currentIndex = 0;
   bool isEng = false;
   bool isMan = false;
   bool isCom = false;
-
   void userRegister({
     required String name,
     required String email,
@@ -29,7 +27,8 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     required bool isMan,
     required bool isEng,
     required bool isCom,
-  }) {
+  })
+  {
     print('--------userRegister-----------');
     emit(UserRegisterLoadingState());
     DioHelper.postData(
@@ -52,21 +51,17 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
       emit(UserRegisterErrorState(error.toString()));
     });
   }
-
   void changeSuffix() {
     isPassword = !isPassword;
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(UserChangeRegisterSuffixState());
   }
-
   UserRegisterModel? selectedDepartment;
-
   void selectDepartment(UserRegisterModel model) {
     selectedDepartment = model;
     emit(SelectedDepartmentState());
   }
-
   void changeRadioButton({required int? index}) {
     currentIndex = index!;
     if (index == 1) {

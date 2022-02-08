@@ -13,6 +13,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return
       BlocConsumer<AppCubit,AppStates>(
         listener: (context, state) {},
@@ -37,11 +38,6 @@ class UserOnlineBooksScreen extends StatelessWidget {
                   },),
                   separatorBuilder:(context,index)=> Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 1.0,
-                      width: double.infinity,
-                      color: Colors.grey,
-                    ),
                   ),
                   itemCount: cubit.homeModel!.books!.length),
             ),
@@ -54,7 +50,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
                   style:
                   TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 22
+                      fontSize: 20
                   ),
                 ),
               ),
@@ -63,40 +59,40 @@ class UserOnlineBooksScreen extends StatelessWidget {
         },
       );
   }
-
-  Widget userOnlineBooksItem(BookId bookId , context) =>
-      InkWell(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
-          child: Center(
-            child: Column(
-              children: [
-                const SizedBox(height: 20.0,),
-                Image(
-                  image: NetworkImage(
+  Widget userOnlineBooksItem(BookId bookId , context) {
+    Size size = MediaQuery.of(context).size;
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
+        child: Center(
+          child: Column(
+            children: [
+               SizedBox(height: size.height * 0.02),
+              Image(
+                image: NetworkImage(
                     '${bookId.cover}'
-                  ),
-                  width: double.infinity,
-                  height: 200.0,
                 ),
-                const SizedBox(height: 10.0,),
-            Text(
-              '${bookId.name}',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+                width: size.width,
+                height: size.height * 0.22,
               ),
-            ),
-                const SizedBox(height: 20.0,),
-
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(bottom:  BorderSide(color: Colors.grey),),
-                  ),
+              SizedBox(height: size.height * 0.02),
+              Text(
+                '${bookId.name}',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: size.height * 0.02),
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(bottom:  BorderSide(color: Colors.grey),),
+                ),
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

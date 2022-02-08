@@ -44,10 +44,11 @@ class WelcomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
                       child: SizedBox(
-                        width: size.width * 0.8,
+                        width: size.width ,
+                        height: size.height * 0.06,
                         child: MaterialButton(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(29),
+                            borderRadius: BorderRadius.circular(22),
                           ),
                           elevation: 5,
                           color: defaultColor,
@@ -58,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: const Text('LOGIN',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -68,10 +69,11 @@ class WelcomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
                       child: SizedBox(
-                        width: size.width * 0.8,
+                        width: size.width ,
+                        height: size.height * 0.06,
                         child: MaterialButton(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(29),
+                            borderRadius: BorderRadius.circular(22),
                           ),
                           elevation: 5,
                           color: ButtonPrimaryLightColor,
@@ -82,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: const Text('SIGNUP',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
