@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:social/lib/cubit/cubit.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
+
+import 'admin_home_screen.dart';
 
 class StudentDetailsScreen extends StatelessWidget {
   const StudentDetailsScreen({Key? key, required this.StudentId}) : super(key: key);
@@ -313,7 +314,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateAndEnd(context, AdminHomeScreen(),);
+                navigateTo(context, AdminHomeScreen());
 
               },
               child: Center(

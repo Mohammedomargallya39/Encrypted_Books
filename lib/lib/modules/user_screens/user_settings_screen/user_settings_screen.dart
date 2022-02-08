@@ -19,6 +19,8 @@ class UserSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {
         nameController.text= AppCubit.get(context).userModel!.name;
@@ -37,14 +39,14 @@ class UserSettingsScreen extends StatelessWidget {
               key: formKey,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(11, 44, 11, 11),
+                  padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
                   child: Column(
                     children: <Widget>[
                       Center(
                         child: GestureDetector(
                           child: SizedBox(
-                            width:  220,
-                            height: 235,
+                            width:  size.width * 0.5,
+                            height: size.height * 0.23,
                             child: Stack(
                               alignment: AlignmentDirectional.bottomEnd,
                               children:[
@@ -81,7 +83,7 @@ class UserSettingsScreen extends StatelessWidget {
 
                                 IconButton(
                                   color: defaultColor,
-                                  iconSize: 33,
+                                  iconSize: 28,
                                   onPressed: ()
                                   {
                                     AppCubit.get(context).selectImage();
@@ -99,13 +101,13 @@ class UserSettingsScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      const SizedBox(height: 22.5,),
+                       SizedBox(height: size.height *0.019,),
 
                       Text(
                         AppCubit.get(context).userModel!.email.split('@').first,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.22),),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
 
-                      const SizedBox(height: 44.4,),
+                      SizedBox(height: size.height *0.04,),
 
                       defaultFormField(
                         type: TextInputType.name,
@@ -120,9 +122,7 @@ class UserSettingsScreen extends StatelessWidget {
                         },
                         context: context,
                       ),
-                      const SizedBox(
-                        height: 33.3,
-                      ),
+                      SizedBox(height: size.height *0.019,),
 
 
                       defaultFormField(
@@ -139,18 +139,16 @@ class UserSettingsScreen extends StatelessWidget {
                         context: context,
                       ),
 
-                      const SizedBox(
-                        height: 66,
-                      ),
+                      SizedBox(height: size.height *0.038,),
 
                       SizedBox(
-                        width: double.infinity,
-                        height: 55.55,
+                        width: size.width ,
+                        height: size.height * 0.06,
                         child: MaterialButton(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
+                            borderRadius: BorderRadius.circular(22.0),
                           ),
-                          elevation: 17.5,
+                          elevation: 5,
                           color: defaultColor,
                           onPressed: ()
                           {
@@ -158,7 +156,9 @@ class UserSettingsScreen extends StatelessWidget {
                             {
                               if (AppCubit.get(context).imageFile != null)
                               {
-                                AppCubit.get(context).updateUserImage(pic: AppCubit.get(context).imageFile!);
+                                AppCubit.get(context).updateUserImage(
+                                    pic: AppCubit.get(context).imageFile!
+                                );
                                 showToast(message: 'Updated', state: ToastStates.SUCCESS);
                               }
                               if (AppCubit.get(context).imageFile == null)
@@ -171,22 +171,20 @@ class UserSettingsScreen extends StatelessWidget {
                                   password: passwordController.text
                               );
                               showToast(message: 'Updated', state: ToastStates.SUCCESS);
-                              AppCubit.get(context).getUserData();
+                              Navigator.pop(context);
                             }
                           },
                           child: const Text('Update Profile Data',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 22.22,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
 
-                      const SizedBox(
-                        height: 33.3,
-                      ),
+                      SizedBox(height: size.height *0.019,),
 
                       TextButton(
                           onPressed: ()
@@ -195,15 +193,11 @@ class UserSettingsScreen extends StatelessWidget {
                           },
                           child: Text('change password' ,
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold
                             ),
                           ),
                       ),
-
-
-
-
                     ],
                   ),
                 ),

@@ -266,7 +266,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: size.height * 0.03,
+                                height: size.height * 0.01,
                               ),
                               Center(
                                 child: ConditionalBuilder(
@@ -275,10 +275,11 @@ class RegisterScreen extends StatelessWidget {
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
                                         child: SizedBox(
-                                          width: size.width *0.8,
+                                          width: size.width ,
+                                          height: size.height * 0.06,
                                           child: MaterialButton(
                                     shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(29),
+                                          borderRadius: BorderRadius.circular(22),
                                     ),
                                     elevation: 5,
                                     color: defaultColor,
@@ -307,7 +308,7 @@ class RegisterScreen extends StatelessWidget {
                                           'SignUp',
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
@@ -321,7 +322,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: size.height * 0.01,
+                                height: size.height * 0.001,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -330,9 +331,6 @@ class RegisterScreen extends StatelessWidget {
                                     style: TextStyle(
                                       color: defaultColor,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: size.width * 0.01,
                                   ),
                                   TextButton(
                                     onPressed: ()

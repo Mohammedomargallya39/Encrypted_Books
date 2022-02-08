@@ -18,6 +18,8 @@ class ChangePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state)
@@ -32,16 +34,12 @@ class ChangePasswordScreen extends StatelessWidget {
               key: formKey,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(11, 44, 11, 11),
+                  padding: const EdgeInsets.fromLTRB(11, 22, 11, 11),
                   child: Center(
                     child: Column(
                       children: <Widget>[
 
-
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-
+                        SizedBox(height: size.height *0.038,),
                         defaultFormField(
                           type: TextInputType.visiblePassword,
                           controller: passwordController,
@@ -55,18 +53,15 @@ class ChangePasswordScreen extends StatelessWidget {
                           context: context,
                         ),
 
-                        const SizedBox(
-                          height: 66,
-                        ),
-
+                        SizedBox(height: size.height *0.05,),
                         SizedBox(
-                          width: double.infinity,
-                          height: 55.55,
+                          width: size.width ,
+                          height: size.height * 0.06,
                           child: MaterialButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
+                              borderRadius: BorderRadius.circular(22.0),
                             ),
-                            elevation: 17.5,
+                            elevation: 5,
                             color: defaultColor,
                             onPressed: ()
                             {
@@ -85,7 +80,7 @@ class ChangePasswordScreen extends StatelessWidget {
                             child: const Text('Change password',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 22.22,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

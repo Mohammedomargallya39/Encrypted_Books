@@ -51,6 +51,8 @@ dependencies:
   email_auth: ^1.0.0
   image_picker: ^0.8.4+4
   flutter_svg: ^1.0.3
+  file_picker: ^4.3.3
+
 
 
 
