@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:social/lib/shared/components/components.dart';
 
@@ -15,38 +14,36 @@ class DioHelper{
         receiveTimeout: 10000,
       ),
     );
-
   }
-
+//post
   static Future<Response?> postData({
     required String url,
-    required Map<String, dynamic> data,
+    dynamic data,
     Map<String, dynamic>? query,
     String? token,
   })async
   {
-
-    try{
-      return await dio.post(
-        url,
-        data: data,
-        queryParameters: query,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization' : 'Bearer ${token??''}'
-          },
-        ),
-      );
-    }on DioError catch(e){
-      var message =  e.response!.data['message'].toString();
+    return await dio.post(
+      url,
+      data: data,
+      queryParameters: query,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${token}'
+        },
+      ),
+    ).then((value) {}).catchError((e) {
+      print(e.toString());
+      var message =  e.response.data['message'].toString();
       showToast(message: message, state: ToastStates.ERROR);
-    }
-
+    });
+    // }on DioError catch(e){
+    //   // var message =  e.response.data['message'].toString();
+    //   // showToast(message: message, state: ToastStates.ERROR);
+    // }
   }
-
-
-
+  //get
   static Future<Response?> getData({
     required String url,
     Map<String, dynamic>? query,
@@ -71,9 +68,7 @@ class DioHelper{
     }
 
   }
-
-
-
+  //put
   static Future<Response?> putData({
     required String url,
     required Map<String, dynamic> data,
@@ -99,7 +94,7 @@ class DioHelper{
     }
 
   }
-
+  //patch
   static Future<Response?> patchData({
     required String url,
     dynamic data,
@@ -124,9 +119,7 @@ class DioHelper{
     }
 
   }
-
-
-
+//delete
   static Future<Response?> deleteData({
     required String url,
     Map<String, dynamic>? data,
@@ -152,5 +145,4 @@ class DioHelper{
     }
 
   }
-
 }

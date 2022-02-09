@@ -14,7 +14,7 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
   static UserRegisterCubit get(context) => BlocProvider.of(context);
   bool isPassword = true;
   IconData suffix = Icons.visibility_outlined;
-  UserData? loginModel;
+  UserData? registerModel;
   int currentIndex = 0;
   bool isEng = false;
   bool isMan = false;
@@ -45,6 +45,7 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     ).then((value) {
       print('--------userRegister----------- Success');
       emit(UserRegisterSuccessState());
+      print('--------userRegister----------- Success');
     }).catchError((error) {
       print(error.toString());
       print('--------userRegister----------- Error');
@@ -53,8 +54,7 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
   }
   void changeSuffix() {
     isPassword = !isPassword;
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(UserChangeRegisterSuffixState());
   }
   UserRegisterModel? selectedDepartment;

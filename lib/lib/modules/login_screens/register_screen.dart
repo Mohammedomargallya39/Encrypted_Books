@@ -28,13 +28,9 @@ class RegisterScreen extends StatelessWidget {
       create: (context) => UserRegisterCubit(),
       child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
         listener: (context, state) {
-          if (state is UserRegisterSuccessState) {
-            showToast(message: 'Register Success', state: ToastStates.SUCCESS);
-            // navigateTo(context, UserHomeScreen());
-            navigateTo(context, LoginScreen());
-          } else if (state is UserRegisterErrorState)
-          {
-            showToast(message: 'Error!! please try again.', state: ToastStates.ERROR);
+          if (state is UserRegisterSuccessState){
+            navigateAndEnd(
+              context, LoginScreen(),);
           }
         },
         builder: (context, state) {
@@ -274,46 +270,66 @@ class RegisterScreen extends StatelessWidget {
                                   builder: (context) =>
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                                        child: SizedBox(
-                                          width: size.width ,
-                                          height: size.height * 0.06,
-                                          child: MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(22),
-                                    ),
-                                    elevation: 5,
-                                    color: defaultColor,
-                                    onPressed: () {
-                                          verifyOTP();
-                                          if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
-                                            UserRegisterCubit.get(context).userRegister(
-                                              email: emailController.text,
-                                              name: nameController.text,
-                                              password: passwordController.text,
-                                              phone: phoneController.text,
-                                              isEng:
-                                              UserRegisterCubit.get(context).isEng,
-                                              isMan:
-                                              UserRegisterCubit.get(context).isMan,
-                                              isCom:
-                                              UserRegisterCubit.get(context).isCom,
-                                            );
-                                            // sendOTP();
-                                            // Navigator.push(context, MaterialPageRoute(builder: (context) =>OTPScreen())
-                                            //
-                                            // );
-                                          }
-                                    },
-                                    child: const Text(
-                                          'SignUp',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ),
+                                        child: defaultButton(
+                                          function: ()
+                                          {
+                                            verifyOTP();
+                                                    if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
+                                                      UserRegisterCubit.get(context).userRegister(
+                                                        email: emailController.text,
+                                                        name: nameController.text,
+                                                        password: passwordController.text,
+                                                        phone: phoneController.text,
+                                                        isEng:
+                                                        UserRegisterCubit.get(context).isEng,
+                                                        isMan:
+                                                        UserRegisterCubit.get(context).isMan,
+                                                        isCom:
+                                                        UserRegisterCubit.get(context).isCom,
+                                                      );
+                                                    }
+                                          },
+                                          text: 'Sign Up',
+                                          context: context,
+                                          height: size.height * 0.08,
+                                          width: size.width,
                                         ),
+                                  //       SizedBox(
+                                  //         width: size.width ,
+                                  //         height: size.height * 0.06,
+                                  //         child: MaterialButton(
+                                  //   shape: RoundedRectangleBorder(
+                                  //         borderRadius: BorderRadius.circular(22),
+                                  //   ),
+                                  //   elevation: 5,
+                                  //   color: defaultColor,
+                                  //   onPressed: () {
+                                  //         verifyOTP();
+                                  //         if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
+                                  //           UserRegisterCubit.get(context).userRegister(
+                                  //             email: emailController.text,
+                                  //             name: nameController.text,
+                                  //             password: passwordController.text,
+                                  //             phone: phoneController.text,
+                                  //             isEng:
+                                  //             UserRegisterCubit.get(context).isEng,
+                                  //             isMan:
+                                  //             UserRegisterCubit.get(context).isMan,
+                                  //             isCom:
+                                  //             UserRegisterCubit.get(context).isCom,
+                                  //           );
+                                  //         }
+                                  //         },
+                                  //   child: const Text(
+                                  //         'SignUp',
+                                  //         style: TextStyle(
+                                  //           color: Colors.white,
+                                  //           fontSize: 16,
+                                  //           fontWeight: FontWeight.bold,
+                                  //         ),
+                                  //   ),
+                                  // ),
+                                  //       ),
                                       ),
 
 
@@ -332,18 +348,28 @@ class RegisterScreen extends StatelessWidget {
                                       color: defaultColor,
                                     ),
                                   ),
-                                  TextButton(
-                                    onPressed: ()
-                                    {
-                                      navigateTo(context, LoginScreen());
-                                    },
-                                    child: Text('Login',
-                                      style: TextStyle(
-                                        color: defaultColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+
+                                  defaultTextButton(
+                                      onPressed: ()
+                                      {
+                                        navigateTo(context, LoginScreen());
+                                      },
+                                      text: 'Login'
                                   ),
+                                  // TextButton(
+                                  //   onPressed: ()
+                                  //   {
+                                  //     navigateTo(context, LoginScreen());
+                                  //   },
+                                  //   child: Text('Login',
+                                  //     style: TextStyle(
+                                  //       color: defaultColor,
+                                  //       fontWeight: FontWeight.bold,
+                                  //     ),
+                                  //   ),
+                                  // ),
+
+
                                 ],
                               ),
                             ],

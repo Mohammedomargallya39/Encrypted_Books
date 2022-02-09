@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
-import 'admin_home_screen.dart';
 
 class AdminPDFBooksScreen extends StatelessWidget {
 
@@ -85,6 +85,7 @@ class DeleteBooksAlertDialog extends StatefulWidget {
 class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Dialog(
       elevation: 0,
       //backgroundColor: Color(0xffffffff),
@@ -94,7 +95,7 @@ class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 15),
+          SizedBox(height: size.height * 0.015),
           Text(
             "${widget.title}",
             style: TextStyle(
@@ -103,20 +104,20 @@ class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 22),
-          Text("${widget.description},",
+          SizedBox(height: size.height * 0.015),
+          Text("${widget.description}",
             style: TextStyle(
-              fontSize: 22.0,
+              fontSize: 20.0,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),),
-          SizedBox(height: 20),
+          SizedBox(height: size.height * 0.015),
           Divider(
-            height: 1,
+            height: size.height * 0.00222,
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
+            width: size.width,
+            height: size.height * 0.05,
             child: InkWell(
               highlightColor: Colors.grey[200],
               onTap: ()
@@ -125,14 +126,16 @@ class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
                 showToast(
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateAndEnd(context, AdminHomeScreen(),);
+                //navigateAndEnd(context, AdminHomeScreen(),);
+                //محتاج يتعدل
+                Restart.restartApp();
 
               },
               child: Center(
                 child: Text(
                   "Yes",
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     color:Colors.red,
                     fontWeight: FontWeight.bold,
                   ),
@@ -141,11 +144,11 @@ class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
             ),
           ),
           Divider(
-            height: 1,
+            height: size.height * 0.00222,
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
+            width: size.width,
+            height: size.height * 0.05,
             child: InkWell(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(15.0),
