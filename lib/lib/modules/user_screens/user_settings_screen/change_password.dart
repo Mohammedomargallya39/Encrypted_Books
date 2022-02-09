@@ -54,40 +54,60 @@ class ChangePasswordScreen extends StatelessWidget {
                         ),
 
                         SizedBox(height: size.height *0.05,),
-                        SizedBox(
-                          width: size.width ,
-                          height: size.height * 0.06,
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22.0),
-                            ),
-                            elevation: 5,
-                            color: defaultColor,
-                            onPressed: ()
-                            {
-                              if (formKey.currentState!.validate())
-                              {
-                                AppCubit.get(context).updateUserData(
-                                    name: nameController.text,
-                                    phone: phoneController.text,
-                                    password: passwordController.text
-                                );
-                                navigateAndEnd(context, UserSettingsScreen());
-                                showToast(message: 'password changed', state: ToastStates.SUCCESS);
-                              }
 
-                            },
-                            child: const Text('Change password',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                        defaultButton(
+                          function: ()
+                          {
+                            if (formKey.currentState!.validate())
+                                  {
+                                    AppCubit.get(context).updateUserData(
+                                        name: nameController.text,
+                                        phone: phoneController.text,
+                                        password: passwordController.text
+                                    );
+                                    navigateAndEnd(context, UserSettingsScreen());
+                                    showToast(message: 'password changed', state: ToastStates.SUCCESS);
+                                  }
+
+                          },
+                          text: 'change password',
+                          context: context,
+                          height: size.height * 0.08,
+                          width: size.width,
                         ),
 
-
+                        // SizedBox(
+                        //   width: size.width ,
+                        //   height: size.height * 0.06,
+                        //   child: MaterialButton(
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(22.0),
+                        //     ),
+                        //     elevation: 5,
+                        //     color: defaultColor,
+                        //     onPressed: ()
+                        //     {
+                        //       if (formKey.currentState!.validate())
+                        //       {
+                        //         AppCubit.get(context).updateUserData(
+                        //             name: nameController.text,
+                        //             phone: phoneController.text,
+                        //             password: passwordController.text
+                        //         );
+                        //         navigateAndEnd(context, UserSettingsScreen());
+                        //         showToast(message: 'password changed', state: ToastStates.SUCCESS);
+                        //       }
+                        //
+                        //     },
+                        //     child: const Text('Change password',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 16,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

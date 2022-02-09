@@ -16,8 +16,7 @@ class AdminBooksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      BlocConsumer<AppCubit,AppStates>(
+    return BlocConsumer<AppCubit,AppStates>(
         listener: (context, state) {},
         builder: (context, state)
         {
@@ -84,143 +83,63 @@ class AdminBooksScreen extends StatelessWidget {
         },
       );
   }
-  Widget adminBooksItem(AdminBooksDetails books , context) => Column(
-    children: [
-      const SizedBox(height: 10.0,),
-      Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Image(
-              image: NetworkImage(
-                books.cover!
-              ),
-              width: double.infinity,
-              height: 200.0,
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(width: 20.0,),
-      Row(
-        children:  [
-          // IconButton(
-          //     onPressed: ()
-          //     {
-          //       showModalBottomSheet(
-          //           context: context,
-          //           builder: (context)
-          //           {
-          //             return Scaffold(
-          //               appBar: AppBar(title: const Text('Remove students'),),
-          //               body: ListView.separated(
-          //                 physics: const BouncingScrollPhysics(),
-          //                 itemBuilder: (context,index) => InkWell(
-          //                   child: removeStudentToBooksItem(StudentsModel(
-          //                     name: AppCubit.get(context).studentsModel![index].name,
-          //                     email: AppCubit.get(context).studentsModel![index].email,
-          //                     image: AppCubit.get(context).studentsModel![index].image,
-          //                   ) , context),
-          //                   onTap: ()
-          //                   {
-          //
-          //                   },
-          //                 ),
-          //                 separatorBuilder:(context,index)=> Padding(
-          //                   padding: const EdgeInsets.all(8.0),
-          //                   child: Container(
-          //                     height: 1.0,
-          //                     width: double.infinity,
-          //                     color: Colors.grey,
-          //                   ),
-          //                 ),
-          //                 itemCount: AppCubit.get(context).studentsModel!.length,
-          //               ),
-          //             );
-          //           }
-          //       );
-          //     },
-          //     icon:
-          //     const Icon(Icons.remove)
-          // ),
-          const Spacer(),
-           Expanded(
-             child: Padding(
+  Widget adminBooksItem(AdminBooksDetails books , context) {
+    Size size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+       SizedBox(height: size.height * 0.015),
+        Column(
+          children: [
+            Padding(
               padding: EdgeInsets.all(8.0),
+              child: Image(
+                image: NetworkImage(
+                    books.cover!
+                ),
+                width: size.width,
+                height: size.height *0.15,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: size.height * 0.015),
+        Row(
+          children: [
+            Expanded(
               child: Center(
-              child: Text(
+                child: Text(
                   books.name!,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-          ),
-           ),
-          const Spacer(),
-          // IconButton(
-          //     onPressed: ()
-          //     {
-          //       showModalBottomSheet(
-          //           context: context,
-          //           builder: (context)
-          //           {
-          //             return Scaffold(
-          //               appBar: AppBar(title: const Text('Add students'),),
-          //               body: ListView.separated(
-          //                 physics: const BouncingScrollPhysics(),
-          //                 itemBuilder: (context,index) => InkWell(
-          //                   child: addStudentToBooksItem(StudentsModel(
-          //                     name: AppCubit.get(context).studentsModel![index].name,
-          //                     image: AppCubit.get(context).studentsModel![index].image,
-          //                     email: AppCubit.get(context).studentsModel![index].email,
-          //                   ) , context),
-          //                   onTap: ()
-          //                   {
-          //
-          //                   },
-          //                 ),
-          //                 separatorBuilder:(context,index)=> Padding(
-          //                   padding: const EdgeInsets.all(8.0),
-          //                   child: Container(
-          //                     height: 1.0,
-          //                     width: double.infinity,
-          //                     color: Colors.grey,
-          //                   ),
-          //                 ),
-          //                 itemCount: AppCubit.get(context).studentsModel!.length,
-          //               ),
-          //             );
-          //           }
-          //       );
-          //     },
-          //     icon:
-          //     const Icon(Icons.add)
-          // ),
-        ],
-      ),
-      // TextButton(onPressed: ()
-      // {
-      //   showDialog(context: context,
-      //       builder: (context) => DeleteBooksAlertDialog(
-      //         description: 'Delete This Book',
-      //         title: 'Are you sure?'
-      //         ,)
-      //     ,);
-      // },
-      //   child: Text('Delete this book',
-      //   style: TextStyle(
-      //     fontWeight: FontWeight.bold,
-      //     fontSize: 18,
-      //     color: Colors.red,
-      //   ),
-      // ),
-      // ),
-    ],
-  );
+            ),
+          ],
+        ),
+        // TextButton(onPressed: ()
+        // {
+        //   showDialog(context: context,
+        //       builder: (context) => DeleteBooksAlertDialog(
+        //         description: 'Delete This Book',
+        //         title: 'Are you sure?'
+        //         ,)
+        //     ,);
+        // },
+        //   child: Text('Delete this book',
+        //   style: TextStyle(
+        //     fontWeight: FontWeight.bold,
+        //     fontSize: 18,
+        //     color: Colors.red,
+        //   ),
+        // ),
+        // ),
+      ],
+    );
+  }
   // Widget addStudentToBooksItem(StudentsModel studentsAddModel , context) => Row(
   //   mainAxisAlignment: MainAxisAlignment.start,
   //   children: <Widget>

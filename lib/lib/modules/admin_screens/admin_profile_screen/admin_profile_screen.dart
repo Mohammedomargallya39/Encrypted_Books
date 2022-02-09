@@ -12,6 +12,8 @@ class  AdminProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return  BlocConsumer<AppCubit , AppStates>(
       listener: (context , state) {},
       builder: (context , state)
@@ -36,8 +38,8 @@ class  AdminProfileScreen extends StatelessWidget {
                       child: Center(
                         child: GestureDetector(
                           child: SizedBox(
-                            width:  220,
-                            height: 235,
+                            width:  size.width * 0.5,
+                            height: size.height * 0.21,
                             child: Stack(
                               alignment: AlignmentDirectional.bottomEnd,
                               children:[
@@ -75,205 +77,151 @@ class  AdminProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 33.33,),
+                    SizedBox(height: size.height * 0.02,),
                     Center(
                       child: Text(
                         AppCubit.get(context).userModel!.email.split('@').first,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
                     ),
-                    const SizedBox(height: 44.4,),
+                    SizedBox(height: size.height * 0.04,),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(bottom:  BorderSide(color: Colors.grey),),
                       ),
                     ),
-                    const SizedBox(height: 12,),
+                    SizedBox(height: size.height * 0.01,),
                     Padding(
                       padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
-                          Container(
-                            child: const Text('Name:',
-                              style: TextStyle(
-                                  fontSize: 33,
-                                  fontWeight: FontWeight.bold),),
-                          ),
-                          const SizedBox(width: 8,),
+                          const Text('Name:',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),),
+                          SizedBox(width: size.width * 0.015,),
                           Expanded(
                             child: Text(
                               '${AppCubit.get(context).userModel!.name}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 20,),),
+                                fontSize: 16,),),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 12,),
+                    SizedBox(height: size.height * 0.01,),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(bottom:  BorderSide(color: Colors.grey),),
                       ),
                     ),
-                    const SizedBox(height: 12,),
+                    SizedBox(height: size.height * 0.01,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
                           const Text('E-mail:',
                             style: TextStyle(
-                                fontSize: 33,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold),),
-                          const SizedBox(width: 8,),
+                          SizedBox(width: size.width *0.015),
                           Expanded(
                             child: Text(
                               '${AppCubit.get(context).userModel!.email}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 20,),),
+                                fontSize: 16,),),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 12,),
+                    SizedBox(height: size.height * 0.01,),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(bottom:  BorderSide(color: Colors.grey),),
                       ),
                     ),
-                    const SizedBox(height: 12,),
+                    SizedBox(height: size.height * 0.01,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
                           const Text('Phone:',
                             style: TextStyle(
-                                fontSize: 33,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold),),
-                          const SizedBox(width: 8,),
+                          SizedBox(width: size.width *0.015),
                           Expanded(
                             child: Text(
                               '${AppCubit.get(context).userModel!.phone}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 20,),),
+                                fontSize: 16,),),
                           ),
                         ],
                       ),
                     ),
-                    // const SizedBox(height: 12,),
-                    // Container(
-                    //   decoration: const BoxDecoration(
-                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 12,),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Row(
-                    //     children: [
-                    //       const Text('Number of your books:',
-                    //         style: TextStyle(
-                    //             fontSize: 33,
-                    //             fontWeight: FontWeight.bold),),
-                    //       const SizedBox(width: 8,),
-                    //       Text( AppCubit.get(context).homeModel!.numberOfBooks as String,
-                    //         maxLines: 1,
-                    //         overflow: TextOverflow.ellipsis,
-                    //         style: TextStyle(
-                    //           fontSize: 20,),),
-                    //     ],
-                    //   ),
-                    // ),
+                    SizedBox(height: size.height * 0.01,),
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(bottom:  BorderSide(color: Colors.grey),),
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.01,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text('Created In:',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),),
+                          SizedBox(width: size.width *0.015),
+                          Expanded(
+                            child: Text( '${AppCubit.get(context).homeModel!.createdAt!.split('T').first}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 16,),),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.01,),
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(bottom:  BorderSide(color: Colors.grey),),
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.01,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text('Updated In:',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),),
+                          SizedBox(width: size.width *0.015),
+                          Expanded(
+                            child: Text( '${AppCubit.get(context).homeModel!.updatedAt!.split('T').first}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 16,),),
+                          ),
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 12,),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(bottom:  BorderSide(color: Colors.grey),),
                       ),
                     ),
-                    // const SizedBox(height: 12,),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Row(
-                    //     children: [
-                    //       const Text('Account created in:',
-                    //         maxLines: 1,
-                    //         overflow: TextOverflow.ellipsis,
-                    //         style: TextStyle(
-                    //             fontSize: 33,
-                    //             fontWeight: FontWeight.bold),),
-                    //       const SizedBox(width: 8,),
-                    //       Text( AppCubit.get(context).homeModel!.createdIn,
-                    //         maxLines: 1,
-                    //         overflow: TextOverflow.ellipsis,
-                    //         style: TextStyle(
-                    //           fontSize: 20,),),
-                    //     ],
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 12,),
-                    // Container(
-                    //   decoration: const BoxDecoration(
-                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 12,),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Row(
-                    //     children: [
-                    //       const Text('Last update in:',
-                    //         style: TextStyle(
-                    //             fontSize: 33,
-                    //             fontWeight: FontWeight.bold),),
-                    //       const SizedBox(width: 8,),
-                    //       Text( AppCubit.get(context).homeModel!.updatedIn,
-                    //         maxLines: 1,
-                    //         overflow: TextOverflow.ellipsis,
-                    //         style: TextStyle(
-                    //           fontSize: 20,),),
-                    //     ],
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 12,),
-                    // Container(
-                    //   decoration: const BoxDecoration(
-                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
-                    //   ),
-                    // ),
-                    //
-
-
-
-                    // const SizedBox(height: 12,),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Row(
-                    //     children: [
-                    //       const Text('Number of your books:',
-                    //         style: TextStyle(
-                    //             fontSize: 33,
-                    //             fontWeight: FontWeight.bold),),
-                    //       const SizedBox(width: 8,),
-                    //       Text(
-                    //         AppCubit.get(context).userBooksNumber!.NumOfBooks,
-                    //         // '0',
-                    //         maxLines: 1,
-                    //         overflow: TextOverflow.ellipsis,
-                    //         style: TextStyle(
-                    //           fontSize: 20,),),
-                    //     ],
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 12,),
-                    // Container(
-                    //   decoration: const BoxDecoration(
-                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,21 +34,29 @@ class UserHelpScreen extends StatelessWidget {
                     fontSize: 16,),),
               ),
                SizedBox(height: size.height * 0.02,),
-              TextButton(
+              defaultTextButton(
                   onPressed: ()
                   {
                     launch('mailto:mohammed.gallya39@gmail.com?'
-                        'subject=This is Subject title'
-                        'body = This is Body Email');
+                                  'subject=This is Subject title'
+                                  'body = This is Body Email');
                   },
-                  child: const Text('Connect Us',
-                    style: TextStyle(
-                      color: defaultColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-              )
+                  text: 'Connect Us'),
+              // TextButton(
+              //     onPressed: ()
+              //     {
+              //       launch('mailto:mohammed.gallya39@gmail.com?'
+              //           'subject=This is Subject title'
+              //           'body = This is Body Email');
+              //     },
+              //     child: const Text('Connect Us',
+              //       style: TextStyle(
+              //         color: defaultColor,
+              //         fontSize: 16,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              // )
             ],
           ),
         ),

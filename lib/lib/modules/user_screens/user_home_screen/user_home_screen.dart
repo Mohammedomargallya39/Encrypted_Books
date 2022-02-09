@@ -168,27 +168,38 @@ class UserHomeScreen extends StatelessWidget {
                       SizedBox(height: size.height * 0.03,),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                        child: SizedBox(
-                          width: size.width * 0.8,
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22),
-                            ),
-                            elevation: 5,
-                            color: defaultColor,
-                            onPressed: ()
-                            {
+                        child: defaultButton(
+                          function: ()
+                          {
                               navigateTo(context, const UserOnlineBooksScreen());
-                            },
-                            child: const Text('Your Books',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                          },
+                          text: 'Your Books',
+                          context: context,
+                          height: size.height * 0.08,
+                          width: size.width,
                         ),
+                        // SizedBox(
+                        //   width: size.width ,
+                        //   height: size.height * 0.06,
+                        //   child: MaterialButton(
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(22),
+                        //     ),
+                        //     elevation: 5,
+                        //     color: defaultColor,
+                        //     onPressed: ()
+                        //     {
+                        //       navigateTo(context, const UserOnlineBooksScreen());
+                        //     },
+                        //     child: const Text('Your Books',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 16,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                     ],
                   ),

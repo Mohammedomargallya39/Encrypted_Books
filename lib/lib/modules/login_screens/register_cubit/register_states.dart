@@ -1,4 +1,3 @@
-
 abstract class UserRegisterStates {}
 class UserRegisterInitialState extends UserRegisterStates{}
 class UserRegisterLoadingState extends UserRegisterStates{}

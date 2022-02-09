@@ -161,58 +161,77 @@ class AdminHomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                       ),
-                      //SizedBox(height: size.height * 0.3,),
                       SvgPicture.asset('assets/icons/admin.svg',
-                      height: size.height * 0.5,),
-                      //SizedBox(height: size.height * 0.3,),
+                      height: size.height * 0.4,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                        child: SizedBox(
-                          width: size.width * 0.8,
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ),
-                            elevation: 17.5,
-                            color: defaultColor,
-                            onPressed: ()
-                            {
-                              navigateTo(context, const StudentsScreen());
-                            },
-                            child: const Text('Students',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                        child: defaultButton(
+                          function: ()
+                          {
+                            navigateTo(context, const StudentsScreen());
+                          },
+                          text: 'Students',
+                          context: context,
+                          height: size.height * 0.08,
+                          width: size.width,
                         ),
+                        // SizedBox(
+                        //   width: size.width ,
+                        //   height: size.height * 0.06,
+                        //   child: MaterialButton(
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(22),
+                        //     ),
+                        //     elevation: 5,
+                        //     color: defaultColor,
+                        //     onPressed: ()
+                        //     {
+                        //       navigateTo(context, const StudentsScreen());
+                        //     },
+                        //     child: const Text('Students',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 16,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
-                      //SizedBox(height: size.height * 0.3,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                        child: SizedBox(
-                          width: size.width * 0.8,
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ),
-                            elevation: 17.5,
-                            color: defaultColor,
-                            onPressed: ()
-                            {
-                              navigateTo(context, const AdminBooksScreen());
-                            },
-                            child: const Text('Books',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                        child: defaultButton(
+                          function: ()
+                          {
+                            navigateTo(context, const AdminBooksScreen());
+                          },
+                          text: 'Books',
+                          context: context,
+                          height: size.height * 0.08,
+                          width: size.width,
                         ),
+                        // SizedBox(
+                        //   width: size.width ,
+                        //   height: size.height * 0.06,
+                        //   child: MaterialButton(
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(22.0),
+                        //     ),
+                        //     elevation: 5,
+                        //     color: defaultColor,
+                        //     onPressed: ()
+                        //     {
+                        //       navigateTo(context, const AdminBooksScreen());
+                        //     },
+                        //     child: const Text('Books',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 16,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
 
                     ],

@@ -17,10 +17,7 @@ class StudentsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition:
-             // AppCubit.get(context).studentsModel !=null
-             //     &&
-             AppCubit.get(context).studentsModelWithOutAdmin != null,
+          condition: AppCubit.get(context).studentsModelWithOutAdmin != null,
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: const Text(
@@ -70,51 +67,56 @@ class StudentsScreen extends StatelessWidget {
     );
   }
 
-  Widget studentsItem(StudentsModel studentsModel , context) => Row(
-   children: <Widget>
-   [
-     Container(
-       margin: const EdgeInsets.all(10),
-       width: 75,
-       height:75,
-       decoration:   BoxDecoration(shape: BoxShape.circle,
-         image: DecorationImage(image:
-         NetworkImage(studentsModel.image!),
-             fit: BoxFit.fill
-         ),
-       ),
-     ),
-     const SizedBox(width: 5,),
-     Expanded(
-       child: Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children:  <Widget>
-         [
-           Text(studentsModel.name! ,
-             maxLines: 1,
-             overflow: TextOverflow.ellipsis,
-             style: TextStyle(
-                 fontWeight: FontWeight.bold ,
-                 fontSize: 22.22 ,
-             ),
-           ),
-           SizedBox(height: 5,),
-           Text(studentsModel.email!.split('@').first ,
-             maxLines: 1,
-             overflow: TextOverflow.ellipsis,
-             style: TextStyle(
-                 fontWeight: FontWeight.bold ,
-                 fontSize: 22.22 ,
-             ),
-           ),
-         ],
-       ),
-     ),
-     const Spacer(),
-     Padding(
-       padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-       child: Icon(Icons.arrow_forward_ios),
-     ),
-   ],
-  );
+  Widget studentsItem(StudentsModel studentsModel , context)
+  {
+    Size size = MediaQuery.of(context).size;
+    return Row(
+      children: <Widget>
+      [
+        Container(
+          margin: const EdgeInsets.all(10),
+          width: size.width * .18,
+          height:size.height * .07,
+          decoration:   BoxDecoration(shape: BoxShape.circle,
+            image: DecorationImage(image:
+            NetworkImage(studentsModel.image!),
+                fit: BoxFit.fill
+            ),
+          ),
+        ),
+         SizedBox(width: size.width * 0.001,),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:  <Widget>
+            [
+              Text(studentsModel.name! ,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold ,
+                  fontSize: 16 ,
+                ),
+              ),
+              SizedBox(height: size.height * 0.0075,),
+              Text(studentsModel.email!.split('@').first ,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold ,
+                  fontSize: 16 ,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+          child: Icon(Icons.arrow_forward_ios),
+        ),
+      ],
+    ) ;
+  }
 }
+

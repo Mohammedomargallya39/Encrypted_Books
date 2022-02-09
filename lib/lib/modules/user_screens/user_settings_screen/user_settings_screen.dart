@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
@@ -50,20 +51,6 @@ class UserSettingsScreen extends StatelessWidget {
                             child: Stack(
                               alignment: AlignmentDirectional.bottomEnd,
                               children:[
-                                // Center(
-                                //   child: Container(
-                                //     margin: const EdgeInsets.all(10),
-                                //     width:  275,
-                                //     height: 275,
-                                //     decoration:   BoxDecoration(
-                                //       shape: BoxShape.circle,
-                                //       image: DecorationImage(image:
-                                //       NetworkImage(AppCubit.get(context).userModel!.image),
-                                //           fit: BoxFit.fill
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                                 if (AppCubit.get(context).imageFile != null)
                                 Center(
                                   child: CircleAvatar(
@@ -117,7 +104,7 @@ class UserSettingsScreen extends StatelessWidget {
                         validate: (String value) {
                           if (value.isEmpty) {
                             return
-                              'write new name if you want change your name OR write *${AppCubit.get(context).userModel!.name}* if you will not change your name';
+                              'write *${AppCubit.get(context).userModel!.name}* if you will not change your name';
                           }
                         },
                         context: context,
@@ -133,71 +120,71 @@ class UserSettingsScreen extends StatelessWidget {
                         validate: (String value) {
                           if (value.isEmpty) {
                             return
-                              'write new phone if you want change your phone OR write *${AppCubit.get(context).userModel!.phone}* if you will not change your phone';
+                              'write *${AppCubit.get(context).userModel!.phone}* if you will not change your phone';
                           }
                         },
                         context: context,
                       ),
 
-                      SizedBox(height: size.height *0.038,),
+                      SizedBox(height: size.height *0.05,),
 
-                      SizedBox(
-                        width: size.width ,
-                        height: size.height * 0.06,
-                        child: MaterialButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(22.0),
-                          ),
-                          elevation: 5,
-                          color: defaultColor,
-                          onPressed: ()
+                      defaultButton(
+                          function: ()
                           {
                             if (formKey.currentState!.validate())
-                            {
-                              if (AppCubit.get(context).imageFile != null)
-                              {
-                                AppCubit.get(context).updateUserImage(
-                                    pic: AppCubit.get(context).imageFile!
-                                );
-                                showToast(message: 'Updated', state: ToastStates.SUCCESS);
-                              }
-                              if (AppCubit.get(context).imageFile == null)
-                              {
-                                AppCubit.get(context).userModel!.image;
-                              }
-                              AppCubit.get(context).updateUserData(
-                                  name: nameController.text,
-                                  phone: phoneController.text,
-                                  password: passwordController.text
-                              );
-                              showToast(message: 'Updated', state: ToastStates.SUCCESS);
-                              Navigator.pop(context);
-                            }
+                                {
+                                  if (AppCubit.get(context).imageFile != null)
+                                  {
+                                    AppCubit.get(context).updateUserImage(
+                                        pic: AppCubit.get(context).imageFile!
+                                    );
+                                    showToast(message: 'Updated', state: ToastStates.SUCCESS);
+                                  }
+                                  if (AppCubit.get(context).imageFile == null)
+                                  {
+                                    AppCubit.get(context).userModel!.image;
+                                  }
+                                  AppCubit.get(context).updateUserData(
+                                      name: nameController.text,
+                                      phone: phoneController.text,
+                                      password: passwordController.text
+                                  );
+                                  showToast(message: 'Updated', state: ToastStates.SUCCESS);
+                                  //Navigator.pop(context);
+                                  // محتاجه تتشال )سبلاش سكرين(
+                                  Restart.restartApp();
+                                }
                           },
-                          child: const Text('Update Profile Data',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                          text: 'Update Profile Data',
+                        context: context,
+                        height: size.height * 0.08,
+                        width: size.width,
+
                       ),
 
                       SizedBox(height: size.height *0.019,),
 
-                      TextButton(
+                      defaultTextButton(
                           onPressed: ()
                           {
                             navigateTo(context, ChangePasswordScreen());
                           },
-                          child: Text('change password' ,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
+                          text: 'change password'
                       ),
+                      // TextButton(
+                      //     onPressed: ()
+                      //     {
+                      //       navigateTo(context, ChangePasswordScreen());
+                      //     },
+                      //     child: Text('change password' ,
+                      //       style: TextStyle(
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.bold
+                      //       ),
+                      //     ),
+                      // ),
+
+
                     ],
                   ),
                 ),

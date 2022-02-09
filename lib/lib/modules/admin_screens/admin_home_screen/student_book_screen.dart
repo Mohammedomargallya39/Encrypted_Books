@@ -2,10 +2,12 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/students_model.dart';
+import 'package:social/lib/shared/components/components.dart';
 
 class StudentBookScreen extends StatelessWidget {
   const StudentBookScreen({Key? key, required this.studentBooksId}) : super(key: key);
@@ -93,7 +95,7 @@ class StudentBookScreen extends StatelessWidget {
                   style:
                   TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 22
+                      fontSize: 22 ,
                   ),
                 ),
               ),
@@ -103,98 +105,115 @@ class StudentBookScreen extends StatelessWidget {
       );
   }
 
-  Widget studentBooks(StudentBookId studentBookId , context) => Padding(
-        padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 20.0,),
-              Image(
-                image: NetworkImage(
-                    '${studentBookId.cover}'
-                ),
-                width: double.infinity,
-                height: 200.0,
+  Widget studentBooks(StudentBookId studentBookId , context) {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
+      child: Center(
+        child: Column(
+          children: [
+             SizedBox(height: size.height * 0.005),
+            Image(
+              image: NetworkImage(
+                  '${studentBookId.cover}'
               ),
-              const SizedBox(height: 10.0,),
-              Text(
-                '${studentBookId.name}',
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              width: size.width,
+              height: size.height * 0.22,
+            ),
+            SizedBox(height: size.height * 0.015),
+            Text(
+              '${studentBookId.name}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
+            ),
 
-              const SizedBox(height: 10.0,),
-              TextButton(
-                  onPressed: ()
-                  {
-                    showDialog(
-                        context: context,
-                        builder: (context) =>
-                            DeleteStudentBooksAlertDialog(
-                              title: 'Delete student book',
-                              description: 'Are you sure?',
-                            ),
-                    );
-                  },
-                  child: Text('Remove this book',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red
+            SizedBox(height: size.height * 0.03),
+
+            defaultTextButton(
+              onPressed: ()
+              {
+                showDialog(
+                          context: context,
+                          builder: (context) =>
+                              DeleteStudentBooksAlertDialog(
+                                title: 'Delete student book',
+                                description: 'Are you sure?',
+                              ),
+                        );
+              },
+              text: 'Remove this book',
+              color: Colors.red,
+              fontSize: 12,
+            ),
+            // TextButton(
+            //   onPressed: ()
+            //   {
+            //     showDialog(
+            //       context: context,
+            //       builder: (context) =>
+            //           DeleteStudentBooksAlertDialog(
+            //             title: 'Delete student book',
+            //             description: 'Are you sure?',
+            //           ),
+            //     );
+            //   },
+            //   child: Text('Remove this book',
+            //     style: TextStyle(
+            //         fontSize: 16,
+            //         fontWeight: FontWeight.bold,
+            //         color: Colors.red
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget addBooksForStudentsItem(AdminBooksDetails books, context) {
+    Size size = MediaQuery.of(context).size;
+    return InkWell(
+      child: Column(
+        children: [
+           SizedBox(height: size.height * 0.015),
+          Column(
+            children:  [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Image(
+                  image: NetworkImage(
+                      books.cover!
                   ),
-                  ),
-              ),
-              const SizedBox(height: 20.0,),
-              Container(
-                decoration: const BoxDecoration(
-                  border: Border(bottom:  BorderSide(color: Colors.grey),),
+                  width: size.width,
+                  height: size.height *0.15,
                 ),
               ),
             ],
           ),
-        ),
-      );
-
-  Widget addBooksForStudentsItem(AdminBooksDetails books, context) => InkWell(
-    child: Column(
-      children: [
-        const SizedBox(height: 10.0,),
-        Column(
-          children:  [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Image(
-                image: NetworkImage(
-                    books.cover!
+          SizedBox(height: size.height * 0.015),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                books.name!
+                ,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                width: double.infinity,
-                height: 200.0,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(width: 20.0,),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(
-              books.name!
-              ,
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-        ),
-      ],
-    ),
-    onTap: ()
-    {
-    },
-  );
+        ],
+      ),
+      onTap: ()
+      {
+      },
+    );
+  }
 }
 
 
@@ -213,6 +232,7 @@ class DeleteStudentBooksAlertDialog extends StatefulWidget {
 class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertDialog> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Dialog(
       elevation: 0,
       //backgroundColor: Color(0xffffffff),
@@ -222,7 +242,7 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 15),
+          SizedBox(height: size.height * 0.015),
           Text(
             "${widget.title}",
             style: TextStyle(
@@ -231,30 +251,31 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 22),
-          Text("${widget.description},",
+          SizedBox(height: size.height * 0.015),
+          Text("${widget.description}",
             style: TextStyle(
-              fontSize: 22.0,
+              fontSize: 20.0,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),),
-          SizedBox(height: 20),
+          SizedBox(height: size.height * 0.015),
           Divider(
-            height: 1,
+            height: size.height * 0.00222,
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
+            width: size.width,
+            height: size.height * 0.05,
             child: InkWell(
               highlightColor: Colors.grey[200],
-              onTap: () {
+              onTap: ()
+              {
 
               },
               child: Center(
                 child: Text(
                   "Yes",
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     color:Colors.red,
                     fontWeight: FontWeight.bold,
                   ),
@@ -263,11 +284,11 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
             ),
           ),
           Divider(
-            height: 1,
+            height: size.height * 0.00222,
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
+            width: size.width,
+            height: size.height * 0.05,
             child: InkWell(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(15.0),

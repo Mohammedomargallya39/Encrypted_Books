@@ -16,7 +16,6 @@ import 'package:social/lib/shared/network/shared/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
-
   static AppCubit get(context) => BlocProvider.of(context);
   //user data
   UserData? userModel;
@@ -91,6 +90,7 @@ class AppCubit extends Cubit<AppStates> {
       userModel = UserData.fromJson(value!.data);
       print(userModel!.image);
       emit(EncryptionSuccessUpdateUserImageState(userModel!));
+      print('********************Image success updated ***********************');
     }).catchError((error) {
       print(error.toString());
       emit(EncryptionErrorUpdateUserImageState());
@@ -102,8 +102,8 @@ class AppCubit extends Cubit<AppStates> {
   void selectImage() async {
     _picker.pickImage(source: ImageSource.gallery).then((value) {
       imageFile = File(value!.path);
+      emit(EncryptionSelectProfileImageState());
     });
-    emit(EncryptionSelectProfileImageState());
   }
   //user books
   HomeModel? homeModel;
@@ -228,20 +228,33 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
   //upload book
-  void uploadBooks({
+  void uploadBookData({
     required String name,
     required String category,
     required String description,
+    required File cover,
+    required FilePickerResult pdf
   }) async
   {
     print('--------loading upload books-----------');
     emit(AdminUploadBooksLoadingState());
+    print("****************************************${cover}");
+    print("****************************************${pdf}");
     await DioHelper.postData(
         url: UPLOAD_BOOK,
+        token: token,
         data: {
           'name': name,
           'category': category,
           'description': description,
+          'cover' :  await MultipartFile.fromFile(
+              cover.path,
+              filename: Uri
+                  .file(cover.path)
+                  .pathSegments
+                  .last,
+            ),
+          'pdf' :pdf.files.first,
         }).then((value) {
       print('--------success upload books-----------');
       emit(AdminUploadBooksSuccessState());
@@ -251,78 +264,16 @@ class AppCubit extends Cubit<AppStates> {
       emit(AdminUploadBooksErrorState(error.toString(),
       ),
       );
-    });
-  }
-  //uploadBookImage
-  void uploadBookImage({
-    File? cover,
-  }) async
-  {
-    print('--------loading upload book cover-----------');
-    emit(AdminUploadBookCoverLoadingState());
-    await DioHelper.postData(
-        url: UPLOAD_BOOK,
-        data: {
-          if (cover != null)
-            'cover': await MultipartFile.fromFile(
-              cover.path,
-              filename: Uri
-                  .file(cover.path)
-                  .pathSegments
-                  .last,
-            ),
-        },
-    ).then((value) {
-      print('--------success upload book cover-----------');
-      emit(AdminUploadBookCoverSuccessState());
-    }).catchError((error) {
-      print(error.toString());
-      print('--------error upload book cover-----------');
-      emit(AdminUploadBookCoverErrorState(error.toString(),
-      ),
+      },
       );
-    });
   }
-  //uploadPdf
-void uploadBookPdf({
-  FilePickerResult? pdf,
-}
-) async
-{
-  print('--------loading upload book pdf-----------');
-  emit(AdminUploadBookPDFLoadingState());
-  await DioHelper.postData(
-      url: UPLOAD_BOOK,
-      data: {
-        if (pdf != null)
-          'pdf': await MultipartFile.fromFileSync(
-              '${pdf.files.first}',
-            filename: Uri
-                .file('${pdf.files.first}')
-                .pathSegments
-                .last,
-          ),
-      }).then((value)
-  {
-    print('--------success upload book pdf-----------');
-    emit(AdminUploadBookPDFSuccessState());
-  }).catchError((error)
-  {
-    print(error.toString());
-    print('--------error upload book cover-----------');
-    emit(AdminUploadBookPDFErrorState(error.toString()),
-    );
-  });
-}
-  //select pdf
   FilePickerResult? pdf ;
-  //final file = pdf.files.first
   void selectPDF() async {
-    pdf = await FilePicker.platform.pickFiles(
+    pdf = (await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
       allowedExtensions: ['pdf',],
-    );
+    ))!;
     final file = pdf!.files.first;
     print('NAme: ${file.name}');
     print('NAme: ${file.size}');
