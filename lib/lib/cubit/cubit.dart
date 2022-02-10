@@ -18,7 +18,7 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
   //user data
-  UserData? userModel;
+  UserData? userModel ;
   void getUserData() async {
     emit(EncryptionLoadingUserDataState());
     await DioHelper.getData(
@@ -197,6 +197,8 @@ class AppCubit extends Cubit<AppStates> {
       url: '${DELETE_STUDENT_ACCOUNT}${studentsModelWithOutAdmin![indexStudent!].sId}',
       token: token,
     ).then((value) {
+      getWithoutAdmin();
+      print(getWithoutAdmin);
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
     }).catchError((error) {
@@ -238,8 +240,8 @@ class AppCubit extends Cubit<AppStates> {
   {
     print('--------loading upload books-----------');
     emit(AdminUploadBooksLoadingState());
-    print("****************************************${cover}");
-    print("****************************************${pdf}");
+    print("*******************loading*********************${cover}");
+    print("*********************loading*******************${pdf}");
     await DioHelper.postData(
         url: UPLOAD_BOOK,
         token: token,
@@ -247,15 +249,17 @@ class AppCubit extends Cubit<AppStates> {
           'name': name,
           'category': category,
           'description': description,
-          'cover' :  await MultipartFile.fromFile(
-              cover.path,
-              filename: Uri
-                  .file(cover.path)
-                  .pathSegments
-                  .last,
-            ),
-          'pdf' :pdf.files.first,
+          'cover' :await MultipartFile.fromFile(
+            cover.path,
+            filename: Uri
+                .file(cover.path)
+                .pathSegments
+                .last,
+          ),
+          'pdf' : pdf.files.first ,
         }).then((value) {
+      print("*********************success*******************${cover}");
+      print("***********************success*****************${pdf}");
       print('--------success upload books-----------');
       emit(AdminUploadBooksSuccessState());
     }).catchError((error) {
@@ -269,11 +273,11 @@ class AppCubit extends Cubit<AppStates> {
   }
   FilePickerResult? pdf ;
   void selectPDF() async {
-    pdf = (await FilePicker.platform.pickFiles(
+    pdf =await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
       allowedExtensions: ['pdf',],
-    ))!;
+    );
     final file = pdf!.files.first;
     print('NAme: ${file.name}');
     print('NAme: ${file.size}');

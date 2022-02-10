@@ -29,7 +29,7 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
       //   print(value.data.toString());
       //
       // }
-      print(value!.data['token']);
+      print(value.data['token']);
       loginModel = UserData.fromJson(value.data);
       print(loginModel!.token);
       print(loginModel!.id);

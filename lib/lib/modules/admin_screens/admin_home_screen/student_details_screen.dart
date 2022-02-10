@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -344,10 +345,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
-                //navigateTo(context, AdminHomeScreen());
-                //محتاج يتعدل
                 Restart.restartApp();
-
               },
               child: Center(
                 child: Text(
