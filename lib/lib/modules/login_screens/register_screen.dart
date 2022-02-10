@@ -31,6 +31,10 @@ class RegisterScreen extends StatelessWidget {
           if (state is UserRegisterSuccessState){
             navigateAndEnd(
               context, LoginScreen(),);
+            showToast(message: 'Register Success', state: ToastStates.SUCCESS);
+          }
+          if (state is UserRegisterErrorState){
+            showToast(message: 'Register failed try again please!', state: ToastStates.SUCCESS);
           }
         },
         builder: (context, state) {

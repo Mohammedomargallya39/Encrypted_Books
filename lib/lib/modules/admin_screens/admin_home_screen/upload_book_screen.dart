@@ -131,14 +131,20 @@ class UploadBookScreen extends StatelessWidget {
                       {
                         if (formKey.currentState!.validate())
                         {
-                          AppCubit.get(context).uploadBookData(
-                              cover:  AppCubit.get(context).imageFile!,
+                          if(AppCubit.get(context).imageFile != null && AppCubit.get(context).pdf != null)
+                          {
+                            AppCubit.get(context).uploadBookData(
+                              cover: AppCubit.get(context).imageFile!,
                               name: nameController.text,
                               category: categoryController.text,
                               description: descriptionController.text,
                               pdf: AppCubit.get(context).pdf!,
-                          );
-                          showToast(message: 'Uploaded', state: ToastStates.SUCCESS);
+                            );
+                            showToast(message: 'Uploaded', state: ToastStates.SUCCESS);
+                          }else
+                          {
+                            showToast(message: 'Error! please try again and check *Cover, PDF, Name, Category, Description*', state: ToastStates.ERROR);
+                          }
                           //navigateTo(context, AdminHomeScreen());
                           // Restart.restartApp();
                         }

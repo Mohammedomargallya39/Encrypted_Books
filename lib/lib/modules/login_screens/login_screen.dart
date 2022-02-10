@@ -47,8 +47,12 @@ class LoginScreen extends StatelessWidget {
               } );
 
               {
-                showToast(message: 'Login Successfully.', state: ToastStates.SUCCESS);
+                showToast(message: 'Login Successfully', state: ToastStates.SUCCESS);
               }
+          }
+          if(state is UserLoginErrorState)
+          {
+            showToast(message: 'Error! Check Your Email and Password and try again.', state: ToastStates.ERROR);
           }
         },
         builder: (context, state) {
@@ -216,7 +220,6 @@ class LoginScreen extends StatelessWidget {
                                           },
                                           text: 'SignUp'
                                       ),
-
                                       // TextButton(
                                       //     onPressed: ()
                                       //     {

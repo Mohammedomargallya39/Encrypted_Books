@@ -16,32 +16,29 @@ class DioHelper{
     );
   }
 //post
-  static Future<Response?> postData({
-    required String url,
+  static Future<Response> postData({
     dynamic data,
     Map<String, dynamic>? query,
+    required String url,
+    String lang = 'en',
     String? token,
-  })async
-  {
-    return await dio.post(
+  }) async {
+    return dio.post(
       url,
       data: data,
       queryParameters: query,
       options: Options(
         headers: {
+          'lang': lang,
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${token}'
+          'Authorization': token ?? '',
         },
       ),
-    ).then((value) {}).catchError((e) {
-      print(e.toString());
-      var message =  e.response.data['message'].toString();
-      showToast(message: message, state: ToastStates.ERROR);
+    ).catchError((error)
+    {
+      // var message =  error.response.data.toString();
+      // showToast(message: message, state: ToastStates.ERROR);
     });
-    // }on DioError catch(e){
-    //   // var message =  e.response.data['message'].toString();
-    //   // showToast(message: message, state: ToastStates.ERROR);
-    // }
   }
   //get
   static Future<Response?> getData({
@@ -59,14 +56,12 @@ class DioHelper{
             'Content-Type': 'application/json',
             'Authorization' : 'Bearer ${token??''}',
           },
-
         ),
       );
     }on DioError catch(e){
       var message =  e.response!.data.toString();
       showToast(message: message, state: ToastStates.ERROR);
     }
-
   }
   //put
   static Future<Response?> putData({
@@ -92,7 +87,6 @@ class DioHelper{
       var message =  e.response!.data['message'].toString();
       showToast(message: message, state: ToastStates.ERROR);
     }
-
   }
   //patch
   static Future<Response?> patchData({
@@ -117,7 +111,6 @@ class DioHelper{
       var message =  e.response!.data['message'].toString();
       showToast(message: message, state: ToastStates.ERROR);
     }
-
   }
 //delete
   static Future<Response?> deleteData({
@@ -143,6 +136,5 @@ class DioHelper{
       var message =  e.response!.data['message'].toString();
       showToast(message: message, state: ToastStates.ERROR);
     }
-
   }
 }
