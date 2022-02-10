@@ -36,6 +36,7 @@ class DioHelper{
       ),
     ).catchError((error)
     {
+      print('error is ***********${error.toString()}*************');
       // var message =  error.response.data.toString();
       // showToast(message: message, state: ToastStates.ERROR);
     });

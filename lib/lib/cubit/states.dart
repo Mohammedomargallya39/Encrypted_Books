@@ -71,19 +71,21 @@ class AdminUploadBooksErrorState extends AppStates {
   final String error ;
   AdminUploadBooksErrorState(this.error);
 }
-// Upload Book Image
-class AdminUploadBookCoverLoadingState extends AppStates{}
-class AdminUploadBookCoverSuccessState extends AppStates{}
-class AdminUploadBookCoverErrorState extends AppStates {
-  final String error ;
-  AdminUploadBookCoverErrorState(this.error);
-}
-// Upload Book PDF
-class AdminUploadBookPDFLoadingState extends AppStates{}
-class AdminUploadBookPDFSuccessState extends AppStates{}
-class AdminUploadBookPDFErrorState extends AppStates {
-  final String error ;
-  AdminUploadBookPDFErrorState(this.error);
-}
+// SelectBookCover
+class EncryptionSelectBookCoverState extends AppStates{}
 // upload book pdf
 class EncryptionSelectBookPDFState extends AppStates{}
+// add Book to student
+class AdminAddBookToStudentLoadingState extends AppStates{}
+class AdminAddBookToStudentSuccessState extends AppStates{}
+class AdminAddBookToStudentErrorState extends AppStates {
+  final String error ;
+  AdminAddBookToStudentErrorState(this.error);
+}
+// remove Book from student
+class AdminRemoveBookFromStudentLoadingState extends AppStates{}
+class AdminRemoveBookFromStudentSuccessState extends AppStates{}
+class AdminRemoveBookFromStudentErrorState extends AppStates {
+  final String error ;
+  AdminRemoveBookFromStudentErrorState(this.error);
+}
