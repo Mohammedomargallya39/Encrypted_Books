@@ -41,14 +41,14 @@ class UploadBookScreen extends StatelessWidget {
                           child: Stack(
                             alignment: AlignmentDirectional.bottomEnd,
                             children:[
-                              if (AppCubit.get(context).imageFile != null)
+                              if (AppCubit.get(context).coverFile != null)
                                 Center(
                                   child: CircleAvatar(
                                     radius: 111,
-                                    backgroundImage:  FileImage(AppCubit.get(context).imageFile!),
+                                    backgroundImage:  FileImage(AppCubit.get(context).coverFile!),
                                   ),
                                 ),
-                              if (AppCubit.get(context).imageFile == null)
+                              if (AppCubit.get(context).coverFile == null)
                                 Center(
                                   child: CircleAvatar(
                                     radius: 111,
@@ -60,7 +60,7 @@ class UploadBookScreen extends StatelessWidget {
                                 iconSize: 33,
                                 onPressed: ()
                                 {
-                                  AppCubit.get(context).selectImage();
+                                  AppCubit.get(context).selectCover();
                                 },
                                 icon: const Icon(Icons.camera_alt),
                               ),
@@ -126,15 +126,22 @@ class UploadBookScreen extends StatelessWidget {
                       textColor: Colors.black,
                     ),
                     SizedBox(height: size.height * 0.025,),
+                    //مشكلة ف إن الأدمن يعمل أبلود للكتاب
                     defaultButton(
                       function: ()
                       {
+                        print(' cover of book is ---->${AppCubit.get(context).coverFile}');
+                        print(' name of book is ---->${nameController.text}');
+                        print(' category of book is ---->${categoryController.text}');
+                        print(' description of book is ---->${descriptionController.text}');
+                        print(' pdf of book is ---->${AppCubit.get(context).pdf!}');
                         if (formKey.currentState!.validate())
                         {
-                          if(AppCubit.get(context).imageFile != null && AppCubit.get(context).pdf != null)
+                          if(AppCubit.get(context).coverFile != null && AppCubit.get(context).pdf != null)
                           {
+                            //AppCubit.get(context).selectCover();
                             AppCubit.get(context).uploadBookData(
-                              cover: AppCubit.get(context).imageFile!,
+                              cover: AppCubit.get(context).coverFile,
                               name: nameController.text,
                               category: categoryController.text,
                               description: descriptionController.text,

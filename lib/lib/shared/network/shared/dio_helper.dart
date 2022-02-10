@@ -40,6 +40,32 @@ class DioHelper{
       // showToast(message: message, state: ToastStates.ERROR);
     });
   }
+
+  //get
+  static Future<Response?> postDataWithToken({
+    required String url,
+    Map<String, dynamic>? query,
+    dynamic data,
+    String? token,
+  }) async {
+    try{
+      return await dio.post(
+        url,
+        data: data,
+        queryParameters: query??null,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer ${token??''}',
+          },
+        ),
+      );
+    }on DioError catch(e){
+      var message =  e.response!.data.toString();
+      showToast(message: message, state: ToastStates.ERROR);
+    }
+  }
+
   //get
   static Future<Response?> getData({
     required String url,
@@ -93,7 +119,6 @@ class DioHelper{
     required String url,
     dynamic data,
     String? token,
-    File? pic,
   })async
   {
     try{

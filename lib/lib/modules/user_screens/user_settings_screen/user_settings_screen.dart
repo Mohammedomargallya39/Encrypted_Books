@@ -152,7 +152,7 @@ class UserSettingsScreen extends StatelessWidget {
                                   showToast(message: 'Updated', state: ToastStates.SUCCESS);
                                   //Navigator.pop(context);
                                   // محتاجه تتشال )سبلاش سكرين(
-                                  Restart.restartApp();
+                                  //Restart.restartApp();
                                 }
                           },
                           text: 'Update Profile Data',

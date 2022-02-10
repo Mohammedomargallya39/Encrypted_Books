@@ -234,29 +234,29 @@ class AppCubit extends Cubit<AppStates> {
     required String name,
     required String category,
     required String description,
-    required File cover,
-    required FilePickerResult pdf
+    File? cover,
+    FilePickerResult? pdf,
   }) async
   {
     print('--------loading upload books-----------');
     emit(AdminUploadBooksLoadingState());
     print("*******************loading*********************${cover}");
     print("*********************loading*******************${pdf}");
-    await DioHelper.postData(
+    await DioHelper.postDataWithToken(
         url: UPLOAD_BOOK,
         token: token,
         data: {
           'name': name,
           'category': category,
           'description': description,
-          'cover' :await MultipartFile.fromFile(
-            cover.path,
+          'cover' : await MultipartFile.fromFile(
+            cover!.path,
             filename: Uri
                 .file(cover.path)
                 .pathSegments
                 .last,
           ),
-          'pdf' : pdf.files.first ,
+          'pdf': pdf!.files.first ,
         }).then((value) {
       print("*********************success*******************${cover}");
       print("***********************success*****************${pdf}");
@@ -265,15 +265,24 @@ class AppCubit extends Cubit<AppStates> {
     }).catchError((error) {
       print(error.toString());
       print('--------error upload books-----------');
-      emit(AdminUploadBooksErrorState(error.toString(),
-      ),
+      emit(AdminUploadBooksErrorState(error.toString()),
       );
       },
       );
   }
+  //select cover from gallery
+  final ImagePicker imagePicker = ImagePicker();
+  File? coverFile;
+  void selectCover() async {
+    imagePicker.pickImage(source: ImageSource.gallery).then((value) {
+      coverFile = File(value!.path);
+      emit(EncryptionSelectBookCoverState());
+    });
+  }
+  // select pdf
   FilePickerResult? pdf ;
   void selectPDF() async {
-    pdf =await FilePicker.platform.pickFiles(
+    pdf = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
       allowedExtensions: ['pdf',],
@@ -285,5 +294,55 @@ class AppCubit extends Cubit<AppStates> {
     print('NAme: ${file.extension}');
     print('NAme: ${file.path}');
     emit(EncryptionSelectBookPDFState());
+  }
+  //add book to student
+  void addBookToStudent({
+    required bookId,
+    required studentId,
+
+    })
+  {
+    emit(AdminAddBookToStudentLoadingState());
+    print('------------------add books loading test-------------------');
+
+    DioHelper.postData(
+      url: '${GET_USER_BOOKS}${studentId}/${ADD_BOOK_TO_STUDENT}',
+      token: token,
+      data: {
+        'bookId' : bookId,
+      }
+    ).then((value) {
+      print('----------------------add books success test--------------------');
+      emit(AdminAddBookToStudentSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      print('-------------------------add books error test--------------------');
+      emit(AdminAddBookToStudentErrorState(error.toString()));
+    });
+  }
+  //remove book from student
+  void removeBookFromStudent({
+    required bookId,
+    required studentId,
+
+  })
+  {
+    emit(AdminRemoveBookFromStudentLoadingState());
+    print('------------------remove books loading test-------------------');
+
+    DioHelper.postData(
+        url: '${GET_USER_BOOKS}${studentId}/${ADD_BOOK_TO_STUDENT}',
+        token: token,
+        data: {
+          'bookId' : bookId,
+        }
+    ).then((value) {
+      print('----------------------remove books success test--------------------');
+      emit(AdminRemoveBookFromStudentSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      print('-------------------------remove books error test--------------------');
+      emit(AdminRemoveBookFromStudentErrorState(error.toString()));
+    });
   }
 }

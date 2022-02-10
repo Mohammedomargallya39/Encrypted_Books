@@ -2,7 +2,6 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
@@ -106,6 +105,7 @@ class StudentBookScreen extends StatelessWidget {
   }
 
   Widget studentBooks(StudentBookId studentBookId , context) {
+
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
@@ -130,18 +130,25 @@ class StudentBookScreen extends StatelessWidget {
             ),
 
             SizedBox(height: size.height * 0.03),
-
+              //مشكلة ف إن الادمن يشيل كتاب من الطالب
             defaultTextButton(
               onPressed: ()
               {
-                showDialog(
-                          context: context,
-                          builder: (context) =>
-                              DeleteStudentBooksAlertDialog(
-                                title: 'Delete student book',
-                                description: 'Are you sure?',
-                              ),
-                        );
+                // showDialog(
+                //           context: context,
+                //           builder: (context) =>
+                //               DeleteStudentBooksAlertDialog(
+                //                 title: 'Delete student book',
+                //                 description: 'Are you sure?',
+                //               ),
+                //         );
+         //     print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![indexOfStudentBooks].bookId!.sId,);
+                print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId);
+                AppCubit.get(context).removeBookFromStudent(
+                  bookId: '6203553e45b3940016e41b43',
+                  //AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![indexOfStudentBooks].bookId!.sId,
+                  studentId: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,
+                );
               },
               text: 'Remove this book',
               color: Colors.red,
@@ -209,112 +216,122 @@ class StudentBookScreen extends StatelessWidget {
           ),
         ],
       ),
-      onTap: ()
+      // مشكلة ف إن الطالب ياخد كتاب
+      onLongPress: ()
       {
+  //      print(AppCubit.get(context).adminBooksModel!.books![indexOfAllBooks].pdf);
+        print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,);
+          AppCubit.get(context).addBookToStudent(
+            bookId: '6203553e45b3940016e41b43',
+            //AppCubit.get(context).adminBooksModel!.books![indexOfAllBooks].pdf,
+            studentId: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,
+          );
+          Navigator.pop(context);
+          showToast(message: 'Book added successfully', state: ToastStates.SUCCESS);
       },
     );
   }
 }
 
 
-class DeleteStudentBooksAlertDialog extends StatefulWidget {
-  const DeleteStudentBooksAlertDialog({
-    Key? key,
-    required this.title,
-    required this.description,
-  }) : super(key: key);
-
-  final String title, description;
-
-  @override
-  _DeleteStudentBooksAlertDialogState createState() => _DeleteStudentBooksAlertDialogState();
-}
-class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertDialog> {
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Dialog(
-      elevation: 0,
-      //backgroundColor: Color(0xffffffff),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(height: size.height * 0.015),
-          Text(
-            "${widget.title}",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 22.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: size.height * 0.015),
-          Text("${widget.description}",
-            style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),),
-          SizedBox(height: size.height * 0.015),
-          Divider(
-            height: size.height * 0.00222,
-          ),
-          Container(
-            width: size.width,
-            height: size.height * 0.05,
-            child: InkWell(
-              highlightColor: Colors.grey[200],
-              onTap: ()
-              {
-
-              },
-              child: Center(
-                child: Text(
-                  "Yes",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color:Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Divider(
-            height: size.height * 0.00222,
-          ),
-          Container(
-            width: size.width,
-            height: size.height * 0.05,
-            child: InkWell(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(15.0),
-                bottomRight: Radius.circular(15.0),
-              ),
-              highlightColor: Colors.grey[200],
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Center(
-                child: Text(
-                  "Cancel",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class DeleteStudentBooksAlertDialog extends StatefulWidget {
+//   const DeleteStudentBooksAlertDialog({
+//     Key? key,
+//     required this.title,
+//     required this.description,
+//   }) : super(key: key);
+//
+//   final String title, description;
+//
+//   @override
+//   _DeleteStudentBooksAlertDialogState createState() => _DeleteStudentBooksAlertDialogState();
+// }
+// class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertDialog> {
+//   @override
+//   Widget build(BuildContext context) {
+//     Size size = MediaQuery.of(context).size;
+//     return Dialog(
+//       elevation: 0,
+//       //backgroundColor: Color(0xffffffff),
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(15.0),
+//       ),
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           SizedBox(height: size.height * 0.015),
+//           Text(
+//             "${widget.title}",
+//             style: TextStyle(
+//               color: Colors.black,
+//               fontSize: 22.0,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//           SizedBox(height: size.height * 0.015),
+//           Text("${widget.description}",
+//             style: TextStyle(
+//               fontSize: 20.0,
+//               color: Colors.black,
+//               fontWeight: FontWeight.bold,
+//             ),),
+//           SizedBox(height: size.height * 0.015),
+//           Divider(
+//             height: size.height * 0.00222,
+//           ),
+//           Container(
+//             width: size.width,
+//             height: size.height * 0.05,
+//             child: InkWell(
+//               highlightColor: Colors.grey[200],
+//               onTap: ()
+//               {
+//                 AppCubit.get(context).removeBookFromStudent(bookId: bookId, studentId: studentId);
+//               },
+//               child: Center(
+//                 child: Text(
+//                   "Yes",
+//                   style: TextStyle(
+//                     fontSize: 16.0,
+//                     color:Colors.red,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//           Divider(
+//             height: size.height * 0.00222,
+//           ),
+//           Container(
+//             width: size.width,
+//             height: size.height * 0.05,
+//             child: InkWell(
+//               borderRadius: BorderRadius.only(
+//                 bottomLeft: Radius.circular(15.0),
+//                 bottomRight: Radius.circular(15.0),
+//               ),
+//               highlightColor: Colors.grey[200],
+//               onTap: () {
+//                 Navigator.of(context).pop();
+//               },
+//               child: Center(
+//                 child: Text(
+//                   "Cancel",
+//                   style: TextStyle(
+//                     color: Colors.black,
+//                     fontSize: 16.0,
+//                     fontWeight: FontWeight.normal,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 
 
