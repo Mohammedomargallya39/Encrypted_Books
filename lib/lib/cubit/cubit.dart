@@ -229,7 +229,6 @@ class AppCubit extends Cubit<AppStates> {
       emit(EncryptionErrorDeleteBookState());
     });
   }
-
   //upload book
   void uploadBookData({
     required String name,
@@ -243,20 +242,21 @@ class AppCubit extends Cubit<AppStates> {
     emit(AdminUploadBooksLoadingState());
     print("*******************loading*********************${cover}");
     print("*********************loading*******************${pdf}");
-    await DioHelper.postData(
+    await DioHelper.postDataWithToken(
         url: UPLOAD_BOOK,
         token: token,
         data: {
           'name': name,
           'category': category,
           'description': description,
-          'cover' :await MultipartFile.fromFile(
+          'cover' : await MultipartFile.fromFile(
             cover!.path,
             filename: Uri
                 .file(cover.path)
                 .pathSegments
                 .last,
           ),
+          'pdf': pdf!.files.first ,
         }).then((value) {
       print("*********************success*******************${cover}");
       print("***********************success*****************${pdf}");
@@ -295,9 +295,6 @@ class AppCubit extends Cubit<AppStates> {
     print('NAme: ${file.path}');
     emit(EncryptionSelectBookPDFState());
   }
-
-
-
   //add book to student
   void addBookToStudent({
     required bookId,
@@ -323,7 +320,6 @@ class AppCubit extends Cubit<AppStates> {
       emit(AdminAddBookToStudentErrorState(error.toString()));
     });
   }
-
   //remove book from student
   void removeBookFromStudent({
     required bookId,

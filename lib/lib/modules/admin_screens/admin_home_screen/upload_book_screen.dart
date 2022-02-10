@@ -60,7 +60,7 @@ class UploadBookScreen extends StatelessWidget {
                                 iconSize: 33,
                                 onPressed: ()
                                 {
-                                  AppCubit.get(context).selectImage();
+                                  AppCubit.get(context).selectCover();
                                 },
                                 icon: const Icon(Icons.camera_alt),
                               ),
@@ -139,6 +139,7 @@ class UploadBookScreen extends StatelessWidget {
                         {
                           if(AppCubit.get(context).coverFile != null && AppCubit.get(context).pdf != null)
                           {
+                            //AppCubit.get(context).selectCover();
                             AppCubit.get(context).uploadBookData(
                               cover: AppCubit.get(context).coverFile,
                               name: nameController.text,
