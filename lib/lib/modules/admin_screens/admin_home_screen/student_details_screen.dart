@@ -342,10 +342,12 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
               onTap: ()
               {
                 AppCubit.get(context).deleteStudentAccount();
+                Navigator.pop(context);
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
-                Restart.restartApp();
+                Navigator.pop(context);
+                //Restart.restartApp();
               },
               child: Center(
                 child: Text(

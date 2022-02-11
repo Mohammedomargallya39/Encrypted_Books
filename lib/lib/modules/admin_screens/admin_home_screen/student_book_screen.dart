@@ -6,7 +6,10 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/students_model.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/student_book_pdf_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+
+import 'all_books_can_added_to_student_pdf_screen.dart';
 
 class StudentBookScreen extends StatelessWidget {
   const StudentBookScreen({Key? key, required this.studentBooksId}) : super(key: key);
@@ -38,11 +41,24 @@ class StudentBookScreen extends StatelessWidget {
                               appBar: AppBar(title: const Text('Add books'),),
                               body: ListView.separated(
                                 physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context,index) => addBooksForStudentsItem(
-                                    AdminBooksDetails(
-                                        name: cubit.adminBooksModel!.books![index].name,
-                                        cover: cubit.adminBooksModel!.books![index].cover,
-                                    ) , context),
+                                itemBuilder: (context,index) => InkWell(
+                                  child: addBooksForStudentsItem(
+                                      AdminBooksDetails(
+                                          name: cubit.adminBooksModel!.books![index].name,
+                                          cover: cubit.adminBooksModel!.books![index].cover,
+                                      ),
+                                      context),
+                                  onTap: ()
+                                  {
+                                    navigateTo(context,
+                                        BooksCanAddedForStudentPdfScreen(
+                                          StudentBookIndexId:index,
+                                          StudentIndexId:studentBooksId,
+                                        )
+                                    )
+                                    ;
+                                  },
+                                ),
                                 separatorBuilder:(context,index)=> Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
@@ -61,6 +77,7 @@ class StudentBookScreen extends StatelessWidget {
                   ),
                 ],
               ),
+
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context,index) => InkWell(child:studentBooks(
@@ -68,12 +85,14 @@ class StudentBookScreen extends StatelessWidget {
                       name: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![index].bookId!.name,
                       cover: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![index].bookId!.cover,
                     ), context),
-                    // onTap: ()
-                    // {
-                    //   navigateTo(context, UserPDFBooksScreen(
-                    //     bookId : index,
-                    //   ));
-                    // },
+                    onTap: ()
+                    {
+                      navigateTo(context, StudentBookPDFScreen(
+                          StudentID: studentBooksId,
+                          StudentBookId: index
+                      ),
+                      );
+                    },
                   ),
                   separatorBuilder:(context,index)=> Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -85,6 +104,7 @@ class StudentBookScreen extends StatelessWidget {
                   ),
                   itemCount: cubit.studentsModelWithOutAdmin![studentBooksId].books!.length),
             ),
+
             fallback:(context) => Scaffold(
               appBar: AppBar(title: Text('Your Books'
               ),
@@ -128,52 +148,31 @@ class StudentBookScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            SizedBox(height: size.height * 0.03),
+            //SizedBox(height: size.height * 0.03),
               //مشكلة ف إن الادمن يشيل كتاب من الطالب
-            defaultTextButton(
-              onPressed: ()
-              {
-                // showDialog(
-                //           context: context,
-                //           builder: (context) =>
-                //               DeleteStudentBooksAlertDialog(
-                //                 title: 'Delete student book',
-                //                 description: 'Are you sure?',
-                //               ),
-                //         );
-         //     print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![indexOfStudentBooks].bookId!.sId,);
-                print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId);
-                AppCubit.get(context).removeBookFromStudent(
-                  bookId: '6203553e45b3940016e41b43',
-                  //AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![indexOfStudentBooks].bookId!.sId,
-                  studentId: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,
-                );
-              },
-              text: 'Remove this book',
-              color: Colors.red,
-              fontSize: 12,
-            ),
-            // TextButton(
-            //   onPressed: ()
-            //   {
-            //     showDialog(
-            //       context: context,
-            //       builder: (context) =>
-            //           DeleteStudentBooksAlertDialog(
-            //             title: 'Delete student book',
-            //             description: 'Are you sure?',
-            //           ),
-            //     );
-            //   },
-            //   child: Text('Remove this book',
-            //     style: TextStyle(
-            //         fontSize: 16,
-            //         fontWeight: FontWeight.bold,
-            //         color: Colors.red
-            //     ),
-            //   ),
-            // ),
+         //    defaultTextButton(
+         //      onPressed: ()
+         //      {
+         //        // showDialog(
+         //        //           context: context,
+         //        //           builder: (context) =>
+         //        //               DeleteStudentBooksAlertDialog(
+         //        //                 title: 'Delete student book',
+         //        //                 description: 'Are you sure?',
+         //        //               ),
+         //        //         );
+         // //     print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![indexOfStudentBooks].bookId!.sId,);
+         //        print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId);
+         //        AppCubit.get(context).removeBookFromStudent(
+         //          bookId: '6203553e45b3940016e41b43',
+         //          //AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].books![indexOfStudentBooks].bookId!.sId,
+         //          studentId: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,
+         //        );
+         //      },
+         //      text: 'Remove this book',
+         //      color: Colors.red,
+         //      fontSize: 12,
+         //    ),
           ],
         ),
       ),
@@ -182,53 +181,38 @@ class StudentBookScreen extends StatelessWidget {
 
   Widget addBooksForStudentsItem(AdminBooksDetails books, context) {
     Size size = MediaQuery.of(context).size;
-    return InkWell(
-      child: Column(
-        children: [
-           SizedBox(height: size.height * 0.015),
-          Column(
-            children:  [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Image(
-                  image: NetworkImage(
-                      books.cover!
-                  ),
-                  width: size.width,
-                  height: size.height *0.15,
+    return Column(
+      children: [
+         SizedBox(height: size.height * 0.015),
+        Column(
+          children:  [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Image(
+                image: NetworkImage(
+                    books.cover!
                 ),
+                width: size.width,
+                height: size.height *0.15,
               ),
-            ],
-          ),
-          SizedBox(height: size.height * 0.015),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                books.name!
-                ,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+          ],
+        ),
+        SizedBox(height: size.height * 0.015),
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              books.name!
+              ,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-        ],
-      ),
-      // مشكلة ف إن الطالب ياخد كتاب
-      onLongPress: ()
-      {
-  //      print(AppCubit.get(context).adminBooksModel!.books![indexOfAllBooks].pdf);
-        print(AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,);
-          AppCubit.get(context).addBookToStudent(
-            bookId: '6203553e45b3940016e41b43',
-            //AppCubit.get(context).adminBooksModel!.books![indexOfAllBooks].pdf,
-            studentId: AppCubit.get(context).studentsModelWithOutAdmin![studentBooksId].sId,
-          );
-          Navigator.pop(context);
-          showToast(message: 'Book added successfully', state: ToastStates.SUCCESS);
-      },
+        ),
+      ],
     );
   }
 }
