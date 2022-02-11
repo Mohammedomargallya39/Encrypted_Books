@@ -296,6 +296,8 @@ class AppCubit extends Cubit<AppStates> {
     emit(EncryptionSelectBookPDFState());
   }
   //add book to student
+  int? indexAddedBookStudent;
+  int? indexAddedStudentBook;
   void addBookToStudent({
     required bookId,
     required studentId,
@@ -305,7 +307,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(AdminAddBookToStudentLoadingState());
     print('------------------add books loading test-------------------');
 
-    DioHelper.postData(
+    DioHelper.postDataWithToken(
       url: '${GET_USER_BOOKS}${studentId}/${ADD_BOOK_TO_STUDENT}',
       token: token,
       data: {
@@ -321,6 +323,8 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
   //remove book from student
+  int? indexBookStudent;
+  int? indexStudentBook;
   void removeBookFromStudent({
     required bookId,
     required studentId,
@@ -330,7 +334,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(AdminRemoveBookFromStudentLoadingState());
     print('------------------remove books loading test-------------------');
 
-    DioHelper.postData(
+    DioHelper.putData(
         url: '${GET_USER_BOOKS}${studentId}/${ADD_BOOK_TO_STUDENT}',
         token: token,
         data: {

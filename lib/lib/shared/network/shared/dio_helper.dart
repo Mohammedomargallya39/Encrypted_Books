@@ -40,8 +40,7 @@ class DioHelper{
       // showToast(message: message, state: ToastStates.ERROR);
     });
   }
-
-  //get
+  //postDataWithToken
   static Future<Response?> postDataWithToken({
     required String url,
     Map<String, dynamic>? query,
@@ -65,7 +64,6 @@ class DioHelper{
       showToast(message: message, state: ToastStates.ERROR);
     }
   }
-
   //get
   static Future<Response?> getData({
     required String url,
@@ -162,4 +160,6 @@ class DioHelper{
       showToast(message: message, state: ToastStates.ERROR);
     }
   }
+
+
 }
