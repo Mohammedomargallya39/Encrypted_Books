@@ -46,6 +46,7 @@ void main() async {
   } else {
     widget = onBoardingScreen();
   }
+  print('token is ---------------------------------->${token}');
 
   runApp(MyApp(
     isDark: isDark,

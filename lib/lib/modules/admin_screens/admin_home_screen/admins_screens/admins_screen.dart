@@ -5,11 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/students_model.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/student_details_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 
-class StudentsScreen extends StatelessWidget {
-  const StudentsScreen({Key? key}) : super(key: key);
+import 'admins_details_screen.dart';
+
+class AdminsScreen extends StatelessWidget {
+  const AdminsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,34 +18,28 @@ class StudentsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).studentsModelWithOutAdmin != null,
+          condition: AppCubit.get(context).adminsModel != null,
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: const Text(
                   'Students'),
-              actions: [
-                IconButton(
-                  onPressed: (){},
-                  icon: const Icon(Icons.search_outlined),
-                ),
-              ],
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder:  (context,index) {
                  // AppCubit.get(context).indexStudent= index;
                   return InkWell(
-                    child: studentsItem(StudentsModel(
-                      name: AppCubit.get(context).studentsModelWithOutAdmin![index].name,
-                      email: AppCubit.get(context).studentsModelWithOutAdmin![index].email!.split('@').first,
-                      image: AppCubit.get(context).studentsModelWithOutAdmin![index].image,
-                      sId: AppCubit.get(context).studentsModelWithOutAdmin![index].sId,
+                    child: adminsStudentsItem(StudentsModel(
+                      name: AppCubit.get(context).adminsModel![index].name,
+                      email: AppCubit.get(context).adminsModel![index].email!.split('@').first,
+                      image: AppCubit.get(context).adminsModel![index].image,
+                      sId: AppCubit.get(context).adminsModel![index].sId,
 
                     ) , context),
                     onTap: ()
                     {
-                      navigateTo(context, StudentDetailsScreen(
-                        StudentId: index,
+                      navigateTo(context, AdminsDetailsScreen(
+                        AdminId: index,
                       ),
                       );
                     },
@@ -58,7 +53,7 @@ class StudentsScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                itemCount: AppCubit.get(context).studentsModelWithOutAdmin!.length
+                itemCount: AppCubit.get(context).adminsModel!.length
             ),
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),
@@ -67,7 +62,7 @@ class StudentsScreen extends StatelessWidget {
     );
   }
 
-  Widget studentsItem(StudentsModel studentsModel , context)
+  Widget adminsStudentsItem(StudentsModel studentsModel , context)
   {
     Size size = MediaQuery.of(context).size;
     return Row(

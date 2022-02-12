@@ -2,15 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/student_book_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_students_screens/cs_student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
-import 'package:social/lib/shared/styles/colors.dart';
 
-class StudentDetailsScreen extends StatelessWidget {
-  const StudentDetailsScreen({Key? key, required this.StudentId}) : super(key: key);
+class CsStudentDetailsScreen extends StatelessWidget {
+  const CsStudentDetailsScreen({Key? key, required this.StudentId}) : super(key: key);
   final int StudentId;
 
   @override
@@ -19,7 +16,7 @@ class StudentDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            AppCubit.get(context).studentsModelWithOutAdmin![StudentId].name!
+            AppCubit.get(context).csStudentsModel![StudentId].name!
         ),
       ),
       body: SingleChildScrollView(
@@ -43,7 +40,7 @@ class StudentDetailsScreen extends StatelessWidget {
                       decoration:  BoxDecoration(shape: BoxShape.circle,
                         image: DecorationImage(image:
                         NetworkImage(
-                            AppCubit.get(context).studentsModelWithOutAdmin![StudentId].image!
+                            AppCubit.get(context).csStudentsModel![StudentId].image!
                         ),
                             fit: BoxFit.fill
                         ),
@@ -63,7 +60,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      AppCubit.get(context).studentsModelWithOutAdmin![StudentId].name!
+                      AppCubit.get(context).csStudentsModel![StudentId].name!
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -91,7 +88,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      AppCubit.get(context).studentsModelWithOutAdmin![StudentId].email!.split('@').first
+                      AppCubit.get(context).csStudentsModel![StudentId].email!.split('@').first
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -119,7 +116,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].numberofBooks}'
+                      '${AppCubit.get(context).csStudentsModel![StudentId].numberofBooks}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -147,7 +144,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].createdAt!.split('T').first}'
+                      '${AppCubit.get(context).csStudentsModel![StudentId].createdAt!.split('T').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -175,7 +172,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].updatedAt!.split('T').first}'
+                      '${AppCubit.get(context).csStudentsModel![StudentId].updatedAt!.split('T').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -199,37 +196,14 @@ class StudentDetailsScreen extends StatelessWidget {
                 child: defaultButton(
                   function: ()
                   {
-                    debugPrint('${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].books!.length}');
-                    navigateTo(context, StudentBookScreen(studentBooksId: StudentId,));
+                    debugPrint('${AppCubit.get(context).csStudentsModel![StudentId].books!.length}');
+                    navigateTo(context, CsStudentBookScreen(studentBooksId: StudentId,));
                   },
                   text: 'student books',
                   context: context,
                   height: size.height * 0.08,
                   width: size.width,
                 ),
-                // SizedBox(
-                //   width: size.width ,
-                //   height: size.height * 0.06,
-                //   child: MaterialButton(
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(22),
-                //     ),
-                //     elevation: 5,
-                //     color: defaultColor,
-                //     onPressed: ()
-                //     {
-                //       debugPrint('${AppCubit.get(context).studentsModelWithOutAdmin![StudentId].books!.length}');
-                //       navigateTo(context, StudentBookScreen(studentBooksId: StudentId,));
-                //     },
-                //     child: const Text('Student books',
-                //       style: TextStyle(
-                //         color: Colors.white,
-                //         fontSize: 16,
-                //         fontWeight: FontWeight.bold,
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ),
               SizedBox(height: size.height * 0.01,),
 

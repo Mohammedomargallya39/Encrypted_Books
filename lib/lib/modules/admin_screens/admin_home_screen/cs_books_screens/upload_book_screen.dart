@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
-import 'admin_home_screen.dart';
 
 class UploadBookScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -130,6 +128,7 @@ class UploadBookScreen extends StatelessWidget {
                     defaultButton(
                       function: ()
                       {
+
                         print(' cover of book is ---->${AppCubit.get(context).coverFile}');
                         print(' name of book is ---->${nameController.text}');
                         print(' category of book is ---->${categoryController.text}');
@@ -141,12 +140,13 @@ class UploadBookScreen extends StatelessWidget {
                           {
                             //AppCubit.get(context).selectCover();
                             AppCubit.get(context).uploadBookData(
-                              cover: AppCubit.get(context).coverFile,
+                              cover: AppCubit.get(context).coverFile!,
                               name: nameController.text,
                               category: categoryController.text,
                               description: descriptionController.text,
                               pdf: AppCubit.get(context).pdf!,
                             );
+                            Navigator.pop(context);
                             showToast(message: 'Uploaded', state: ToastStates.SUCCESS);
                           }else
                           {

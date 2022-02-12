@@ -7,9 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_pdf_book_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/upload_book_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_books_screens/cs_pdf_book_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_books_screens/upload_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+
+import 'cs_books_search_screen.dart';
 
 class AdminBooksScreen extends StatelessWidget {
   const AdminBooksScreen({Key? key}) : super(key: key);
@@ -35,7 +37,9 @@ class AdminBooksScreen extends StatelessWidget {
                     icon: const Icon(Icons.upload_rounded),
                   ),
                   IconButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      navigateTo(context, CsBookSearchScreen());
+                    },
                     icon: const Icon(Icons.search_outlined),
                   ),
                 ],

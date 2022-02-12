@@ -126,15 +126,44 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
   List<StudentsModel>? studentsModel = [];
-  List<StudentsModel>? studentsModelWithOutAdmin = [];
+  List<StudentsModel>? csStudentsModel = [];
+  List<StudentsModel>? businessStudentsModel = [];
+  List<StudentsModel>? engStudentsModel = [];
+  List<StudentsModel>? adminsModel = [];
   //user with out admins
-  void getWithoutAdmin() {
-    studentsModelWithOutAdmin =
+  void getCsStudents() {
+    csStudentsModel =
         studentsModel!.where((element) =>
-        element.isEnginneringsection == true ||
-            element.isManagmentsection == true ||
+        // element.isEnginneringsection == true ||
+        //     element.isManagmentsection == true ||
             element.isComputerSciencesection == true).toList();
   }
+  void getBusinessStudents() {
+    businessStudentsModel =
+        studentsModel!.where((element) =>
+        // element.isEnginneringsection == true ||
+             element.isManagmentsection == true
+        //element.isComputerSciencesection == true
+        ).toList();
+  }
+  void getEngStudents() {
+    engStudentsModel =
+        studentsModel!.where((element) =>
+         element.isEnginneringsection == true
+        //     element.isManagmentsection == true ||
+       // element.isComputerSciencesection == true
+        ).toList();
+  }
+  void getAdmins() {
+    adminsModel =
+        studentsModel!.where((element) =>
+            element.isAdmin == true
+          // element.isEnginneringsection == true
+          //     element.isManagmentsection == true ||
+          // element.isComputerSciencesection == true
+        ).toList();
+  }
+
   //all users
   void getStudents() {
     emit(EncryptionLoadingGetStudentsState());
@@ -150,8 +179,15 @@ class AppCubit extends Cubit<AppStates> {
           studentsModel!.add(StudentsModel.fromJson(element));
         });
       }
-      getWithoutAdmin();
-      print(studentsModelWithOutAdmin!.length);
+      getCsStudents();
+      getBusinessStudents();
+      getEngStudents();
+      getAdmins();
+      print(csStudentsModel!.length);
+      print(businessStudentsModel!.length);
+      print(engStudentsModel!.length);
+      print(adminsModel!.length);
+
       // print(studentsModel!.toString());
       print(
           '----------------------getStudentSuccess-------------------- ${value!.data}');
@@ -188,17 +224,17 @@ class AppCubit extends Cubit<AppStates> {
   void deleteStudentAccount() {
     emit(EncryptionLoadingDeleteStudentAccountState());
     print(
-        '----------loading delete account test----------- ${studentsModelWithOutAdmin![indexStudent!].name}');
+        '----------loading delete account test----------- ${csStudentsModel![indexStudent!].name}');
     print(
-        '----------loading delete account test----------- ${studentsModelWithOutAdmin![indexStudent!].sId}');
+        '----------loading delete account test----------- ${csStudentsModel![indexStudent!].sId}');
     print('----------loading delete account test----------- ${indexStudent}');
     DioHelper.deleteData(
       //url: '',
-      url: '${DELETE_STUDENT_ACCOUNT}${studentsModelWithOutAdmin![indexStudent!].sId}',
+      url: '${DELETE_STUDENT_ACCOUNT}${csStudentsModel![indexStudent!].sId}',
       token: token,
     ).then((value) {
-      getWithoutAdmin();
-      print(getWithoutAdmin);
+      getCsStudents();
+      print(getCsStudents);
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
     }).catchError((error) {
@@ -234,10 +270,11 @@ class AppCubit extends Cubit<AppStates> {
     required String name,
     required String category,
     required String description,
-    File? cover,
-    FilePickerResult? pdf,
+    required File cover,
+    required FilePickerResult pdf,
   }) async
   {
+    //WidgetsFlutterBinding.ensureInitialized();
     print('--------loading upload books-----------');
     emit(AdminUploadBooksLoadingState());
     print("*******************loading*********************${cover}");
@@ -250,17 +287,18 @@ class AppCubit extends Cubit<AppStates> {
           'category': category,
           'description': description,
           'cover' : await MultipartFile.fromFile(
-            cover!.path,
+            cover.path,
             filename: Uri
                 .file(cover.path)
                 .pathSegments
                 .last,
           ),
-          'pdf': pdf!.files.first ,
-        }).then((value) {
+          'pdf': pdf.files.first ,
+        }).then((value){
       print("*********************success*******************${cover}");
       print("***********************success*****************${pdf}");
       print('--------success upload books-----------');
+      //print();
       emit(AdminUploadBooksSuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -270,11 +308,13 @@ class AppCubit extends Cubit<AppStates> {
       },
       );
   }
+
   //select cover from gallery
   final ImagePicker imagePicker = ImagePicker();
   File? coverFile;
   void selectCover() async {
-    imagePicker.pickImage(source: ImageSource.gallery).then((value) {
+    //WidgetsFlutterBinding.ensureInitialized();
+    await imagePicker.pickImage(source: ImageSource.gallery).then((value) {
       coverFile = File(value!.path);
       emit(EncryptionSelectBookCoverState());
     });
@@ -282,6 +322,7 @@ class AppCubit extends Cubit<AppStates> {
   // select pdf
   FilePickerResult? pdf ;
   void selectPDF() async {
+    //WidgetsFlutterBinding.ensureInitialized();
     pdf = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
@@ -295,9 +336,15 @@ class AppCubit extends Cubit<AppStates> {
     print('NAme: ${file.path}');
     emit(EncryptionSelectBookPDFState());
   }
+
+
   //add book to student
-  int? indexAddedBookStudent;
-  int? indexAddedStudentBook;
+  int? CsIndexAddedBookStudent;
+  int? CsIndexAddedStudentBook;
+  int? EngIndexAddedBookStudent;
+  int? EngIndexAddedStudentBook;
+  int? BusinessIndexAddedBookStudent;
+  int? BusinessIndexAddedStudentBook;
   void addBookToStudent({
     required bookId,
     required studentId,
@@ -323,8 +370,12 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
   //remove book from student
-  int? indexBookStudent;
-  int? indexStudentBook;
+  int? CsIndexRemoveBookStudent;
+  int? CsIndexRemoveStudentBook;
+  int? EngIndexRemoveBookStudent;
+  int? EngIndexRemoveStudentBook;
+  int? BusinessIndexRemoveBookStudent;
+  int? BusinessIndexRemoveStudentBook;
   void removeBookFromStudent({
     required bookId,
     required studentId,
@@ -348,5 +399,15 @@ class AppCubit extends Cubit<AppStates> {
       print('-------------------------remove books error test--------------------');
       emit(AdminRemoveBookFromStudentErrorState(error.toString()));
     });
+  }
+
+  void csSearchBook()
+  {
+
+  }
+
+  void csSearchStudent()
+  {
+
   }
 }
