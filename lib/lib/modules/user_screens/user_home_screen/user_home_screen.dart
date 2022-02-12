@@ -5,9 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/modules/user_screens/user_help_screen/user_help_screen.dart';
+import 'package:social/lib/modules/help_screen/user_help_screen.dart';
+import 'package:social/lib/modules/settings_screen/user_settings_screen.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_profile_screen.dart';
-import 'package:social/lib/modules/user_screens/user_settings_screen/user_settings_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
@@ -19,197 +19,201 @@ class UserHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocConsumer<ThemeCubit, ThemeStates>(
-      listener: (context , state){},
-      builder: (BuildContext context, state)
-      {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Encrypted Books'),
-          ),
-          drawer: Drawer(
-            child: Container(
-              color:ThemeCubit.get(context).darkTheme ? Colors.grey.shade800: HexColor('#396691'),
-              child: ListView(
-                children:  <Widget>[
-                  DrawerHeader(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(colors: <Color>
-                      [
-                        Colors.grey,
-                        Colors.blueGrey,
-                      ]),
-                    ),
-                    child: BlocConsumer<AppCubit,AppStates>(
-                      listener: (context,state){},
-                      builder: (context,state)
-                      {
-                        return  ConditionalBuilder(
-                          condition: AppCubit.get(context).userModel != null,
-                                     //                &&
-                                     // AppCubit.get(context).homeModel != null,
-                          builder: (context) => Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:  <Widget>[
-                              Container(
-                                margin: const EdgeInsets.all(10),
-                                width: size.width * 0.25,
-                                height: size.height * 0.25,
-                                child: GestureDetector(
-                                  child: SizedBox(
-                                    width: size.width * 0.25,
-                                    height: size.height * 0.25,
-                                    child: Stack(
-                                      alignment: AlignmentDirectional.bottomEnd,
-                                      children:[
-                                        Center(
-                                          child: CircleAvatar(
-                                            radius: 44,
-                                            backgroundImage:  NetworkImage(
-                                                '${AppCubit.get(context).userModel!.image}'
-                                            ),
-                                          ),
-                                        ),
-                                      ] ,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                               SizedBox(width: size.width * 0.005,),
-                              Expanded(
-                                child: Column(
-                                  //crossAxisAlignment: CrossAxisAlignment.center,
+    return BlocConsumer<AppCubit,AppStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return BlocBuilder<ThemeCubit, ThemeStates>(
+          builder: (BuildContext context, state)
+          {
+            return Scaffold(
+                appBar: AppBar(
+                  title: const Text('Encrypted Books'),
+                ),
+                drawer: Drawer(
+                  child: Container(
+                    color:ThemeCubit.get(context).darkTheme ? Colors.grey.shade800: HexColor('#396691'),
+                    child: ListView(
+                      children:  <Widget>[
+                        DrawerHeader(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(colors: <Color>
+                            [
+                              Colors.grey,
+                              Colors.blueGrey,
+                            ]),
+                          ),
+                          child: BlocConsumer<AppCubit,AppStates>(
+                            listener: (context,state){},
+                            builder: (context,state)
+                            {
+                              return  ConditionalBuilder(
+                                condition: AppCubit.get(context).userModel != null,
+                                //                &&
+                                // AppCubit.get(context).homeModel != null,
+                                builder: (context) => Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: size.width,
-                                      child: Text(
-                                       ' ${AppCubit.get(context).userModel!.name}',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold ,
-                                            fontSize: 16 ,
-                                            color: Colors.white
+                                  children:  <Widget>[
+                                    Container(
+                                      margin: const EdgeInsets.all(10),
+                                      width: size.width * 0.25,
+                                      height: size.height * 0.25,
+                                      child: GestureDetector(
+                                        child: SizedBox(
+                                          width: size.width * 0.25,
+                                          height: size.height * 0.25,
+                                          child: Stack(
+                                            alignment: AlignmentDirectional.bottomEnd,
+                                            children:[
+                                              Center(
+                                                child: CircleAvatar(
+                                                  radius: 44,
+                                                  backgroundImage:  NetworkImage(
+                                                      '${AppCubit.get(context).userModel!.image}'
+                                                  ),
+                                                ),
+                                              ),
+                                            ] ,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: size.height *0.007,),
-                                    SizedBox(
-                                      width: size.width,
-                                      child: Text(AppCubit.get(context).userModel!.email.split('@').first ,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold ,
-                                            fontSize: 16 ,
-                                            color: Colors.white
-                                        ),
+                                    SizedBox(width: size.width * 0.005,),
+                                    Expanded(
+                                      child: Column(
+                                        //crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width: size.width,
+                                            child: Text(
+                                              ' ${AppCubit.get(context).userModel!.name}',
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold ,
+                                                  fontSize: 16 ,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: size.height *0.007,),
+                                          SizedBox(
+                                            width: size.width,
+                                            child: Text(AppCubit.get(context).userModel!.email.split('@').first ,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold ,
+                                                  fontSize: 16 ,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
+                                fallback: (context) => Center(child: CircularProgressIndicator()),
+                              );
+                            },
                           ),
-                          fallback: (context) => Center(child: CircularProgressIndicator()),
-                        );
-                      },
+                        ),
+                        //                 سكرينات ال drawer
+                        SizedBox(height: size.height * 0.02,),
+                        const CustomListDarkMode(),
+                        SizedBox(height: size.height * 0.02,),
+                        const CustomListHome(),
+                        SizedBox(height: size.height * 0.02,),
+                        const CustomListProfile(),
+                        SizedBox(height: size.height * 0.02,),
+                        const CustomListSettings(),
+                        SizedBox(height: size.height * 0.02,),
+                        const CustomListHelp(),
+                        SizedBox(height: size.height * 0.02,),
+                        const CustomListSignOut(),
+                      ],
                     ),
                   ),
-                  //                 سكرينات ال drawer
-                  SizedBox(height: size.height * 0.02,),
-                  const CustomListDarkMode(),
-                  SizedBox(height: size.height * 0.02,),
-                  const CustomListHome(),
-                  SizedBox(height: size.height * 0.02,),
-                  const CustomListProfile(),
-                  SizedBox(height: size.height * 0.02,),
-                  const CustomListSettings(),
-                  SizedBox(height: size.height * 0.02,),
-                  const CustomListHelp(),
-                  SizedBox(height: size.height * 0.02,),
-                  const CustomListSignOut(),
-                ],
-              ),
-            ),
-          ),
-          body: Container(
-            width: double.infinity,
-            height: size.height,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/main_top.png',
-                    width: size.width * 0.35,),
                 ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Image.asset('assets/images/login_bottom.png',
-                    width: size.width * 0.4,),
-                ),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:
-                    [
-                      Text(
-                        'Welcome to HTI Books',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                body: Container(
+                  width: double.infinity,
+                  height: size.height,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/main_top.png',
+                          width: size.width * 0.35,),
                       ),
-                      SizedBox(height: size.height * 0.03,),
-                      SvgPicture.asset('assets/icons/read.svg',height: size.height * 0.4,),
-                      SizedBox(height: size.height * 0.03,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                        child: defaultButton(
-                          function: ()
-                          {
-                              navigateTo(context, const UserOnlineBooksScreen());
-                          },
-                          text: 'Your Books',
-                          context: context,
-                          height: size.height * 0.08,
-                          width: size.width,
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Image.asset('assets/images/login_bottom.png',
+                          width: size.width * 0.4,),
+                      ),
+                      SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children:
+                          [
+                            Text(
+                              'Welcome to HTI Books',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.03,),
+                            SvgPicture.asset('assets/icons/read.svg',height: size.height * 0.4,),
+                            SizedBox(height: size.height * 0.03,),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                              child: defaultButton(
+                                function: ()
+                                {
+                                  navigateTo(context, const UserOnlineBooksScreen());
+                                },
+                                text: 'Your Books',
+                                context: context,
+                                height: size.height * 0.08,
+                                width: size.width,
+                              ),
+                              // SizedBox(
+                              //   width: size.width ,
+                              //   height: size.height * 0.06,
+                              //   child: MaterialButton(
+                              //     shape: RoundedRectangleBorder(
+                              //       borderRadius: BorderRadius.circular(22),
+                              //     ),
+                              //     elevation: 5,
+                              //     color: defaultColor,
+                              //     onPressed: ()
+                              //     {
+                              //       navigateTo(context, const UserOnlineBooksScreen());
+                              //     },
+                              //     child: const Text('Your Books',
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontSize: 16,
+                              //         fontWeight: FontWeight.bold,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                            ),
+                          ],
                         ),
-                        // SizedBox(
-                        //   width: size.width ,
-                        //   height: size.height * 0.06,
-                        //   child: MaterialButton(
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(22),
-                        //     ),
-                        //     elevation: 5,
-                        //     color: defaultColor,
-                        //     onPressed: ()
-                        //     {
-                        //       navigateTo(context, const UserOnlineBooksScreen());
-                        //     },
-                        //     child: const Text('Your Books',
-                        //       style: TextStyle(
-                        //         color: Colors.white,
-                        //         fontSize: 16,
-                        //         fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                       ),
                     ],
+
                   ),
-                ),
-              ],
-
-            ),
-          )
+                )
 
 
+            );
+          },
         );
       },
     );

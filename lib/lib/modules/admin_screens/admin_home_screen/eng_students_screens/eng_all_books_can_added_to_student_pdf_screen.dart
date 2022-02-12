@@ -9,28 +9,29 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
-class StudentBookPDFScreen extends StatelessWidget {
-   StudentBookPDFScreen({Key? key,required this.StudentBookId, required this.StudentID}) : super(key: key);
-   final int StudentBookId;
-   final int StudentID;
-   bool night = true;
-   bool light = false;
+class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
+  final int EngStudentIndexId;
+  final int EngStudentBookIndexId;
+  bool night = true;
+  bool light = false;
+  EngBooksCanAddedForStudentPdfScreen({Key? key, required this.EngStudentIndexId, required this.EngStudentBookIndexId}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.pdf != null,
+          condition: AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
             appBar: AppBar(
               title:Text(
-                  AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.name!
+                  AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].name!
               ),
               actions: [
                 InkWell(
                   child: IconButton(
-                    color: Colors.red,
+                    color: Colors.white,
                     onPressed: ()
                     {
                       // AppCubit.get(context).indexBook= StudentBookId;
@@ -42,18 +43,21 @@ class StudentBookPDFScreen extends StatelessWidget {
                       //   bookId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!,
                       //   studentId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId,
                       //);
-                      AppCubit.get(context).indexBookStudent= StudentBookId;
-                      AppCubit.get(context).indexStudentBook= StudentID;
+                      // AppCubit.get(context).indexBookStudent= StudentBookId;
+                      // AppCubit.get(context).indexStudentBook= StudentIndexId;
+                      AppCubit.get(context).EngIndexAddedStudentBook= EngStudentIndexId;
+                      AppCubit.get(context).EngIndexAddedBookStudent= EngStudentBookIndexId;
+                      Navigator.pop(context);
                       showDialog(
                         context: context,
-                        builder: (context) => DeleteStudentBooksAlertDialog(
-                                  title: 'Delete This Book',
-                                  description: 'Are you sure?',
-                                  //StudentIDToDelete: StudentId,
-                                ),
+                        builder: (context) => AddStudentBooksAlertDialog(
+                          title: 'Add This Book',
+                          description: 'Are you sure?',
+                          //StudentIDToDelete: StudentId,
+                        ),
                       );
                     },
-                    icon: const Icon(Icons.delete_forever),
+                    icon: const Icon(Icons.add),
                   ),
                 ),
               ],
@@ -65,7 +69,7 @@ class StudentBookPDFScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.pdf!
+              AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -80,8 +84,8 @@ class StudentBookPDFScreen extends StatelessWidget {
 
 
 
-class DeleteStudentBooksAlertDialog extends StatefulWidget {
-  const DeleteStudentBooksAlertDialog({
+class AddStudentBooksAlertDialog extends StatefulWidget {
+  const AddStudentBooksAlertDialog({
     Key? key,
     required this.title,
     required this.description,
@@ -90,9 +94,9 @@ class DeleteStudentBooksAlertDialog extends StatefulWidget {
   final String title, description;
 
   @override
-  _DeleteStudentBooksAlertDialogState createState() => _DeleteStudentBooksAlertDialogState();
+  _AddStudentBooksAlertDialogState createState() => _AddStudentBooksAlertDialogState();
 }
-class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertDialog> {
+class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -132,13 +136,15 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                print(AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].books![AppCubit.get(context).indexBookStudent!].bookId!.sId!);
-                print(AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].sId);
-                print(token);
-                AppCubit.get(context).removeBookFromStudent(
-                    bookId:AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].books![AppCubit.get(context).indexBookStudent!].bookId!.sId!,
-                    studentId:AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].sId,
+                // print(AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].books![AppCubit.get(context).indexBookStudent!].bookId!.sId!);
+                // print(AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].sId);
+                AppCubit.get(context).addBookToStudent(
+                    bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).EngIndexAddedBookStudent!].sId!,
+                    studentId: AppCubit.get(context).engStudentsModel![AppCubit.get(context).EngIndexAddedStudentBook!].sId,
                 );
+                print(token);
+                print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).EngIndexAddedBookStudent!].sId!);
+                print(AppCubit.get(context).engStudentsModel![AppCubit.get(context).EngIndexAddedStudentBook!].sId);
                 Navigator.pop(context);
                 showToast(
                     message: 'Book deleted successfully',
@@ -193,6 +199,4 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
     );
   }
 }
-
-
 

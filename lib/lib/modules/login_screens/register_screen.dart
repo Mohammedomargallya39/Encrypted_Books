@@ -249,7 +249,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                               ListTile(
                                 title: Text(
-                                  'Commerce',
+                                  'Business Management',
                                   style: TextStyle(color: Colors.blue),
                                 ),
                                 leading: Radio(
