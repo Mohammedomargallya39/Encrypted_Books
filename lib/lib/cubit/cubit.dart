@@ -282,10 +282,10 @@ class AppCubit extends Cubit<AppStates> {
     await DioHelper.postDataWithToken(
         url: UPLOAD_BOOK,
         token: token,
-        data: {
-          'name': name,
-          'category': category,
-          'description': description,
+        data: FormData.fromMap({
+            'name': name,
+            'category': category,
+            'description': description,
           'cover' : await MultipartFile.fromFile(
             cover.path,
             filename: Uri
@@ -293,8 +293,15 @@ class AppCubit extends Cubit<AppStates> {
                 .pathSegments
                 .last,
           ),
-          'pdf': pdf.files.first ,
-        }).then((value){
+          'pdf': await MultipartFile.fromFile(
+            '${pdf.files.first.path}',
+            filename: Uri
+                .file('${pdf.files.first.path}')
+                .pathSegments
+                .last,
+          ),
+        }),
+        ).then((value){
       print("*********************success*******************${cover}");
       print("***********************success*****************${pdf}");
       print('--------success upload books-----------');
