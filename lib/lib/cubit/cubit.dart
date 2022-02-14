@@ -136,7 +136,11 @@ class AppCubit extends Cubit<AppStates> {
         studentsModel!.where((element) =>
         // element.isEnginneringsection == true ||
         //     element.isManagmentsection == true ||
-            element.isComputerSciencesection == true).toList();
+            element.isComputerSciencesection == true
+            //    && element.books!.where((element) =>
+            // element.bookId != null
+            // ) != 'null',
+        ).toList();
   }
   void getBusinessStudents() {
     businessStudentsModel =
@@ -206,6 +210,10 @@ class AppCubit extends Cubit<AppStates> {
     DioHelper.getData(
       url: GET_Books,
       token: token,
+      query:
+      {
+        'category':'computerscience',
+      },
     ).then((value) {
       adminBooksModel = AdminBooksModel.fromJson(value!.data);
       print(adminBooksModel!.toString());
@@ -268,7 +276,7 @@ class AppCubit extends Cubit<AppStates> {
   //upload book
   void uploadBookData({
     required String name,
-    required String category,
+    //required String category,
     required String description,
     required File cover,
     required FilePickerResult pdf,
@@ -284,16 +292,16 @@ class AppCubit extends Cubit<AppStates> {
         token: token,
         data: FormData.fromMap({
             'name': name,
-            'category': category,
+            'category': 'computerscience',
             'description': description,
-          'cover' : await MultipartFile.fromFile(
+            'cover' : await MultipartFile.fromFile(
             cover.path,
             filename: Uri
                 .file(cover.path)
                 .pathSegments
                 .last,
           ),
-          'pdf': await MultipartFile.fromFile(
+            'pdf': await MultipartFile.fromFile(
             '${pdf.files.first.path}',
             filename: Uri
                 .file('${pdf.files.first.path}')
@@ -413,7 +421,7 @@ class AppCubit extends Cubit<AppStates> {
 
   }
 
-  void csSearchStudent()
+  void SearchStudent()
   {
 
   }
