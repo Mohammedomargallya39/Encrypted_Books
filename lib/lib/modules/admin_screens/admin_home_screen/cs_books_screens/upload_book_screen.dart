@@ -82,20 +82,20 @@ class UploadBookScreen extends StatelessWidget {
                       },
                       context: context,
                     ),
-                    SizedBox(height: size.height * 0.01,),
-
-                    defaultFormField(
-                      type: TextInputType.name,
-                      controller: categoryController,
-                      prefix: Icons.drive_file_rename_outline,
-                      text: 'Book Category',
-                      validate: (String value) {
-                        if (value.isEmpty) {
-                          return 'Please enter book category';
-                        }
-                      },
-                      context: context,
-                    ),
+                    // SizedBox(height: size.height * 0.01,),
+                    //
+                    // defaultFormField(
+                    //   type: TextInputType.name,
+                    //   controller: categoryController,
+                    //   prefix: Icons.drive_file_rename_outline,
+                    //   text: 'Book Category',
+                    //   validate: (String value) {
+                    //     if (value.isEmpty) {
+                    //       return 'Please enter book category';
+                    //     }
+                    //   },
+                    //   context: context,
+                    // ),
                     SizedBox(height: size.height * 0.01,),
                     defaultFormField(
                       type: TextInputType.name,
@@ -131,7 +131,7 @@ class UploadBookScreen extends StatelessWidget {
 
                         print(' cover of book is ---->${AppCubit.get(context).coverFile}');
                         print(' name of book is ---->${nameController.text}');
-                        print(' category of book is ---->${categoryController.text}');
+                        //print(' category of book is ---->${categoryController.text}');
                         print(' description of book is ---->${descriptionController.text}');
                         print(' pdf of book is ---->${AppCubit.get(context).pdf!}');
                         if (formKey.currentState!.validate())
@@ -142,7 +142,7 @@ class UploadBookScreen extends StatelessWidget {
                             AppCubit.get(context).uploadBookData(
                               cover: AppCubit.get(context).coverFile!,
                               name: nameController.text,
-                              category: categoryController.text,
+                              //category: categoryController.text,
                               description: descriptionController.text,
                               pdf: AppCubit.get(context).pdf!,
                             );

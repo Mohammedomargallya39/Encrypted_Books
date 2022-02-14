@@ -132,11 +132,11 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                print(AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexRemoveStudentBook!].books![AppCubit.get(context).CsIndexRemoveBookStudent!].bookId!.sId!);
+                print(AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexRemoveStudentBook!].books![AppCubit.get(context).CsIndexRemoveBookStudent!].sId!);
                 print(AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexRemoveStudentBook!].sId);
                 print(token);
                 AppCubit.get(context).removeBookFromStudent(
-                    bookId:AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexRemoveStudentBook!].books![AppCubit.get(context).CsIndexRemoveBookStudent!].bookId!.sId!,
+                    bookId:AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexRemoveStudentBook!].books![AppCubit.get(context).CsIndexRemoveBookStudent!].sId!,
                     studentId:AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexRemoveStudentBook!].sId,
                 );
                 Navigator.pop(context);

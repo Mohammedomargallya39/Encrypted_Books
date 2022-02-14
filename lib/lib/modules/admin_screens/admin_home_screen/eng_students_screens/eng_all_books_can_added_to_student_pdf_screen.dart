@@ -68,6 +68,7 @@ class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
               swipeHorizontal: true,
               autoSpacing: false,
               pageFling: false,
+              //defaultPage:1000,
             ).cachedFromUrl(
               AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].pdf!
               ,
@@ -147,7 +148,7 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
                 print(AppCubit.get(context).engStudentsModel![AppCubit.get(context).EngIndexAddedStudentBook!].sId);
                 Navigator.pop(context);
                 showToast(
-                    message: 'Book deleted successfully',
+                    message: 'Book added successfully',
                     state: ToastStates.SUCCESS );
                 Navigator.pop(context);
                 //navigateAndEnd(context, AdminHomeScreen(),);

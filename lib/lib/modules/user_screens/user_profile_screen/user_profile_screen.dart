@@ -170,33 +170,33 @@ class  UserProfileScreen extends StatelessWidget {
                       ),
                     ),
                 SizedBox(height: size.height * 0.01,),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          const Text('Number Of Your Books:',
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),),
-                          SizedBox(width: size.width *0.015),
-                          Expanded(
-                            child: Text(
-                              '${AppCubit.get(context).homeModel!.numberofBooks}',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 16,),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(bottom:  BorderSide(color: Colors.grey),),
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: Row(
+                    //     children: [
+                    //       const Text('Number Of Your Books:',
+                    //         style: TextStyle(
+                    //             fontSize: 24,
+                    //             fontWeight: FontWeight.bold),),
+                    //       SizedBox(width: size.width *0.015),
+                    //       Expanded(
+                    //         child: Text(
+                    //           '${AppCubit.get(context).homeModel!.numberofBooks}',
+                    //           maxLines: 1,
+                    //           overflow: TextOverflow.ellipsis,
+                    //           style: TextStyle(
+                    //             fontSize: 16,),),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(height: size.height * 0.01,),
+                    // Container(
+                    //   decoration: const BoxDecoration(
+                    //     border: Border(bottom:  BorderSide(color: Colors.grey),),
+                    //   ),
+                    // ),
+                    // SizedBox(height: size.height * 0.01,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(

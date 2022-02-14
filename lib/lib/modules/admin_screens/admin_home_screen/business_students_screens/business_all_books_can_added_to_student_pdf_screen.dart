@@ -147,7 +147,7 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
                 print(AppCubit.get(context).businessStudentsModel![AppCubit.get(context).BusinessIndexAddedStudentBook!].sId);
                 Navigator.pop(context);
                 showToast(
-                    message: 'Book deleted successfully',
+                    message: 'Book added successfully',
                     state: ToastStates.SUCCESS );
                 Navigator.pop(context);
                 //navigateAndEnd(context, AdminHomeScreen(),);
