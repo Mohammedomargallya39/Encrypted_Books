@@ -21,11 +21,11 @@ class CsStudentBookPDFScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].bookId!.pdf != null,
+          condition: AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
             appBar: AppBar(
               title:Text(
-                  AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].bookId!.name!
+                  AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].name!
               ),
               actions: [
                 InkWell(
@@ -65,7 +65,7 @@ class CsStudentBookPDFScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].bookId!.pdf!
+              AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),

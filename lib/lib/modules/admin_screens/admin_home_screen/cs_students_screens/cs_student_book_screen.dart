@@ -8,7 +8,6 @@ import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_students_screens/cs_student_book_pdf_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
-
 import 'cs_all_books_can_added_to_student_pdf_screen.dart';
 
 class CsStudentBookScreen extends StatelessWidget {
@@ -81,9 +80,9 @@ class CsStudentBookScreen extends StatelessWidget {
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context,index) => InkWell(child:csStudentBooks(
-                    StudentBookId(
-                      name: AppCubit.get(context).csStudentsModel![studentBooksId].books![index].bookId!.name,
-                      cover: AppCubit.get(context).csStudentsModel![studentBooksId].books![index].bookId!.cover,
+                    Books(
+                      name: AppCubit.get(context).csStudentsModel![studentBooksId].books![index].name,
+                      cover: AppCubit.get(context).csStudentsModel![studentBooksId].books![index].cover,
                     ), context),
                     onTap: ()
                     {
@@ -124,7 +123,7 @@ class CsStudentBookScreen extends StatelessWidget {
       );
   }
 
-  Widget csStudentBooks(StudentBookId studentBookId , context) {
+  Widget csStudentBooks(Books studentBookId , context) {
 
     Size size = MediaQuery.of(context).size;
     return Padding(

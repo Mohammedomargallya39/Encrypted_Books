@@ -21,11 +21,11 @@ class BusinessStudentBookPDFScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).businessStudentsModel![BusinessStudentID].books![BusinessStudentBookId].bookId!.pdf != null,
+          condition: AppCubit.get(context).businessStudentsModel![BusinessStudentID].books![BusinessStudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
             appBar: AppBar(
               title:Text(
-                  AppCubit.get(context).businessStudentsModel![BusinessStudentID].books![BusinessStudentBookId].bookId!.name!
+                  AppCubit.get(context).businessStudentsModel![BusinessStudentID].books![BusinessStudentBookId].name!
               ),
               actions: [
                 InkWell(
@@ -65,7 +65,7 @@ class BusinessStudentBookPDFScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).businessStudentsModel![BusinessStudentID].books![BusinessStudentBookId].bookId!.pdf!
+              AppCubit.get(context).businessStudentsModel![BusinessStudentID].books![BusinessStudentBookId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
