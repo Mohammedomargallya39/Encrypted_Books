@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:social/lib/cubit/cubit.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_students_screens/cs_student_book_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 
-class CsStudentDetailsScreen extends StatelessWidget {
-  const CsStudentDetailsScreen({Key? key, required this.StudentId}) : super(key: key);
+
+class StudentDetailsScreen extends StatelessWidget {
+  const StudentDetailsScreen({Key? key, required this.StudentId}) : super(key: key);
   final int StudentId;
 
   @override
@@ -16,7 +17,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            AppCubit.get(context).csStudentsModel![StudentId].name!
+            '${AppCubit.get(context).searchStudentModel![StudentId].name}'
         ),
       ),
       body: SingleChildScrollView(
@@ -40,7 +41,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                       decoration:  BoxDecoration(shape: BoxShape.circle,
                         image: DecorationImage(image:
                         NetworkImage(
-                            AppCubit.get(context).csStudentsModel![StudentId].image!
+                            '${AppCubit.get(context).searchStudentModel![StudentId].pic}'
                         ),
                             fit: BoxFit.fill
                         ),
@@ -60,7 +61,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      AppCubit.get(context).csStudentsModel![StudentId].name!
+                      '${AppCubit.get(context).searchStudentModel![StudentId].name}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -88,7 +89,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      AppCubit.get(context).csStudentsModel![StudentId].email!.split('@').first
+                      '${AppCubit.get(context).searchStudentModel![StudentId].email!.split('@').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -116,7 +117,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).csStudentsModel![StudentId].books!.length}'
+                      '${AppCubit.get(context).searchStudentModel![StudentId].books!.length}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -144,7 +145,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).csStudentsModel![StudentId].createdAt!.split('T').first}'
+                      '${AppCubit.get(context).searchStudentModel![StudentId].createdAt!.split('T').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -172,7 +173,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).csStudentsModel![StudentId].updatedAt!.split('T').first}'
+                      '${AppCubit.get(context).searchStudentModel![StudentId].updatedAt!.split('T').first}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -196,8 +197,11 @@ class CsStudentDetailsScreen extends StatelessWidget {
                 child: defaultButton(
                   function: ()
                   {
-                    debugPrint('${AppCubit.get(context).csStudentsModel![StudentId].books!.length}');
-                    navigateTo(context, CsStudentBookScreen(studentBooksId: StudentId,));
+                    debugPrint('${AppCubit.get(context).searchStudentModel![StudentId].books!.length}');
+                    navigateTo(context, StudentBookScreen(
+                      studentBooksId: StudentId,
+                    )
+                    );
                   },
                   text: 'student books',
                   context: context,
@@ -212,7 +216,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                 child: defaultTextButton(
                     onPressed: ()
                     {
-                      AppCubit.get(context).indexStudent= StudentId;
+                      AppCubit.get(context).indexSearchStudent= StudentId;
                         showDialog(
                             context: context,
                             builder: (context) =>
@@ -315,7 +319,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                AppCubit.get(context).deleteStudentAccount();
+                AppCubit.get(context).deleteSearchStudentAccount();
                 Navigator.pop(context);
                 showToast(
                     message: 'Account deleted successfully',

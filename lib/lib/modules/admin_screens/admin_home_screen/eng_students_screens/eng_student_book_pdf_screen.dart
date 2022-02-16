@@ -21,11 +21,11 @@ class EngStudentBookPDFScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).engStudentsModel![EngStudentID].books![EngStudentBookId].bookId!.pdf != null,
+          condition: AppCubit.get(context).engStudentsModel![EngStudentID].books![EngStudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
             appBar: AppBar(
               title:Text(
-                  AppCubit.get(context).engStudentsModel![EngStudentID].books![EngStudentBookId].bookId!.name!
+                  AppCubit.get(context).engStudentsModel![EngStudentID].books![EngStudentBookId].name!
               ),
               actions: [
                 InkWell(
@@ -33,15 +33,6 @@ class EngStudentBookPDFScreen extends StatelessWidget {
                     color: Colors.red,
                     onPressed: ()
                     {
-                      // AppCubit.get(context).indexBook= StudentBookId;
-                      // print( AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!);
-                      // print(AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId);
-                      // print(token);
-                      //
-                      // AppCubit.get(context).removeBookFromStudent(
-                      //   bookId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!,
-                      //   studentId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId,
-                      //);
                       AppCubit.get(context).EngIndexRemoveBookStudent= EngStudentBookId;
                       AppCubit.get(context).EngIndexRemoveStudentBook= EngStudentID;
                       showDialog(
@@ -65,7 +56,7 @@ class EngStudentBookPDFScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).engStudentsModel![EngStudentID].books![EngStudentBookId].bookId!.pdf!
+              AppCubit.get(context).engStudentsModel![EngStudentID].books![EngStudentBookId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),

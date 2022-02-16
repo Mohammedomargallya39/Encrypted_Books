@@ -81,9 +81,9 @@ class EngStudentBookScreen extends StatelessWidget {
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context,index) => InkWell(child:engStudentBooks(
-                    StudentBookId(
-                      name: AppCubit.get(context).engStudentsModel![EngstudentBooksId].books![index].bookId!.name,
-                      cover: AppCubit.get(context).engStudentsModel![EngstudentBooksId].books![index].bookId!.cover,
+                    Books(
+                      name: AppCubit.get(context).engStudentsModel![EngstudentBooksId].books![index].name,
+                      cover: AppCubit.get(context).engStudentsModel![EngstudentBooksId].books![index].cover,
                     ), context),
                     onTap: ()
                     {
@@ -124,7 +124,7 @@ class EngStudentBookScreen extends StatelessWidget {
       );
   }
 
-  Widget engStudentBooks(StudentBookId studentBookId , context) {
+  Widget engStudentBooks(Books studentBookId , context) {
 
     Size size = MediaQuery.of(context).size;
     return Padding(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'search_screens/search_screen.dart';
 import 'cs_students_screens/cs_students_screen.dart';
 import 'eng_students_screens/eng_students_screen.dart';
 
@@ -17,7 +18,10 @@ class StudentsDepartmentsScreen extends StatelessWidget {
         title: Text('Departments',),
         actions: [
           IconButton(
-            onPressed: (){},
+            onPressed: ()
+            {
+              navigateTo(context, StudentsSearchScreen());
+            },
             icon: const Icon(Icons.search_outlined),
           ),
         ],

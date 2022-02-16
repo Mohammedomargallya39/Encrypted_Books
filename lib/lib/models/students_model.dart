@@ -4,7 +4,7 @@ class StudentsModel {
   bool? isManagmentsection;
   bool? isEnginneringsection;
   bool? isComputerSciencesection;
-  int? numberofBooks;
+ // int? numberofBooks;
   String? sId;
   String? name;
   String? email;
@@ -20,7 +20,7 @@ class StudentsModel {
         this.isManagmentsection,
         this.isEnginneringsection,
         this.isComputerSciencesection,
-        this.numberofBooks,
+       // this.numberofBooks,
         this.sId,
         this.name,
         this.email,
@@ -41,8 +41,8 @@ class StudentsModel {
     print('studentIsEnginneringsection is ${isEnginneringsection}');
     isComputerSciencesection = json['isComputerSciencesection'];
     print('studentIsComputerSciencesection is ${isComputerSciencesection}');
-    numberofBooks = json['numberofBooks'];
-    print('studentNumberOfBooks is ${numberofBooks}');
+   // numberofBooks = json['numberofBooks'];
+   // print('studentNumberOfBooks is ${numberofBooks}');
     sId = json['_id'];
     print('studentsId is ${sId}');
     name = json['name'];
@@ -72,7 +72,7 @@ class StudentsModel {
     data['isManagmentsection'] = this.isManagmentsection;
     data['isEnginneringsection'] = this.isEnginneringsection;
     data['isComputerSciencesection'] = this.isComputerSciencesection;
-    data['numberofBooks'] = this.numberofBooks;
+   // data['numberofBooks'] = this.numberofBooks;
     data['_id'] = this.sId;
     data['name'] = this.name;
     data['email'] = this.email;
@@ -88,29 +88,6 @@ class StudentsModel {
 }
 
 class Books {
-  String? sId;
-  StudentBookId? bookId;
-
-  Books({this.sId, this.bookId});
-
-  Books.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    print('studentsId is ${sId}');
-    bookId =
-    json['bookId'] != null ? new StudentBookId.fromJson(json['bookId']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    if (this.bookId != null) {
-      data['bookId'] = this.bookId!.toJson();
-    }
-    return data;
-  }
-}
-
-class StudentBookId {
   String? cover;
   String? pdf;
   String? sId;
@@ -118,7 +95,7 @@ class StudentBookId {
   String? category;
   String? description;
 
-  StudentBookId(
+  Books(
       {this.cover,
         this.pdf,
         this.sId,
@@ -126,19 +103,13 @@ class StudentBookId {
         this.category,
         this.description});
 
-  StudentBookId.fromJson(Map<String, dynamic> json) {
+  Books.fromJson(Map<String, dynamic> json) {
     cover = json['cover'];
-    print('studentBookCover is ${cover}');
     pdf = json['pdf'];
-    print('studentBookPdf is ${pdf}');
     sId = json['_id'];
-    print('studentBooksId is ${sId}');
     name = json['name'];
-    print('studentBookName is ${name}');
     category = json['category'];
-    print('studentBookCategory is ${category}');
     description = json['description'];
-    print('studentBookDescription is ${description}');
   }
 
   Map<String, dynamic> toJson() {
@@ -152,3 +123,70 @@ class StudentBookId {
     return data;
   }
 }
+
+
+// class Books {
+//   String? sId;
+//   StudentBookId? bookId;
+//
+//   Books({this.sId, this.bookId});
+//
+//   Books.fromJson(Map<String, dynamic> json) {
+//     sId = json['_id'];
+//     print('studentsId is ${sId}');
+//     bookId =
+//     json['bookId'] != null ? new StudentBookId.fromJson(json['bookId']) : null;
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['_id'] = this.sId;
+//     if (this.bookId != null) {
+//       data['bookId'] = this.bookId!.toJson();
+//     }
+//     return data;
+//   }
+// }
+
+// class StudentBookId {
+//   String? cover;
+//   String? pdf;
+//   String? sId;
+//   String? name;
+//   String? category;
+//   String? description;
+//
+//   StudentBookId(
+//       {this.cover,
+//         this.pdf,
+//         this.sId,
+//         this.name,
+//         this.category,
+//         this.description});
+//
+//   StudentBookId.fromJson(Map<String, dynamic> json) {
+//     cover = json['cover'];
+//     print('studentBookCover is ${cover}');
+//     pdf = json['pdf'];
+//     print('studentBookPdf is ${pdf}');
+//     sId = json['_id'];
+//     print('studentBooksId is ${sId}');
+//     name = json['name'];
+//     print('studentBookName is ${name}');
+//     category = json['category'];
+//     print('studentBookCategory is ${category}');
+//     description = json['description'];
+//     print('studentBookDescription is ${description}');
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['cover'] = this.cover;
+//     data['pdf'] = this.pdf;
+//     data['_id'] = this.sId;
+//     data['name'] = this.name;
+//     data['category'] = this.category;
+//     data['description'] = this.description;
+//     return data;
+//   }
+// }

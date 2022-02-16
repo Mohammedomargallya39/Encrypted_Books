@@ -6,7 +6,6 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/shared/components/components.dart';
-
 import 'business_student_details_screen.dart';
 
 class BusinessStudentsScreen extends StatelessWidget {

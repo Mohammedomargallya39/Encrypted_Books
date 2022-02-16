@@ -117,7 +117,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                   SizedBox(width: size.width * 0.015,),
                   Expanded(
                     child: Text(
-                      '${AppCubit.get(context).businessStudentsModel![BusinessStudentId].numberofBooks}'
+                      '${AppCubit.get(context).businessStudentsModel![BusinessStudentId].books!.length}'
                       ,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

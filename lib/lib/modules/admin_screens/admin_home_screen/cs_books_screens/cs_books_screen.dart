@@ -11,7 +11,7 @@ import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_books_scre
 import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_books_screens/upload_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 
-import 'cs_books_search_screen.dart';
+import 'search_book_screen/search_book_screen.dart';
 
 class AdminBooksScreen extends StatelessWidget {
   const AdminBooksScreen({Key? key}) : super(key: key);

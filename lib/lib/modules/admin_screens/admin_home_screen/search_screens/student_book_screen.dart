@@ -6,12 +6,13 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/students_model.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_students_screens/cs_student_book_pdf_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_book_pdf_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
-import 'cs_all_books_can_added_to_student_pdf_screen.dart';
+import 'all_books_can_added_to_student_pdf_screen.dart';
 
-class CsStudentBookScreen extends StatelessWidget {
-  const CsStudentBookScreen({Key? key, required this.studentBooksId}) : super(key: key);
+
+class StudentBookScreen extends StatelessWidget {
+  const StudentBookScreen({Key? key, required this.studentBooksId}) : super(key: key);
   final int studentBooksId;
 
   @override
@@ -23,7 +24,7 @@ class CsStudentBookScreen extends StatelessWidget {
         {
           var cubit = AppCubit.get(context);
           return ConditionalBuilder(
-            condition: cubit.csStudentsModel![studentBooksId].books != null,
+            condition: cubit.searchStudentModel![studentBooksId].books != null,
             builder: (context) =>  Scaffold(
               appBar: AppBar(
                 title: const Text('Student books'),
@@ -50,9 +51,9 @@ class CsStudentBookScreen extends StatelessWidget {
                                   onTap: ()
                                   {
                                     navigateTo(context,
-                                        CsBooksCanAddedForStudentPdfScreen(
-                                          StudentBookIndexId:index,
-                                          StudentIndexId:studentBooksId,
+                                        BooksCanAddedForStudentPdfScreen(
+                                          StudentBookIndexId: index,
+                                          StudentIndexId: studentBooksId,
                                         )
                                     )
                                     ;
@@ -79,16 +80,17 @@ class CsStudentBookScreen extends StatelessWidget {
 
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context,index) => InkWell(child:csStudentBooks(
+                  itemBuilder: (context,index) => InkWell(child:engStudentBooks(
                     Books(
-                      name: AppCubit.get(context).csStudentsModel![studentBooksId].books![index].name,
-                      cover: AppCubit.get(context).csStudentsModel![studentBooksId].books![index].cover,
+                      name: AppCubit.get(context).searchStudentModel![studentBooksId].books![index].name,
+                      cover: AppCubit.get(context).searchStudentModel![studentBooksId].books![index].cover,
+
                     ), context),
                     onTap: ()
                     {
-                      navigateTo(context, CsStudentBookPDFScreen(
-                          StudentID: studentBooksId,
-                          StudentBookId: index
+                      navigateTo(context, StudentBookPDFScreen(
+                        StudentID: studentBooksId,
+                        StudentBookId: index,
                       ),
                       );
                     },
@@ -101,7 +103,7 @@ class CsStudentBookScreen extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  itemCount: cubit.csStudentsModel![studentBooksId].books!.length),
+                  itemCount: cubit.searchStudentModel![studentBooksId].books!.length),
             ),
 
             fallback:(context) => Scaffold(
@@ -123,7 +125,7 @@ class CsStudentBookScreen extends StatelessWidget {
       );
   }
 
-  Widget csStudentBooks(Books studentBookId , context) {
+  Widget engStudentBooks(Books studentBookId , context) {
 
     Size size = MediaQuery.of(context).size;
     return Padding(

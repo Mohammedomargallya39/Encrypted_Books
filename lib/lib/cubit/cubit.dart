@@ -8,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/models/login_model.dart';
+import 'package:social/lib/models/search_book_model.dart';
+import 'package:social/lib/models/search_student_model.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/models/user_books_model.dart';
 import 'package:social/lib/shared/components/constants.dart';
@@ -130,6 +132,7 @@ class AppCubit extends Cubit<AppStates> {
   List<StudentsModel>? businessStudentsModel = [];
   List<StudentsModel>? engStudentsModel = [];
   List<StudentsModel>? adminsModel = [];
+  List<StudentsModel>? withOutAdminsModel = [];
   //user with out admins
   void getCsStudents() {
     csStudentsModel =
@@ -167,6 +170,16 @@ class AppCubit extends Cubit<AppStates> {
           // element.isComputerSciencesection == true
         ).toList();
   }
+  void getStudentsWithOutAdmins() {
+    withOutAdminsModel =
+        studentsModel!.where((element) =>
+       // element.isAdmin == true
+           element.isEnginneringsection == true ||
+               element.isManagmentsection == true ||
+           element.isComputerSciencesection == true
+        ).toList();
+  }
+
 
   //all users
   void getStudents() {
@@ -183,10 +196,12 @@ class AppCubit extends Cubit<AppStates> {
           studentsModel!.add(StudentsModel.fromJson(element));
         });
       }
+      //getStudentsWithOutAdmins();
       getCsStudents();
       getBusinessStudents();
       getEngStudents();
       getAdmins();
+      //print(withOutAdminsModel!.length);
       print(csStudentsModel!.length);
       print(businessStudentsModel!.length);
       print(engStudentsModel!.length);
@@ -202,6 +217,69 @@ class AppCubit extends Cubit<AppStates> {
       emit(EncryptionErrorGetStudentsState());
     });
   }
+
+    List<SearchStudentModel>? searchStudentModel =[];
+  void SearchStudent({
+    String? text
+  })
+  {
+    emit(AdminSearchStudentLoadingState());
+    print('---------------Loading Search Student ----------------');
+    DioHelper.getData(
+      url: GET_STUDENTS,
+      token: token,
+      query:
+      {
+        'name':text
+      },
+    ).then((value)
+    {
+      if (value != null) {
+        value.data.forEach((element) {
+          searchStudentModel!.add(SearchStudentModel.fromJson(element));
+        });
+      }
+      print('---------------Success Search Student ----------------${value!.data}');
+      emit(AdminSearchStudentSuccessState());
+    }).catchError((error)
+    {
+      print('---------------Success Search Student ----------------${error.toString()}');
+      emit(AdminSearchStudentErrorState(error));
+    });
+  }
+
+  SearchBookModel? searchBookModel ;
+  void SearchBook({
+    String? text
+  })
+  {
+    emit(AdminSearchBookLoadingState());
+    print('---------------Loading Search Student ----------------');
+    DioHelper.getData(
+      url: SEARCH_BOOKS,
+      token: token,
+      query:
+      {
+        'name':text
+      },
+    ).then((value)
+    {
+      // if (value != null) {
+      //   value.data.forEach((element) {
+      //     searchBookModel!.add(SearchBookModel.fromJson(element));
+      //   });
+      // }
+      searchBookModel = SearchBookModel.fromJson(value!.data);
+
+      print('---------------Success Search Student ----------------${value.data}');
+      emit(AdminSearchBookSuccessState());
+    }).catchError((error)
+    {
+      print('---------------Success Search Student ----------------${error.toString()}');
+      emit(AdminSearchBookErrorState(error));
+    });
+  }
+
   AdminBooksModel? adminBooksModel;
   //all books
   void getAdminBooks() {
@@ -251,6 +329,31 @@ class AppCubit extends Cubit<AppStates> {
       emit(EncryptionErrorDeleteStudentAccountState());
     });
   }
+  int? indexSearchStudent;
+  //delete student acc
+  void deleteSearchStudentAccount() {
+    emit(EncryptionLoadingDeleteStudentAccountState());
+    print(
+        '----------loading delete account test----------- ${searchStudentModel![indexSearchStudent!].name}');
+    print(
+        '----------loading delete account test----------- ${searchStudentModel![indexSearchStudent!].sId}');
+    print('----------loading delete account test----------- ${indexSearchStudent}');
+    DioHelper.deleteData(
+      //url: '',
+      url: '${DELETE_STUDENT_ACCOUNT}${searchStudentModel![indexSearchStudent!].sId}',
+      token: token,
+    ).then((value) {
+      getCsStudents();
+      print(getCsStudents);
+      print('----------Success delete account test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteStudentAccountState());
+    }).catchError((error) {
+      print(error.toString());
+      print('----------error delete account test-----------');
+      emit(EncryptionErrorDeleteStudentAccountState());
+    });
+  }
+
   int? indexBook;
   //delete book
   void deleteBooks() {
@@ -273,6 +376,30 @@ class AppCubit extends Cubit<AppStates> {
       emit(EncryptionErrorDeleteBookState());
     });
   }
+
+  int? indexSearchBook;
+  //delete book
+  void deleteSearchBook() {
+    emit(EncryptionLoadingDeleteBookState());
+    print(
+        '----------loading delete book test----------- ${searchBookModel!.books![indexSearchBook!].name}');
+    print(
+        '----------loading delete book test----------- ${searchBookModel!.books![indexSearchBook!].sId}');
+    print('----------loading delete book test----------- ${indexSearchBook}');
+    DioHelper.deleteData(
+      //url: '',
+      url: '${DELETE_BOOK}${searchBookModel!.books![indexSearchBook!].sId}',
+      token: token,
+    ).then((value) {
+      print('----------Success delete book test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteBookState());
+    }).catchError((error) {
+      print(error.toString());
+      print('----------error delete book test-----------');
+      emit(EncryptionErrorDeleteBookState());
+    });
+  }
+
   //upload book
   void uploadBookData({
     required String name,
@@ -358,6 +485,8 @@ class AppCubit extends Cubit<AppStates> {
   int? CsIndexAddedStudentBook;
   int? EngIndexAddedBookStudent;
   int? EngIndexAddedStudentBook;
+  int? IndexAddedBookStudent;
+  int? IndexAddedStudentBook;
   int? BusinessIndexAddedBookStudent;
   int? BusinessIndexAddedStudentBook;
   void addBookToStudent({
@@ -389,6 +518,8 @@ class AppCubit extends Cubit<AppStates> {
   int? CsIndexRemoveStudentBook;
   int? EngIndexRemoveBookStudent;
   int? EngIndexRemoveStudentBook;
+  int? IndexRemoveBookStudent;
+  int? IndexRemoveStudentBook;
   int? BusinessIndexRemoveBookStudent;
   int? BusinessIndexRemoveStudentBook;
   void removeBookFromStudent({
@@ -416,13 +547,4 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void csSearchBook()
-  {
-
-  }
-
-  void SearchStudent()
-  {
-
-  }
 }
