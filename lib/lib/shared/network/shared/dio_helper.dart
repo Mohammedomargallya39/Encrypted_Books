@@ -96,6 +96,7 @@ class DioHelper{
     required String url,
     Map<String, dynamic>? query,
     String? token,
+    //dynamic data,
   })async
   {
     try{

@@ -89,3 +89,19 @@ class AdminRemoveBookFromStudentErrorState extends AppStates {
   final String error ;
   AdminRemoveBookFromStudentErrorState(this.error);
 }
+// admin search student
+class AdminSearchStudentLoadingState extends AppStates{}
+class AdminSearchStudentSuccessState extends AppStates{}
+class AdminSearchStudentErrorState extends AppStates {
+  final String error ;
+  AdminSearchStudentErrorState(this.error);
+}
+
+// admin search book
+class AdminSearchBookLoadingState extends AppStates{}
+class AdminSearchBookSuccessState extends AppStates{}
+class AdminSearchBookErrorState extends AppStates {
+  final String error ;
+  AdminSearchBookErrorState(this.error);
+}
+
