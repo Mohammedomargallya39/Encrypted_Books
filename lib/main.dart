@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/onboarding_screen/on_boarding_screen.dart';
+import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/shared/bloc_observer.dart';
 import 'package:social/lib/shared/styles/themes.dart';
-import 'lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
-import 'lib/modules/user_screens/user_home_screen/user_home_screen.dart';
+import 'lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'lib/shared/components/constants.dart';
 import 'lib/shared/cubit/cubit.dart';
 import 'lib/shared/cubit/states.dart';
@@ -37,9 +37,9 @@ void main() async {
   if (onBoarding == true) {
     if (token != null) {
       if (isAdmin!) {
-        widget = AdminHomeScreen();
+        widget = AdminDrawerScreen();
       } else {
-        widget = UserHomeScreen();
+        widget = UserDrawerScreen();
       }
     } else
       widget = LoginScreen();
