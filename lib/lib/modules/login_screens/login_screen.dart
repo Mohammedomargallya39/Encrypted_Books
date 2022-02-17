@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/login_screens/register_screen.dart';
+import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
@@ -42,8 +44,9 @@ class LoginScreen extends StatelessWidget {
                 navigateAndEnd(
                   context,
                   UserLoginCubit.get(context).loginModel!.isAdmin
-                      ? AdminHomeScreen()
-                      : UserHomeScreen(),);
+                      ? AdminDrawerScreen()
+                      : UserDrawerScreen(),
+                );
               } );
 
               {
