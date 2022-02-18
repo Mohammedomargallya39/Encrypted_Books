@@ -78,76 +78,92 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
                           width: size.width * 0.4,),
                       ),
                       Center(
-                        child: SizedBox(
-                          width: size.width,
-                          height: size.height * 0.4,
-                          child: PageView.builder(
-                              controller: pageController,
-                              itemCount: AppCubit.get(context).homeModel!.books!.length,
-                              itemBuilder: (context, index) {
-                                final percent = (page - index).abs().clamp(0.0, 1.0);
-                                final factor = pageController.position.userScrollDirection ==
-                                    ScrollDirection.forward
-                                    ? 1.0
-                                    : -1.0;
-                                final opacity = percent.clamp(0.0, 0.7);
-                                return Transform(
-                                  transform: Matrix4.identity()
-                                    ..setEntry(3, 2, 0.001)
-                                    ..rotateY(vector.radians(45 * factor * percent)),
-                                  child: Opacity(
-                                    opacity: (1 - opacity),
-                                    child: Card(
-                                        color: ThemeCubit.get(context).darkTheme? Colors.grey.shade700 :Colors.grey.shade300,
-                                        child: InkWell(
-                                          child: Column(
-                                            children: [
-                                              Image(
-                                                  fit: BoxFit.cover,
-                                                  width: size.width,
-                                                  height: size.height * 0.26,
-                                                  image: NetworkImage(
-                                                      AppCubit.get(context).homeModel!.books![index].cover!
-                                                  )),
-                                              SizedBox(height: size.height * 0.02),
-                                              Text(
-                                                '${AppCubit.get(context).homeModel!.books![index].name}',
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 55),
+                              child: Text('Your Books',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: size.width,
+                              height: size.height * 0.4,
+                              child: PageView.builder(
+                                  controller: pageController,
+                                  itemCount: AppCubit.get(context).homeModel!.books!.length,
+                                  itemBuilder: (context, index) {
+                                    final percent = (page - index).abs().clamp(0.0, 1.0);
+                                    final factor = pageController.position.userScrollDirection ==
+                                        ScrollDirection.forward
+                                        ? 1.0
+                                        : -1.0;
+                                    final opacity = percent.clamp(0.0, 0.7);
+                                    return Transform(
+                                      transform: Matrix4.identity()
+                                        ..setEntry(3, 2, 0.001)
+                                        ..rotateY(vector.radians(45 * factor * percent)),
+                                      child: Opacity(
+                                        opacity: (1 - opacity),
+                                        child: Card(
+                                            elevation: 11,
+                                            color: ThemeCubit.get(context).darkTheme? Colors.grey.shade700 :Colors.grey.shade300,
+                                            child: InkWell(
+                                              child: Column(
+                                                children: [
+                                                  Image(
+                                                      fit: BoxFit.cover,
+                                                      width: size.width,
+                                                      height: size.height * 0.26,
+                                                      image: NetworkImage(
+                                                          AppCubit.get(context).homeModel!.books![index].cover!
+                                                      )),
+                                                  SizedBox(height: size.height * 0.02),
+                                                  Text(
+                                                    '${AppCubit.get(context).homeModel!.books![index].name}',
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: size.height * 0.02),
+                                                  Container(
+                                                    decoration: const BoxDecoration(
+                                                      border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: size.height * 0.02),
+                                                  Text(
+                                                    '${AppCubit.get(context).homeModel!.books![index].description}',
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                              SizedBox(height: size.height * 0.02),
-                                              Container(
-                                                decoration: const BoxDecoration(
-                                                  border: Border(bottom:  BorderSide(color: Colors.grey),),
-                                                ),
-                                              ),
-                                              SizedBox(height: size.height * 0.02),
-                                              Text(
-                                                '${AppCubit.get(context).homeModel!.books![index].description}',
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          onTap: ()
-                                          {
-                                            navigateTo(context, UserPDFBooksScreen(
-                                              bookId : index,
-                                            ));
-                                          },
-                                        )
-                                    ),
-                                  ),
-                                );
-                              }),
+                                              onTap: ()
+                                              {
+                                                navigateTo(context, UserPDFBooksScreen(
+                                                  bookId : index,
+                                                ));
+                                              },
+                                            )
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+
+                          ],
                         ),
                       ),
                     ],
