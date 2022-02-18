@@ -153,29 +153,6 @@ class HomeModel {
 }
 
 class Books {
-  String? sId;
-  BookId? bookId;
-
-  Books({this.sId, this.bookId});
-
-  Books.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    print(sId);
-    bookId =
-    json['bookId'] != null ? new BookId.fromJson(json['bookId']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    if (this.bookId != null) {
-      data['bookId'] = this.bookId!.toJson();
-    }
-    return data;
-  }
-}
-
-class BookId {
   String? cover;
   String? pdf;
   String? sId;
@@ -183,7 +160,7 @@ class BookId {
   String? category;
   String? description;
 
-  BookId(
+  Books(
       {this.cover,
         this.pdf,
         this.sId,
@@ -191,19 +168,13 @@ class BookId {
         this.category,
         this.description});
 
-  BookId.fromJson(Map<String, dynamic> json) {
+  Books.fromJson(Map<String, dynamic> json) {
     cover = json['cover'];
-    print(cover);
     pdf = json['pdf'];
-    print(pdf);
     sId = json['_id'];
-    print(sId);
     name = json['name'];
-    print(name);
     category = json['category'];
-    print(category);
     description = json['description'];
-    print(description);
   }
 
   Map<String, dynamic> toJson() {

@@ -24,11 +24,11 @@ class UserPDFBooksScreen extends StatelessWidget {
       builder: (context, state) {
 
         return  ConditionalBuilder(
-          condition:  AppCubit.get(context).homeModel!.books![bookId].bookId!.pdf  != null,
+          condition:  AppCubit.get(context).homeModel!.books![bookId].pdf  != null,
           builder: (context) =>Scaffold(
             appBar: AppBar(
               title: Text(
-                '${AppCubit.get(context).homeModel!.books![bookId].bookId!.name}',
+                '${AppCubit.get(context).homeModel!.books![bookId].name}',
               ),
             ),
             body:  PDF(
@@ -38,7 +38,7 @@ class UserPDFBooksScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              '${AppCubit.get(context).homeModel!.books![bookId].bookId!.pdf}',
+              '${AppCubit.get(context).homeModel!.books![bookId].pdf}',
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
             ),
