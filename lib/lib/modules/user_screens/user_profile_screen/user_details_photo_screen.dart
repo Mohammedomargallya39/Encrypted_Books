@@ -7,16 +7,22 @@ class UserDetailsPhotoDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: GestureDetector(
-        child: Stack(
-          children: [
-              Center(child: Image(image: NetworkImage(
-                  '${AppCubit.get(context).userModel!.image}'
-              ),
-              ),
-              ),
-          ],
+        child: Container(
+          width: size.width,
+          height: size.height,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+                Center(child: Image(image: NetworkImage(
+                    '${AppCubit.get(context).userModel!.image}'
+                ),
+                ),
+                ),
+            ],
+          ),
         ),
         onTap: ()
         {

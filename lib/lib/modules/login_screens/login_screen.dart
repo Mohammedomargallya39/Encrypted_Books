@@ -172,32 +172,6 @@ class LoginScreen extends StatelessWidget {
                                             height: size.height * 0.08,
                                             width: size.width,
                                           ),
-                                          // SizedBox(
-                                          //   width: size.width ,
-                                          //   height: size.height * 0.06,
-                                          //   child: MaterialButton(
-                                          //   shape: RoundedRectangleBorder(
-                                          //     borderRadius: BorderRadius.circular(22),
-                                          //   ),
-                                          //   elevation: 5,
-                                          //   color: defaultColor,
-                                          //   onPressed: () {
-                                          //     if (formKey.currentState!.validate()) {
-                                          //       UserLoginCubit.get(context).userLogin(
-                                          //           email: emailController.text,
-                                          //           password: passwordController.text);
-                                          //     }
-                                          //   },
-                                          //   child: const Text(
-                                          //     'LOGIN',
-                                          //     style: TextStyle(
-                                          //       color: Colors.white,
-                                          //       fontSize: 16,
-                                          //       fontWeight: FontWeight.bold,
-                                          //     ),
-                                          //   ),
-                                          //   ),
-                                          // ),
                                         ),
                                       fallback: (context) => const Center(
                                           child: CircularProgressIndicator()),

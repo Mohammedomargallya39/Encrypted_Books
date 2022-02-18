@@ -6,7 +6,6 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/students_model.dart';
 import 'package:social/lib/shared/components/components.dart';
-
 import 'admins_details_screen.dart';
 
 class AdminsScreen extends StatelessWidget {
@@ -22,7 +21,7 @@ class AdminsScreen extends StatelessWidget {
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: const Text(
-                  'Students'),
+                  'Admins'),
             ),
             body: ListView.separated(
                 physics: const BouncingScrollPhysics(),

@@ -90,14 +90,17 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {
           screenView = UserProfileScreen();
+          //navigateTo(context, UserProfileScreen());
         });
       } else if (drawerIndex == DrawerIndex.Settings) {
         setState(() {
           screenView = UserSettingsScreen();
+          //navigateTo(context, UserSettingsScreen());
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
           screenView = UserHelpScreen();
+          //navigateTo(context, UserHelpScreen());
         });
       } else {
         Navigator.of(context).pop();
@@ -231,11 +234,31 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                               child: Stack(
                                                 alignment: AlignmentDirectional.centerStart,
                                                 children:[
-                                                  CircleAvatar(
-                                                    radius: 50,
-                                                    backgroundImage:  NetworkImage(
-                                                        '${AppCubit.get(context).userModel!.image}'
-                                                    ),
+
+                                                  Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                        radius: 50,
+                                                        backgroundImage:  NetworkImage(
+                                                            '${AppCubit.get(context).userModel!.image}'
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width* 0.05,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          ' ${AppCubit.get(context).userModel!.name}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.bold ,
+                                                              fontSize: 16 ,
+                                                              color: Colors.white
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ] ,
                                               ),
