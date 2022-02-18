@@ -26,11 +26,13 @@ class UserPDFBooksScreen extends StatelessWidget {
         return  ConditionalBuilder(
           condition:  AppCubit.get(context).homeModel!.books![bookId].pdf  != null,
           builder: (context) =>Scaffold(
-            appBar: AppBar(
-              title: Text(
-                '${AppCubit.get(context).homeModel!.books![bookId].name}',
-              ),
+            floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+              ,onPressed: ()
+              {
+                Navigator.pop(context);
+              },
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
             body:  PDF(
               nightMode: ThemeCubit.get(context).darkTheme? night : light ,
               enableSwipe: true,
