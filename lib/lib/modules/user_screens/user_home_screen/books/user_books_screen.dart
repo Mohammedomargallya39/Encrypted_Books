@@ -28,8 +28,8 @@ class UserOnlineBooksScreen extends StatelessWidget {
               ),
               body: ListView.separated(
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context,index) => InkWell(child: userOnlineBooksItem(
-                      cubit.homeModel!.books![index].bookId! , context),
+                  itemBuilder: (context,index) => InkWell(child: userBooksItem(
+                      cubit.homeModel!.books![index] , context),
                   onTap: ()
                   {
                     navigateTo(context, UserPDFBooksScreen(
@@ -59,7 +59,7 @@ class UserOnlineBooksScreen extends StatelessWidget {
         },
       );
   }
-  Widget userOnlineBooksItem(BookId bookId , context) {
+  Widget userBooksItem(Books bookId , context) {
     Size size = MediaQuery.of(context).size;
     return InkWell(
       child: Padding(
