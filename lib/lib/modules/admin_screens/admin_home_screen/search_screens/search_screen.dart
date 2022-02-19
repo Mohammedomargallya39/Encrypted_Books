@@ -21,83 +21,108 @@ class StudentsSearchScreen extends StatelessWidget {
       listener: (context, state) {},
       builder:  (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Search'),
+          floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+            ,onPressed: ()
+            {
+              Navigator.pop(context);
+            },
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Form(
-              key: formKey,
-                child: Column(
-                  children: [
-                    SizedBox(
-                    height: size.height *0.044,
+          floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+          body: Container(
+            width: size.width,
+            height: size.height,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Image.asset('assets/images/main_top.png',
+                    width: size.width * 0.35,),
                 ),
-                    defaultFormField(
-                      context: context,
-                      controller: searchController,
-                      text: 'Search by name',
-                      prefix: Icons.search,
-                      suffix: Icons.forward,
-                      suffixPressed: ()
-                      {
-                        AppCubit.get(context).SearchStudent(
-                            text: searchController.text
-                        );
-                      },
-                      type: TextInputType.text,
-                      validate: (String? value) {
-                        if (value!.isEmpty) {
-                          return 'Search for students';
-                        } else {
-                          return null;
-                        }
-                      },
-                      // onSubmit: (value) {
-                      //   if (formKey.currentState!.validate()) {
-                      //     AppCubit.get(context)
-                      //         .CSSearchStudent(text: searchController.text);
-                      //   }
-                      // },
-                    ),
-                    if (state is AdminSearchStudentLoadingState) LinearProgressIndicator(),
-                    SizedBox(
-                      height: size.height * 0.044,
-                    ),
-                    if (state is AdminSearchStudentSuccessState)
-                      Expanded(
-                        child: ListView.separated(
-                            itemBuilder: (context, index)
-                            {
-                              return InkWell(
-                                child: SearchStudentsItem(
-                                  SearchStudentModel(
-                                    name: AppCubit.get(context).searchStudentModel![index].name,
-                                    email: AppCubit.get(context).searchStudentModel![index].email!.split('@').first,
-                                    pic: AppCubit.get(context).searchStudentModel![index].pic,
-                                  ), context
-                                ),
-                                onTap: ()
-                                {
-                                  navigateTo(context, StudentDetailsScreen(
-                                    StudentId: index,
-                                  ),
-                                  );
-                                },
-                              );
-                            } ,
-
-                          separatorBuilder: (context, index) => Container(
-                              width: size.width,
-                              color: Colors.grey,
-                              height: size.height * 0.0009,
-                          ),
-
-                           itemCount: AppCubit.get(context).searchStudentModel!.length,
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Image.asset('assets/images/login_bottom.png',
+                    width: size.width * 0.4,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 120, 22, 120),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: size.height *0.044,
                         ),
-                      ),
-                  ],
+                        defaultFormField(
+                          context: context,
+                          controller: searchController,
+                          text: 'Search by name',
+                          prefix: Icons.search,
+                          suffix: Icons.forward,
+                          suffixPressed: ()
+                          {
+                            AppCubit.get(context).SearchStudent(
+                                text: searchController.text
+                            );
+                          },
+                          type: TextInputType.text,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Search for students';
+                            } else {
+                              return null;
+                            }
+                          },
+                          // onSubmit: (value) {
+                          //   if (formKey.currentState!.validate()) {
+                          //     AppCubit.get(context)
+                          //         .CSSearchStudent(text: searchController.text);
+                          //   }
+                          // },
+                        ),
+                        if (state is AdminSearchStudentLoadingState) LinearProgressIndicator(),
+                        SizedBox(
+                          height: size.height * 0.044,
+                        ),
+                        if (state is AdminSearchStudentSuccessState)
+                          Expanded(
+                            child: ListView.separated(
+                              itemBuilder: (context, index)
+                              {
+                                return InkWell(
+                                  child: SearchStudentsItem(
+                                      SearchStudentModel(
+                                        name: AppCubit.get(context).searchStudentModel![index].name,
+                                        email: AppCubit.get(context).searchStudentModel![index].email!.split('@').first,
+                                        pic: AppCubit.get(context).searchStudentModel![index].pic,
+                                      ), context
+                                  ),
+                                  onTap: ()
+                                  {
+                                    navigateTo(context, StudentDetailsScreen(
+                                      StudentId: index,
+                                    ),
+                                    );
+                                  },
+                                );
+                              } ,
+
+                              separatorBuilder: (context, index) => Container(
+                                width: size.width,
+                                color: Colors.grey,
+                                height: size.height * 0.0009,
+                              ),
+
+                              itemCount: AppCubit.get(context).searchStudentModel!.length,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                 ),
+              ],
             ),
           ),
         );

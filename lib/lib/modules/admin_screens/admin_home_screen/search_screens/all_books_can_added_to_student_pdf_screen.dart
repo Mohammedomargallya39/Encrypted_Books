@@ -24,40 +24,72 @@ class BooksCanAddedForStudentPdfScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
-            appBar: AppBar(
-              title:Text(
-                  AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].name!
-              ),
-              actions: [
-                InkWell(
-                  child: IconButton(
-                    color: Colors.white,
-                    onPressed: ()
-                    {
-                      // AppCubit.get(context).indexBook= StudentBookId;
-                      // print( AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!);
-                      // print(AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId);
-                      // print(token);
-                      //
-                      // AppCubit.get(context).removeBookFromStudent(
-                      //   bookId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!,
-                      //   studentId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId,
-                      //);
-                      // AppCubit.get(context).indexBookStudent= StudentBookId;
-                      // AppCubit.get(context).indexStudentBook= StudentIndexId;
-                      AppCubit.get(context).IndexAddedStudentBook= StudentIndexId;
-                      AppCubit.get(context).IndexAddedBookStudent= StudentBookIndexId;
-                      Navigator.pop(context);
-                      showDialog(
-                        context: context,
-                        builder: (context) => AddStudentBooksAlertDialog(
-                          title: 'Add This Book',
-                          description: 'Are you sure?',
-                          //StudentIDToDelete: StudentId,
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.add),
+            // appBar: AppBar(
+            //   title:Text(
+            //       AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].name!
+            //   ),
+            //   actions: [
+            //     InkWell(
+            //       child: IconButton(
+            //         color: Colors.white,
+            //         onPressed: ()
+            //         {
+            //           // AppCubit.get(context).indexBook= StudentBookId;
+            //           // print( AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!);
+            //           // print(AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId);
+            //           // print(token);
+            //           //
+            //           // AppCubit.get(context).removeBookFromStudent(
+            //           //   bookId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!,
+            //           //   studentId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId,
+            //           //);
+            //           // AppCubit.get(context).indexBookStudent= StudentBookId;
+            //           // AppCubit.get(context).indexStudentBook= StudentIndexId;
+            //           AppCubit.get(context).IndexAddedStudentBook= StudentIndexId;
+            //           AppCubit.get(context).IndexAddedBookStudent= StudentBookIndexId;
+            //           Navigator.pop(context);
+            //           showDialog(
+            //             context: context,
+            //             builder: (context) => AddStudentBooksAlertDialog(
+            //               title: 'Add This Book',
+            //               description: 'Are you sure?',
+            //               //StudentIDToDelete: StudentId,
+            //             ),
+            //           );
+            //         },
+            //         icon: const Icon(Icons.add),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            floatingActionButton: Stack(
+              children: [
+                Positioned(
+                  top: 60,
+                  right: 0,
+                  child: IconButton(icon: Icon(Icons.add), onPressed: ()
+                  {
+                              AppCubit.get(context).IndexAddedStudentBook= StudentIndexId;
+                              AppCubit.get(context).IndexAddedBookStudent= StudentBookIndexId;
+                              Navigator.pop(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) => AddStudentBooksAlertDialog(
+                                  title: 'Add This Book',
+                                  description: 'Are you sure?',
+                                  //StudentIDToDelete: StudentId,
+                                ),
+                              );
+                  }, iconSize: 23,
+                  ),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 30,
+                  child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                  {
+                    Navigator.pop(context);
+                  }, iconSize: 23,
                   ),
                 ),
               ],

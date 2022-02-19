@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
+import 'package:social/lib/modules/login_screens/cubit/cubit.dart';
+import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -32,6 +35,16 @@ class UserSettingsScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: AppCubit.get(context).userModel != null,
           builder: (context) => Scaffold(
+              floatingActionButton: IconButton(icon:Icon(Icons.home)
+                ,onPressed: ()
+                {
+                  navigateTo(context,
+                    AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
+                  );
+
+                },
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
             body: Container(
               width: size.width,
               height: size.height,

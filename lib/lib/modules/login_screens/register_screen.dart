@@ -41,9 +41,13 @@ class RegisterScreen extends StatelessWidget {
           var cubit = UserRegisterCubit.get(context);
           Size size = MediaQuery.of(context).size;
           return Scaffold(
-            // appBar: AppBar(
-            //   title: const Text('Register'),
-            // ),
+            floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+              ,onPressed: ()
+              {
+                Navigator.pop(context);
+              },
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
             body: Container(
                 width: double.infinity,
                 height: size.height,

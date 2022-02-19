@@ -9,6 +9,13 @@ class UserDetailsPhotoDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+        ,onPressed: ()
+        {
+          Navigator.pop(context);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: GestureDetector(
         child: Container(
           width: size.width,
