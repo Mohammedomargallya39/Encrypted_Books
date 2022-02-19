@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/styles/colors.dart';
 import 'search_screens/search_screen.dart';
 import 'cs_students_screens/cs_students_screen.dart';
 import 'eng_students_screens/eng_students_screen.dart';
@@ -14,82 +15,128 @@ class StudentsDepartmentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Departments',),
-        actions: [
-          IconButton(
-            onPressed: ()
+      floatingActionButton: Stack(
+        // fit: StackFit.expand,
+        children: [
+          Positioned(
+            top: 60,
+            right: 0,
+            child: IconButton(icon: Icon(Icons.search_outlined), onPressed: ()
             {
               navigateTo(context, StudentsSearchScreen());
-            },
-            icon: const Icon(Icons.search_outlined),
+            }, iconSize: 30,
+            ),
+          ),
+
+          Positioned(
+            top: 120,
+            right: 0,
+            child: InkWell(
+              child: Image.asset('assets/icons/admin_logo.png',
+                height: size.height *0.125,
+                width: size.width *0.125,
+              ),
+              onTap: ()
+              {
+                navigateTo(context, AdminsScreen());
+              },
+            ),
+          ),
+          Positioned(
+            top: 60,
+            left: 30,
+            child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+            {
+              Navigator.pop(context);
+            }, iconSize: 23,
+            ),
           ),
         ],
       ),
-      body:
-      Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:
-            [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
-                child: defaultButton(
-                  function: ()
-                  {
-                    navigateTo(context, AdminsScreen());
-                  },
-                  text: 'Admins',
-                  context: context,
-                  height: size.height * 0.08,
-                  width: size.width,
+      body: Container(
+        width: size.width,
+        height: size.height,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Image.asset('assets/images/main_top.png',
+                width: size.width * 0.35,),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset('assets/images/login_bottom.png',
+                width: size.width * 0.4,),
+            ),
+            Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:
+                  [
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                    //   child: defaultButton(
+                    //     function: ()
+                    //     {
+                    //       navigateTo(context, AdminsScreen());
+                    //     },
+                    //     text: 'Admins',
+                    //     context: context,
+                    //     height: size.height * 0.08,
+                    //     width: size.width,
+                    //   ),
+                    // ),
+                    // SizedBox(height: size.height * 0.03,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      child: defaultButton(
+                        function: ()
+                        {
+                          navigateTo(context, CsStudentsScreen());
+                        },
+                        text: 'Computer Science',
+                        context: context,
+                        height: size.height * 0.08,
+                        width: size.width,
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.03,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      child: defaultButton(
+                        function: ()
+                        {
+                          navigateTo(context, EngStudentsScreen());
+                        },
+                        text: 'Engineering',
+                        context: context,
+                        height: size.height * 0.08,
+                        width: size.width,
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.03,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      child: defaultButton(
+                        function: ()
+                        {
+                          navigateTo(context, BusinessStudentsScreen());
+                        },
+                        text: 'Business Management',
+                        context: context,
+                        height: size.height * 0.08,
+                        width: size.width,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: size.height * 0.03,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
-                child: defaultButton(
-                  function: ()
-                  {
-                    navigateTo(context, CsStudentsScreen());
-                  },
-                  text: 'Computer Science',
-                  context: context,
-                  height: size.height * 0.08,
-                  width: size.width,
-                ),
-              ),
-              SizedBox(height: size.height * 0.03,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
-                child: defaultButton(
-                  function: ()
-                  {
-                    navigateTo(context, EngStudentsScreen());
-                  },
-                  text: 'Engineering',
-                  context: context,
-                  height: size.height * 0.08,
-                  width: size.width,
-                ),
-              ),
-              SizedBox(height: size.height * 0.03,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
-                child: defaultButton(
-                  function: ()
-                  {
-                    navigateTo(context, BusinessStudentsScreen());
-                  },
-                  text: 'Business Management',
-                  context: context,
-                  height: size.height * 0.08,
-                  width: size.width,
-                ),
-              ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

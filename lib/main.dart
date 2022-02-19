@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/modules/login_screens/cubit/cubit.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/onboarding_screen/on_boarding_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
@@ -65,6 +66,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+            create: (BuildContext context) =>
+                UserLoginCubit()
+        ),
         BlocProvider(
           create: (BuildContext context) =>
               ThemeCubit()..changeTheme(fromShared: isDark),

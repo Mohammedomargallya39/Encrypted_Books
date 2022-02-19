@@ -223,11 +223,30 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                               child: Stack(
                                                 alignment: AlignmentDirectional.centerStart,
                                                 children:[
-                                                  CircleAvatar(
-                                                    radius: 50,
-                                                    backgroundImage:  NetworkImage(
-                                                        '${AppCubit.get(context).userModel!.image}'
-                                                    ),
+                                                  Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                        radius: 50,
+                                                        backgroundImage:  NetworkImage(
+                                                            '${AppCubit.get(context).userModel!.image}'
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width* 0.05,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          ' ${AppCubit.get(context).userModel!.name}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.bold ,
+                                                              fontSize: 16 ,
+                                                              color: Colors.white
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ] ,
                                               ),

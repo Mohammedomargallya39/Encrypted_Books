@@ -23,32 +23,13 @@ class StudentBookPDFScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: AppCubit.get(context).searchStudentModel![StudentID].books![StudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
-            appBar: AppBar(
-              title:Text(
-                  AppCubit.get(context).searchStudentModel![StudentID].books![StudentBookId].name!
-              ),
-              actions: [
-                InkWell(
-                  child: IconButton(
-                    color: Colors.red,
-                    onPressed: ()
-                    {
-                      AppCubit.get(context).IndexRemoveBookStudent= StudentBookId;
-                      AppCubit.get(context).IndexRemoveStudentBook= StudentID;
-                      showDialog(
-                        context: context,
-                        builder: (context) => DeleteStudentBooksAlertDialog(
-                                  title: 'Delete This Book',
-                                  description: 'Are you sure?',
-                                  //StudentIDToDelete: StudentId,
-                                ),
-                      );
-                    },
-                    icon: const Icon(Icons.delete_forever),
-                  ),
-                ),
-              ],
+            floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+              ,onPressed: ()
+              {
+                Navigator.pop(context);
+              },
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
             body:  PDF(
               nightMode: ThemeCubit.get(context).darkTheme? night : light ,
               enableSwipe: true,

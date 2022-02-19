@@ -17,6 +17,7 @@ class StudentBookScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return
       BlocConsumer<AppCubit,AppStates>(
         listener: (context, state) {},
@@ -26,84 +27,166 @@ class StudentBookScreen extends StatelessWidget {
           return ConditionalBuilder(
             condition: cubit.searchStudentModel![studentBooksId].books != null,
             builder: (context) =>  Scaffold(
-              appBar: AppBar(
-                title: const Text('Student books'),
-
-                actions: [
-                  IconButton(
-                    onPressed: ()
+              floatingActionButton: Stack(
+                children: [
+                  Positioned(
+                    top: 60,
+                    right: 0,
+                    child: IconButton(icon: Icon(Icons.add), onPressed: ()
                     {
                       showModalBottomSheet(
-                          context: context,
-                          builder: (context)
-                          {
-                            return Scaffold(
-                              appBar: AppBar(title: const Text('Add books'),),
-                              body: ListView.separated(
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context,index) => InkWell(
-                                  child: addBooksForStudentsItem(
-                                      AdminBooksDetails(
-                                          name: cubit.adminBooksModel!.books![index].name,
-                                          cover: cubit.adminBooksModel!.books![index].cover,
-                                      ),
-                                      context),
-                                  onTap: ()
-                                  {
-                                    navigateTo(context,
-                                        BooksCanAddedForStudentPdfScreen(
-                                          StudentBookIndexId: index,
-                                          StudentIndexId: studentBooksId,
-                                        )
-                                    )
-                                    ;
-                                  },
-                                ),
-                                separatorBuilder:(context,index)=> Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: 1.0,
-                                    width: double.infinity,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                itemCount: cubit.adminBooksModel!.books!.length,
-                              ),
-                            );
-                          }
-                      );
-                    },
-                    icon: const Icon(Icons.add),
+                                      context: context,
+                                      builder: (context)
+                                      {
+                                        return Scaffold(
+                                          appBar: AppBar(title: const Text('Add books'),),
+                                          body: ListView.separated(
+                                            physics: const BouncingScrollPhysics(),
+                                            itemBuilder: (context,index) => InkWell(
+                                              child: addBooksForStudentsItem(
+                                                  AdminBooksDetails(
+                                                      name: cubit.adminBooksModel!.books![index].name,
+                                                      cover: cubit.adminBooksModel!.books![index].cover,
+                                                  ),
+                                                  context),
+                                              onTap: ()
+                                              {
+                                                navigateTo(context,
+                                                    BooksCanAddedForStudentPdfScreen(
+                                                      StudentBookIndexId: index,
+                                                      StudentIndexId: studentBooksId,
+                                                    )
+                                                )
+                                                ;
+                                              },
+                                            ),
+                                            separatorBuilder:(context,index)=> Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                height: 1.0,
+                                                width: double.infinity,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            itemCount: cubit.adminBooksModel!.books!.length,
+                                          ),
+                                        );
+                                      }
+                                  );
+
+                    }, iconSize: 23,
+                    ),
+                  ),
+                  Positioned(
+                    top: 60,
+                    left: 30,
+                    child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                    {
+                      Navigator.pop(context);
+                    }, iconSize: 23,
+                    ),
                   ),
                 ],
               ),
+              // appBar: AppBar(
+              //   title: const Text('Student books'),
+              //
+              //   actions: [
+              //     IconButton(
+              //       onPressed: ()
+              //       {
+              //         showModalBottomSheet(
+              //             context: context,
+              //             builder: (context)
+              //             {
+              //               return Scaffold(
+              //                 appBar: AppBar(title: const Text('Add books'),),
+              //                 body: ListView.separated(
+              //                   physics: const BouncingScrollPhysics(),
+              //                   itemBuilder: (context,index) => InkWell(
+              //                     child: addBooksForStudentsItem(
+              //                         AdminBooksDetails(
+              //                             name: cubit.adminBooksModel!.books![index].name,
+              //                             cover: cubit.adminBooksModel!.books![index].cover,
+              //                         ),
+              //                         context),
+              //                     onTap: ()
+              //                     {
+              //                       navigateTo(context,
+              //                           BooksCanAddedForStudentPdfScreen(
+              //                             StudentBookIndexId: index,
+              //                             StudentIndexId: studentBooksId,
+              //                           )
+              //                       )
+              //                       ;
+              //                     },
+              //                   ),
+              //                   separatorBuilder:(context,index)=> Padding(
+              //                     padding: const EdgeInsets.all(8.0),
+              //                     child: Container(
+              //                       height: 1.0,
+              //                       width: double.infinity,
+              //                       color: Colors.grey,
+              //                     ),
+              //                   ),
+              //                   itemCount: cubit.adminBooksModel!.books!.length,
+              //                 ),
+              //               );
+              //             }
+              //         );
+              //       },
+              //       icon: const Icon(Icons.add),
+              //     ),
+              //   ],
+              // ),
 
-              body: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context,index) => InkWell(child:engStudentBooks(
-                    Books(
-                      name: AppCubit.get(context).searchStudentModel![studentBooksId].books![index].name,
-                      cover: AppCubit.get(context).searchStudentModel![studentBooksId].books![index].cover,
-
-                    ), context),
-                    onTap: ()
-                    {
-                      navigateTo(context, StudentBookPDFScreen(
-                        StudentID: studentBooksId,
-                        StudentBookId: index,
-                      ),
-                      );
-                    },
-                  ),
-                  separatorBuilder:(context,index)=> Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 1.0,
-                      width: double.infinity,
-                      color: Colors.grey,
+              body: Container(
+                width: size.width,
+                height: size.height,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Image.asset('assets/images/main_top.png',
+                        width: size.width * 0.35,),
                     ),
-                  ),
-                  itemCount: cubit.searchStudentModel![studentBooksId].books!.length),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Image.asset('assets/images/login_bottom.png',
+                        width: size.width * 0.4,),
+                    ),
+                    ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context,index) => InkWell(child:engStudentBooks(
+                            Books(
+                              name: AppCubit.get(context).searchStudentModel![studentBooksId].books![index].name,
+                              cover: AppCubit.get(context).searchStudentModel![studentBooksId].books![index].cover,
+
+                            ), context),
+                          onTap: ()
+                          {
+                            navigateTo(context, StudentBookPDFScreen(
+                              StudentID: studentBooksId,
+                              StudentBookId: index,
+                            ),
+                            );
+                          },
+                        ),
+                        separatorBuilder:(context,index)=> Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 1.0,
+                            width: double.infinity,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        itemCount: cubit.searchStudentModel![studentBooksId].books!.length)
+                  ],
+                ),
+              ),
             ),
 
             fallback:(context) => Scaffold(

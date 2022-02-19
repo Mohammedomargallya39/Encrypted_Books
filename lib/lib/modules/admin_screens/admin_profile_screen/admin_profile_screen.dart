@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
+import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
+import 'package:social/lib/shared/cubit/states.dart';
 
 class  AdminProfileScreen extends StatelessWidget {
 
@@ -25,206 +29,245 @@ class  AdminProfileScreen extends StatelessWidget {
             top: true,
             bottom: true,
             child: Scaffold(
-              body: Padding(
-                padding: const EdgeInsets.fromLTRB(17.5,0,17.5,0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:
-                    <Widget>
-                    [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 33, 0, 0),
-                        child: Center(
-                          child: GestureDetector(
-                            child: SizedBox(
-                              width:  size.width * 0.5,
-                              height: size.height * 0.21,
-                              child: Stack(
-                                alignment: AlignmentDirectional.bottomEnd,
-                                children:[
-                                  // Center(
-                                  //   child: Container(
-                                  //     margin: const EdgeInsets.all(10),
-                                  //     width:  275,
-                                  //     height: 275,
-                                  //     decoration:   BoxDecoration(
-                                  //       shape: BoxShape.circle,
-                                  //       image: DecorationImage(image:
-                                  //       NetworkImage(AppCubit.get(context).userModel!.image),
-                                  //           fit: BoxFit.fill
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  Center(
-                                    child: CircleAvatar(
-                                      radius: 111,
-                                      backgroundImage:  NetworkImage(
-                                          '${AppCubit.get(context).userModel!.image}'
+              floatingActionButton: IconButton(icon:Icon(Icons.home)
+                ,onPressed: ()
+                {
+                  navigateTo(context, AdminDrawerScreen()
+                  );
+
+                },
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+              body: BlocConsumer<ThemeCubit,ThemeStates>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return Container(
+                    width: size.width,
+                    height: size.height,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Image.asset('assets/images/main_top.png',
+                            width: size.width * 0.35,),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Image.asset('assets/images/login_bottom.png',
+                            width: size.width * 0.4,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(17.5,0,17.5,0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:
+                              <Widget>
+                              [
+                                Center(
+                                  child: GestureDetector(
+                                    child: SizedBox(
+                                      width:  size.width * 0.5,
+                                      height: size.height * 0.21,
+                                      child: Stack(
+                                        alignment: AlignmentDirectional.bottomEnd,
+                                        children:[
+                                          // Center(
+                                          //   child: Container(
+                                          //     margin: const EdgeInsets.all(10),
+                                          //     width:  275,
+                                          //     height: 275,
+                                          //     decoration:   BoxDecoration(
+                                          //       shape: BoxShape.circle,
+                                          //       image: DecorationImage(image:
+                                          //       NetworkImage(AppCubit.get(context).userModel!.image),
+                                          //           fit: BoxFit.fill
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                          Center(
+                                            child: CircleAvatar(
+                                              radius: 111,
+                                              backgroundImage:  NetworkImage(
+                                                  '${AppCubit.get(context).userModel!.image}'
+                                              ),
+                                            ),
+                                          ),
+                                        ] ,
                                       ),
                                     ),
+                                    onTap: ()
+                                    {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_){
+                                        return const UserDetailsPhotoDetails() ;
+                                      }));
+                                    },
                                   ),
-                                ] ,
-                              ),
+                                ),
+                                SizedBox(height: size.height * 0.02,),
+                                Center(
+                                  child: Text(
+                                    AppCubit.get(context).userModel!.email.split('@').first,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+                                ),
+                                SizedBox(height: size.height * 0.04,),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Row(
+                                    children: [
+                                      const Text('Name:',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),),
+                                      SizedBox(width: size.width * 0.015,),
+                                      Expanded(
+                                        child: Text(
+                                          '${AppCubit.get(context).userModel!.name}',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      const Text('E-mail:',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),),
+                                      SizedBox(width: size.width *0.015),
+                                      Expanded(
+                                        child: Text(
+                                          '${AppCubit.get(context).userModel!.email}',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      const Text('Phone:',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),),
+                                      SizedBox(width: size.width *0.015),
+                                      Expanded(
+                                        child: Text(
+                                          '${AppCubit.get(context).userModel!.phone}',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      const Text('Created In:',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),),
+                                      SizedBox(width: size.width *0.015),
+                                      Expanded(
+                                        child: Text( '${AppCubit.get(context).homeModel!.createdAt!.split('T').first}',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                  ),
+                                ),
+                                SizedBox(height: size.height * 0.01,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      const Text('Updated In:',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),),
+                                      SizedBox(width: size.width *0.015),
+                                      Expanded(
+                                        child: Text( '${AppCubit.get(context).homeModel!.updatedAt!.split('T').first}',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12,),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom:  BorderSide(color: Colors.grey),),
+                                  ),
+                                ),
+                              ],
                             ),
-                            onTap: ()
-                            {
-                              Navigator.push(context, MaterialPageRoute(builder: (_){
-                                return const UserDetailsPhotoDetails() ;
-                              }));
-                            },
                           ),
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.02,),
-                      Center(
-                        child: Text(
-                          AppCubit.get(context).userModel!.email.split('@').first,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
-                      ),
-                      SizedBox(height: size.height * 0.04,),
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(bottom:  BorderSide(color: Colors.grey),),
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Row(
-                          children: [
-                            const Text('Name:',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),),
-                            SizedBox(width: size.width * 0.015,),
-                            Expanded(
-                              child: Text(
-                                '${AppCubit.get(context).userModel!.name}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 16,),),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(bottom:  BorderSide(color: Colors.grey),),
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text('E-mail:',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),),
-                            SizedBox(width: size.width *0.015),
-                            Expanded(
-                              child: Text(
-                                '${AppCubit.get(context).userModel!.email}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 16,),),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(bottom:  BorderSide(color: Colors.grey),),
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text('Phone:',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),),
-                            SizedBox(width: size.width *0.015),
-                            Expanded(
-                              child: Text(
-                                '${AppCubit.get(context).userModel!.phone}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 16,),),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(bottom:  BorderSide(color: Colors.grey),),
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text('Created In:',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),),
-                            SizedBox(width: size.width *0.015),
-                            Expanded(
-                              child: Text( '${AppCubit.get(context).homeModel!.createdAt!.split('T').first}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 16,),),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(bottom:  BorderSide(color: Colors.grey),),
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text('Updated In:',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),),
-                            SizedBox(width: size.width *0.015),
-                            Expanded(
-                              child: Text( '${AppCubit.get(context).homeModel!.updatedAt!.split('T').first}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 16,),),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 12,),
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(bottom:  BorderSide(color: Colors.grey),),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ),

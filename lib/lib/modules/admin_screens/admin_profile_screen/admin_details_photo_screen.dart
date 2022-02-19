@@ -8,6 +8,13 @@ class AdminDetailsPhotoDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+        ,onPressed: ()
+        {
+          Navigator.pop(context);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: GestureDetector(
         child: Center(
           child: Image.network(

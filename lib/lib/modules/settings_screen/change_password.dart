@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
+import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/shared/components/components.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
@@ -26,9 +28,31 @@ class ChangePasswordScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: AppCubit.get(context).userModel != null,
           builder: (context) => Scaffold(
-            appBar: AppBar(
-              title: const Text('change password'),
-            ),
+              floatingActionButton: Stack(
+               // fit: StackFit.expand,
+                children: [
+                  Positioned(
+                      top: 60,
+                      right: 0,
+                      child: IconButton(icon: Icon(Icons.home), onPressed: ()
+                      {
+                        navigateTo(context,
+                            AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
+                        );
+                      }, iconSize: 23,
+                      ),
+                  ),
+                  Positioned(
+                    top: 60,
+                    left: 30,
+                    child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                    {
+                      Navigator.pop(context);
+                    }, iconSize: 23,
+                    ),
+                  ),
+                ],
+              ),
             body: Container(
               width: size.width,
               height: size.height,
