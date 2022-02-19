@@ -54,6 +54,7 @@ dependencies:
   file_picker: ^4.3.3
   restart_app: ^1.1.0
   animated_button: ^0.2.0
+  flutter_staggered_animations: ^1.0.0
 
 
 

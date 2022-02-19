@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/search_book_model.dart';
-import 'package:social/lib/models/search_student_model.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_books_screens/search_book_screen/pdf_book_screen.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_details_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/search_book_screen/pdf_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 
 class CsBookSearchScreen extends StatelessWidget {
