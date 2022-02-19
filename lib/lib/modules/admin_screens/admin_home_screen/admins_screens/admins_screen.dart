@@ -13,46 +13,92 @@ class AdminsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
           condition: AppCubit.get(context).adminsModel != null,
           builder: (context) => Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                  'Admins'),
-            ),
-            body: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder:  (context,index) {
-                 // AppCubit.get(context).indexStudent= index;
-                  return InkWell(
-                    child: adminsStudentsItem(StudentsModel(
-                      name: AppCubit.get(context).adminsModel![index].name,
-                      email: AppCubit.get(context).adminsModel![index].email!.split('@').first,
-                      image: AppCubit.get(context).adminsModel![index].image,
-                      sId: AppCubit.get(context).adminsModel![index].sId,
-
-                    ) , context),
-                    onTap: ()
-                    {
-                      navigateTo(context, AdminsDetailsScreen(
-                        AdminId: index,
-                      ),
-                      );
-                    },
-                  );
-                },
-                separatorBuilder:(context,index)=> Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 1.0,
-                    width: double.infinity,
-                    color: Colors.grey,
+            floatingActionButton: Stack(
+              children: [
+                Positioned(
+                  top: 60,
+                  left: 30,
+                  child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                  {
+                    Navigator.pop(context);
+                  }, iconSize: 23,
                   ),
                 ),
-                itemCount: AppCubit.get(context).adminsModel!.length
+              ],
+            ),
+            body: Container(
+              width: size.width,
+              height: size.height,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Positioned(
+                  //   top: 0,
+                  //   left: 0,
+                  //   right: 0,
+                  //   bottom: 0,
+                  //  // height: size.height *0.4,
+                  //   //width: size.width * 0.05,
+                  //   child: Image.asset('assets/icons/admin_logo.png',
+                  //     width: size.width * 1,
+                  //     color: Colors.blue.withOpacity(0.1),
+                  //   ),
+                  // ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/main_top.png',
+                      width: size.width * 0.35,),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Image.asset('assets/images/login_bottom.png',
+                      width: size.width * 0.4,),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5,99,5,0),
+                    child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder:  (context,index) {
+                          // AppCubit.get(context).indexStudent= index;
+                          return InkWell(
+                            child: adminsStudentsItem(StudentsModel(
+                              name: AppCubit.get(context).adminsModel![index].name,
+                              email: AppCubit.get(context).adminsModel![index].email!.split('@').first,
+                              image: AppCubit.get(context).adminsModel![index].image,
+                              sId: AppCubit.get(context).adminsModel![index].sId,
+
+                            ) , context),
+                            onTap: ()
+                            {
+                              navigateTo(context, AdminsDetailsScreen(
+                                AdminId: index,
+                              ),
+                              );
+                            },
+                          );
+                        },
+                        separatorBuilder:(context,index)=> Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 1.0,
+                            width: double.infinity,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        itemCount: AppCubit.get(context).adminsModel!.length
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),
