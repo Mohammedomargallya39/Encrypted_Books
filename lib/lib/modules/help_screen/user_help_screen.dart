@@ -8,15 +8,12 @@ import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dar
 import 'package:social/lib/shared/components/components.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class UserHelpScreen extends StatelessWidget {
   const UserHelpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
-
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -27,7 +24,6 @@ class UserHelpScreen extends StatelessWidget {
                 navigateTo(context,
                     AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
                 );
-
               },
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.endTop,

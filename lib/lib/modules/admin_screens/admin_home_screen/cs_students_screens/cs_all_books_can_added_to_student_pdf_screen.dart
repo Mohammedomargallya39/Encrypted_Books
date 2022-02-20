@@ -10,11 +10,11 @@ import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
-  final int StudentIndexId;
-  final int StudentBookIndexId;
+  final int CsStudentIndexId;
+  final int CsStudentBookIndexId;
   bool night = true;
   bool light = false;
-  CsBooksCanAddedForStudentPdfScreen({Key? key, required this.StudentIndexId, required this.StudentBookIndexId}) : super(key: key);
+  CsBooksCanAddedForStudentPdfScreen({Key? key, required this.CsStudentIndexId, required this.CsStudentBookIndexId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,11 @@ class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].pdf != null,
+          condition: AppCubit.get(context).adminBooksModel!.books![CsStudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
             appBar: AppBar(
               title:Text(
-                  AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].name!
+                  AppCubit.get(context).adminBooksModel!.books![CsStudentBookIndexId].name!
               ),
               actions: [
                 InkWell(
@@ -34,25 +34,13 @@ class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
                     color: Colors.white,
                     onPressed: ()
                     {
-                      // AppCubit.get(context).indexBook= StudentBookId;
-                      // print( AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!);
-                      // print(AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId);
-                      // print(token);
-                      //
-                      // AppCubit.get(context).removeBookFromStudent(
-                      //   bookId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!,
-                      //   studentId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId,
-                      //);
-                      // AppCubit.get(context).indexBookStudent= StudentBookId;
-                      // AppCubit.get(context).indexStudentBook= StudentIndexId;
-                      AppCubit.get(context).CsIndexAddedStudentBook= StudentIndexId;
-                      AppCubit.get(context).CsIndexAddedBookStudent= StudentBookIndexId;
+                      AppCubit.get(context).CsIndexAddedStudentBook= CsStudentIndexId;
+                      AppCubit.get(context).CsIndexAddedBookStudent= CsStudentBookIndexId;
                       showDialog(
                         context: context,
                         builder: (context) => AddStudentBooksAlertDialog(
                           title: 'Add This Book',
                           description: 'Are you sure?',
-                          //StudentIDToDelete: StudentId,
                         ),
                       );
                     },
@@ -68,7 +56,7 @@ class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].pdf!
+              AppCubit.get(context).adminBooksModel!.books![CsStudentBookIndexId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -80,8 +68,6 @@ class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 class AddStudentBooksAlertDialog extends StatefulWidget {
   const AddStudentBooksAlertDialog({
@@ -101,7 +87,6 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
     Size size = MediaQuery.of(context).size;
     return Dialog(
       elevation: 0,
-      //backgroundColor: Color(0xffffffff),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -135,8 +120,6 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                // print(AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].books![AppCubit.get(context).indexBookStudent!].bookId!.sId!);
-                // print(AppCubit.get(context).studentsModelWithOutAdmin![AppCubit.get(context).indexStudentBook!].sId);
                 AppCubit.get(context).addBookToStudent(
                     bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).CsIndexAddedBookStudent!].sId!,
                     studentId: AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexAddedStudentBook!].sId,
@@ -149,10 +132,6 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
                     message: 'Book added successfully',
                     state: ToastStates.SUCCESS );
                 Navigator.pop(context);
-                //navigateAndEnd(context, AdminHomeScreen(),);
-                //محتاج يتعدل
-                //Restart.restartApp();
-
               },
               child: Center(
                 child: Text(
@@ -198,4 +177,3 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
     );
   }
 }
-

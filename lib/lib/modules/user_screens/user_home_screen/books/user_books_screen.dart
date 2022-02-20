@@ -16,7 +16,6 @@ class UserBooksScreen extends StatefulWidget {
   @override
   _UserBooksScreenState createState() => _UserBooksScreenState();
 }
-
 class _UserBooksScreenState extends State<UserBooksScreen> {
   final pageController = PageController(viewportFraction: 0.8);
   double page = 0.0;
@@ -25,21 +24,18 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
       page = pageController.page!;
     });
   }
-
   @override
   void initState() {
     pageController.addListener(listenScroll);
 
     super.initState();
   }
-
   @override
   void dispose() {
     pageController.removeListener(listenScroll);
     pageController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -162,7 +158,6 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
                                     );
                                   }),
                             ),
-
                           ],
                         ),
                       ),

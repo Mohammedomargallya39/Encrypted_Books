@@ -7,7 +7,6 @@ import 'package:social/lib/modules/admin_screens/admin_home_screen/students_depa
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
-
 import 'all_books_screens/all_books_screen.dart';
 
 class AdminHomeScreen extends StatelessWidget {
@@ -45,7 +44,6 @@ class AdminHomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:
                         [
-                          // SizedBox(height: size.height * 0.05,),
                           Text('Welcome Admin',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -89,8 +87,6 @@ class AdminHomeScreen extends StatelessWidget {
           },
         );
       },
-
     );
   }
 }
-

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'colors.dart';
 
 ThemeData lightTheme = ThemeData(
-
   buttonTheme: const ButtonThemeData(buttonColor: Colors.blue),
   iconTheme: const IconThemeData(color: Colors.black),
   textTheme: const TextTheme(bodyText2: TextStyle (color:
@@ -24,18 +23,12 @@ ThemeData lightTheme = ThemeData(
       selectedItemColor: defaultColor,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed
-
   ),
   fontFamily: 'EncryptionFont',
   primarySwatch: Colors.blue,
   scaffoldBackgroundColor: Colors.white,
 );
-
-
-
 ThemeData darkTheme = ThemeData(
-
-
   buttonTheme: const ButtonThemeData(buttonColor: Colors.blueGrey),
   iconTheme: const IconThemeData(color: Colors.white),
   textTheme: const TextTheme(bodyText2: TextStyle (color:
@@ -57,11 +50,5 @@ ThemeData darkTheme = ThemeData(
     selectedItemColor: defaultColor,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed
-
   ),
-
-
 );
-
-
-//HexColor(''),

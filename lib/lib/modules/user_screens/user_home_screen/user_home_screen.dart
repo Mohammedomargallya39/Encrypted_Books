@@ -69,7 +69,6 @@ class UserHomeScreen extends StatelessWidget {
                         ),
                       ),
                     ],
-
                   ),
                 )
             );
@@ -79,7 +78,3 @@ class UserHomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-

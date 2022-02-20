@@ -17,7 +17,6 @@ class UserDrawerScreen extends StatefulWidget {
   @override
   __UserDrawerScreenPage createState() => __UserDrawerScreenPage();
 }
-
 class __UserDrawerScreenPage extends State<UserDrawerScreen> {
   @override
   Widget build(BuildContext context) {
@@ -29,14 +28,12 @@ class __UserDrawerScreenPage extends State<UserDrawerScreen> {
     );
   }
 }
-
 class AnimatedDrawerScreen extends StatefulWidget {
   const AnimatedDrawerScreen({Key? key}) : super(key: key);
 
   @override
   _AnimatedDrawerState createState() => _AnimatedDrawerState();
 }
-
 class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
   dynamic screenView;
   late DrawerIndex drawerIndex;
@@ -44,12 +41,10 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-
     /// first  Item in drawer
     screenView = UserHomeScreen();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,9 +72,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       ),
     );
   }
-
   /// changing current item in drawer
-
   void changeIndex(DrawerIndex drawerIndexdata) {
     if (drawerIndex != drawerIndexdata) {
       drawerIndex = drawerIndexdata;
@@ -90,17 +83,14 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {
           screenView = UserProfileScreen();
-          //navigateTo(context, UserProfileScreen());
         });
       } else if (drawerIndex == DrawerIndex.Settings) {
         setState(() {
           screenView = UserSettingsScreen();
-          //navigateTo(context, UserSettingsScreen());
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
           screenView = UserHelpScreen();
-          //navigateTo(context, UserHelpScreen());
         });
       } else {
         Navigator.of(context).pop();
@@ -108,20 +98,14 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
     }
   }
 }
-
 /// Item in drawer
-
 class Page extends StatelessWidget {
-  //final String content;
-
   const Page({Key? key,}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return UserHomeScreen();
   }
 }
-
 /// Item in drawer
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -147,9 +131,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     setdDrawerListArray();
     super.initState();
   }
-
   /// Inilize Items list in drawer
-
   void setdDrawerListArray() {
     drawerList = <DrawerList>[
       DrawerList(
@@ -174,7 +156,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
     ];
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -386,8 +367,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
         return Material(
           color: ThemeCubit.get(context).darkTheme ? Colors.grey.shade900:Colors.blue,
           child: InkWell(
-            //splashColor: Colors.grey.withOpacity(0.1),
-            //highlightColor: Colors.blue,
             onTap: () {
               navigationtoScreen(listData.index);
             },
@@ -421,9 +400,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         height: size.width * 0.05,
                         child: Image.asset(
                           listData.imageName,
-                          // color: widget.screenIndex == listData.index
-                          //     ? Colors.blue
-                          //     : Colors.purple.withOpacity(0.6),
                         ),
                       )
                           : Icon(
@@ -507,20 +483,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
     widget.callBackIndex(indexScreen);
   }
 }
-
 enum DrawerIndex {
-  // ignore: constant_identifier_names
   HOME,
-  // ignore: constant_identifier_names
   Settings,
-  // ignore: constant_identifier_names
   Profile,
-  // ignore: constant_identifier_names
   Help,
-  // ignore: constant_identifier_names
   About,
 }
-
 class DrawerList {
   DrawerList({
     this.isAssetsImage = false,

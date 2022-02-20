@@ -6,11 +6,9 @@ import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
 import 'package:social/lib/modules/help_screen/user_help_screen.dart';
 import 'package:social/lib/modules/settings_screen/user_settings_screen.dart';
-import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
-
 import 'admin_home_screen.dart';
 
 class AdminDrawerScreen extends StatefulWidget {
@@ -69,9 +67,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       ),
     );
   }
-
   /// changing current item in drawer
-
   void changeIndex(DrawerIndex drawerIndexdata) {
     if (drawerIndex != drawerIndexdata) {
       drawerIndex = drawerIndexdata;
@@ -97,9 +93,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
     }
   }
 }
-
 /// Item in drawer
-
 class Page extends StatelessWidget {
   //final String content;
 
@@ -110,7 +104,6 @@ class Page extends StatelessWidget {
     return AdminHomeScreen();
   }
 }
-
 /// Item in drawer
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -136,9 +129,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     setdDrawerListArray();
     super.initState();
   }
-
   /// Inilize Items list in drawer
-
   void setdDrawerListArray() {
     drawerList = <DrawerList>[
       DrawerList(
@@ -163,7 +154,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
     ];
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -179,7 +169,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 top: true,
                 bottom: true,
                 child: Scaffold(
-
                   backgroundColor: ThemeCubit.get(context).darkTheme ? Colors.grey.shade900:Colors.blue,
                   body: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -194,15 +183,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              /// ---------------------------
                               /// Animated Builder for drawer
-                              /// ---------------------------
-
                               AnimatedBuilder(
                                 animation: widget.iconAnimationController,
                                 builder: (BuildContext context, Widget? child) {
                                   return ScaleTransition(
-
                                     scale: AlwaysStoppedAnimation<double>(
                                         1.0 - (widget.iconAnimationController.value) * 0.2),
                                     child: RotationTransition(
@@ -374,8 +359,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
         return Material(
           color: ThemeCubit.get(context).darkTheme ? Colors.grey.shade900:Colors.blue,
           child: InkWell(
-            //splashColor: Colors.grey.withOpacity(0.1),
-            //highlightColor: Colors.blue,
             onTap: () {
               navigationtoScreen(listData.index);
             },
@@ -409,9 +392,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         height: size.width * 0.05,
                         child: Image.asset(
                           listData.imageName,
-                          // color: widget.screenIndex == listData.index
-                          //     ? Colors.blue
-                          //     : Colors.purple.withOpacity(0.6),
                         ),
                       )
                           : Icon(
@@ -497,15 +477,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
 }
 
 enum DrawerIndex {
-  // ignore: constant_identifier_names
   HOME,
-  // ignore: constant_identifier_names
   Settings,
-  // ignore: constant_identifier_names
   Profile,
-  // ignore: constant_identifier_names
   Help,
-  // ignore: constant_identifier_names
   About,
 }
 
@@ -632,7 +607,6 @@ class _DrawerUserControllerState extends State<DrawerUserController>
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          // backgroundColor: Colors.blue,
           body: SingleChildScrollView(
             controller: scrollController,
             scrollDirection: Axis.horizontal,
@@ -643,7 +617,6 @@ class _DrawerUserControllerState extends State<DrawerUserController>
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width + widget.drawerWidth,
                 child: Container(
-                  // color: defaultColor,
                   child: Row(
                     children: <Widget>[
                       SizedBox(

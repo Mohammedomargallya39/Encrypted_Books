@@ -4,7 +4,6 @@ import 'package:social/lib/cubit/cubit.dart';
 
 class UserDetailsPhotoDetails extends StatelessWidget {
   const UserDetailsPhotoDetails({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

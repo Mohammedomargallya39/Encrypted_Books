@@ -2,11 +2,9 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
-import 'package:social/lib/modules/login_screens/cubit/cubit.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/modules/user_screens/user_profile_screen/user_details_photo_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -41,7 +39,6 @@ class UserSettingsScreen extends StatelessWidget {
                   navigateTo(context,
                     AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
                   );
-
                 },
               ),
               floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
@@ -95,7 +92,6 @@ class UserSettingsScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-
                                       IconButton(
                                         color: defaultColor,
                                         iconSize: 28,
@@ -121,9 +117,7 @@ class UserSettingsScreen extends StatelessWidget {
                             Text(
                               AppCubit.get(context).userModel!.email.split('@').first,
                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-
                             SizedBox(height: size.height *0.04,),
-
                             defaultFormField(
                               type: TextInputType.name,
                               controller: nameController,
@@ -138,8 +132,6 @@ class UserSettingsScreen extends StatelessWidget {
                               context: context,
                             ),
                             SizedBox(height: size.height *0.019,),
-
-
                             defaultFormField(
                               type: TextInputType.phone,
                               controller: phoneController,
@@ -153,9 +145,7 @@ class UserSettingsScreen extends StatelessWidget {
                               },
                               context: context,
                             ),
-
                             SizedBox(height: size.height *0.05,),
-
                             defaultButton(
                               function: ()
                               {
@@ -184,11 +174,8 @@ class UserSettingsScreen extends StatelessWidget {
                               context: context,
                               height: size.height * 0.08,
                               width: size.width,
-
                             ),
-
                             SizedBox(height: size.height *0.019,),
-
                             defaultTextButton(
                                 onPressed: ()
                                 {

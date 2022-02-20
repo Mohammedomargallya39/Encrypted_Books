@@ -32,9 +32,6 @@ void main() async {
   bool onBoarding = CacheHelper.getData(key: 'onBoarding') == true;
   isAdmin = CacheHelper.getData(key: 'isAdmin') == true;
   token = CacheHelper.getData(key: 'token');
-
-  //print(onBoarding);
-
   if (onBoarding == true) {
     if (token != null) {
       if (isAdmin!) {
@@ -54,14 +51,12 @@ void main() async {
     startWidget: widget,
   ));
 }
-
 class MyApp extends StatelessWidget {
   final bool? isDark;
   final Widget startWidget;
 
   const MyApp({Key? key, this.isDark, required this.startWidget})
       : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -77,7 +72,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) => AppCubit()..getUserData()..getAdminBooks(),
         ),
-        //BlocProvider(create: (BuildContext context) => EncryptionLoginCubit(),),
       ],
       child: BlocConsumer<ThemeCubit, ThemeStates>(
         listener: (context, state) {},
@@ -90,7 +84,6 @@ class MyApp extends StatelessWidget {
                 ? ThemeMode.dark
                 : ThemeMode.light,
             home: startWidget,
-            //onBoarding ? LoginScreen() : OnBoardingScreen(),
           );
         },
       ),
