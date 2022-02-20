@@ -10,9 +10,9 @@ import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 class CsStudentBookPDFScreen extends StatelessWidget {
-   CsStudentBookPDFScreen({Key? key,required this.StudentBookId, required this.StudentID}) : super(key: key);
-   final int StudentBookId;
-   final int StudentID;
+   CsStudentBookPDFScreen({Key? key,required this.CsStudentBookId, required this.CsStudentID}) : super(key: key);
+   final int CsStudentBookId;
+   final int CsStudentID;
    bool night = true;
    bool light = false;
   @override
@@ -21,39 +21,37 @@ class CsStudentBookPDFScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].pdf != null,
+          condition: AppCubit.get(context).csStudentsModel![CsStudentID].books![CsStudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
-            appBar: AppBar(
-              title:Text(
-                  AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].name!
-              ),
-              actions: [
-                InkWell(
-                  child: IconButton(
+            floatingActionButton: Stack(
+              children: [
+                Positioned(
+                  top: 60,
+                  right: 0,
+                  child: IconButton(icon: Icon(Icons.delete_forever), onPressed: ()
+                  {
+                    AppCubit.get(context).CsIndexRemoveBookStudent= CsStudentBookId;
+                    AppCubit.get(context).CsIndexRemoveStudentBook= CsStudentID;
+                    showDialog(
+                      context: context,
+                      builder: (context) => DeleteStudentBooksAlertDialog(
+                        title: 'Delete This Book',
+                        description: 'Are you sure?',
+                        //StudentIDToDelete: StudentId,
+                      ),
+                    );
+                  },
+                    iconSize: 30,
                     color: Colors.red,
-                    onPressed: ()
-                    {
-                      // AppCubit.get(context).indexBook= StudentBookId;
-                      // print( AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!);
-                      // print(AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId);
-                      // print(token);
-                      //
-                      // AppCubit.get(context).removeBookFromStudent(
-                      //   bookId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].books![StudentBookId].bookId!.sId!,
-                      //   studentId: AppCubit.get(context).studentsModelWithOutAdmin![StudentID].sId,
-                      //);
-                      AppCubit.get(context).CsIndexRemoveBookStudent= StudentBookId;
-                      AppCubit.get(context).CsIndexRemoveStudentBook= StudentID;
-                      showDialog(
-                        context: context,
-                        builder: (context) => DeleteStudentBooksAlertDialog(
-                                  title: 'Delete This Book',
-                                  description: 'Are you sure?',
-                                  //StudentIDToDelete: StudentId,
-                                ),
-                      );
-                    },
-                    icon: const Icon(Icons.delete_forever),
+                  ),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 30,
+                  child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                  {
+                    Navigator.pop(context);
+                  }, iconSize: 23,
                   ),
                 ),
               ],
@@ -65,7 +63,7 @@ class CsStudentBookPDFScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).csStudentsModel![StudentID].books![StudentBookId].pdf!
+              AppCubit.get(context).csStudentsModel![CsStudentID].books![CsStudentBookId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -77,8 +75,6 @@ class CsStudentBookPDFScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 class DeleteStudentBooksAlertDialog extends StatefulWidget {
   const DeleteStudentBooksAlertDialog({
@@ -98,7 +94,6 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
     Size size = MediaQuery.of(context).size;
     return Dialog(
       elevation: 0,
-      //backgroundColor: Color(0xffffffff),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -144,10 +139,6 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
                 Navigator.pop(context);
-                //navigateAndEnd(context, AdminHomeScreen(),);
-                //محتاج يتعدل
-                //Restart.restartApp();
-
               },
               child: Center(
                 child: Text(
@@ -193,6 +184,3 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
     );
   }
 }
-
-
-

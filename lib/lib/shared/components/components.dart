@@ -39,23 +39,6 @@ Color toastColor(ToastStates state){
   }
   return color;
 }
-// Color toastColor(toastStates state){
-//   Color color ;
-//   switch (state){
-//     case toastStates.SUCCESS:
-//       color = Colors.green;
-//       break;
-//     case toastStates.ERROR:
-//       color = Colors.white;
-//       break;
-//     case toastStates.WARNING:
-//       color = Colors.yellow;
-//       break;
-//   }
-//   return color;
-// }
-
-
 Widget defaultButton({
   // Color background = defaultColor,
   double width = double.infinity,
@@ -85,12 +68,6 @@ Widget defaultButton({
       shadowDegree: ShadowDegree.light,
       color: color,
     ),
-    // decoration: BoxDecoration(
-    //   borderRadius: BorderRadius.circular(
-    //     radius,
-    //   ),
-    //   color: background,
-    // ),
   );
 }
 
@@ -130,10 +107,6 @@ Widget defaultFormField({
     maxLines: maxLines,
     controller: controller,
     obscureText: isPassword,
-    //cursorColor: ButtonPrimaryColor,
-    // onFieldSubmitted: (value){
-    //   return onSubmit!(value);
-    // },
     validator:(value){
       return validate!(value);
     },
@@ -261,8 +234,3 @@ class _SignOutAlertDialogState extends State<SignOutAlertDialog> {
     );
   }
 }
-
-
-
-
-

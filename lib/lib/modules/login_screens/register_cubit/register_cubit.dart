@@ -10,7 +10,6 @@ import 'package:social/lib/shared/network/shared/dio_helper.dart';
 
 class UserRegisterCubit extends Cubit<UserRegisterStates> {
   UserRegisterCubit() : super(UserRegisterInitialState());
-
   static UserRegisterCubit get(context) => BlocProvider.of(context);
   bool isPassword = true;
   IconData suffix = Icons.visibility_outlined;

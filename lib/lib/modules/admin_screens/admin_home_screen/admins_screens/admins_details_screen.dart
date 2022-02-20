@@ -4,8 +4,6 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/cs_students_screens/cs_student_book_screen.dart';
-import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 
@@ -17,19 +15,13 @@ class AdminsDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      floatingActionButton: Stack(
-        children: [
-          Positioned(
-            top: 60,
-            left: 30,
-            child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
-            {
-              Navigator.pop(context);
-            }, iconSize: 23,
-            ),
-          ),
-        ],
+      floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+        ,onPressed: ()
+        {
+          Navigator.pop(context);
+        },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: BlocConsumer<ThemeCubit,ThemeStates>(
@@ -41,7 +33,6 @@ class AdminsDetailsScreen extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-
                   Positioned(
                     top: 0,
                     left: 0,
@@ -215,5 +206,3 @@ class AdminsDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -170,4 +170,3 @@ class _DeleteSearchBookAlertDialogState extends State<DeleteSearchBookAlertDialo
     );
   }
 }
-

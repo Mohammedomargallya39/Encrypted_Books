@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -27,7 +28,7 @@ class StudentsDepartmentsScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 120,
+            top: 99,
             right: 0,
             child: InkWell(
               child: Image.asset('assets/icons/admin_logo.png',
@@ -69,28 +70,25 @@ class StudentsDepartmentsScreen extends StatelessWidget {
               child: Image.asset('assets/images/login_bottom.png',
                 width: size.width * 0.4,),
             ),
+            Positioned(
+              top: 33,
+              left: 0,
+              //bottom: 0,
+              right: 0,
+
+              child: SvgPicture.asset('assets/images/department.svg',
+                width: size.width * 0.45,
+                height: size.height * 0.45,
+              ),
+            ),
             Center(
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children:
                   [
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
-                    //   child: defaultButton(
-                    //     function: ()
-                    //     {
-                    //       navigateTo(context, AdminsScreen());
-                    //     },
-                    //     text: 'Admins',
-                    //     context: context,
-                    //     height: size.height * 0.08,
-                    //     width: size.width,
-                    //   ),
-                    // ),
-                    // SizedBox(height: size.height * 0.03,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      padding: const EdgeInsets.fromLTRB(55, 222, 55, 5),
                       child: defaultButton(
                         function: ()
                         {

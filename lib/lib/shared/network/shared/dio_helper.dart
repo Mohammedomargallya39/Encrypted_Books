@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:social/lib/shared/components/components.dart';
-
 class DioHelper{
   static late Dio dio;
   static init(){
@@ -35,8 +33,6 @@ class DioHelper{
     ).catchError((error)
     {
       print(error.toString());
-      // var message =  error.response.data.toString();
-      // showToast(message: message, state: ToastStates.ERROR);
     });
   }
   //postDataWithToken
@@ -59,39 +55,10 @@ class DioHelper{
         ),
       );
     }on DioError catch(error){
-      // var message =  e.response!.data.toString();
-      // showToast(message: message, state: ToastStates.ERROR);
       print(error.toString());
 
     }
   }
-  // //postBook
-  // static Future<Response?> postBook({
-  //   required String url,
-  //   Map<String, dynamic>? query,
-  //   dynamic data,
-  //   String? token,
-  // }) async {
-  //   try{
-  //     return await dio.post(
-  //       url,
-  //       data: data,
-  //       queryParameters: query??null,
-  //       options: Options(
-  //         headers: {
-  //           'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>',
-  //           'Authorization' : 'Bearer ${token??''}',
-  //         },
-  //       ),
-  //     );
-  //   }on DioError catch(error){
-  //     // var message =  e.response!.data.toString();
-  //     // showToast(message: message, state: ToastStates.ERROR);
-  //     print(error.toString());
-  //
-  //   }
-  // }
-  //get
   static Future<Response?> getData({
     required String url,
     Map<String, dynamic>? query,
@@ -111,8 +78,6 @@ class DioHelper{
         ),
       );
     }on DioError catch(error){
-      // var message =  e.response!.data.toString();
-      // showToast(message: message, state: ToastStates.ERROR);
       print(error.toString());
 
     }
@@ -138,8 +103,6 @@ class DioHelper{
         ),
       );
     }on DioError catch(error){
-      // var message =  e.response!.data['message'].toString();
-      // showToast(message: message, state: ToastStates.ERROR);
       print(error.toString());
 
     }
@@ -163,8 +126,6 @@ class DioHelper{
         ),
       );
     }on DioError catch(error){
-      // var message =  e.response!.data['message'].toString();
-      // showToast(message: message, state: ToastStates.ERROR);
       print(error.toString());
 
     }
@@ -190,10 +151,7 @@ class DioHelper{
         ),
       );
     }on DioError catch(error){
-      // var message =  e.response!.data['message'].toString();
-      // showToast(message: message, state: ToastStates.ERROR);
       print(error.toString());
-
     }
   }
 }

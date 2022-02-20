@@ -6,11 +6,8 @@ import 'package:social/lib/shared/network/local/cache_helper.dart';
 class ThemeCubit extends Cubit<ThemeStates> {
 
   ThemeCubit() : super(ThemeInitialState());
-
   static ThemeCubit get(context) => BlocProvider.of(context);
-
   bool darkTheme = true;
-
   void changeTheme({fromShared}) {
     if (fromShared != null) {
       darkTheme = fromShared;
@@ -26,5 +23,4 @@ class ThemeCubit extends Cubit<ThemeStates> {
       );
     }
   }
-
 }

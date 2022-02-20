@@ -17,257 +17,246 @@ class CsStudentDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            AppCubit.get(context).csStudentsModel![StudentId].name!
-        ),
+      floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+        ,onPressed: ()
+        {
+          Navigator.pop(context);
+        },
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(17.5,0,17.5,0),
-          child: BlocConsumer<ThemeCubit,ThemeStates>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:
-                <Widget>
-                [
-                  // الصورة
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 33, 0, 0),
-                    child: Center(
-                      child: GestureDetector(
-                        child: Container(
-                          margin: const EdgeInsets.all(10),
-                          width:  size.width * 0.5,
-                          height: size.height * 0.21,
-                          decoration:  BoxDecoration(shape: BoxShape.circle,
-                            image: DecorationImage(image:
-                            NetworkImage(
-                                AppCubit.get(context).csStudentsModel![StudentId].image!
-                            ),
-                                fit: BoxFit.fill
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.02,),
-                  //name
-                  Row(
-                    children: [
-                      Text('Name:',
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),),
-                      SizedBox(width: size.width * 0.015,),
-                      Expanded(
-                        child: Text(
-                          AppCubit.get(context).csStudentsModel![StudentId].name!
-                          ,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-
-                  //id
-                  Row(
-                    children: [
-                      Text('ID:',
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),),
-                      SizedBox(width: size.width * 0.015,),
-                      Expanded(
-                        child: Text(
-                          AppCubit.get(context).csStudentsModel![StudentId].email!.split('@').first
-                          ,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-                  Container(
-                    decoration:  BoxDecoration(
-                      border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-
-                  //number of books
-                  Row(
-                    children: [
-                      Text('No. of books:',
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),),
-                      SizedBox(width: size.width * 0.015,),
-                      Expanded(
-                        child: Text(
-                          '${AppCubit.get(context).csStudentsModel![StudentId].books!.length}'
-                          ,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-                  Container(
-                    decoration:  BoxDecoration(
-                      border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-
-                  //Acc created in
-                  Row(
-                    children: [
-                      Text('Acc created in:',
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),),
-                      SizedBox(width: size.width * 0.015,),
-                      Expanded(
-                        child: Text(
-                          '${AppCubit.get(context).csStudentsModel![StudentId].createdAt!.split('T').first}'
-                          ,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-                  Container(
-                    decoration:  BoxDecoration(
-                      border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-
-                  //Acc updated in
-                  Row(
-                    children: [
-                      Text('Last updated in:',
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),),
-                      SizedBox(width: size.width * 0.015,),
-                      Expanded(
-                        child: Text(
-                          '${AppCubit.get(context).csStudentsModel![StudentId].updatedAt!.split('T').first}'
-                          ,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-                  Container(
-                    decoration:  BoxDecoration(
-                      border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.02,),
-
-                  //button student's books
-                  Padding(
-                    padding: const EdgeInsets.all(22.0),
-                    child: defaultButton(
-                      function: ()
-                      {
-                        debugPrint('${AppCubit.get(context).csStudentsModel![StudentId].books!.length}');
-                        navigateTo(context, CsStudentBookScreen(studentBooksId: StudentId,));
-                      },
-                      text: 'student books',
-                      context: context,
-                      height: size.height * 0.08,
-                      width: size.width,
-                    ),
-                  ),
-                  SizedBox(height: size.height * 0.01,),
-
-                  //text button delete user acc
-                  Center(
-                    child: defaultTextButton(
-                      onPressed: ()
-                      {
-                        AppCubit.get(context).indexStudent= StudentId;
-                        showDialog(
-                          context: context,
-                          builder: (context) =>
-                              DeleteStudentAccountAlertDialog(
-                                title: 'Delete student account',
-                                description: 'Are you sure?',
-                                //StudentIDToDelete: StudentId,
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      body: SafeArea(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                child: Image.asset('assets/images/main_top.png',
+                  width: size.width * 0.35,),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Image.asset('assets/images/login_bottom.png',
+                  width: size.width * 0.4,),
+              ),
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(17.5,0,17.5,0),
+                  child: BlocConsumer<ThemeCubit,ThemeStates>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:
+                        <Widget>
+                        [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 33, 0, 0),
+                            child: Center(
+                              child: GestureDetector(
+                                child: Container(
+                                  margin: const EdgeInsets.all(10),
+                                  width:  size.width * 0.5,
+                                  height: size.height * 0.21,
+                                  decoration:  BoxDecoration(shape: BoxShape.circle,
+                                    image: DecorationImage(image:
+                                    NetworkImage(
+                                        AppCubit.get(context).csStudentsModel![StudentId].image!
+                                    ),
+                                        fit: BoxFit.fill
+                                    ),
+                                  ),
+                                ),
                               ),
-                        );
-                      },
-                      text: 'Delete student account',
-                      color: Colors.red,
-                      fontSize: 12,
-                    ),
-                    // TextButton(onPressed: ()
-                    // {
-                    //   AppCubit.get(context).indexStudent= StudentId;
-                    //   showDialog(
-                    //       context: context,
-                    //       builder: (context) =>
-                    //           DeleteStudentAccountAlertDialog(
-                    //           title: 'Delete student account',
-                    //           description: 'Are you sure?',
-                    //           //StudentIDToDelete: StudentId,
-                    //           ),
-                    //   );
-                    // },
-                    //   child: Text('Delete student account',
-                    //     style: TextStyle(
-                    //       fontSize: 16,
-                    //       fontWeight: FontWeight.bold,
-                    //       color: Colors.red,
-                    //     ),
-                    // ),
-                    // ),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.02,),
+                          Row(
+                            children: [
+                              Text('Name:',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),),
+                              SizedBox(width: size.width * 0.015,),
+                              Expanded(
+                                child: Text(
+                                  AppCubit.get(context).csStudentsModel![StudentId].name!
+                                  ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Row(
+                            children: [
+                              Text('ID:',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),),
+                              SizedBox(width: size.width * 0.015,),
+                              Expanded(
+                                child: Text(
+                                  AppCubit.get(context).csStudentsModel![StudentId].email!.split('@').first
+                                  ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Container(
+                            decoration:  BoxDecoration(
+                              border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Row(
+                            children: [
+                              Text('No. of books:',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),),
+                              SizedBox(width: size.width * 0.015,),
+                              Expanded(
+                                child: Text(
+                                  '${AppCubit.get(context).csStudentsModel![StudentId].books!.length}'
+                                  ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Container(
+                            decoration:  BoxDecoration(
+                              border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Row(
+                            children: [
+                              Text('Acc created in:',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),),
+                              SizedBox(width: size.width * 0.015,),
+                              Expanded(
+                                child: Text(
+                                  '${AppCubit.get(context).csStudentsModel![StudentId].createdAt!.split('T').first}'
+                                  ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Container(
+                            decoration:  BoxDecoration(
+                              border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Row(
+                            children: [
+                              Text('Last updated in:',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),),
+                              SizedBox(width: size.width * 0.015,),
+                              Expanded(
+                                child: Text(
+                                  '${AppCubit.get(context).csStudentsModel![StudentId].updatedAt!.split('T').first}'
+                                  ,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Container(
+                            decoration:  BoxDecoration(
+                              border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.02,),
+                          Padding(
+                            padding: const EdgeInsets.all(22.0),
+                            child: defaultButton(
+                              function: ()
+                              {
+                                debugPrint('${AppCubit.get(context).csStudentsModel![StudentId].books!.length}');
+                                navigateTo(context, CsStudentBookScreen(CsStudentBooksId: StudentId,));
+                              },
+                              text: 'student books',
+                              context: context,
+                              height: size.height * 0.08,
+                              width: size.width,
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.01,),
+                          Center(
+                            child: defaultTextButton(
+                              onPressed: ()
+                              {
+                                AppCubit.get(context).indexStudent= StudentId;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) =>
+                                      DeleteStudentAccountAlertDialog(
+                                        title: 'Delete student account',
+                                        description: 'Are you sure?',
+                                      ),
+                                );
+                              },
+                              text: 'Delete student account',
+                              color: Colors.red,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                ],
-              );
-            },
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -275,19 +264,14 @@ class CsStudentDetailsScreen extends StatelessWidget {
   }
 }
 
-
-
 class DeleteStudentAccountAlertDialog extends StatefulWidget {
   const DeleteStudentAccountAlertDialog({
     Key? key,
     required this.title,
     required this.description,
-    //required this.StudentIDToDelete,
   }) : super(key: key);
 
   final String title, description;
-  //final int? StudentIDToDelete;
-
   @override
   _DeleteStudentAccountAlertDialogState createState() => _DeleteStudentAccountAlertDialogState();
 }
@@ -299,7 +283,6 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
     Size size = MediaQuery.of(context).size;
     return Dialog(
       elevation: 0,
-      //backgroundColor: Color(0xffffffff),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -385,5 +368,3 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
     );
   }
 }
-
-

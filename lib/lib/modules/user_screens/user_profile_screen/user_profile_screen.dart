@@ -275,8 +275,6 @@ class  UserProfileScreen extends StatelessWidget {
                             ],
                           );
                         },
-
-
                       ),
                     ),
                   ),
@@ -290,6 +288,3 @@ class  UserProfileScreen extends StatelessWidget {
     );
   }
 }
-
-
-

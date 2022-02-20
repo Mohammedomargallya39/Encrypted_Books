@@ -74,7 +74,6 @@ class RegisterScreen extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(10, 66, 10, 22),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            //crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -84,7 +83,6 @@ class RegisterScreen extends StatelessWidget {
                                     style: TextStyle(
                                       //fontSize: 22,
                                       fontWeight: FontWeight.bold,
-
                                     ),
                                   ),
                                 ),
@@ -114,7 +112,6 @@ class RegisterScreen extends StatelessWidget {
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
-
                               defaultFormField(
                                   maxLines: 1,
                                   text: 'Academic E-mail',
@@ -169,11 +166,6 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                   },
                                   onSubmit: (String value) {
-                                    // if (formKey.currentState!.validate()) {
-                                    //   cubit.userLogin(
-                                    //       email: emailController.text,
-                                    //       password: passwordController.text);
-                                    // }
                                   },
                                   type: TextInputType.visiblePassword,
                                   context: context),
@@ -302,45 +294,7 @@ class RegisterScreen extends StatelessWidget {
                                           height: size.height * 0.08,
                                           width: size.width,
                                         ),
-                                  //       SizedBox(
-                                  //         width: size.width ,
-                                  //         height: size.height * 0.06,
-                                  //         child: MaterialButton(
-                                  //   shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(22),
-                                  //   ),
-                                  //   elevation: 5,
-                                  //   color: defaultColor,
-                                  //   onPressed: () {
-                                  //         verifyOTP();
-                                  //         if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
-                                  //           UserRegisterCubit.get(context).userRegister(
-                                  //             email: emailController.text,
-                                  //             name: nameController.text,
-                                  //             password: passwordController.text,
-                                  //             phone: phoneController.text,
-                                  //             isEng:
-                                  //             UserRegisterCubit.get(context).isEng,
-                                  //             isMan:
-                                  //             UserRegisterCubit.get(context).isMan,
-                                  //             isCom:
-                                  //             UserRegisterCubit.get(context).isCom,
-                                  //           );
-                                  //         }
-                                  //         },
-                                  //   child: const Text(
-                                  //         'SignUp',
-                                  //         style: TextStyle(
-                                  //           color: Colors.white,
-                                  //           fontSize: 16,
-                                  //           fontWeight: FontWeight.bold,
-                                  //         ),
-                                  //   ),
-                                  // ),
-                                  //       ),
                                       ),
-
-
                                   fallback: (context) => const Center(
                                       child: CircularProgressIndicator()),
                                 ),
@@ -356,7 +310,6 @@ class RegisterScreen extends StatelessWidget {
                                       color: defaultColor,
                                     ),
                                   ),
-
                                   defaultTextButton(
                                       onPressed: ()
                                       {
@@ -364,20 +317,6 @@ class RegisterScreen extends StatelessWidget {
                                       },
                                       text: 'Login'
                                   ),
-                                  // TextButton(
-                                  //   onPressed: ()
-                                  //   {
-                                  //     navigateTo(context, LoginScreen());
-                                  //   },
-                                  //   child: Text('Login',
-                                  //     style: TextStyle(
-                                  //       color: defaultColor,
-                                  //       fontWeight: FontWeight.bold,
-                                  //     ),
-                                  //   ),
-                                  // ),
-
-
                                 ],
                               ),
                             ],

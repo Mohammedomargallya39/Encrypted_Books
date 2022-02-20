@@ -16,5 +16,3 @@ void signOut (context)
 }
 String? token = '';
 bool? isAdmin = false;
-
-

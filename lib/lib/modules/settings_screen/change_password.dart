@@ -14,9 +14,7 @@ class ChangePasswordScreen extends StatelessWidget {
   var nameController = TextEditingController() ;
   var phoneController = TextEditingController();
   var passwordController = TextEditingController();
-
   ChangePasswordScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +27,6 @@ class ChangePasswordScreen extends StatelessWidget {
           condition: AppCubit.get(context).userModel != null,
           builder: (context) => Scaffold(
               floatingActionButton: Stack(
-               // fit: StackFit.expand,
                 children: [
                   Positioned(
                       top: 60,
@@ -80,8 +77,6 @@ class ChangePasswordScreen extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               SvgPicture.asset('assets/images/forget_password.svg',height: size.height * 0.4,),
-
-
                               defaultFormField(
                                 type: TextInputType.visiblePassword,
                                 controller: passwordController,
@@ -94,9 +89,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                 },
                                 context: context,
                               ),
-
                               SizedBox(height: size.height *0.05,),
-
                               defaultButton(
                                 function: ()
                                 {
@@ -109,46 +102,12 @@ class ChangePasswordScreen extends StatelessWidget {
                                     );
                                     showToast(message: 'password changed', state: ToastStates.SUCCESS);
                                   }
-
                                 },
                                 text: 'change password',
                                 context: context,
                                 height: size.height * 0.08,
                                 width: size.width,
                               ),
-
-                              // SizedBox(
-                              //   width: size.width ,
-                              //   height: size.height * 0.06,
-                              //   child: MaterialButton(
-                              //     shape: RoundedRectangleBorder(
-                              //       borderRadius: BorderRadius.circular(22.0),
-                              //     ),
-                              //     elevation: 5,
-                              //     color: defaultColor,
-                              //     onPressed: ()
-                              //     {
-                              //       if (formKey.currentState!.validate())
-                              //       {
-                              //         AppCubit.get(context).updateUserData(
-                              //             name: nameController.text,
-                              //             phone: phoneController.text,
-                              //             password: passwordController.text
-                              //         );
-                              //         navigateAndEnd(context, UserSettingsScreen());
-                              //         showToast(message: 'password changed', state: ToastStates.SUCCESS);
-                              //       }
-                              //
-                              //     },
-                              //     child: const Text('Change password',
-                              //       style: TextStyle(
-                              //         color: Colors.white,
-                              //         fontSize: 16,
-                              //         fontWeight: FontWeight.bold,
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
                             ],
                           ),
                         ),

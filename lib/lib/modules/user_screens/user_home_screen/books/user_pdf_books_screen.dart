@@ -7,22 +7,16 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
-
 class UserPDFBooksScreen extends StatelessWidget {
-
   final int bookId;
   bool night = true;
   bool light = false;
-  //late BookId idToGetBook;
-
-
   UserPDFBooksScreen({Key? key ,required this.bookId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-
         return  ConditionalBuilder(
           condition:  AppCubit.get(context).homeModel!.books![bookId].pdf  != null,
           builder: (context) =>Scaffold(
@@ -51,4 +45,3 @@ class UserPDFBooksScreen extends StatelessWidget {
     );
   }
 }
-

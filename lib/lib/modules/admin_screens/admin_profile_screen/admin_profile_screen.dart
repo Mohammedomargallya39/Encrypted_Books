@@ -24,7 +24,6 @@ class  AdminProfileScreen extends StatelessWidget {
       {
         return ConditionalBuilder(
           condition: AppCubit.get(context).userModel != null ,
-          // && AppCubit.get(context).userBooksNumber != null,
           builder: (context) => SafeArea(
             top: true,
             bottom: true,
@@ -34,7 +33,6 @@ class  AdminProfileScreen extends StatelessWidget {
                 {
                   navigateTo(context, AdminDrawerScreen()
                   );
-
                 },
               ),
               floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
@@ -75,20 +73,6 @@ class  AdminProfileScreen extends StatelessWidget {
                                       child: Stack(
                                         alignment: AlignmentDirectional.bottomEnd,
                                         children:[
-                                          // Center(
-                                          //   child: Container(
-                                          //     margin: const EdgeInsets.all(10),
-                                          //     width:  275,
-                                          //     height: 275,
-                                          //     decoration:   BoxDecoration(
-                                          //       shape: BoxShape.circle,
-                                          //       image: DecorationImage(image:
-                                          //       NetworkImage(AppCubit.get(context).userModel!.image),
-                                          //           fit: BoxFit.fill
-                                          //       ),
-                                          //     ),
-                                          //   ),
-                                          // ),
                                           Center(
                                             child: CircleAvatar(
                                               radius: 111,
@@ -128,7 +112,9 @@ class  AdminProfileScreen extends StatelessWidget {
                                       const Text('Name:',
                                         style: TextStyle(
                                             fontSize: 22,
-                                            fontWeight: FontWeight.bold),),
+                                            fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                       SizedBox(width: size.width * 0.015,),
                                       Expanded(
                                         child: Text(

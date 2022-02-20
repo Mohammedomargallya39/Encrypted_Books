@@ -4,7 +4,6 @@ import 'package:social/lib/cubit/cubit.dart';
 
 class AdminDetailsPhotoDetails extends StatelessWidget {
   const AdminDetailsPhotoDetails({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

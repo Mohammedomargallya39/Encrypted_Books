@@ -23,13 +23,38 @@ class StudentBookPDFScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: AppCubit.get(context).searchStudentModel![StudentID].books![StudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
-            floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
-              ,onPressed: ()
-              {
-                Navigator.pop(context);
-              },
+            floatingActionButton: Stack(
+              children: [
+                Positioned(
+                  top: 60,
+                  right: 0,
+                  child: IconButton(icon: Icon(Icons.delete_forever), onPressed: ()
+                  {
+                    AppCubit.get(context).IndexRemoveBookStudent= StudentBookId;
+                    AppCubit.get(context).IndexRemoveStudentBook= StudentID;
+                    showDialog(
+                      context: context,
+                      builder: (context) => DeleteStudentBooksAlertDialog(
+                        title: 'Delete This Book',
+                        description: 'Are you sure?',
+                      ),
+                    );
+                  },
+                    iconSize: 30,
+                    color: Colors.red,
+                  ),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 30,
+                  child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                  {
+                    Navigator.pop(context);
+                  }, iconSize: 23,
+                  ),
+                ),
+              ],
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
             body:  PDF(
               nightMode: ThemeCubit.get(context).darkTheme? night : light ,
               enableSwipe: true,
@@ -50,8 +75,6 @@ class StudentBookPDFScreen extends StatelessWidget {
   }
 }
 
-
-
 class DeleteStudentBooksAlertDialog extends StatefulWidget {
   const DeleteStudentBooksAlertDialog({
     Key? key,
@@ -70,7 +93,6 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
     Size size = MediaQuery.of(context).size;
     return Dialog(
       elevation: 0,
-      //backgroundColor: Color(0xffffffff),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -116,10 +138,6 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
                 Navigator.pop(context);
-                //navigateAndEnd(context, AdminHomeScreen(),);
-                //محتاج يتعدل
-                //Restart.restartApp();
-
               },
               child: Center(
                 child: Text(
@@ -165,6 +183,3 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
     );
   }
 }
-
-
-

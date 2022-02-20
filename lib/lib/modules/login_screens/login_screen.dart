@@ -5,10 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_home_screen.dart';
 import 'package:social/lib/modules/login_screens/register_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
-import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/local/cache_helper.dart';
@@ -20,7 +18,6 @@ class LoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
 
   LoginScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
@@ -32,14 +29,12 @@ class LoginScreen extends StatelessWidget {
               print("1"+'$token');
           if (state is UserLoginSuccessState) {
               print("2"+'$token');
-
               CacheHelper.saveData(key: 'isAdmin', value: state.loginModel.isAdmin).then((value) {
                 isAdmin = state.loginModel.isAdmin;
                 print('is admin saved successfully');
               });
               CacheHelper.saveData(key: 'token', value: state.loginModel.token).then((value)
               {
-
                 token = state.loginModel.token ;
                 navigateAndEnd(
                   context,
@@ -62,9 +57,6 @@ class LoginScreen extends StatelessWidget {
           var cubit = UserLoginCubit.get(context);
           Size size = MediaQuery.of(context).size;
           return Scaffold(
-           // appBar: AppBar(
-           //    title: const Text('Login'),
-           //  ),
             body:
                 Container(
                   width: double.infinity,
@@ -91,7 +83,6 @@ class LoginScreen extends StatelessWidget {
                             child: Form(
                               key: formKey,
                               child: Column(
-                                //crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text('Login',
@@ -123,9 +114,7 @@ class LoginScreen extends StatelessWidget {
                                     context: context,
                                   ),
                                   SizedBox(height: size.height *0.019,),
-
                                   defaultFormField(
-
                                       maxLines: 1,
                                       isPassword: cubit.isPassword,
                                       text: 'Password',
@@ -150,7 +139,6 @@ class LoginScreen extends StatelessWidget {
                                       type: TextInputType.visiblePassword,
                                       context: context),
                                   SizedBox(height: size.height *0.038,),
-
                                   Center(
                                     child: ConditionalBuilder(
                                       condition: state is! UserLoginLoadingState,
@@ -175,7 +163,6 @@ class LoginScreen extends StatelessWidget {
                                         ),
                                       fallback: (context) => const Center(
                                           child: CircularProgressIndicator()),
-
                                     ),
                                   ),
                                   SizedBox(
@@ -189,7 +176,6 @@ class LoginScreen extends StatelessWidget {
                                         color: defaultColor,
                                       ),
                                       ),
-
                                       defaultTextButton(
                                           onPressed: ()
                                           {
@@ -197,48 +183,8 @@ class LoginScreen extends StatelessWidget {
                                           },
                                           text: 'SignUp'
                                       ),
-                                      // TextButton(
-                                      //     onPressed: ()
-                                      //     {
-                                      //       navigateTo(context, RegisterScreen());
-                                      //     },
-                                      //     child: Text('SignUp',
-                                      //     style: TextStyle(
-                                      //       color: defaultColor,
-                                      //       fontWeight: FontWeight.bold,
-                                      //     ),
-                                      //     ),
-                                      // ),
                                     ],
                                   ),
-                                  // Center(
-                                  //   child: Padding(
-                                  //     padding: const EdgeInsets.fromLTRB(55, 10, 55, 0),
-                                  //     child: SizedBox(
-                                  //       height: 55.55,
-                                  //       width: double.infinity,
-                                  //       child: MaterialButton(
-                                  //         shape: RoundedRectangleBorder(
-                                  //           borderRadius: BorderRadius.circular(18.0),
-                                  //         ),
-                                  //         elevation: 17.5,
-                                  //         color: defaultColor,
-                                  //         onPressed: ()
-                                  //         {
-                                  //           navigateTo(context, RegisterScreen());
-                                  //         },
-                                  //         child: const Text(
-                                  //           'Register',
-                                  //           style: TextStyle(
-                                  //             color: Colors.white,
-                                  //             fontSize: 33.33,
-                                  //             fontWeight: FontWeight.bold,
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),

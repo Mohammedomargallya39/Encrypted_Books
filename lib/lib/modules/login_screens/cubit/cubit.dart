@@ -14,7 +14,6 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
   IconData suffix = Icons.visibility_outlined;
 
   UserData? loginModel;
-
   void userLogin({required String email, required String password}) {
     print('-------------------------UserLogin--------------------');
     emit(UserLoginLoadingState());
@@ -25,10 +24,6 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
         'password': password,
       },
     ).then((value) {
-      // if (value!.data != null) {
-      //   print(value.data.toString());
-      //
-      // }
       print(value.data['token']);
       loginModel = UserData.fromJson(value.data);
       print(loginModel!.token);
@@ -42,9 +37,6 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
       emit((UserLoginErrorState(error.toString())));
     });
   }
-
-
-
   void changeSuffix() {
     isPassword = !isPassword;
     suffix =

@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/welcome_screen/welcome_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/network/local/cache_helper.dart';
-
 
 class OnBoardingModel{
   final String title;
   final String image;
   final String body;
-
   OnBoardingModel(
       this.title,
       this.image,
       this.body
       );
 }
-
 class onBoardingScreen extends StatelessWidget {
-
   bool isLast = false;
-
   var boardingController = PageController();
   List<OnBoardingModel> boarding = [
     OnBoardingModel(
@@ -34,7 +28,6 @@ class onBoardingScreen extends StatelessWidget {
         'assets/images/e-book.png',
         'And with this happening, books must be encrypted to preserve the ownership of the books for their owners and so that they are not stolen, we had to program this program.'),
   ];
-
    void submit(context){
      CacheHelper.saveData(key: 'onBoarding', value: true).then((value)
      {
@@ -44,7 +37,6 @@ class onBoardingScreen extends StatelessWidget {
        }
      });
    }
-
    @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,9 +107,6 @@ class onBoardingScreen extends StatelessWidget {
       ),
     );
   }
-
-  
-  
   
   Widget BoardingItem(OnBoardingModel model)=> Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,6 +130,3 @@ class onBoardingScreen extends StatelessWidget {
     ],
   );
 }
-
-
-

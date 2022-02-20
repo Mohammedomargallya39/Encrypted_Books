@@ -3,19 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 class AdminPDFBooksScreen extends StatelessWidget {
-
-  //String url = 'http://africau.edu/images/default/sample.pdf';
   bool night = true;
   bool light = false;
   final int BookId;
-
   AdminPDFBooksScreen({Key? key, required this.BookId}) : super(key: key);
 
   @override
@@ -128,10 +124,6 @@ class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
                 Navigator.pop(context);
-                //navigateAndEnd(context, AdminHomeScreen(),);
-                //محتاج يتعدل
-                //Restart.restartApp();
-
               },
               child: Center(
                 child: Text(
@@ -177,4 +169,3 @@ class _DeleteBooksAlertDialogState extends State<DeleteBooksAlertDialog> {
     );
   }
 }
-
