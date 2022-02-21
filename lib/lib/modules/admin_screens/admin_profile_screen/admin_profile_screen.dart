@@ -10,10 +10,23 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 
-class  AdminProfileScreen extends StatelessWidget {
+class  AdminProfileScreen extends StatefulWidget {
 
   AdminProfileScreen ({Key? key}) : super(key: key);
 
+  @override
+  State<AdminProfileScreen> createState() => _AdminProfileScreenState();
+}
+
+class _AdminProfileScreenState extends State<AdminProfileScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //AppCubit.get(context).getUserData();
+    AppCubit.get(context).getUserBooks();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +36,7 @@ class  AdminProfileScreen extends StatelessWidget {
       builder: (context , state)
       {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).userModel != null ,
+          condition: AppCubit.get(context).homeModel != null ,
           builder: (context) => SafeArea(
             top: true,
             bottom: true,
@@ -77,7 +90,7 @@ class  AdminProfileScreen extends StatelessWidget {
                                             child: CircleAvatar(
                                               radius: 111,
                                               backgroundImage:  NetworkImage(
-                                                  '${AppCubit.get(context).userModel!.image}'
+                                                  '${AppCubit.get(context).homeModel!.pic}'
                                               ),
                                             ),
                                           ),
@@ -95,7 +108,7 @@ class  AdminProfileScreen extends StatelessWidget {
                                 SizedBox(height: size.height * 0.02,),
                                 Center(
                                   child: Text(
-                                    AppCubit.get(context).userModel!.email.split('@').first,
+                                    AppCubit.get(context).homeModel!.email!.split('@').first,
                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
                                 ),
                                 SizedBox(height: size.height * 0.04,),
@@ -118,7 +131,7 @@ class  AdminProfileScreen extends StatelessWidget {
                                       SizedBox(width: size.width * 0.015,),
                                       Expanded(
                                         child: Text(
-                                          '${AppCubit.get(context).userModel!.name}',
+                                          '${AppCubit.get(context).homeModel!.name}',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -148,7 +161,7 @@ class  AdminProfileScreen extends StatelessWidget {
                                       SizedBox(width: size.width *0.015),
                                       Expanded(
                                         child: Text(
-                                          '${AppCubit.get(context).userModel!.email}',
+                                          '${AppCubit.get(context).homeModel!.email}',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -176,7 +189,7 @@ class  AdminProfileScreen extends StatelessWidget {
                                       SizedBox(width: size.width *0.015),
                                       Expanded(
                                         child: Text(
-                                          '${AppCubit.get(context).userModel!.phone}',
+                                          '${AppCubit.get(context).homeModel!.phone}',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(

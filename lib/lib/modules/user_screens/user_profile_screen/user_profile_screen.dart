@@ -10,10 +10,24 @@ import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import 'user_details_photo_screen.dart';
 
-class  UserProfileScreen extends StatelessWidget {
+class  UserProfileScreen extends StatefulWidget {
 
    UserProfileScreen ({Key? key}) : super(key: key);
 
+  @override
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
+}
+
+
+class _UserProfileScreenState extends State<UserProfileScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //AppCubit.get(context).getUserData();
+    AppCubit.get(context).getUserBooks();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +37,7 @@ class  UserProfileScreen extends StatelessWidget {
       builder: (context , state)
       {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).userModel != null,
+          condition: AppCubit.get(context).homeModel != null,
           builder: (context) => Scaffold(
               floatingActionButton: IconButton(icon:Icon(Icons.home)
                 ,onPressed: ()
@@ -73,7 +87,7 @@ class  UserProfileScreen extends StatelessWidget {
                                           child: CircleAvatar(
                                             radius: 111,
                                             backgroundImage:  NetworkImage(
-                                                '${AppCubit.get(context).userModel!.image}'
+                                                '${AppCubit.get(context).homeModel!.pic}'
                                             ),
                                           ),
                                         ),
@@ -91,7 +105,7 @@ class  UserProfileScreen extends StatelessWidget {
                               SizedBox(height: size.height * 0.02,),
                               Center(
                                 child: Text(
-                                  AppCubit.get(context).userModel!.email.split('@').first,
+                                  AppCubit.get(context).homeModel!.email!.split('@').first,
                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
                               ),
                               SizedBox(height: size.height * 0.04,),
@@ -112,7 +126,7 @@ class  UserProfileScreen extends StatelessWidget {
                                     SizedBox(width: size.width * 0.015,),
                                     Expanded(
                                       child: Text(
-                                        '${AppCubit.get(context).userModel!.name}',
+                                        '${AppCubit.get(context).homeModel!.name}',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -141,7 +155,7 @@ class  UserProfileScreen extends StatelessWidget {
                                     SizedBox(width: size.width *0.015),
                                     Expanded(
                                       child: Text(
-                                        '${AppCubit.get(context).userModel!.email}',
+                                        '${AppCubit.get(context).homeModel!.email}',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -170,7 +184,7 @@ class  UserProfileScreen extends StatelessWidget {
                                     SizedBox(width: size.width *0.015),
                                     Expanded(
                                       child: Text(
-                                        '${AppCubit.get(context).userModel!.phone}',
+                                        '${AppCubit.get(context).homeModel!.phone}',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(

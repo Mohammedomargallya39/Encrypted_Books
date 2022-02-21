@@ -8,9 +8,23 @@ import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/search_book_screen/search_book_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/upload_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 import 'all_pdf_book_screen.dart';
 
-class AdminBooksScreen extends StatelessWidget {
+
+class AdminBooksScreen extends StatefulWidget {
+  @override
+  State<AdminBooksScreen> createState() => _AdminBooksScreenState();
+}
+
+class _AdminBooksScreenState extends State<AdminBooksScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //AppCubit.get(context).getUserData();
+    AppCubit.get(context).getAdminBooks();
+  }
   @override
   Widget build(BuildContext context) {
     Size size =  MediaQuery.of(context).size;
@@ -86,31 +100,39 @@ class AdminBooksScreen extends StatelessWidget {
                                       width: size.width,
                                       fit: BoxFit.cover,
                                     ),
-                                    SizedBox( height: size.height *0.006
+                                    SizedBox( height: size.height *0.008
                                       ,),
-                                    Text(
-                                      AppCubit.get(context).adminBooksModel!.books![index].name!,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color:  Colors.black ,
+                                    Expanded(
+                                      child: Text(
+                                        AppCubit.get(context).adminBooksModel!.books![index].name!,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                          //color: ThemeCubit.get(context). Colors.black ,
+                                        ),
                                       ),
                                     ),
+
                                     Container(
-                                      height: 0.5,
+                                      height: size.height * 0.002,
                                       width: double.infinity,
                                       color: Colors.grey.withOpacity(0.5555),
                                     ),
-                                    Text(
-                                      AppCubit.get(context).adminBooksModel!.books![index].description!,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color:  Colors.black ,
+                                    SizedBox(
+                                      height: size.height * 0.0075,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        AppCubit.get(context).adminBooksModel!.books![index].description!,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                          color:  Colors.grey ,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -126,7 +148,7 @@ class AdminBooksScreen extends StatelessWidget {
                               margin: EdgeInsets.only(
                                   bottom: _w / 30, left: _w / 60, right: _w / 60),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: ThemeCubit.get(context).darkTheme ? Colors.grey.shade700 :Colors.white,
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                                 boxShadow: [
                                   BoxShadow(

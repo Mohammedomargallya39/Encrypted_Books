@@ -9,6 +9,8 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
+import '../admin_drawer.dart';
+
 class StudentBookPDFScreen extends StatelessWidget {
   StudentBookPDFScreen({Key? key,required this.StudentBookId, required this.StudentID}) : super(key: key);
    final int StudentBookId;
@@ -133,11 +135,10 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                     bookId:AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexRemoveStudentBook!].books![AppCubit.get(context).IndexRemoveBookStudent!].sId!,
                     studentId:AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexRemoveStudentBook!].sId,
                 );
-                Navigator.pop(context);
                 showToast(
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
-                Navigator.pop(context);
+                navigateTo(context, AdminDrawerScreen());
               },
               child: Center(
                 child: Text(

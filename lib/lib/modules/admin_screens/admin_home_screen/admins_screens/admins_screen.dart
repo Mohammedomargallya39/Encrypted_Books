@@ -8,6 +8,7 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_details_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 
 class AdminsScreen extends StatelessWidget {
   @override
@@ -137,7 +138,7 @@ class AdminsScreen extends StatelessWidget {
                                     margin: EdgeInsets.only(bottom: _w / 20),
                                     height: _w / 4,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade700:Colors.white,
                                       borderRadius: BorderRadius.all(Radius.circular(20)),
                                       boxShadow: [
                                         BoxShadow(

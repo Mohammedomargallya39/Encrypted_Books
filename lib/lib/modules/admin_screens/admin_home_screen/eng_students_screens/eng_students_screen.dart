@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 import 'eng_student_details_screen.dart';
 
 class EngStudentsScreen extends StatelessWidget {
@@ -101,7 +102,7 @@ class EngStudentsScreen extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold ,
                                                     fontSize: 16 ,
-                                                    color: Colors.black,
+                                                    //color: Colors.black,
 
                                                   ),
                                                 ),
@@ -112,7 +113,7 @@ class EngStudentsScreen extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold ,
                                                     fontSize: 16 ,
-                                                    color: Colors.black,
+                                                    //color: Colors.black,
 
                                                   ),
                                                 ),
@@ -123,7 +124,7 @@ class EngStudentsScreen extends StatelessWidget {
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                                             child: Icon(Icons.arrow_forward_ios,
-                                              color: Colors.black,
+                                              //color: Colors.black,
                                             ),
                                           ),
                                         ],
@@ -139,7 +140,7 @@ class EngStudentsScreen extends StatelessWidget {
                                     margin: EdgeInsets.only(bottom: _w / 20),
                                     height: _w / 4,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: ThemeCubit.get(context).darkTheme?Colors.grey.shade700:Colors.white,
                                       borderRadius: BorderRadius.all(Radius.circular(20)),
                                       boxShadow: [
                                         BoxShadow(

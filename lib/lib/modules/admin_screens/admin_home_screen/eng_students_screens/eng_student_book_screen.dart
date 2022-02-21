@@ -169,18 +169,17 @@ class _EngStudentBookScreenState extends State<EngStudentBookScreen> {
                                                                                   ),
                                                                                   SizedBox( height: size.height *0.02
                                                                                     ,),
-                                                                                  Text(
-                                                                                    AppCubit.get(context).searchBookModel!.books![index].name!,
-                                                                                    maxLines: 1,
-                                                                                    overflow: TextOverflow.ellipsis,
-                                                                                    style: TextStyle(
-                                                                                      fontSize: 18.0,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      color:  Colors.black ,
+                                                                                  Expanded(
+                                                                                    child: Text(
+                                                                                      AppCubit.get(context).searchBookModel!.books![index].name!,
+                                                                                      maxLines: 1,
+                                                                                      overflow: TextOverflow.ellipsis,
+                                                                                      style: TextStyle(
+                                                                                        fontSize: 18.0,
+                                                                                        fontWeight: FontWeight.bold,
+                                                                                      ),
                                                                                     ),
                                                                                   ),
-                                                                                  SizedBox( height: size.height *0.02
-                                                                                    ,),
                                                                                   Container(
                                                                                     height: size.height *0.002,
                                                                                     width: double.infinity,
@@ -188,14 +187,16 @@ class _EngStudentBookScreenState extends State<EngStudentBookScreen> {
                                                                                   ),
                                                                                   SizedBox( height: size.height *0.02
                                                                                     ,),
-                                                                                  Text(
-                                                                                    AppCubit.get(context).searchBookModel!.books![index].description!,
-                                                                                    maxLines: 1,
-                                                                                    overflow: TextOverflow.ellipsis,
-                                                                                    style: TextStyle(
-                                                                                      fontSize: 18.0,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      color:  Colors.black ,
+                                                                                  Expanded(
+                                                                                    child: Text(
+                                                                                      AppCubit.get(context).searchBookModel!.books![index].description!,
+                                                                                      maxLines: 1,
+                                                                                      overflow: TextOverflow.ellipsis,
+                                                                                      style: TextStyle(
+                                                                                        fontSize: 16.0,
+                                                                                        fontWeight: FontWeight.bold,
+                                                                                        color:  Colors.grey ,
+                                                                                      ),
                                                                                     ),
                                                                                   ),
                                                                                 ],
@@ -212,9 +213,9 @@ class _EngStudentBookScreenState extends State<EngStudentBookScreen> {
                                                                               },
                                                                             ),
                                                                             margin: EdgeInsets.only(
-                                                                                bottom: _w / 30, left: _w / 60, right: _w / 60),
+                                                                              bottom: _w / 10, left: _w / 60, right: _w / 60 ,  top: _w / 10,),
                                                                             decoration: BoxDecoration(
-                                                                              color: Colors.white,
+                                                                              color: ThemeCubit.get(context).darkTheme?Colors.grey.shade700:Colors.white,
                                                                               borderRadius: BorderRadius.all(Radius.circular(20)),
                                                                               boxShadow: [
                                                                                 BoxShadow(
@@ -322,30 +323,34 @@ class _EngStudentBookScreenState extends State<EngStudentBookScreen> {
                                                     image: NetworkImage(
                                                         AppCubit.get(context).engStudentsModel![widget.EngStudentBooksId].books![index].cover!
                                                     )),
-                                                SizedBox(height: size.height * 0.02),
-                                                Text(
-                                                  AppCubit.get(context).engStudentsModel![widget.EngStudentBooksId].books![index].name!,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontWeight: FontWeight.bold,
+                                                SizedBox(height: size.height * 0.01),
+                                                Expanded(
+                                                  child: Text(
+                                                    AppCubit.get(context).engStudentsModel![widget.EngStudentBooksId].books![index].name!,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
                                                   ),
                                                 ),
-                                                SizedBox(height: size.height * 0.02),
                                                 Container(
                                                   decoration: const BoxDecoration(
                                                     border: Border(bottom:  BorderSide(color: Colors.grey),),
                                                   ),
                                                 ),
                                                 SizedBox(height: size.height * 0.02),
-                                                Text(
-                                                  AppCubit.get(context).engStudentsModel![widget.EngStudentBooksId].books![index].description!,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontWeight: FontWeight.bold,
+                                                Expanded(
+                                                  child: Text(
+                                                    AppCubit.get(context).engStudentsModel![widget.EngStudentBooksId].books![index].description!,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.grey
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -389,42 +394,5 @@ class _EngStudentBookScreenState extends State<EngStudentBookScreen> {
           );
         },
       );
-  }
-
-  Widget addBooksForStudentsItem(AdminBooksDetails books, context) {
-    Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        SizedBox(height: size.height * 0.015),
-        Column(
-          children:  [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Image(
-                image: NetworkImage(
-                    books.cover!
-                ),
-                width: size.width,
-                height: size.height *0.15,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: size.height * 0.015),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(
-              books.name!
-              ,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
   }
 }
