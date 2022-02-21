@@ -280,6 +280,37 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  void SearchBookForStudent({
+    String? text
+  })
+  {
+    emit(AdminSearchBookForStudentLoadingState());
+    print('---------------Loading Search Student ----------------');
+    DioHelper.getData(
+      url: SEARCH_BOOKS,
+      token: token,
+      query:
+      {
+        'name':text
+      },
+    ).then((value)
+    {
+      // if (value != null) {
+      //   value.data.forEach((element) {
+      //     searchBookModel!.add(SearchBookModel.fromJson(element));
+      //   });
+      // }
+      searchBookModel = SearchBookModel.fromJson(value!.data);
+
+      print('---------------Success Search Student ----------------${value.data}');
+      emit(AdminSearchBookForStudentSuccessState());
+    }).catchError((error)
+    {
+      print('---------------Success Search Student ----------------${error.toString()}');
+      emit(AdminSearchBookForStudentErrorState(error));
+    });
+  }
+
   AdminBooksModel? adminBooksModel;
   //all books
   void getAdminBooks() {
