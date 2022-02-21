@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/search_book_screen/pdf_book_screen.dart';
@@ -65,30 +66,18 @@ class CsBookSearchScreen extends StatelessWidget {
                             text: 'Search by name',
                             prefix: Icons.search,
                             suffix: Icons.forward,
-                            suffixPressed: ()
-                            {
+                            onChange: (value){
                               AppCubit.get(context).SearchBook(
-                                  text: searchController.text
+                                  text: value
                               );
                             },
                             type: TextInputType.text,
-                            validate: (String? value) {
-                              if (
-                                  value!.isEmpty
-                                  ||
-                                  value.toString() == false
-                              ) {
-                                return 'Search for books';
-                              } else {
-                                return null;
-                              }
-                            },
                           ),
                           if (state is AdminSearchBookLoadingState) LinearProgressIndicator(),
                           SizedBox(
                             height: size.height * 0.044,
                           ),
-                          if (state is AdminSearchBookSuccessState && formKey.currentState!.validate())
+                          // if (state is AdminSearchBookSuccessState && formKey.currentState!.validate())
                             ConditionalBuilder(
                               condition: AppCubit.get(context).searchBookModel != null,
                               builder: (context) => Expanded(
@@ -180,8 +169,14 @@ class CsBookSearchScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              fallback: (context) =>  Scaffold(
-                                body: Center(child: Text('Search for Books')),
+                              fallback: (context) =>  Expanded(
+                                  child: Center(
+                                      child:
+                                      //Text('Search for Books'),
+                                    SvgPicture.asset('assets/images/search_books.svg',
+                                      height: size.height * 0.3,
+                                    )
+                                  ),
                               ),
                             ),
                         ],

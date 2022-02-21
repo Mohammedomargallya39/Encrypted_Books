@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -8,10 +9,20 @@ import 'search_screens/search_screen.dart';
 import 'cs_students_screens/cs_students_screen.dart';
 import 'eng_students_screens/eng_students_screen.dart';
 
-class StudentsDepartmentsScreen extends StatelessWidget {
+class StudentsDepartmentsScreen extends StatefulWidget {
   const StudentsDepartmentsScreen({Key? key}) : super(key: key);
 
   @override
+  State<StudentsDepartmentsScreen> createState() => _StudentsDepartmentsScreenState();
+}
+
+class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AppCubit.get(context).getStudents();
+  }
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(

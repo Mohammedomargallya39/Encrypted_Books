@@ -26,9 +26,10 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
   }
   @override
   void initState() {
-    pageController.addListener(listenScroll);
 
+    pageController.addListener(listenScroll);
     super.initState();
+    AppCubit.get(context).getUserBooks();
   }
   @override
   void dispose() {
@@ -36,6 +37,7 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
     pageController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

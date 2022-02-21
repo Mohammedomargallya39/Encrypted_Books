@@ -94,9 +94,10 @@ Widget defaultFormField({
   isPassword = false,
   required TextEditingController controller,
   required IconData prefix,
+  ValueChanged<String>? onChange,
   IconData? suffix,
   Function? suffixPressed,
-  required Function? validate,
+   Function? validate,
   Function? onSubmit,
   required TextInputType type ,
   required context,
@@ -107,6 +108,7 @@ Widget defaultFormField({
     maxLines: maxLines,
     controller: controller,
     obscureText: isPassword,
+    onChanged: onChange,
     validator:(value){
       return validate!(value);
     },

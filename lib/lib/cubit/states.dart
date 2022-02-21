@@ -38,6 +38,9 @@ class EncryptionSuccessGetStudentsState extends AppStates
   EncryptionSuccessGetStudentsState(this.studentsModel);
 }
 class EncryptionErrorGetStudentsState extends AppStates{}
+//Get Cs Students
+class LoadingGetCsStudentsState extends AppStates{}
+class SuccessGetCsStudentsState extends AppStates {}
 // UpdateUserData
 class EncryptionLoadingUpdateUserDataState extends AppStates{}
 class EncryptionSuccessUpdateUserDataState extends AppStates
