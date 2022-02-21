@@ -105,3 +105,11 @@ class AdminSearchBookErrorState extends AppStates {
   AdminSearchBookErrorState(this.error);
 }
 
+// admin search book for student
+class AdminSearchBookForStudentLoadingState extends AppStates{}
+class AdminSearchBookForStudentSuccessState extends AppStates{}
+class AdminSearchBookForStudentErrorState extends AppStates {
+  final String error ;
+  AdminSearchBookForStudentErrorState(this.error);
+}
+

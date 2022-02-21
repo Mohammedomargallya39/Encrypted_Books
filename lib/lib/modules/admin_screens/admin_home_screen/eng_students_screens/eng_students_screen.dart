@@ -101,6 +101,8 @@ class EngStudentsScreen extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold ,
                                                     fontSize: 16 ,
+                                                    color: Colors.black,
+
                                                   ),
                                                 ),
                                                 SizedBox(height: size.height * 0.0075,),
@@ -110,6 +112,8 @@ class EngStudentsScreen extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold ,
                                                     fontSize: 16 ,
+                                                    color: Colors.black,
+
                                                   ),
                                                 ),
                                               ],
@@ -118,7 +122,9 @@ class EngStudentsScreen extends StatelessWidget {
                                           const Spacer(),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                                            child: Icon(Icons.arrow_forward_ios),
+                                            child: Icon(Icons.arrow_forward_ios,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ],
                                       ),

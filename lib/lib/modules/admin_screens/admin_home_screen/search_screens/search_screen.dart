@@ -70,7 +70,12 @@ class StudentsSearchScreen extends StatelessWidget {
                             },
                             type: TextInputType.text,
                             validate: (String? value) {
-                              if (value!.isEmpty) {
+                              if (
+                              value!.isEmpty
+                                  ||
+                              value.toString() == false
+
+                              ) {
                                 return 'Search for students';
                               } else {
                                 return null;
@@ -81,7 +86,7 @@ class StudentsSearchScreen extends StatelessWidget {
                           SizedBox(
                             height: size.height * 0.044,
                           ),
-                          if (state is AdminSearchStudentSuccessState)
+                          if (state is AdminSearchStudentSuccessState && formKey.currentState!.validate())
                             Expanded(
                               child: AnimationLimiter(
                                 child: ListView.builder(
@@ -129,6 +134,8 @@ class StudentsSearchScreen extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontWeight: FontWeight.bold ,
                                                             fontSize: 16 ,
+                                                            color: Colors.black,
+
                                                           ),
                                                         ),
                                                         SizedBox(height: size.height * 0.0075,),
@@ -138,6 +145,7 @@ class StudentsSearchScreen extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontWeight: FontWeight.bold ,
                                                             fontSize: 16 ,
+                                                            color: Colors.black,
                                                           ),
                                                         ),
                                                       ],
@@ -146,7 +154,9 @@ class StudentsSearchScreen extends StatelessWidget {
                                                   const Spacer(),
                                                   Padding(
                                                     padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                                                    child: Icon(Icons.arrow_forward_ios),
+                                                    child: Icon(Icons.arrow_forward_ios,
+                                                      color: Colors.black,
+                                                    ),
                                                   ),
                                                 ],
                                               ),

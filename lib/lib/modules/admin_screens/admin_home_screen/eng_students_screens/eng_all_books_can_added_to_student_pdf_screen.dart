@@ -24,28 +24,35 @@ class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
-            appBar: AppBar(
-              title:Text(
-                  AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].name!
-              ),
-              actions: [
-                InkWell(
-                  child: IconButton(
-                    color: Colors.white,
-                    onPressed: ()
-                    {
-                      AppCubit.get(context).EngIndexAddedStudentBook= EngStudentIndexId;
-                      AppCubit.get(context).EngIndexAddedBookStudent= EngStudentBookIndexId;
-                      Navigator.pop(context);
-                      showDialog(
-                        context: context,
-                        builder: (context) => AddStudentBooksAlertDialog(
-                          title: 'Add This Book',
-                          description: 'Are you sure?',
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.add),
+            floatingActionButton: Stack(
+              // fit: StackFit.expand,
+              children: [
+                Positioned(
+                  top: 60,
+                  right: 0,
+                  child: IconButton(icon: Icon(Icons.add), onPressed: ()
+                  {
+                    AppCubit.get(context).EngIndexAddedStudentBook= EngStudentIndexId;
+                    AppCubit.get(context).EngIndexAddedBookStudent= EngStudentBookIndexId;;
+                    showDialog(
+                      context: context,
+                      builder: (context) => AddStudentBooksAlertDialog(
+                        title: 'Add This Book',
+                        description: 'Are you sure?',
+                        //StudentIDToDelete: StudentId,
+                      ),
+                    );
+                  },
+                    iconSize: 30,
+                  ),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 30,
+                  child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                  {
+                    Navigator.pop(context);
+                  }, iconSize: 23,
                   ),
                 ),
               ],
