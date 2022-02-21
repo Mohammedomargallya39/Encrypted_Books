@@ -8,6 +8,7 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_details_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 
 class StudentsSearchScreen extends StatelessWidget {
   StudentsSearchScreen({Key? key}) : super(key: key);
@@ -76,16 +77,15 @@ class StudentsSearchScreen extends StatelessWidget {
                           SizedBox(
                             height: size.height * 0.044,
                           ),
-                          //if (state is AdminSearchStudentSuccessState && formKey.currentState!.validate())
                             ConditionalBuilder(
-                              condition: AppCubit.get(context).searchStudentModel != null,
+                              condition: AppCubit.get(context).searchStudentWithOutAdminsModel != null,
                               builder: (context) => Expanded(
                                 child: AnimationLimiter(
                                   child: ListView.builder(
                                     padding: EdgeInsets.all(_w / 30),
                                     physics:
                                     BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                                    itemCount: AppCubit.get(context).searchStudentModel!.length,
+                                    itemCount: AppCubit.get(context).searchStudentWithOutAdminsModel!.length,
                                     itemBuilder: (BuildContext context, int index) {
                                       return AnimationConfiguration.staggeredList(
                                         position: index,
@@ -108,7 +108,7 @@ class StudentsSearchScreen extends StatelessWidget {
                                                       height:size.height * .07,
                                                       decoration:   BoxDecoration(shape: BoxShape.circle,
                                                         image: DecorationImage(image:
-                                                        NetworkImage(AppCubit.get(context).searchStudentModel![index].pic!),
+                                                        NetworkImage(AppCubit.get(context).searchStudentWithOutAdminsModel![index].pic!),
                                                             fit: BoxFit.fill
                                                         ),
                                                       ),
@@ -120,24 +120,23 @@ class StudentsSearchScreen extends StatelessWidget {
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children:  <Widget>
                                                         [
-                                                          Text(AppCubit.get(context).searchStudentModel![index].name! ,
+                                                          Text(AppCubit.get(context).searchStudentWithOutAdminsModel![index].name! ,
                                                             maxLines: 1,
                                                             overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                               fontWeight: FontWeight.bold ,
                                                               fontSize: 16 ,
-                                                              color: Colors.black,
-
+                                                              //color: Colors.black,
                                                             ),
                                                           ),
                                                           SizedBox(height: size.height * 0.0075,),
-                                                          Text(AppCubit.get(context).searchStudentModel![index].email!.split('@').first ,
+                                                          Text(AppCubit.get(context).searchStudentWithOutAdminsModel![index].email!.split('@').first ,
                                                             maxLines: 1,
                                                             overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                               fontWeight: FontWeight.bold ,
                                                               fontSize: 16 ,
-                                                              color: Colors.black,
+                                                              //color: Colors.black,
                                                             ),
                                                           ),
                                                         ],
@@ -147,7 +146,7 @@ class StudentsSearchScreen extends StatelessWidget {
                                                     Padding(
                                                       padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                                                       child: Icon(Icons.arrow_forward_ios,
-                                                        color: Colors.black,
+                                                        //color: Colors.black,
                                                       ),
                                                     ),
                                                   ],
@@ -163,7 +162,7 @@ class StudentsSearchScreen extends StatelessWidget {
                                               margin: EdgeInsets.only(bottom: _w / 20),
                                               height: _w / 4,
                                               decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color: ThemeCubit.get(context).darkTheme?Colors.grey.shade700:Colors.white,
                                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                                                 boxShadow: [
                                                   BoxShadow(

@@ -22,6 +22,7 @@ class AppCubit extends Cubit<AppStates> {
   //user data
   UserData? userModel ;
   void getUserData() async {
+    userModel = null;
     emit(EncryptionLoadingUserDataState());
     await DioHelper.getData(
       url: PROFILE,
@@ -230,11 +231,24 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-    List<SearchStudentModel>? searchStudentModel;
+    List<SearchStudentModel>? searchStudentModel = [];
+    List<SearchStudentModel>? searchStudentWithOutAdminsModel = [];
+
+  void getSearchStudentWithOutAdminsModel() {
+    searchStudentWithOutAdminsModel =
+        searchStudentModel!.where((element) =>
+        // element.isAdmin == true
+        element.isEnginneringsection == true ||
+            element.isManagmentsection == true ||
+            element.isComputerSciencesection == true
+        ).toList();
+  }
+
   void SearchStudent({
     String? text
   })
   {
+    searchStudentWithOutAdminsModel=[];
     searchStudentModel =[];
     emit(AdminSearchStudentLoadingState());
     print('---------------Loading Search Student ----------------');
@@ -252,8 +266,10 @@ class AppCubit extends Cubit<AppStates> {
           searchStudentModel!.add(SearchStudentModel.fromJson(element));
         });
       }
+      getSearchStudentWithOutAdminsModel();
       print('---------------Success Search Student ----------------${value!.data}');
       emit(AdminSearchStudentSuccessState());
+
     }).catchError((error)
     {
       print('---------------Success Search Student ----------------${error.toString()}');
@@ -327,6 +343,7 @@ class AppCubit extends Cubit<AppStates> {
   AdminBooksModel? adminBooksModel;
   //all books
   void getAdminBooks() {
+    adminBooksModel = null ;
     emit(EncryptionLoadingGetAdminBooksState());
     print('------------------get admin books test-------------------');
     DioHelper.getData(

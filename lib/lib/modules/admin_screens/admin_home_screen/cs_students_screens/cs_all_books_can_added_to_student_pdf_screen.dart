@@ -9,6 +9,8 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
+import '../admin_drawer.dart';
+
 class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
   final int CsStudentIndexId;
   final int CsStudentBookIndexId;
@@ -135,11 +137,10 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
                 print(token);
                 print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).CsIndexAddedBookStudent!].sId!);
                 print(AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexAddedStudentBook!].sId);
-                Navigator.pop(context);
                 showToast(
                     message: 'Book added successfully',
                     state: ToastStates.SUCCESS );
-                Navigator.pop(context);
+                navigateTo(context, AdminDrawerScreen());
               },
               child: Center(
                 child: Text(

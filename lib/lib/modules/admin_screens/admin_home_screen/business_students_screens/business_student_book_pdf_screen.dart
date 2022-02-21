@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
@@ -135,11 +136,11 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                     bookId:AppCubit.get(context).businessStudentsModel![AppCubit.get(context).BusinessIndexRemoveStudentBook!].books![AppCubit.get(context).BusinessIndexRemoveBookStudent!].sId,
                     studentId:AppCubit.get(context).businessStudentsModel![AppCubit.get(context).BusinessIndexRemoveStudentBook!].sId,
                 );
-                Navigator.pop(context);
                 showToast(
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
-                Navigator.pop(context);
+                navigateTo(context, AdminDrawerScreen());
+
               },
               child: Center(
                 child: Text(

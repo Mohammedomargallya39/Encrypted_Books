@@ -8,6 +8,7 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/search_book_screen/pdf_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 
 class CsBookSearchScreen extends StatelessWidget {
   CsBookSearchScreen({Key? key}) : super(key: key);
@@ -106,35 +107,40 @@ class CsBookSearchScreen extends StatelessWidget {
                                                       Image(image: NetworkImage(
                                                         AppCubit.get(context).searchBookModel!.books![index].cover!,
                                                       ),
-                                                        height: size.height * 0.3,
+                                                        height: size.height * 0.24,
                                                         width: size.width,
                                                         fit: BoxFit.cover,
                                                       ),
-                                                      SizedBox( height: size.height *0.006
+                                                      SizedBox( height: size.height *0.02
                                                         ,),
-                                                      Text(
-                                                        AppCubit.get(context).searchBookModel!.books![index].name!,
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: 18.0,
-                                                          fontWeight: FontWeight.bold,
-                                                          color:  Colors.black ,
+                                                      Expanded(
+                                                        child: Text(
+                                                          AppCubit.get(context).searchBookModel!.books![index].name!,
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style: TextStyle(
+                                                            fontSize: 18.0,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
                                                         ),
                                                       ),
                                                       Container(
-                                                        height: 0.5,
+                                                        height: size.height *0.002,
                                                         width: double.infinity,
                                                         color: Colors.grey.withOpacity(0.5555),
                                                       ),
-                                                      Text(
-                                                        AppCubit.get(context).searchBookModel!.books![index].description!,
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: 18.0,
-                                                          fontWeight: FontWeight.bold,
-                                                          color:  Colors.black ,
+                                                      SizedBox( height: size.height *0.02
+                                                        ,),
+                                                      Expanded(
+                                                        child: Text(
+                                                          AppCubit.get(context).searchBookModel!.books![index].description!,
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style: TextStyle(
+                                                            fontSize: 16.0,
+                                                            fontWeight: FontWeight.bold,
+                                                            color:  Colors.grey ,
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -148,9 +154,9 @@ class CsBookSearchScreen extends StatelessWidget {
                                                   },
                                                 ),
                                                 margin: EdgeInsets.only(
-                                                    bottom: _w / 30, left: _w / 60, right: _w / 60),
+                                                    bottom: _w / 20, left: _w / 60, right: _w / 60 ,  top: _w / 20,),
                                                 decoration: BoxDecoration(
-                                                  color: Colors.white,
+                                                  color: ThemeCubit.get(context).darkTheme?Colors.grey.shade700:Colors.white,
                                                   borderRadius: BorderRadius.all(Radius.circular(20)),
                                                   boxShadow: [
                                                     BoxShadow(

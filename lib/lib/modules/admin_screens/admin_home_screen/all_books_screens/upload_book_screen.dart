@@ -150,6 +150,7 @@ class UploadBookScreen extends StatelessWidget {
                                       pdf: AppCubit.get(context).pdf!,
                                     );
                                     Navigator.pop(context);
+                                    Navigator.pop(context);
                                     showToast(message: 'Uploaded', state: ToastStates.SUCCESS);
                                   }else
                                   {

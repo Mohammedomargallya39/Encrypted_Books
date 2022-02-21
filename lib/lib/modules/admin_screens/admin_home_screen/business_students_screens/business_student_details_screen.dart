@@ -7,6 +7,7 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
+import '../admin_drawer.dart';
 import 'business_student_book_screen.dart';
 
 class BusinessStudentDetailsScreen extends StatelessWidget {
@@ -323,12 +324,10 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
               onTap: ()
               {
                 AppCubit.get(context).deleteStudentAccount();
-                Navigator.pop(context);
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
-                Navigator.pop(context);
-                //Restart.restartApp();
+                navigateTo(context, AdminDrawerScreen());
               },
               child: Center(
                 child: Text(
