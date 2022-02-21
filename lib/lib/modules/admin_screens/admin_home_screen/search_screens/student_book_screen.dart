@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
@@ -120,30 +121,19 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
                                                         text: 'Search by name',
                                                         prefix: Icons.search,
                                                         suffix: Icons.forward,
-                                                        suffixPressed: ()
+                                                        onChange: (value)
                                                         {
                                                           AppCubit.get(context).SearchBookForStudent(
                                                               text: searchAllBooksController.text
                                                           );
                                                         },
                                                         type: TextInputType.text,
-                                                        validate: (String? value) {
-                                                          if (
-                                                          value!.isEmpty
-                                                              ||
-                                                              value.toString() == false
-                                                          ) {
-                                                            return 'Search for books';
-                                                          } else {
-                                                            return null;
-                                                          }
-                                                        },
                                                       ),
                                                       if (state is AdminSearchBookForStudentLoadingState) LinearProgressIndicator(),
                                                       SizedBox(
                                                         height: size.height * 0.044,
                                                       ),
-                                                      if (state is AdminSearchBookForStudentSuccessState && formKey.currentState!.validate())
+                                                      //if (state is AdminSearchBookForStudentSuccessState && formKey.currentState!.validate())
                                                         ConditionalBuilder(
                                                           condition: AppCubit.get(context).searchBookModel != null,
                                                           builder: (context) =>  Expanded(
@@ -242,8 +232,14 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
                                                               ),
                                                             ),
                                                           ),
-                                                          fallback: (context) =>  Scaffold(
-                                                            body: Center(child: Text('Search for Books')),
+                                                          fallback: (context) =>  Expanded(
+                                                            child: Center(
+                                                                child:
+                                                                //Text('Search for Books'),
+                                                                SvgPicture.asset('assets/images/search_books.svg',
+                                                                  height: size.height * 0.3,
+                                                                )
+                                                            ),
                                                           ),
                                                         ),
                                                     ],

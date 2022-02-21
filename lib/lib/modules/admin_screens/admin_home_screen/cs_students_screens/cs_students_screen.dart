@@ -9,7 +9,14 @@ import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'cs_student_details_screen.dart';
 
-class CsStudentsScreen extends StatelessWidget {
+class CsStudentsScreen extends StatefulWidget {
+  @override
+  State<CsStudentsScreen> createState() => _CsStudentsScreenState();
+}
+
+class _CsStudentsScreenState extends State<CsStudentsScreen> {
+  @override
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

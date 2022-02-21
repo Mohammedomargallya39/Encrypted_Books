@@ -31,8 +31,8 @@ class AppCubit extends Cubit<AppStates> {
       print(userModel!.name);
       print(userModel!.id);
       print(userModel!.image);
-      getUserBooks();
-      getStudents();
+      // getUserBooks();
+      // getStudents();
       emit(EncryptionSuccessUserDataState(userModel!));
     }).catchError((error) {
       print(error.toString());
@@ -57,6 +57,7 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       userModel = UserData.fromJson(value!.data);
       print(userModel!.name);
+      getUserData();
       emit(EncryptionSuccessUpdateUserDataState(userModel!));
     }).catchError((error) {
       print(error.toString());
@@ -91,6 +92,7 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       userModel = UserData.fromJson(value!.data);
       print(userModel!.image);
+      getUserData();
       emit(EncryptionSuccessUpdateUserImageState(userModel!));
       print('********************Image success updated ***********************');
     }).catchError((error) {
@@ -110,6 +112,7 @@ class AppCubit extends Cubit<AppStates> {
   //user books
   HomeModel? homeModel;
   void getUserBooks() {
+    homeModel = null;
     emit(EncryptionLoadingGetUserBooksState());
     print('------------------get users books test-------------------');
     print(userModel!.id);
@@ -135,6 +138,8 @@ class AppCubit extends Cubit<AppStates> {
   List<StudentsModel>? withOutAdminsModel = [];
   //user with out admins
   void getCsStudents() {
+    csStudentsModel = [];
+    emit(LoadingGetCsStudentsState());
     csStudentsModel =
         studentsModel!.where((element) =>
         // element.isEnginneringsection == true ||
@@ -144,6 +149,7 @@ class AppCubit extends Cubit<AppStates> {
             // element.bookId != null
             // ) != 'null',
         ).toList();
+    emit(SuccessGetCsStudentsState());
   }
   void getBusinessStudents() {
     businessStudentsModel =
@@ -183,6 +189,12 @@ class AppCubit extends Cubit<AppStates> {
 
   //all users
   void getStudents() {
+    studentsModel = [];
+    csStudentsModel = [];
+    businessStudentsModel = [];
+    engStudentsModel = [];
+    adminsModel = [];
+    withOutAdminsModel = [];
     emit(EncryptionLoadingGetStudentsState());
     print('------------------test Loading get students-------------------');
     DioHelper.getData(
@@ -218,11 +230,12 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-    List<SearchStudentModel>? searchStudentModel =[];
+    List<SearchStudentModel>? searchStudentModel;
   void SearchStudent({
     String? text
   })
   {
+    searchStudentModel =[];
     emit(AdminSearchStudentLoadingState());
     print('---------------Loading Search Student ----------------');
     DioHelper.getData(
