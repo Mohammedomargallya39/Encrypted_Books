@@ -368,7 +368,7 @@ class AppCubit extends Cubit<AppStates> {
   }
   int? indexStudent;
   //delete student acc
-  void deleteStudentAccount() {
+  void deleteCsStudentAccount() {
     emit(EncryptionLoadingDeleteStudentAccountState());
     print(
         '----------loading delete account test----------- ${csStudentsModel![indexStudent!].name}');
@@ -378,6 +378,72 @@ class AppCubit extends Cubit<AppStates> {
     DioHelper.deleteData(
       //url: '',
       url: '${DELETE_STUDENT_ACCOUNT}${csStudentsModel![indexStudent!].sId}',
+      token: token,
+    ).then((value) {
+      getCsStudents();
+      print(getCsStudents);
+      print('----------Success delete account test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteStudentAccountState());
+    }).catchError((error) {
+      print(error.toString());
+      print('----------error delete account test-----------');
+      emit(EncryptionErrorDeleteStudentAccountState());
+    });
+  }
+  void deleteBusinessStudentAccount() {
+    emit(EncryptionLoadingDeleteStudentAccountState());
+    print(
+        '----------loading delete account test----------- ${businessStudentsModel![indexStudent!].name}');
+    print(
+        '----------loading delete account test----------- ${businessStudentsModel![indexStudent!].sId}');
+    print('----------loading delete account test----------- ${indexStudent}');
+    DioHelper.deleteData(
+      //url: '',
+      url: '${DELETE_STUDENT_ACCOUNT}${businessStudentsModel![indexStudent!].sId}',
+      token: token,
+    ).then((value) {
+      getCsStudents();
+      print(getCsStudents);
+      print('----------Success delete account test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteStudentAccountState());
+    }).catchError((error) {
+      print(error.toString());
+      print('----------error delete account test-----------');
+      emit(EncryptionErrorDeleteStudentAccountState());
+    });
+  }
+  void deleteEngStudentAccount() {
+    emit(EncryptionLoadingDeleteStudentAccountState());
+    print(
+        '----------loading delete account test----------- ${engStudentsModel![indexStudent!].name}');
+    print(
+        '----------loading delete account test----------- ${engStudentsModel![indexStudent!].sId}');
+    print('----------loading delete account test----------- ${indexStudent}');
+    DioHelper.deleteData(
+      //url: '',
+      url: '${DELETE_STUDENT_ACCOUNT}${engStudentsModel![indexStudent!].sId}',
+      token: token,
+    ).then((value) {
+      getCsStudents();
+      print(getCsStudents);
+      print('----------Success delete account test-----------${value!.data}');
+      emit(EncryptionSuccessDeleteStudentAccountState());
+    }).catchError((error) {
+      print(error.toString());
+      print('----------error delete account test-----------');
+      emit(EncryptionErrorDeleteStudentAccountState());
+    });
+  }
+  void deleteStudentAccount() {
+    emit(EncryptionLoadingDeleteStudentAccountState());
+    print(
+        '----------loading delete account test----------- ${searchStudentWithOutAdminsModel![indexStudent!].name}');
+    print(
+        '----------loading delete account test----------- ${searchStudentWithOutAdminsModel![indexStudent!].sId}');
+    print('----------loading delete account test----------- ${indexStudent}');
+    DioHelper.deleteData(
+      //url: '',
+      url: '${DELETE_STUDENT_ACCOUNT}${searchStudentWithOutAdminsModel![indexStudent!].sId}',
       token: token,
     ).then((value) {
       getCsStudents();

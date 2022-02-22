@@ -67,7 +67,7 @@ class StudentDetailsScreen extends StatelessWidget {
                                 decoration:  BoxDecoration(shape: BoxShape.circle,
                                   image: DecorationImage(image:
                                   NetworkImage(
-                                      '${AppCubit.get(context).searchStudentModel![StudentId].pic}'
+                                      '${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].pic}'
                                   ),
                                       fit: BoxFit.fill
                                   ),
@@ -86,7 +86,7 @@ class StudentDetailsScreen extends StatelessWidget {
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
                               child: Text(
-                                '${AppCubit.get(context).searchStudentModel![StudentId].name}'
+                                '${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].name}'
                                 ,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -114,7 +114,7 @@ class StudentDetailsScreen extends StatelessWidget {
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
                               child: Text(
-                                '${AppCubit.get(context).searchStudentModel![StudentId].email!.split('@').first}'
+                                '${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].email!.split('@').first}'
                                 ,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -142,7 +142,7 @@ class StudentDetailsScreen extends StatelessWidget {
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
                               child: Text(
-                                '${AppCubit.get(context).searchStudentModel![StudentId].books!.length}'
+                                '${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].books!.length}'
                                 ,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -170,7 +170,7 @@ class StudentDetailsScreen extends StatelessWidget {
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
                               child: Text(
-                                '${AppCubit.get(context).searchStudentModel![StudentId].createdAt!.split('T').first}'
+                                '${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].createdAt!.split('T').first}'
                                 ,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -198,7 +198,7 @@ class StudentDetailsScreen extends StatelessWidget {
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
                               child: Text(
-                                '${AppCubit.get(context).searchStudentModel![StudentId].updatedAt!.split('T').first}'
+                                '${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].updatedAt!.split('T').first}'
                                 ,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -222,7 +222,7 @@ class StudentDetailsScreen extends StatelessWidget {
                           child: defaultButton(
                             function: ()
                             {
-                              debugPrint('${AppCubit.get(context).searchStudentModel![StudentId].books!.length}');
+                              debugPrint('${AppCubit.get(context).searchStudentWithOutAdminsModel![StudentId].books!.length}');
                               navigateTo(context, StudentBookScreen(
                                 StudentBooksId: StudentId,
                               )
@@ -320,7 +320,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                AppCubit.get(context).deleteSearchStudentAccount();
+                AppCubit.get(context).deleteStudentAccount();
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );

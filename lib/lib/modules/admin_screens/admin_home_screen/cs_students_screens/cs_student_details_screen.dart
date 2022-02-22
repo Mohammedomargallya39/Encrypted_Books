@@ -318,7 +318,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                AppCubit.get(context).deleteStudentAccount();
+                AppCubit.get(context).deleteCsStudentAccount();
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
