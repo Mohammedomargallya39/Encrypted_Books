@@ -62,7 +62,7 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
           return BlocBuilder<ThemeCubit,ThemeStates>(
             builder: (context, state) {
               return ConditionalBuilder(
-                condition: cubit.searchStudentModel![widget.StudentBooksId].books != null,
+                condition: cubit.searchStudentWithOutAdminsModel![widget.StudentBooksId].books != null,
                 builder: (context) =>  Scaffold(
                   floatingActionButton: Stack(
                     // fit: StackFit.expand,
@@ -294,7 +294,7 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
                             height: size.height * 0.4,
                             child: PageView.builder(
                                 controller: pageController,
-                                itemCount: cubit.searchStudentModel![widget.StudentBooksId].books!.length,
+                                itemCount: cubit.searchStudentWithOutAdminsModel![widget.StudentBooksId].books!.length,
                                 itemBuilder: (context, index) {
                                   final percent = (page - index).abs().clamp(0.0, 1.0);
                                   final factor = pageController.position.userScrollDirection ==
@@ -319,12 +319,12 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
                                                     width: size.width,
                                                     height: size.height * 0.26,
                                                     image: NetworkImage(
-                                                        AppCubit.get(context).searchStudentModel![widget.StudentBooksId].books![index].cover!
+                                                        AppCubit.get(context).searchStudentWithOutAdminsModel![widget.StudentBooksId].books![index].cover!
                                                     )),
                                                 SizedBox(height: size.height * 0.01),
                                                 Expanded(
                                                   child: Text(
-                                                    AppCubit.get(context).searchStudentModel![widget.StudentBooksId].books![index].name!,
+                                                    AppCubit.get(context).searchStudentWithOutAdminsModel![widget.StudentBooksId].books![index].name!,
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -341,7 +341,7 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
                                                 SizedBox(height: size.height * 0.02),
                                                 Expanded(
                                                   child: Text(
-                                                    AppCubit.get(context).searchStudentModel![widget.StudentBooksId].books![index].description!,
+                                                    AppCubit.get(context).searchStudentWithOutAdminsModel![widget.StudentBooksId].books![index].description!,
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(

@@ -23,7 +23,7 @@ class StudentBookPDFScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).searchStudentModel![StudentID].books![StudentBookId].pdf != null,
+          condition: AppCubit.get(context).searchStudentWithOutAdminsModel![StudentID].books![StudentBookId].pdf != null,
           builder:(context) =>  Scaffold(
             floatingActionButton: Stack(
               children: [
@@ -64,7 +64,7 @@ class StudentBookPDFScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).searchStudentModel![StudentID].books![StudentBookId].pdf!
+              AppCubit.get(context).searchStudentWithOutAdminsModel![StudentID].books![StudentBookId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -128,12 +128,12 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
               highlightColor: Colors.grey[200],
               onTap: ()
               {
-                print(AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexRemoveStudentBook!].books![AppCubit.get(context).IndexRemoveBookStudent!].sId!);
-                print(AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexRemoveStudentBook!].sId);
+                print(AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexRemoveStudentBook!].books![AppCubit.get(context).IndexRemoveBookStudent!].sId!);
+                print(AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexRemoveStudentBook!].sId);
                 print(token);
                 AppCubit.get(context).removeBookFromStudent(
-                    bookId:AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexRemoveStudentBook!].books![AppCubit.get(context).IndexRemoveBookStudent!].sId!,
-                    studentId:AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexRemoveStudentBook!].sId,
+                    bookId:AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexRemoveStudentBook!].books![AppCubit.get(context).IndexRemoveBookStudent!].sId!,
+                    studentId:AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexRemoveStudentBook!].sId,
                 );
                 showToast(
                     message: 'Book deleted successfully',

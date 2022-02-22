@@ -131,11 +131,11 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
               {
                 AppCubit.get(context).addBookToStudent(
                     bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).IndexAddedBookStudent!].sId!,
-                    studentId: AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexAddedStudentBook!].sId,
+                    studentId: AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexAddedStudentBook!].sId,
                 );
                 print(token);
                 print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).IndexAddedBookStudent!].sId!);
-                print(AppCubit.get(context).searchStudentModel![AppCubit.get(context).IndexAddedStudentBook!].sId);
+                print(AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexAddedStudentBook!].sId);
                 showToast(
                     message: 'Book added successfully',
                     state: ToastStates.SUCCESS );
