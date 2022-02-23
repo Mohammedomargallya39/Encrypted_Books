@@ -41,6 +41,10 @@ class EncryptionErrorGetStudentsState extends AppStates{}
 //Get Cs Students
 class LoadingGetCsStudentsState extends AppStates{}
 class SuccessGetCsStudentsState extends AppStates {}
+//Get Business Students
+class LoadingGetBusinessStudentsState extends AppStates{}
+class SuccessGetBusinessStudentsState extends AppStates {}
+
 // UpdateUserData
 class EncryptionLoadingUpdateUserDataState extends AppStates{}
 class EncryptionSuccessUpdateUserDataState extends AppStates

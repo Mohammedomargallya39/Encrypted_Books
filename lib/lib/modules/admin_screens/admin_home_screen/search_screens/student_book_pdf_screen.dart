@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 import '../admin_drawer.dart';
+import '../students_departments.dart';
 
 class StudentBookPDFScreen extends StatelessWidget {
   StudentBookPDFScreen({Key? key,required this.StudentBookId, required this.StudentID}) : super(key: key);
@@ -51,7 +53,7 @@ class StudentBookPDFScreen extends StatelessWidget {
                   left: 30,
                   child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
                   {
-                    Navigator.pop(context);
+                    navigateAndEnd(context, StudentBookScreen(StudentBooksId:StudentID));
                   }, iconSize: 23,
                   ),
                 ),
@@ -138,7 +140,7 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                 showToast(
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateTo(context, AdminDrawerScreen());
+                navigateAndEnd(context, StudentsDepartmentsScreen());
               },
               child: Center(
                 child: Text(

@@ -14,6 +14,7 @@ import 'package:social/lib/shared/cubit/states.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 import 'cs_all_books_can_added_to_student_pdf_screen.dart';
 import 'cs_student_book_pdf_screen.dart';
+import 'cs_student_details_screen.dart';
 
 class CsStudentBookScreen extends StatefulWidget {
   const CsStudentBookScreen({Key? key, required this.CsStudentBooksId}) : super(key: key);
@@ -83,7 +84,7 @@ class _CsStudentBookScreenState extends State<CsStudentBookScreen> {
                                       floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
                                         ,onPressed: ()
                                         {
-                                          Navigator.pop(context);
+                                          navigateAndEnd(context, CsStudentDetailsScreen(StudentId: widget.CsStudentBooksId));
                                         },
                                       ),
                                       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,

@@ -14,6 +14,7 @@ import 'package:social/lib/shared/cubit/states.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 import 'eng_all_books_can_added_to_student_pdf_screen.dart';
 import 'eng_student_book_pdf_screen.dart';
+import 'eng_student_details_screen.dart';
 
 class EngStudentBookScreen extends StatefulWidget {
   const EngStudentBookScreen({Key? key, required this.EngStudentBooksId}) : super(key: key);
@@ -83,7 +84,7 @@ class _EngStudentBookScreenState extends State<EngStudentBookScreen> {
                                       floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
                                         ,onPressed: ()
                                         {
-                                          Navigator.pop(context);
+                                          navigateAndEnd(context, EngStudentDetailsScreen(EngStudentId: widget.EngStudentBooksId));
                                         },
                                       ),
                                       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,

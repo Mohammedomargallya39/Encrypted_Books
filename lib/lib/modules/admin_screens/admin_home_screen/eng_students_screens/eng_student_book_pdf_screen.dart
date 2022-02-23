@@ -10,6 +10,8 @@ import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 import '../admin_drawer.dart';
+import '../students_departments.dart';
+import 'eng_student_book_screen.dart';
 
 class EngStudentBookPDFScreen extends StatelessWidget {
   EngStudentBookPDFScreen({Key? key,required this.EngStudentBookId, required this.EngStudentID}) : super(key: key);
@@ -52,7 +54,7 @@ class EngStudentBookPDFScreen extends StatelessWidget {
                   left: 30,
                   child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
                   {
-                    Navigator.pop(context);
+                    navigateAndEnd(context, EngStudentBookScreen(EngStudentBooksId:EngStudentID));
                   }, iconSize: 23,
                   ),
                 ),
@@ -139,7 +141,7 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                 showToast(
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateTo(context, AdminDrawerScreen());
+                navigateAndEnd(context,StudentsDepartmentsScreen());
               },
               child: Center(
                 child: Text(

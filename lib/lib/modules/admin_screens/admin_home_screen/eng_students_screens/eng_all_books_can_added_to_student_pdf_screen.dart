@@ -10,6 +10,8 @@ import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 import '../admin_drawer.dart';
+import '../students_departments.dart';
+import 'eng_student_book_screen.dart';
 
 class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
   final int EngStudentIndexId;
@@ -53,7 +55,7 @@ class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
                   left: 30,
                   child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
                   {
-                    Navigator.pop(context);
+                    navigateAndEnd(context, EngStudentBookScreen(EngStudentBooksId: EngStudentIndexId));
                   }, iconSize: 23,
                   ),
                 ),
@@ -141,7 +143,7 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
                 showToast(
                     message: 'Book added successfully',
                     state: ToastStates.SUCCESS );
-                navigateTo(context, AdminDrawerScreen());
+                navigateAndEnd(context, StudentsDepartmentsScreen());
               },
               child: Center(
                 child: Text(

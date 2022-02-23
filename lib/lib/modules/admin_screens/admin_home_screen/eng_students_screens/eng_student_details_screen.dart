@@ -8,7 +8,9 @@ import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import '../admin_drawer.dart';
+import '../students_departments.dart';
 import 'eng_student_book_screen.dart';
+import 'eng_students_screen.dart';
 
 class EngStudentDetailsScreen extends StatelessWidget {
   const EngStudentDetailsScreen({Key? key, required this.EngStudentId}) : super(key: key);
@@ -21,7 +23,7 @@ class EngStudentDetailsScreen extends StatelessWidget {
       floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
         ,onPressed: ()
         {
-          Navigator.pop(context);
+          navigateAndEnd(context, EngStudentsScreen());
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -326,7 +328,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateTo(context, AdminDrawerScreen());
+                navigateAndEnd(context, StudentsDepartmentsScreen());
               },
               child: Center(
                 child: Text(

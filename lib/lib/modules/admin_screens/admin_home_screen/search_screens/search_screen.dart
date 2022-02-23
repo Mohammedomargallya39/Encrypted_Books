@@ -6,7 +6,9 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_details_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/students_departments.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
@@ -27,7 +29,7 @@ class StudentsSearchScreen extends StatelessWidget {
           floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
             ,onPressed: ()
             {
-              Navigator.pop(context);
+              navigateAndEnd(context, StudentsDepartmentsScreen());
             },
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.startTop,

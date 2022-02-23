@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/search_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
@@ -22,7 +23,7 @@ class StudentDetailsScreen extends StatelessWidget {
       floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
         ,onPressed: ()
         {
-          Navigator.pop(context);
+          navigateAndEnd(context, StudentsSearchScreen());
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -324,7 +325,7 @@ class _DeleteStudentAccountAlertDialogState extends State<DeleteStudentAccountAl
                 showToast(
                     message: 'Account deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateTo(context, AdminDrawerScreen());
+                navigateAndEnd(context, StudentsSearchScreen());
               },
               child: Center(
                 child: Text(
