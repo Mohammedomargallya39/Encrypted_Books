@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -21,7 +22,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    AppCubit.get(context).getStudents();
+    //AppCubit.get(context).getStudents();
   }
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -57,7 +58,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
             left: 30,
             child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
             {
-              Navigator.pop(context);
+              navigateAndEnd(context, AdminDrawerScreen());
             }, iconSize: 23,
             ),
           ),

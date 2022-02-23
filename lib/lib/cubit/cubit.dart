@@ -153,6 +153,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(SuccessGetCsStudentsState());
   }
   void getBusinessStudents() {
+    businessStudentsModel = [];
     businessStudentsModel =
         studentsModel!.where((element) =>
         // element.isEnginneringsection == true ||
@@ -161,6 +162,7 @@ class AppCubit extends Cubit<AppStates> {
         ).toList();
   }
   void getEngStudents() {
+    engStudentsModel = [];
     engStudentsModel =
         studentsModel!.where((element) =>
          element.isEnginneringsection == true
@@ -169,6 +171,7 @@ class AppCubit extends Cubit<AppStates> {
         ).toList();
   }
   void getAdmins() {
+    adminsModel = [];
     adminsModel =
         studentsModel!.where((element) =>
             element.isAdmin == true
@@ -178,6 +181,7 @@ class AppCubit extends Cubit<AppStates> {
         ).toList();
   }
   void getStudentsWithOutAdmins() {
+    withOutAdminsModel = [];
     withOutAdminsModel =
         studentsModel!.where((element) =>
        // element.isAdmin == true
@@ -189,7 +193,7 @@ class AppCubit extends Cubit<AppStates> {
 
 
   //all users
-  void getStudents() {
+  void getStudents() async{
     studentsModel = [];
     csStudentsModel = [];
     businessStudentsModel = [];
@@ -198,7 +202,7 @@ class AppCubit extends Cubit<AppStates> {
     withOutAdminsModel = [];
     emit(EncryptionLoadingGetStudentsState());
     print('------------------test Loading get students-------------------');
-    DioHelper.getData(
+    await DioHelper.getData(
       url: GET_STUDENTS,
       token: token,
     ).then((value) {
@@ -380,7 +384,8 @@ class AppCubit extends Cubit<AppStates> {
       url: '${DELETE_STUDENT_ACCOUNT}${csStudentsModel![indexStudent!].sId}',
       token: token,
     ).then((value) {
-      getCsStudents();
+      studentsModel =[];
+      getStudents();
       print(getCsStudents);
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
@@ -402,8 +407,9 @@ class AppCubit extends Cubit<AppStates> {
       url: '${DELETE_STUDENT_ACCOUNT}${businessStudentsModel![indexStudent!].sId}',
       token: token,
     ).then((value) {
-      getCsStudents();
-      print(getCsStudents);
+      studentsModel = [];
+      getStudents();
+
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
     }).catchError((error) {
@@ -424,8 +430,8 @@ class AppCubit extends Cubit<AppStates> {
       url: '${DELETE_STUDENT_ACCOUNT}${engStudentsModel![indexStudent!].sId}',
       token: token,
     ).then((value) {
-      getCsStudents();
-      print(getCsStudents);
+      studentsModel = [];
+      getStudents();
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
     }).catchError((error) {
@@ -446,7 +452,8 @@ class AppCubit extends Cubit<AppStates> {
       url: '${DELETE_STUDENT_ACCOUNT}${searchStudentWithOutAdminsModel![indexStudent!].sId}',
       token: token,
     ).then((value) {
-      getCsStudents();
+      studentsModel= [];
+      getStudents();
       print(getCsStudents);
       print('----------Success delete account test-----------${value!.data}');
       emit(EncryptionSuccessDeleteStudentAccountState());
@@ -665,6 +672,8 @@ class AppCubit extends Cubit<AppStates> {
           'bookId' : bookId,
         }
     ).then((value) {
+      // studentsModel = [];
+      // getStudents();
       print('----------------------remove books success test--------------------');
       emit(AdminRemoveBookFromStudentSuccessState());
     }).catchError((error) {

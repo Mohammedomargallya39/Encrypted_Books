@@ -6,9 +6,14 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_student_book_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/students_departments.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
+
+import 'business_student_details_screen.dart';
+import 'business_students_screen.dart';
 
 class BusinessStudentBookPDFScreen extends StatelessWidget {
   BusinessStudentBookPDFScreen({Key? key,required this.BusinessStudentBookId, required this.BusinessStudentID}) : super(key: key);
@@ -52,7 +57,8 @@ class BusinessStudentBookPDFScreen extends StatelessWidget {
                   left: 30,
                   child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
                   {
-                    Navigator.pop(context);
+                    navigateAndEnd(context, BusinessStudentBookScreen(BusinessStudentBooksId:BusinessStudentID));
+
                   }, iconSize: 23,
                   ),
                 ),
@@ -139,8 +145,7 @@ class _DeleteStudentBooksAlertDialogState extends State<DeleteStudentBooksAlertD
                 showToast(
                     message: 'Book deleted successfully',
                     state: ToastStates.SUCCESS );
-                navigateTo(context, AdminDrawerScreen());
-
+                navigateAndEnd(context,StudentsDepartmentsScreen());
               },
               child: Center(
                 child: Text(

@@ -9,6 +9,7 @@ import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/models/admin_books_model.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_book_pdf_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screens/student_details_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
@@ -264,7 +265,7 @@ class _StudentBookScreenState extends State<StudentBookScreen> {
                         left: 30,
                         child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
                         {
-                          Navigator.pop(context);
+                          navigateAndEnd(context, StudentDetailsScreen(StudentId: widget.StudentBooksId));
                         }, iconSize: 23,
                         ),
                       ),

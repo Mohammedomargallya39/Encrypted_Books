@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/models/login_model.dart';
 import 'package:social/lib/models/register_model.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_states.dart';
+import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
 
@@ -42,12 +43,12 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
         'isComputerSciencesection': isCom,
       },
     ).then((value) {
-      print('--------userRegister----------- Success');
+      print('--------userRegister----------- Success ${value.data.toString()}');
+      printLongString(value.data.toString());
       emit(UserRegisterSuccessState());
-      print('--------userRegister----------- Success');
     }).catchError((error) {
       print(error.toString());
-      print('--------userRegister----------- Error');
+      print('--------userRegister----------- Error ${error.toString()}');
       emit(UserRegisterErrorState(error.toString()));
     });
   }

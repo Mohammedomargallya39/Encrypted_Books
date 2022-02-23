@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
+import 'package:social/lib/modules/login_screens/otp_screen.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_cubit.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_states.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -28,14 +29,14 @@ class RegisterScreen extends StatelessWidget {
       create: (context) => UserRegisterCubit(),
       child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
         listener: (context, state) {
-          if (state is UserRegisterSuccessState){
-            navigateAndEnd(
-              context, LoginScreen(),);
-            showToast(message: 'Register Success', state: ToastStates.SUCCESS);
-          }
-          if (state is UserRegisterErrorState){
-            showToast(message: 'Register failed try again please!', state: ToastStates.SUCCESS);
-          }
+          // if (state is UserRegisterSuccessState){
+          //   navigateAndEnd(
+          //     context, LoginScreen(),);
+          //   showToast(message: 'Register Success', state: ToastStates.SUCCESS);
+          // }
+          // if (state is UserRegisterErrorState){
+          //   showToast(message: 'Register failed try again please!', state: ToastStates.SUCCESS);
+          // }
         },
         builder: (context, state) {
           var cubit = UserRegisterCubit.get(context);
@@ -125,28 +126,32 @@ class RegisterScreen extends StatelessWidget {
                                   },
                                   type: TextInputType.emailAddress,
                                   context: context,
-                                  suffix: Icons.send_outlined,
-                                  suffixPressed: () {
-                                    sendOTP();
-                                  }
+                                  // suffix: Icons.send_outlined,
+                                  // suffixPressed: () {
+                                  //   // sendOTP();
+                                  // }
                               ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-
-                              defaultFormField(
-                                maxLines: 1,
-                                text: 'OTP code',
-                                controller: otpController,
-                                prefix: Icons.messenger_outline,
-                                validate: (String value) {
-                                  if (value.isEmpty) {
-                                    return 'You have to enter OTP code right';
-                                  }
-                                },
-                                type: TextInputType.phone,
-                                context: context,
-                              ),
+                              // SizedBox(
+                              //   height: size.height * 0.01,
+                              // ),
+                              //
+                              // defaultFormField(
+                              //   maxLines: 1,
+                              //   text: 'OTP code',
+                              //   controller: otpController,
+                              //   prefix: Icons.messenger_outline,
+                              //   validate: (String value) {
+                              //     if (
+                              //     value.isEmpty
+                              //         &&
+                              //     verifyOTP == otpController
+                              //     ) {
+                              //       return 'You have to enter OTP code right';
+                              //     }
+                              //   },
+                              //   type: TextInputType.phone,
+                              //   context: context,
+                              // ),
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
@@ -273,19 +278,32 @@ class RegisterScreen extends StatelessWidget {
                                         child: defaultButton(
                                           function: ()
                                           {
-                                            verifyOTP();
-                                                    if (formKey.currentState!.validate() && UserRegisterCubit.get(context).currentIndex != 0) {
-                                                      UserRegisterCubit.get(context).userRegister(
-                                                        email: emailController.text,
-                                                        name: nameController.text,
-                                                        password: passwordController.text,
-                                                        phone: phoneController.text,
-                                                        isEng:
-                                                        UserRegisterCubit.get(context).isEng,
-                                                        isMan:
-                                                        UserRegisterCubit.get(context).isMan,
-                                                        isCom:
-                                                        UserRegisterCubit.get(context).isCom,
+                                                    if (
+                                                           formKey.currentState!.validate()
+                                                        && UserRegisterCubit.get(context).currentIndex != 0
+                                                    ) {
+                                                      // UserRegisterCubit.get(context).userRegister(
+                                                      //   email: emailController.text,
+                                                      //   name: nameController.text,
+                                                      //   password: passwordController.text,
+                                                      //   phone: phoneController.text,
+                                                      //   isEng:
+                                                      //   UserRegisterCubit.get(context).isEng,
+                                                      //   isMan:
+                                                      //   UserRegisterCubit.get(context).isMan,
+                                                      //   isCom:
+                                                      //   UserRegisterCubit.get(context).isCom,
+                                                      // );
+                                                      sendOTP();
+                                                      navigateTo(context, OTPScreen(
+                                                          email: emailController.value.text,
+                                                          name: nameController.text,
+                                                          phone: phoneController.text,
+                                                          password: passwordController.text,
+                                                          isCS: UserRegisterCubit.get(context).isCom,
+                                                          isEng: UserRegisterCubit.get(context).isEng,
+                                                          isBusiness: UserRegisterCubit.get(context).isMan
+                                                      ),
                                                       );
                                                     }
                                           },
@@ -341,14 +359,14 @@ class RegisterScreen extends StatelessWidget {
       print('try again later');
     }
   }
-  void verifyOTP() async {
-    var emailAuth = new EmailAuth(sessionName: 'Verify OTP');
-    var res = await emailAuth.validateOtp(
-        recipientMail: emailController.text, userOtp: otpController.text);
-    if (res) {
-      print('OTP verified');
-    } else {
-      print('try again later');
-    }
-  }
+  // void verifyOTP() async {
+  //   var emailAuth = new EmailAuth(sessionName: 'Verify OTP');
+  //   var res = await emailAuth.validateOtp(
+  //       recipientMail: emailController.text, userOtp: otpController.text);
+  //   if (res) {
+  //     print('OTP verified');
+  //   } else {
+  //     print('try again later');
+  //   }
+  // }
 }
