@@ -18,13 +18,13 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    //AppCubit.get(context).getUserData();
-    AppCubit.get(context).getUserBooks();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   //AppCubit.get(context).getUserData();
+  //   AppCubit.get(context).getUserBooks();
+  // }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

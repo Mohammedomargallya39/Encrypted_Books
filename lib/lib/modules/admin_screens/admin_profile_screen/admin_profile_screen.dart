@@ -20,13 +20,13 @@ class  AdminProfileScreen extends StatefulWidget {
 
 class _AdminProfileScreenState extends State<AdminProfileScreen> {
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    //AppCubit.get(context).getUserData();
-    AppCubit.get(context).getUserBooks();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   //AppCubit.get(context).getUserData();
+  //   AppCubit.get(context).getUserBooks();
+  // }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
