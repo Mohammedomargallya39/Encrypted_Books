@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_user_agentx/flutter_user_agent.dart';
 class DioHelper{
+
   static late Dio dio;
   static init(){
     dio = Dio(
@@ -12,11 +14,11 @@ class DioHelper{
     );
   }
 //post
+
   static Future<Response> postData({
     dynamic data,
     Map<String, dynamic>? query,
     required String url,
-    String lang = 'en',
     String? token,
   }) async {
     return dio.post(
@@ -25,9 +27,9 @@ class DioHelper{
       queryParameters: query,
       options: Options(
         headers: {
-          'lang': lang,
           'Content-Type': 'application/json',
-          'Authorization': token ?? '',
+          'User-Agent': '${await FlutterUserAgent.getPropertyAsync('userAgent')}'
+          //'Authorization': token ?? '',
         },
       ),
     ).catchError((error)

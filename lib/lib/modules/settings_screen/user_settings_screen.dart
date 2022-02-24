@@ -118,6 +118,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                                           iconSize: 28,
                                           onPressed: () {
                                             AppCubit.get(context).selectImage();
+
                                           },
                                           icon: const Icon(Icons.camera_alt),
                                         ),
@@ -180,8 +181,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                               defaultButton(
                                 function: () {
                                   if (formKey.currentState!.validate()) {
-                                    if (AppCubit.get(context).imageFile !=
-                                        null) {
+                                    if (AppCubit.get(context).imageFile != null) {
                                       AppCubit.get(context).updateUserImage(
                                           pic:
                                               AppCubit.get(context).imageFile!);
@@ -189,8 +189,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                                           message: 'Updated',
                                           state: ToastStates.SUCCESS);
                                     }
-                                    if (AppCubit.get(context).imageFile ==
-                                        null) {
+                                    if (AppCubit.get(context).imageFile == null) {
                                       AppCubit.get(context).userModel!.image;
                                     }
                                     AppCubit.get(context).updateUserData(
@@ -224,8 +223,9 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                     ),
                   ],
                 ),
-              )),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
+              ),
+          ),
+          fallback: (context) => LinearProgressIndicator(),
         );
       },
     );

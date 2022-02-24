@@ -55,6 +55,8 @@ dependencies:
   restart_app: ^1.1.0
   animated_button: ^0.2.0
   flutter_staggered_animations: ^1.0.0
+  flutter_user_agentx: ^1.2.4
+
 
 
 
