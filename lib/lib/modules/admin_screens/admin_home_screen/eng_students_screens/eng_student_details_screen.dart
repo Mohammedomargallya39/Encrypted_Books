@@ -230,7 +230,7 @@ class EngStudentDetailsScreen extends StatelessWidget {
                                 navigateTo(context, EngStudentBookScreen(EngStudentBooksId: EngStudentId,));
                               },
                               text: 'student books',
-                              fontSize: size.width * 0.044,
+                              fontSize: size.width * 0.035,
                               context: context,
                               height: size.height * 0.1,
                               width: size.width,

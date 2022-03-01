@@ -58,7 +58,7 @@ class _AdminsScreenState extends State<AdminsScreen> {
                       width: size.width * 0.4,),
                   ),
                   Positioned(
-                    top: 0,
+                    top: size.height * 0.04,
                     //left: 0,
                     // bottom: 0,
                     //right: 0,
@@ -69,7 +69,12 @@ class _AdminsScreenState extends State<AdminsScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                    padding: EdgeInsets.fromLTRB(
+                        0,
+                        size.height * 0.2,
+                        0,
+                        0
+                    ),
                     child: AnimationLimiter(
                       child: ListView.builder(
                         padding: EdgeInsets.all(_w / 30),

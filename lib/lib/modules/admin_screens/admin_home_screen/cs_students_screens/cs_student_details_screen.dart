@@ -229,7 +229,7 @@ class CsStudentDetailsScreen extends StatelessWidget {
                                 navigateTo(context, CsStudentBookScreen(CsStudentBooksId: StudentId,));
                               },
                               text: 'student books',
-                              fontSize: size.width * 0.044,
+                              fontSize: size.width * 0.035,
                               context: context,
                               height: size.height * 0.1,
                               width: size.width,
