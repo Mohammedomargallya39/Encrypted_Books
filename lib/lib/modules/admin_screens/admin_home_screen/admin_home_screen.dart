@@ -59,7 +59,7 @@ class AdminHomeScreen extends StatelessWidget {
                                 navigateTo(context, StudentsDepartmentsScreen());
                               },
                               text: 'Departments',
-                              fontSize: size.width * 0.044,
+                              fontSize: size.width * 0.035,
                               context: context,
                               height: size.height * 0.1,
                               width: size.width,
@@ -73,7 +73,7 @@ class AdminHomeScreen extends StatelessWidget {
                                 navigateTo(context, AdminBooksScreen());
                               },
                               text: 'Books',
-                              fontSize: size.width * 0.044,
+                              fontSize: size.width * 0.035,
                               context: context,
                               height: size.height * 0.1,
                               width: size.width,

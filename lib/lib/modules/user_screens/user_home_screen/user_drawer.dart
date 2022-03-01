@@ -97,7 +97,8 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
           navigateTo(context, UserHelpScreen());
         });
       } else {
-        Navigator.of(context).pop();
+        //Navigator.of(context).pop();
+        navigateTo(context, UserDrawerScreen());
       }
     }
   }
@@ -182,10 +183,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.only(top: 20.0),
+                        width: size.width,
+                        padding:  EdgeInsets.only(top: size.height * 0.01),
                         child: Container(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.fromLTRB(
+                            size.width * 0.02,
+                            size.height * 0.02,
+                            size.width * 0.02,
+                            size.height * 0.02,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -228,6 +234,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                             '${AppCubit.get(context).userModel!.image}'
                                                         ),
                                                       ),
+                                                      SizedBox(width: size.width * 0.044,),
                                                       Expanded(
                                                         child: Text(
                                                           ' ${AppCubit.get(context).userModel!.name}',
@@ -252,7 +259,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 7, 7, 7),
+                                padding:  EdgeInsets.fromLTRB(
+                                  size.width * 0.02,
+                                  size.height * 0.01,
+                                  size.width * 0.02,
+                                  size.height * 0,
+                                ),
                                 child: BlocConsumer<ThemeCubit,ThemeStates>(
                                   listener: (context, state) {},
                                   builder: (context, state) {
@@ -272,16 +284,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                               ),
                                             ),
                                             Spacer(),
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                                              child: InkWell(
-                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size: size.width * 0.06,
-                                                ),
-                                                onTap: ()
-                                                {
-                                                  ThemeCubit.get(context).changeTheme();
-                                                },
+                                            InkWell(
+                                              child: Icon(Icons.brightness_4_outlined,color: Colors.white,size: size.width * 0.06,
                                               ),
+                                              onTap: ()
+                                              {
+                                                ThemeCubit.get(context).changeTheme();
+                                              },
                                             )
                                           ],
                                         )
@@ -375,7 +384,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             child: Stack(
               children: <Widget>[
                 Container(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  padding:  EdgeInsets.only(top: size.height * 0.009, bottom: size.height * 0.009),
                   child: Row(
                     children: <Widget>[
                       Container(

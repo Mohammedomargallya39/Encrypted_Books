@@ -85,7 +85,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
                 width: size.width * 0.4,),
             ),
             Positioned(
-              top: 33,
+              top: size.height * 0.03,
               left: 0,
               //bottom: 0,
               right: 0,
@@ -114,7 +114,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
                           navigateTo(context, CsStudentsScreen());
                         },
                         text: 'Computer Science',
-                        fontSize: size.width * 0.044,
+                        fontSize: size.width * 0.035,
                         context: context,
                         height: size.height * 0.1,
                         width: size.width,
@@ -134,7 +134,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
                           navigateTo(context, EngStudentsScreen());
                         },
                         text: 'Engineering',
-                        fontSize: size.width * 0.044,
+                        fontSize: size.width * 0.035,
                         context: context,
                         height: size.height * 0.1,
                         width: size.width,
@@ -154,7 +154,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
                           navigateTo(context, BusinessStudentsScreen());
                         },
                         text: 'Business Management',
-                        fontSize: size.width * 0.044,
+                        fontSize: size.width * 0.035,
                         context: context,
                         height: size.height * 0.1,
                         width: size.width,

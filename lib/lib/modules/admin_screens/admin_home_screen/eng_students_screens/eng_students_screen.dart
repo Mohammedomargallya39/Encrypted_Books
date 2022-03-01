@@ -58,14 +58,19 @@ class _EngStudentsScreenState extends State<EngStudentsScreen> {
                       width: size.width * 0.4,),
                   ),
                   Positioned(
-                    top: 0,
+                    top: size.height * 0.04,
                     child: SvgPicture.asset('assets/images/eng.svg',
                       width: size.width * 0.3,
                       height: size.height * 0.18,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                    padding: EdgeInsets.fromLTRB(
+                        0,
+                        size.height * 0.2,
+                        0,
+                        0
+                    ),
                     child: AnimationLimiter(
                       child: ListView.builder(
                         padding: EdgeInsets.all(_w / 30),

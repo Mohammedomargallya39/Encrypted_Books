@@ -54,7 +54,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
         child: Scaffold(
           body: DrawerUserController(
             screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.75,
+            drawerWidth: MediaQuery.of(context).size.width * 0.69,
             animationController: (AnimationController animationController) {
               sliderAnimationController = animationController;
             },
@@ -70,7 +70,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
   /// changing current item in drawer
   void changeIndex(DrawerIndex drawerIndexdata) {
     if (drawerIndex != drawerIndexdata) {
-      drawerIndex = drawerIndexdata;
+         drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
           //screenView = AdminHomeScreen();
@@ -92,7 +92,8 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
           navigateTo(context, UserHelpScreen());
         });
       } else {
-        Navigator.of(context).pop();
+        //Navigator.of(context).pop();
+        Navigator.pop(context);
       }
     }
   }
@@ -179,10 +180,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.only(top: 20.0),
+                        width: size.width,
+                        padding:  EdgeInsets.only(top: size.height * 0.01),
                         child: Container(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.fromLTRB(
+                              size.width * 0.02,
+                              size.height * 0.02,
+                              size.width * 0.02,
+                              size.height * 0.02,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -192,16 +198,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                 animation: widget.iconAnimationController,
                                 builder: (BuildContext context, Widget? child) {
                                   return ScaleTransition(
-                                    scale: AlwaysStoppedAnimation<double>(
-                                        1.0 - (widget.iconAnimationController.value) * 0.2),
+                                    scale: AlwaysStoppedAnimation<double>(1.0 - (widget.iconAnimationController.value) * 0.2),
                                     child: RotationTransition(
                                       turns: AlwaysStoppedAnimation<double>(Tween<double>(
                                           begin: 0.0, end: 24.0)
                                           .animate(CurvedAnimation(
                                           parent: widget.iconAnimationController,
-                                          curve: Curves.fastOutSlowIn))
-                                          .value /
-                                          360),
+                                          curve: Curves.fastOutSlowIn)
+                                      ).value / 360),
                                       child: Container(
                                           height: size.height * 0.11,
                                           width: size.width ,
@@ -220,6 +224,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                             '${AppCubit.get(context).userModel!.image}'
                                                         ),
                                                       ),
+                                                      SizedBox(width: size.width * 0.044,),
                                                       Expanded(
                                                         child: Text(
                                                           ' ${AppCubit.get(context).userModel!.name}',
@@ -244,7 +249,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 7, 7, 7),
+                                padding:  EdgeInsets.fromLTRB(
+                                    size.width * 0.02,
+                                    size.height * 0.01,
+                                    size.width * 0.02,
+                                    size.height * 0,
+                                ),
                                 child: BlocConsumer<ThemeCubit,ThemeStates>(
                                   listener: (context, state) {},
                                   builder: (context, state) {
@@ -264,16 +274,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                               ),
                                             ),
                                             Spacer(),
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                                              child: InkWell(
-                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
-                                                ),
-                                                onTap: ()
-                                                {
-                                                  ThemeCubit.get(context).changeTheme();
-                                                },
+                                            InkWell(
+                                              child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
                                               ),
+                                              onTap: ()
+                                              {
+                                                ThemeCubit.get(context).changeTheme();
+                                              },
                                             )
                                           ],
                                         )
@@ -367,7 +374,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             child: Stack(
               children: <Widget>[
                 Container(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  padding:  EdgeInsets.only(top: size.height * 0.009, bottom: size.height * 0.009),
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -426,7 +433,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             widget.screenIndex == listData.index
                                 ? Colors.white
                                 : Colors.black,
-                          ),
+                           ),
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -440,11 +447,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     return Transform(
                       transform: Matrix4.translationValues(
                           (MediaQuery.of(context).size.width * 0.75 - 64) *
-                              (1.0 -
-                                  widget.iconAnimationController.value -
-                                  1.0),
-                          0.0,
-                          0.0),
+                              (1.0 - widget.iconAnimationController.value - 1.0), 0.0, 0.0),
                       child: Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 8),
                         child: Container(
@@ -484,7 +487,6 @@ enum DrawerIndex {
   Settings,
   Profile,
   Help,
-  About,
 }
 
 class DrawerList {

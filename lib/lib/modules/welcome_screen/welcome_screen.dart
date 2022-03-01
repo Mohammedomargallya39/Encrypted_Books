@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                           navigateTo(context, LoginScreen());
                         },
                         text: 'LogIn',
-                        fontSize: size.width * 0.044,
+                        fontSize: size.width * 0.035,
                         context: context,
                         height: size.height * 0.1,
                         width: size.width,
@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                           navigateTo(context, RegisterScreen());
                         },
                         text: 'Sign Up',
-                        fontSize: size.width * 0.044,
+                        fontSize: size.width * 0.035,
                         textColor: Colors.black,
                         context: context,
                         height: size.height * 0.1,
