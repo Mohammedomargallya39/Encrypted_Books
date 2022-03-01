@@ -73,19 +73,23 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          screenView = AdminHomeScreen();
+          //screenView = AdminHomeScreen();
+          navigateTo(context, AdminDrawerScreen());
         });
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {
-          screenView = AdminProfileScreen();
+          //screenView = AdminProfileScreen();
+          navigateTo(context, AdminProfileScreen());
         });
       } else if (drawerIndex == DrawerIndex.Settings) {
         setState(() {
-          screenView = UserSettingsScreen();
+          // screenView = UserSettingsScreen();
+          navigateTo(context, UserSettingsScreen());
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-          screenView = UserHelpScreen();
+          //screenView = UserHelpScreen();
+          navigateTo(context, UserHelpScreen());
         });
       } else {
         Navigator.of(context).pop();
@@ -108,7 +112,7 @@ class Page extends StatelessWidget {
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
       {Key? key,
-         required this.screenIndex,
+        required this.screenIndex,
         required this.iconAnimationController,
         required this.callBackIndex})
       : super(key: key);
@@ -216,9 +220,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                             '${AppCubit.get(context).userModel!.image}'
                                                         ),
                                                       ),
-                                                      SizedBox(
-                                                        width: size.width* 0.05,
-                                                      ),
                                                       Expanded(
                                                         child: Text(
                                                           ' ${AppCubit.get(context).userModel!.name}',
@@ -226,7 +227,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                           overflow: TextOverflow.ellipsis,
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.bold ,
-                                                              fontSize: 16 ,
+                                                              fontSize: size.width * 0.044,
                                                               color: Colors.white
                                                           ),
                                                         ),
@@ -258,7 +259,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.044,
                                                   color: Colors.white
                                               ),
                                             ),
@@ -266,7 +267,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
                                               child: InkWell(
-                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white
+                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
                                                 ),
                                                 onTap: ()
                                                 {
@@ -314,14 +315,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
                               style: TextStyle(
                                 fontFamily: 'Bahij Janna',
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16,
+                                fontSize: size.width * 0.044,
                                 color: Colors.red,
                               ),
                               textAlign: TextAlign.left,
                             ),
-                            trailing: const Icon(
+                            trailing:  Icon(
                               Icons.logout,
                               color: Colors.red,
+                              size: size.width * 0.06,
                             ),
                             onTap: ()
                             {
@@ -404,6 +406,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         widget.screenIndex == listData.index
                             ? Colors.white
                             : Colors.black,
+                        size: size.width * 0.06,
                       ),
 
                       const Padding(
@@ -414,7 +417,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                           listData.labelName,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: size.width * 0.044,
                             color: ThemeCubit.get(context).darkTheme
                                 ?
                             widget.screenIndex == listData.index

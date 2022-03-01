@@ -126,7 +126,7 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(
-                                                      fontSize: 16.0,
+                                                      fontSize: size.width * 0.04,
                                                       fontWeight: FontWeight.bold,
                                                     ),
                                                   ),
@@ -142,7 +142,7 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(
-                                                      fontSize: 16.0,
+                                                      fontSize: size.width * 0.04,
                                                       fontWeight: FontWeight.bold,
                                                     ),
                                                   ),

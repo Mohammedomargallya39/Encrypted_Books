@@ -119,7 +119,7 @@ class CsBookSearchScreen extends StatelessWidget {
                                                           maxLines: 1,
                                                           overflow: TextOverflow.ellipsis,
                                                           style: TextStyle(
-                                                            fontSize: 18.0,
+                                                            fontSize: size.width * 0.04,
                                                             fontWeight: FontWeight.bold,
                                                           ),
                                                         ),
@@ -137,7 +137,7 @@ class CsBookSearchScreen extends StatelessWidget {
                                                           maxLines: 1,
                                                           overflow: TextOverflow.ellipsis,
                                                           style: TextStyle(
-                                                            fontSize: 16.0,
+                                                            fontSize: size.width * 0.04,
                                                             fontWeight: FontWeight.bold,
                                                             color:  Colors.grey ,
                                                           ),

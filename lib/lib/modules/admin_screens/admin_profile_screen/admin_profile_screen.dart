@@ -1,3 +1,4 @@
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +42,15 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
             top: true,
             bottom: true,
             child: Scaffold(
-              floatingActionButton: IconButton(icon:Icon(Icons.home)
-                ,onPressed: ()
-                {
-                  navigateTo(context, AdminDrawerScreen()
+              floatingActionButton: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  navigateTo(
+                      context,AdminDrawerScreen()
                   );
                 },
               ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+              floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
               body: BlocConsumer<ThemeCubit,ThemeStates>(
                 listener: (context, state) {},
                 builder: (context, state) {
@@ -109,7 +111,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                 Center(
                                   child: Text(
                                     AppCubit.get(context).homeModel!.email!.split('@').first,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: size.width * 0.055,),),
                                 ),
                                 SizedBox(height: size.height * 0.04,),
                                 Container(
@@ -122,10 +124,10 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                   padding: const EdgeInsets.all(8),
                                   child: Row(
                                     children: [
-                                      const Text('Name:',
+                                      Text('Name:',
                                         style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.06,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       SizedBox(width: size.width * 0.015,),
@@ -135,7 +137,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: size.width * 0.0475,
                                               color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                           ),
                                         ),
@@ -154,9 +156,9 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      const Text('E-mail:',
+                                      Text('E-mail:',
                                         style: TextStyle(
-                                            fontSize: 22,
+                                            fontSize: size.width * 0.06,
                                             fontWeight: FontWeight.bold),),
                                       SizedBox(width: size.width *0.015),
                                       Expanded(
@@ -165,7 +167,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: size.width * 0.0475,
                                               color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
                                       ),
                                     ],
@@ -182,9 +184,9 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      const Text('Phone:',
+                                      Text('Phone:',
                                         style: TextStyle(
-                                            fontSize: 22,
+                                            fontSize: size.width * 0.06,
                                             fontWeight: FontWeight.bold),),
                                       SizedBox(width: size.width *0.015),
                                       Expanded(
@@ -193,7 +195,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: size.width * 0.0475,
                                               color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
                                       ),
                                     ],
@@ -210,17 +212,18 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      const Text('Created In:',
+                                      Text('Created In:',
                                         style: TextStyle(
-                                            fontSize: 22,
+                                            fontSize: size.width * 0.06,
                                             fontWeight: FontWeight.bold),),
                                       SizedBox(width: size.width *0.015),
                                       Expanded(
-                                        child: Text( '${AppCubit.get(context).homeModel!.createdAt!.split('T').first}',
+                                        child: Text(
+                                          '${AppCubit.get(context).homeModel!.createdAt!.substring(0,9)} || ${AppCubit.get(context).homeModel!.createdAt!.substring(11,18)}',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: size.width * 0.0475,
                                               color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
                                       ),
                                     ],
@@ -237,17 +240,18 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      const Text('Updated In:',
+                                      Text('Updated In:',
                                         style: TextStyle(
-                                            fontSize: 22,
+                                            fontSize: size.width * 0.06,
                                             fontWeight: FontWeight.bold),),
                                       SizedBox(width: size.width *0.015),
                                       Expanded(
-                                        child: Text( '${AppCubit.get(context).homeModel!.updatedAt!.split('T').first}',
+                                        child: Text(
+                                          '${AppCubit.get(context).homeModel!.updatedAt!.substring(0,9)} || ${AppCubit.get(context).homeModel!.updatedAt!.substring(11,18)}',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: size.width * 0.0475,
                                               color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800),),
                                       ),
                                     ],
@@ -276,3 +280,5 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
     );
   }
 }
+
+

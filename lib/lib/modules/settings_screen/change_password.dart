@@ -29,15 +29,15 @@ class ChangePasswordScreen extends StatelessWidget {
               floatingActionButton: Stack(
                 children: [
                   Positioned(
-                      top: 60,
-                      right: 0,
-                      child: IconButton(icon: Icon(Icons.home), onPressed: ()
-                      {
-                        navigateTo(context,
-                            AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
-                        );
-                      }, iconSize: 23,
-                      ),
+                    top: 60,
+                    right: 0,
+                    child: IconButton(icon: Icon(Icons.home), onPressed: ()
+                    {
+                      navigateTo(context,
+                          AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
+                      );
+                    }, iconSize: 23,
+                    ),
                   ),
                   Positioned(
                     top: 60,
@@ -50,73 +50,74 @@ class ChangePasswordScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            body: Container(
-              width: size.width,
-              height: size.height,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/main_top.png',
-                      width: size.width * 0.35,),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Image.asset('assets/images/login_bottom.png',
-                      width: size.width * 0.4,),
-                  ),
-                  Form(
-                    key: formKey,
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(11, 0, 11, 11),
-                        child: Center(
-                          child: Column(
-                            children: <Widget>[
-                              SvgPicture.asset('assets/images/forget_password.svg',height: size.height * 0.4,),
-                              defaultFormField(
-                                type: TextInputType.visiblePassword,
-                                controller: passwordController,
-                                prefix: Icons.lock,
-                                text: 'Add new password',
-                                validate: (String value) {
-                                  if (value.isEmpty) {
-                                    return 'Password must not be empty';
-                                  }
-                                },
-                                context: context,
-                              ),
-                              SizedBox(height: size.height *0.05,),
-                              defaultButton(
-                                function: ()
-                                {
-                                  if (formKey.currentState!.validate())
+              body: Container(
+                width: size.width,
+                height: size.height,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Image.asset('assets/images/main_top.png',
+                        width: size.width * 0.35,),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Image.asset('assets/images/login_bottom.png',
+                        width: size.width * 0.4,),
+                    ),
+                    Form(
+                      key: formKey,
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(11, 0, 11, 11),
+                          child: Center(
+                            child: Column(
+                              children: <Widget>[
+                                SvgPicture.asset('assets/images/forget_password.svg',height: size.height * 0.4,),
+                                defaultFormField(
+                                  type: TextInputType.visiblePassword,
+                                  controller: passwordController,
+                                  prefix: Icons.lock,
+                                  text: 'Add new password',
+                                  validate: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Password must not be empty';
+                                    }
+                                  },
+                                  context: context,
+                                ),
+                                SizedBox(height: size.height *0.05,),
+                                defaultButton(
+                                  function: ()
                                   {
-                                    AppCubit.get(context).updateUserData(
-                                        name: nameController.text,
-                                        phone: phoneController.text,
-                                        password: passwordController.text
-                                    );
-                                    showToast(message: 'password changed', state: ToastStates.SUCCESS);
-                                  }
-                                },
-                                text: 'change password',
-                                context: context,
-                                height: size.height * 0.08,
-                                width: size.width,
-                              ),
-                            ],
+                                    if (formKey.currentState!.validate())
+                                    {
+                                      AppCubit.get(context).updateUserData(
+                                          name: nameController.text,
+                                          phone: phoneController.text,
+                                          password: passwordController.text
+                                      );
+                                      showToast(message: 'password changed', state: ToastStates.SUCCESS);
+                                    }
+                                  },
+                                  text: 'change password',
+                                  fontSize: size.width * 0.044,
+                                  context: context,
+                                  height: size.height * 0.1,
+                                  width: size.width,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
+                  ],
+                ),
+              )
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),
         );

@@ -79,7 +79,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                           children: [
                             Text('Name:',
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: size.width * 0.06,
                                   fontWeight: FontWeight.bold),),
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
@@ -89,7 +89,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: size.width * 0.0475,
                                     color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                 ),
                               ),
@@ -109,7 +109,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                           children: [
                             Text('ID:',
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: size.width * 0.06,
                                   fontWeight: FontWeight.bold),),
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
@@ -119,7 +119,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: size.width * 0.0475,
                                     color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                 ),
                               ),
@@ -139,7 +139,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                           children: [
                             Text('Acc created in:',
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: size.width * 0.06,
                                   fontWeight: FontWeight.bold),),
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
@@ -149,7 +149,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: size.width * 0.0475,
                                     color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                 ),
                               ),
@@ -169,7 +169,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                           children: [
                             Text('Last updated in:',
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: size.width * 0.06,
                                   fontWeight: FontWeight.bold),),
                             SizedBox(width: size.width * 0.015,),
                             Expanded(
@@ -179,7 +179,7 @@ class AdminsDetailsScreen extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: size.width * 0.0475,
                                     color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                 ),
                               ),

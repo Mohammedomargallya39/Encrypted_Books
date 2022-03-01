@@ -50,6 +50,8 @@ Widget defaultButton({
   required Function() function,
   required String text,
   required BuildContext context,
+  double fontSize = 16,
+
 }) {
   return  Container(
     alignment: Alignment.center,
@@ -61,8 +63,11 @@ Widget defaultButton({
           isUpperCase ? text.toUpperCase() : text,
           style: Theme.of(context).textTheme.button!.copyWith(
             color: textColor,
-            fontSize: 16,
-          )
+            fontSize: fontSize,
+          ),
+        textAlign: TextAlign.center,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
       ),
       enabled: true,
       shadowDegree: ShadowDegree.light,

@@ -52,28 +52,30 @@ class AdminHomeScreen extends StatelessWidget {
                           SvgPicture.asset('assets/icons/admin.svg',
                             height: size.height * 0.4,),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03,vertical: size.height * 0.003451),
                             child: defaultButton(
                               function: ()
                               {
                                 navigateTo(context, StudentsDepartmentsScreen());
                               },
                               text: 'Departments',
+                              fontSize: size.width * 0.044,
                               context: context,
-                              height: size.height * 0.08,
+                              height: size.height * 0.1,
                               width: size.width,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03,vertical: size.height * 0.003451),
                             child: defaultButton(
                               function: ()
                               {
                                 navigateTo(context, AdminBooksScreen());
                               },
                               text: 'Books',
+                              fontSize: size.width * 0.044,
                               context: context,
-                              height: size.height * 0.08,
+                              height: size.height * 0.1,
                               width: size.width,
                             ),
                           ),

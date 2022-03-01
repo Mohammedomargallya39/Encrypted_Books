@@ -115,7 +115,7 @@ class _AdminsScreenState extends State<AdminsScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.04,
                                                 ),
                                               ),
                                               SizedBox(height: size.height * 0.0075,),
@@ -124,7 +124,7 @@ class _AdminsScreenState extends State<AdminsScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.04,
                                                 ),
                                               ),
                                             ],

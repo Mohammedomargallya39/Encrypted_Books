@@ -21,10 +21,10 @@ class __UserDrawerScreenPage extends State<UserDrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return  BlocConsumer<AppCubit,AppStates>(
-       listener: (context, state) {},
-        builder: (context, state) {
-         return AnimatedDrawerScreen();
-        },
+      listener: (context, state) {},
+      builder: (context, state) {
+        return AnimatedDrawerScreen();
+      },
     );
   }
 }
@@ -78,19 +78,23 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          screenView = UserHomeScreen();
+          //screenView = UserHomeScreen();
+          navigateTo(context, UserDrawerScreen());
         });
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {
-          screenView = UserProfileScreen();
+          //screenView = UserProfileScreen();
+          navigateTo(context, UserProfileScreen());
         });
       } else if (drawerIndex == DrawerIndex.Settings) {
         setState(() {
-          screenView = UserSettingsScreen();
+          // screenView = UserSettingsScreen();
+          navigateTo(context, UserSettingsScreen());
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-          screenView = UserHelpScreen();
+          //screenView = UserHelpScreen();
+          navigateTo(context, UserHelpScreen());
         });
       } else {
         Navigator.of(context).pop();
@@ -224,9 +228,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                             '${AppCubit.get(context).userModel!.image}'
                                                         ),
                                                       ),
-                                                      SizedBox(
-                                                        width: size.width* 0.05,
-                                                      ),
                                                       Expanded(
                                                         child: Text(
                                                           ' ${AppCubit.get(context).userModel!.name}',
@@ -234,7 +235,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                           overflow: TextOverflow.ellipsis,
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.bold ,
-                                                              fontSize: 16 ,
+                                                              fontSize: size.width * 0.044,
                                                               color: Colors.white
                                                           ),
                                                         ),
@@ -266,7 +267,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.044,
                                                   color: Colors.white
                                               ),
                                             ),
@@ -274,7 +275,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
                                               child: InkWell(
-                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white
+                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size: size.width * 0.06,
                                                 ),
                                                 onTap: ()
                                                 {
@@ -322,14 +323,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
                               style: TextStyle(
                                 fontFamily: 'Bahij Janna',
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16,
+                                fontSize: size.width * 0.044,
                                 color: Colors.red,
                               ),
                               textAlign: TextAlign.left,
                             ),
-                            trailing: const Icon(
+                            trailing: Icon(
                               Icons.logout,
                               color: Colors.red,
+                              size: size.width * 0.06,
                             ),
                             onTap: ()
                             {
@@ -355,7 +357,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),
         );
-        },
+      },
     );
   }
 
@@ -412,6 +414,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         widget.screenIndex == listData.index
                             ? Colors.white
                             : Colors.black,
+                        size: size.width * 0.06,
                       ),
 
                       const Padding(
@@ -422,7 +425,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                           listData.labelName,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: size.width * 0.044,
                             color: ThemeCubit.get(context).darkTheme
                                 ?
                             widget.screenIndex == listData.index

@@ -84,7 +84,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                             children: [
                               Text('Name:',
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: size.width * 0.06,
                                     fontWeight: FontWeight.bold),),
                               SizedBox(width: size.width * 0.015,),
                               Expanded(
@@ -94,7 +94,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: size.width * 0.0475,
                                       color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                   ),
                                 ),
@@ -112,7 +112,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                             children: [
                               Text('ID:',
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: size.width * 0.06,
                                     fontWeight: FontWeight.bold),),
                               SizedBox(width: size.width * 0.015,),
                               Expanded(
@@ -122,7 +122,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: size.width * 0.0475,
                                       color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                   ),
                                 ),
@@ -140,7 +140,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                             children: [
                               Text('No. of books:',
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: size.width * 0.06,
                                     fontWeight: FontWeight.bold),),
                               SizedBox(width: size.width * 0.015,),
                               Expanded(
@@ -150,7 +150,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: size.width * 0.0475,
                                       color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                   ),
                                 ),
@@ -168,7 +168,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                             children: [
                               Text('Acc created in:',
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: size.width * 0.06,
                                     fontWeight: FontWeight.bold),),
                               SizedBox(width: size.width * 0.015,),
                               Expanded(
@@ -178,7 +178,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: size.width * 0.0475,
                                       color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                   ),
                                 ),
@@ -196,7 +196,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                             children: [
                               Text('Last updated in:',
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: size.width * 0.06,
                                     fontWeight: FontWeight.bold),),
                               SizedBox(width: size.width * 0.015,),
                               Expanded(
@@ -206,7 +206,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: size.width * 0.0475,
                                       color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                   ),
                                 ),
@@ -232,8 +232,9 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                                 );
                               },
                               text: 'student books',
+                              fontSize: size.width * 0.044,
                               context: context,
-                              height: size.height * 0.08,
+                              height: size.height * 0.1,
                               width: size.width,
                             ),
                           ),
@@ -254,7 +255,7 @@ class BusinessStudentDetailsScreen extends StatelessWidget {
                               },
                               text: 'Delete student account',
                               color: Colors.red,
-                              fontSize: 12,
+                              fontSize: size.width * 0.03,
                             ),
                           ),
                         ],

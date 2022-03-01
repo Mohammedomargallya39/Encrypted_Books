@@ -1,4 +1,5 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'dart:io';
+
 import 'package:email_auth/email_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_cubit.dart';
 import 'package:social/lib/modules/login_screens/register_cubit/register_states.dart';
-import 'package:social/lib/modules/login_screens/register_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -126,6 +126,7 @@ class OTPScreen extends StatelessWidget {
                                 child: defaultButton(
                                   function: ()
                                   {
+
                                     verifyOTP();
                                     print('verify is_________>${verify}');
                                     if (true == verify)
@@ -140,17 +141,29 @@ class OTPScreen extends StatelessWidget {
                                         isMan: isBusiness,
                                         isCom: isCS,
                                       );
+                                      UserRegisterCubit.get(context).userRegister(
+                                        email: email,
+                                        name:  name,
+                                        password: password,
+                                        phone:  phone,
+                                        isEng: isEng,
+                                        isMan: isBusiness,
+                                        isCom: isCS,
+                                      );
                                       showToast(message: 'Account Created', state: ToastStates.SUCCESS);
                                       navigateAndEnd(context, LoginScreen());
-                                    } else
+                                    }if (false == verify)
                                     {
                                       showToast(message: 'Failed! check code and try again please', state: ToastStates.ERROR);
+                                    }if (null == verify)
+                                    {
+                                      return null ;
                                     }
-
                                   },
                                   text: 'Verified',
+                                  fontSize: size.width * 0.044,
                                   context: context,
-                                  height: size.height * 0.08,
+                                  height: size.height * 0.1,
                                   width: size.width,
                                 ),
                               ),
