@@ -6,6 +6,7 @@ import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/cubit/cubit.dart';
 import 'search_screens/search_screen.dart';
 import 'cs_students_screens/cs_students_screen.dart';
 import 'eng_students_screens/eng_students_screen.dart';
@@ -44,6 +45,7 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
             right: 0,
             child: InkWell(
               child: Image.asset('assets/icons/admin_logo.png',
+                color: ThemeCubit.get(context).darkTheme?Colors.white:Colors.black,
                 height: size.height *0.125,
                 width: size.width *0.125,
               ),
@@ -100,43 +102,61 @@ class _StudentsDepartmentsScreenState extends State<StudentsDepartmentsScreen> {
                   children:
                   [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(55, 222, 55, 5),
+                      padding:  EdgeInsets.fromLTRB(
+                          0,
+                          size.height * 0.3,
+                          0,
+                          0
+                      ),
                       child: defaultButton(
                         function: ()
                         {
                           navigateTo(context, CsStudentsScreen());
                         },
                         text: 'Computer Science',
+                        fontSize: size.width * 0.044,
                         context: context,
-                        height: size.height * 0.08,
+                        height: size.height * 0.1,
                         width: size.width,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.03,),
+                    SizedBox(height: size.height * 0.01,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      padding: EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          0
+                      ),
                       child: defaultButton(
                         function: ()
                         {
                           navigateTo(context, EngStudentsScreen());
                         },
                         text: 'Engineering',
+                        fontSize: size.width * 0.044,
                         context: context,
-                        height: size.height * 0.08,
+                        height: size.height * 0.1,
                         width: size.width,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.03,),
+                    SizedBox(height: size.height * 0.01,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      padding: EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          0
+                      ),
                       child: defaultButton(
                         function: ()
                         {
                           navigateTo(context, BusinessStudentsScreen());
                         },
                         text: 'Business Management',
+                        fontSize: size.width * 0.044,
                         context: context,
-                        height: size.height * 0.08,
+                        height: size.height * 0.1,
                         width: size.width,
                       ),
                     ),

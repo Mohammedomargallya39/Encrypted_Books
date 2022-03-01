@@ -5,15 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/business_students_screens/business_students_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
-
-import '../admin_drawer.dart';
 import '../students_departments.dart';
 import 'business_student_book_screen.dart';
-import 'business_student_details_screen.dart';
 
 class BusinessBooksCanAddedForStudentPdfScreen extends StatelessWidget {
   final int BusinessStudentIndexId;
@@ -28,7 +24,7 @@ class BusinessBooksCanAddedForStudentPdfScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).adminBooksModel!.books![BusinessStudentBookIndexId].pdf != null,
+          condition: AppCubit.get(context).searchBookModel!.books![BusinessStudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
             floatingActionButton: Stack(
               // fit: StackFit.expand,
@@ -70,7 +66,7 @@ class BusinessBooksCanAddedForStudentPdfScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).adminBooksModel!.books![BusinessStudentBookIndexId].pdf!
+              AppCubit.get(context).searchBookModel!.books![BusinessStudentBookIndexId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -135,11 +131,11 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
               onTap: ()
               {
                 AppCubit.get(context).addBookToStudent(
-                    bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).BusinessIndexAddedBookStudent!].sId!,
-                    studentId: AppCubit.get(context).businessStudentsModel![AppCubit.get(context).BusinessIndexAddedStudentBook!].sId,
+                  bookId: AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).BusinessIndexAddedBookStudent!].sId!,
+                  studentId: AppCubit.get(context).businessStudentsModel![AppCubit.get(context).BusinessIndexAddedStudentBook!].sId,
                 );
                 print(token);
-                print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).BusinessIndexAddedBookStudent!].sId!);
+                print(AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).BusinessIndexAddedBookStudent!].sId!);
                 print(AppCubit.get(context).businessStudentsModel![AppCubit.get(context).BusinessIndexAddedStudentBook!].sId);
                 showToast(
                     message: 'Book added successfully',

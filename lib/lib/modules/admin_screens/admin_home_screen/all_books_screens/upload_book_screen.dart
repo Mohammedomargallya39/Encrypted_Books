@@ -125,13 +125,14 @@ class UploadBookScreen extends StatelessWidget {
                                 AppCubit.get(context).selectPDF();
                               },
                               text: 'Choose PDf',
+                              fontSize: size.width * 0.044,
                               context: context,
-                              height: size.height * 0.08,
+                              height: size.height * 0.1,
                               width: size.width,
                               color: ButtonPrimaryLightColor,
                               textColor: Colors.black,
                             ),
-                            SizedBox(height: size.height * 0.025,),
+                            SizedBox(height: size.height * 0.03,),
                             defaultButton(
                               function: ()
                               {
@@ -151,7 +152,7 @@ class UploadBookScreen extends StatelessWidget {
                                     );
                                     Navigator.pop(context);
                                     Navigator.pop(context);
-                                    showToast(message: 'Uploaded', state: ToastStates.SUCCESS);
+                                    showToast(message: 'Uploading...', state: ToastStates.SUCCESS);
                                   }else
                                   {
                                     showToast(message: 'Error! please try again and check *Cover, PDF, Name, Category, Description*', state: ToastStates.ERROR);
@@ -159,8 +160,9 @@ class UploadBookScreen extends StatelessWidget {
                                 }
                               },
                               text: 'upload book',
+                              fontSize: size.width * 0.044,
                               context: context,
-                              height: size.height * 0.08,
+                              height: size.height * 0.1,
                               width: size.width,
                             ),
                           ],

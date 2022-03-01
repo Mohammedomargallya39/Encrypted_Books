@@ -9,8 +9,6 @@ import 'package:social/lib/modules/admin_screens/admin_home_screen/search_screen
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
-
-import '../admin_drawer.dart';
 import '../students_departments.dart';
 
 class BooksCanAddedForStudentPdfScreen extends StatelessWidget {
@@ -26,7 +24,7 @@ class BooksCanAddedForStudentPdfScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].pdf != null,
+          condition: AppCubit.get(context).searchBookModel!.books![StudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
             floatingActionButton: Stack(
               children: [
@@ -35,16 +33,16 @@ class BooksCanAddedForStudentPdfScreen extends StatelessWidget {
                   right: 0,
                   child: IconButton(icon: Icon(Icons.add), onPressed: ()
                   {
-                              AppCubit.get(context).IndexAddedStudentBook= StudentIndexId;
-                              AppCubit.get(context).IndexAddedBookStudent= StudentBookIndexId;
-                              Navigator.pop(context);
-                              showDialog(
-                                context: context,
-                                builder: (context) => AddStudentBooksAlertDialog(
-                                  title: 'Add This Book',
-                                  description: 'Are you sure?',
-                                ),
-                              );
+                    AppCubit.get(context).IndexAddedStudentBook= StudentIndexId;
+                    AppCubit.get(context).IndexAddedBookStudent= StudentBookIndexId;
+                    Navigator.pop(context);
+                    showDialog(
+                      context: context,
+                      builder: (context) => AddStudentBooksAlertDialog(
+                        title: 'Add This Book',
+                        description: 'Are you sure?',
+                      ),
+                    );
                   }, iconSize: 23,
                   ),
                 ),
@@ -67,7 +65,7 @@ class BooksCanAddedForStudentPdfScreen extends StatelessWidget {
               pageFling: false,
               //defaultPage:1000,
             ).cachedFromUrl(
-              AppCubit.get(context).adminBooksModel!.books![StudentBookIndexId].pdf!
+              AppCubit.get(context).searchBookModel!.books![StudentBookIndexId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -132,11 +130,11 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
               onTap: ()
               {
                 AppCubit.get(context).addBookToStudent(
-                    bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).IndexAddedBookStudent!].sId!,
-                    studentId: AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexAddedStudentBook!].sId,
+                  bookId: AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).IndexAddedBookStudent!].sId!,
+                  studentId: AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexAddedStudentBook!].sId,
                 );
                 print(token);
-                print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).IndexAddedBookStudent!].sId!);
+                print(AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).IndexAddedBookStudent!].sId!);
                 print(AppCubit.get(context).searchStudentWithOutAdminsModel![AppCubit.get(context).IndexAddedStudentBook!].sId);
                 showToast(
                     message: 'Book added successfully',

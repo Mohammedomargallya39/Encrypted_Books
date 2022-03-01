@@ -167,7 +167,7 @@ class _CsStudentBookScreenState extends State<CsStudentBookScreen> {
                                                                                     maxLines: 1,
                                                                                     overflow: TextOverflow.ellipsis,
                                                                                     style: TextStyle(
-                                                                                      fontSize: 18.0,
+                                                                                      fontSize: size.width * 0.04,
                                                                                       fontWeight: FontWeight.bold,
                                                                                       //color:  Colors.black ,
                                                                                     ),
@@ -186,7 +186,7 @@ class _CsStudentBookScreenState extends State<CsStudentBookScreen> {
                                                                                     maxLines: 1,
                                                                                     overflow: TextOverflow.ellipsis,
                                                                                     style: TextStyle(
-                                                                                      fontSize: 16.0,
+                                                                                      fontSize: size.width * 0.04,
                                                                                       fontWeight: FontWeight.bold,
                                                                                       color:  Colors.grey ,
                                                                                     ),
@@ -321,7 +321,7 @@ class _CsStudentBookScreenState extends State<CsStudentBookScreen> {
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                    fontSize: 16.0,
+                                                    fontSize: size.width * 0.04,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -339,8 +339,8 @@ class _CsStudentBookScreenState extends State<CsStudentBookScreen> {
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontWeight: FontWeight.bold,
+                                                      fontSize: size.width * 0.04,
+                                                      fontWeight: FontWeight.bold,
                                                     color: Colors.grey
                                                   ),
                                                 ),

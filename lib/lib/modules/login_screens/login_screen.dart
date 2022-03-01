@@ -156,8 +156,9 @@ class LoginScreen extends StatelessWidget {
                                                 }
                                             },
                                             text: 'Login',
+                                            fontSize: size.width * 0.044,
                                             context: context,
-                                            height: size.height * 0.08,
+                                            height: size.height * 0.1,
                                             width: size.width,
                                           ),
                                         ),
@@ -181,7 +182,8 @@ class LoginScreen extends StatelessWidget {
                                           {
                                             navigateTo(context, RegisterScreen());
                                           },
-                                          text: 'SignUp'
+                                          text: 'SignUp',
+                                          fontSize: size.width * 0.044,
                                       ),
                                     ],
                                   ),

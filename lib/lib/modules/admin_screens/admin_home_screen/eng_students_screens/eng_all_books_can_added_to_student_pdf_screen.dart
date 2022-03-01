@@ -1,3 +1,4 @@
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,6 @@ import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
-
-import '../admin_drawer.dart';
 import '../students_departments.dart';
 import 'eng_student_book_screen.dart';
 
@@ -26,7 +25,7 @@ class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].pdf != null,
+          condition: AppCubit.get(context).searchBookModel!.books![EngStudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
             floatingActionButton: Stack(
               // fit: StackFit.expand,
@@ -69,7 +68,7 @@ class EngBooksCanAddedForStudentPdfScreen extends StatelessWidget {
               pageFling: false,
               //defaultPage:1000,
             ).cachedFromUrl(
-              AppCubit.get(context).adminBooksModel!.books![EngStudentBookIndexId].pdf!
+              AppCubit.get(context).searchBookModel!.books![EngStudentBookIndexId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -134,11 +133,11 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
               onTap: ()
               {
                 AppCubit.get(context).addBookToStudent(
-                    bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).EngIndexAddedBookStudent!].sId!,
-                    studentId: AppCubit.get(context).engStudentsModel![AppCubit.get(context).EngIndexAddedStudentBook!].sId,
+                  bookId: AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).EngIndexAddedBookStudent!].sId!,
+                  studentId: AppCubit.get(context).engStudentsModel![AppCubit.get(context).EngIndexAddedStudentBook!].sId,
                 );
                 print(token);
-                print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).EngIndexAddedBookStudent!].sId!);
+                print(AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).EngIndexAddedBookStudent!].sId!);
                 print(AppCubit.get(context).engStudentsModel![AppCubit.get(context).EngIndexAddedStudentBook!].sId);
                 showToast(
                     message: 'Book added successfully',

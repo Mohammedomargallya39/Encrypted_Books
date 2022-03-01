@@ -111,7 +111,7 @@ class _EngStudentsScreenState extends State<EngStudentsScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.04,
                                                   //color: Colors.black,
 
                                                 ),
@@ -122,7 +122,7 @@ class _EngStudentsScreenState extends State<EngStudentsScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.04,
                                                   //color: Colors.black,
 
                                                 ),

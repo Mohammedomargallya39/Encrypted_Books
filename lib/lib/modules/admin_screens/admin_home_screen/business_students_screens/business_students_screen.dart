@@ -115,7 +115,7 @@ class _BusinessStudentsScreenState extends State<BusinessStudentsScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.04,
                                               //    color: Colors.black,
                                                 ),
                                               ),
@@ -125,7 +125,7 @@ class _BusinessStudentsScreenState extends State<BusinessStudentsScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold ,
-                                                  fontSize: 16 ,
+                                                  fontSize: size.width * 0.04,
                                                 //  color: Colors.black,
 
                                                 ),

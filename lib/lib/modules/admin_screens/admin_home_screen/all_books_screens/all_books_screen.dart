@@ -108,7 +108,7 @@ class _AdminBooksScreenState extends State<AdminBooksScreen> {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                          fontSize: 18.0,
+                                          fontSize: size.width * 0.04,
                                           fontWeight: FontWeight.bold,
                                           //color: ThemeCubit.get(context). Colors.black ,
                                         ),
@@ -129,7 +129,7 @@ class _AdminBooksScreenState extends State<AdminBooksScreen> {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                          fontSize: 16.0,
+                                          fontSize: size.width * 0.04,
                                           fontWeight: FontWeight.bold,
                                           color:  Colors.grey ,
                                         ),

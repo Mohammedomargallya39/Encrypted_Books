@@ -18,15 +18,17 @@ class UserHelpScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-            floatingActionButton: IconButton(icon:Icon(Icons.home)
-              ,onPressed: ()
-              {
-                navigateTo(context,
-                    AppCubit.get(context).userModel!.isAdmin? AdminDrawerScreen(): UserDrawerScreen()
-                );
+            floatingActionButton: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                navigateTo(
+                    context,
+                    AppCubit.get(context).userModel!.isAdmin
+                        ? AdminDrawerScreen()
+                        : UserDrawerScreen());
               },
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
             body: Container(
               width: size.width,
               height: size.height,
@@ -64,13 +66,14 @@ class UserHelpScreen extends StatelessWidget {
                           ),
                           SizedBox(height: size.height * 0.02,),
                           defaultTextButton(
-                              onPressed: ()
-                              {
-                                launch('mailto:mohammed.gallya39@gmail.com?'
-                                    'subject=This is Subject title'
-                                    'body = This is Body Email');
-                              },
-                              text: 'Connect Us'),
+                            onPressed: ()
+                            {
+                              launch('mailto:mohammed.gallya39@gmail.com?'
+                                  'subject=This is Subject title'
+                                  'body = This is Body Email');
+                            },
+                            text: 'Connect Us',
+                            fontSize: size.width * 0.044,),
                         ],
                       ),
                     ),

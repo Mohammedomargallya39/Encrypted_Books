@@ -8,8 +8,6 @@ import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
-
-import '../admin_drawer.dart';
 import '../students_departments.dart';
 import 'cs_student_book_screen.dart';
 
@@ -26,7 +24,7 @@ class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: AppCubit.get(context).adminBooksModel!.books![CsStudentBookIndexId].pdf != null,
+          condition: AppCubit.get(context).searchBookModel!.books![CsStudentBookIndexId].pdf != null,
           builder:(context) =>  Scaffold(
             floatingActionButton: Stack(
               // fit: StackFit.expand,
@@ -68,7 +66,7 @@ class CsBooksCanAddedForStudentPdfScreen extends StatelessWidget {
               autoSpacing: false,
               pageFling: false,
             ).cachedFromUrl(
-              AppCubit.get(context).adminBooksModel!.books![CsStudentBookIndexId].pdf!
+              AppCubit.get(context).searchBookModel!.books![CsStudentBookIndexId].pdf!
               ,
               placeholder: (double progress) => Center(child: Text('$progress %')),
               errorWidget: (dynamic error) => Center(child: Text(error.toString())),
@@ -133,11 +131,11 @@ class _AddStudentBooksAlertDialogState extends State<AddStudentBooksAlertDialog>
               onTap: ()
               {
                 AppCubit.get(context).addBookToStudent(
-                    bookId: AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).CsIndexAddedBookStudent!].sId!,
-                    studentId: AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexAddedStudentBook!].sId,
+                  bookId: AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).CsIndexAddedBookStudent!].sId!,
+                  studentId: AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexAddedStudentBook!].sId,
                 );
                 print(token);
-                print(AppCubit.get(context).adminBooksModel!.books![AppCubit.get(context).CsIndexAddedBookStudent!].sId!);
+                print(AppCubit.get(context).searchBookModel!.books![AppCubit.get(context).CsIndexAddedBookStudent!].sId!);
                 print(AppCubit.get(context).csStudentsModel![AppCubit.get(context).CsIndexAddedStudentBook!].sId);
                 showToast(
                     message: 'Book added successfully',

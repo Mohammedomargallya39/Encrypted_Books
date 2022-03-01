@@ -41,29 +41,31 @@ class WelcomeScreen extends StatelessWidget {
                     height: size.height * 0.45,),
                     SizedBox(height:  size.height * 0.05,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.03,vertical: size.height * 0.003451),
                       child: defaultButton(
                         function: ()
                         {
                           navigateTo(context, LoginScreen());
                         },
                         text: 'LogIn',
+                        fontSize: size.width * 0.044,
                         context: context,
-                        height: size.height * 0.08,
+                        height: size.height * 0.1,
                         width: size.width,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.03,vertical: size.height * 0.003451),
                       child:  defaultButton(
                         function: ()
                         {
                           navigateTo(context, RegisterScreen());
                         },
                         text: 'Sign Up',
-                          textColor: Colors.black,
+                        fontSize: size.width * 0.044,
+                        textColor: Colors.black,
                         context: context,
-                        height: size.height * 0.08,
+                        height: size.height * 0.1,
                         width: size.width,
                         color: ButtonPrimaryLightColor
                       ),
