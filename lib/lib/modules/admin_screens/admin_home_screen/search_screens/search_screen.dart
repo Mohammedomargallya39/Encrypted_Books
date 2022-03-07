@@ -66,7 +66,6 @@ class StudentsSearchScreen extends StatelessWidget {
                             controller: searchController,
                             text: 'Search by name',
                             prefix: Icons.search,
-                            suffix: Icons.forward,
                             onChange: (value)
                             {
                               AppCubit.get(context).SearchStudent(

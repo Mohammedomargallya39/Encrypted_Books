@@ -17,21 +17,18 @@ class AdminDrawerScreen extends StatefulWidget {
   @override
   __AdminDrawerScreenPage createState() => __AdminDrawerScreenPage();
 }
-
 class __AdminDrawerScreenPage extends State<AdminDrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return const AnimatedDrawerScreen();
   }
 }
-
 class AnimatedDrawerScreen extends StatefulWidget {
   const AnimatedDrawerScreen({Key? key}) : super(key: key);
 
   @override
   _AnimatedDrawerState createState() => _AnimatedDrawerState();
 }
-
 class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
   dynamic screenView;
   late DrawerIndex drawerIndex;
@@ -125,7 +122,6 @@ class HomeDrawer extends StatefulWidget {
   @override
   _HomeDrawerState createState() => _HomeDrawerState();
 }
-
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList> drawerList = [];
 
@@ -481,14 +477,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
     widget.callBackIndex(indexScreen);
   }
 }
-
 enum DrawerIndex {
   HOME,
   Settings,
   Profile,
   Help,
 }
-
 class DrawerList {
   DrawerList({
     this.isAssetsImage = false,
@@ -504,7 +498,6 @@ class DrawerList {
   String imageName;
   DrawerIndex index;
 }
-
 class DrawerUserController extends StatefulWidget {
   const DrawerUserController({
     Key? key,

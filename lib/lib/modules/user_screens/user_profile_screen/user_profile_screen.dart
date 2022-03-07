@@ -45,7 +45,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 floatingActionButton: IconButton(
                   icon: Icon(Icons.arrow_back_ios),
                   onPressed: () {
-                    navigateTo(
+                    navigateAndEnd(
                         context,UserDrawerScreen()
                     );
                   },

@@ -58,7 +58,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
               floatingActionButton: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
                 onPressed: () {
-                  navigateTo(
+                  navigateAndEnd(
                       context,
                       AppCubit.get(context).userModel!.isAdmin
                           ? AdminDrawerScreen()

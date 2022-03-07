@@ -3,13 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/search_book_screen/search_book_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/search_students_access_book_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/all_books_screens/upload_book_screen.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'all_pdf_book_screen.dart';
+import 'bussiness_students_access_book_screen.dart';
+import 'cs_students_access_book_screen.dart';
+import 'eng_students_access_book_screen.dart';
 
 
 class AdminBooksScreen extends StatefulWidget {
@@ -57,7 +63,7 @@ class _AdminBooksScreenState extends State<AdminBooksScreen> {
             left: 30,
             child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
             {
-              Navigator.pop(context);
+              navigateAndEnd(context, AdminDrawerScreen());
             }, iconSize: 23,
             ),
           ),
@@ -142,6 +148,140 @@ class _AdminBooksScreenState extends State<AdminBooksScreen> {
                                   navigateTo(context, AdminPDFBooksScreen(
                                       BookId: index
                                   ),
+                                  );
+                                },
+                                onLongPress: ()
+                                {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context)
+                                      {
+                                        return Scaffold(
+                                          floatingActionButton: Stack(
+                                            // fit: StackFit.expand,
+                                            children: [
+                                              Positioned(
+                                                top: 30,
+                                                right: 0,
+                                                child: IconButton(icon: Icon(Icons.search_outlined), onPressed: ()
+                                                {
+                                                  navigateTo(context, SearchStudentAccessBookScreen(
+                                                    SearchAccessIndexBookId: AppCubit.get(context).adminBooksModel!.books![index].sId!,
+                                                  ));
+                                                },
+                                                  iconSize: 30,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 30,
+                                                left: 30,
+                                                child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                                                {
+                                                  navigateAndEnd(context, AdminBooksScreen());
+                                                }, iconSize: 23,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          body: Container(
+                                            width: size.width,
+                                            height: size.height,
+                                            child: Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  child: Image.asset('assets/images/main_top.png',
+                                                    width: size.width * 0.35,),
+                                                ),
+                                                Positioned(
+                                                  bottom: 0,
+                                                  right: 0,
+                                                  child: Image.asset('assets/images/login_bottom.png',
+                                                    width: size.width * 0.4,),
+                                                ),
+                                                Center(
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children:
+                                                      [
+                                                        Padding(
+                                                          padding:  EdgeInsets.fromLTRB(
+                                                              0,
+                                                              size.height * 0.066,
+                                                              0,
+                                                              0
+                                                          ),
+                                                          child: defaultButton(
+                                                            function: ()
+                                                            {
+                                                              navigateTo(context, CSStudentAccessBookScreen(
+                                                                CsAccessIndexBookId: AppCubit.get(context).adminBooksModel!.books![index].sId!,
+                                                              ));
+                                                            },
+                                                            text: 'Computer Science',
+                                                            fontSize: size.width * 0.035,
+                                                            context: context,
+                                                            height: size.height * 0.1,
+                                                            width: size.width,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: size.height * 0.01,),
+                                                        Padding(
+                                                          padding: EdgeInsets.fromLTRB(
+                                                              0,
+                                                              0,
+                                                              0,
+                                                              0
+                                                          ),
+                                                          child: defaultButton(
+                                                            function: ()
+                                                            {
+                                                              navigateTo(context, EngStudentAccessBookScreen(
+                                                                EngAccessIndexBookId: AppCubit.get(context).adminBooksModel!.books![index].sId!,
+
+                                                              ));
+                                                            },
+                                                            text: 'Engineering',
+                                                            fontSize: size.width * 0.035,
+                                                            context: context,
+                                                            height: size.height * 0.1,
+                                                            width: size.width,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: size.height * 0.01,),
+                                                        Padding(
+                                                          padding: EdgeInsets.fromLTRB(
+                                                              0,
+                                                              0,
+                                                              0,
+                                                              0
+                                                          ),
+                                                          child: defaultButton(
+                                                            function: ()
+                                                            {
+                                                              navigateTo(context, BusinessStudentAccessBookScreen(
+                                                                BusinessAccessIndexBookId: AppCubit.get(context).adminBooksModel!.books![index].sId!,
+                                                              ));
+                                                            },
+                                                            text: 'Business Management',
+                                                            fontSize: size.width * 0.035,
+                                                            context: context,
+                                                            height: size.height * 0.1,
+                                                            width: size.width,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }
                                   );
                                 },
                               ),
