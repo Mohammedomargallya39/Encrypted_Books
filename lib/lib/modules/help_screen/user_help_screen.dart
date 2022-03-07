@@ -30,7 +30,7 @@ class UserHelpScreen extends StatelessWidget {
               floatingActionButton: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
                 onPressed: () {
-                  navigateTo(
+                  navigateAndEnd(
                       context,
                       AppCubit.get(context).userModel!.isAdmin
                           ? AdminDrawerScreen()
@@ -73,16 +73,30 @@ class UserHelpScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 16,),),
                             ),
-                            SizedBox(height: size.height * 0.02,),
+                            SizedBox(height: size.height * 0.04,),
                             defaultTextButton(
                               onPressed: ()
                               {
-                                launch('mailto:mohammed.gallya39@gmail.com?'
-                                    'subject=This is Subject title'
-                                    'body = This is Body Email');
+                                launch(
+                                       'mailto:support@hti.edu.eg?'
+                                       'subject=This is Subject title'
+                                       'body = This is Body Email'
+                                );
                               },
-                              text: 'Connect Us',
+                              text: 'Connect with support',
                               fontSize: size.width * 0.044,),
+                            // SizedBox(height: size.height * 0.02,),
+                            // defaultTextButton(
+                            //   onPressed: ()
+                            //   {
+                            //     launch(
+                            //         'mailto:mohammed.gallya39@gmail.com?'
+                            //             'subject=This is Subject title'
+                            //             'body = This is Body Email'
+                            //     );
+                            //   },
+                            //   text: 'Connect with developer',
+                            //   fontSize: size.width * 0.044,),
                           ],
                         ),
                       ),

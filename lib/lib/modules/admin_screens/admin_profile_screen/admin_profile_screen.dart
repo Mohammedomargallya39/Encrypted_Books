@@ -50,7 +50,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                 floatingActionButton: IconButton(
                   icon: Icon(Icons.arrow_back_ios),
                   onPressed: () {
-                    navigateTo(
+                    navigateAndEnd(
                         context,AdminDrawerScreen()
                     );
                   },
