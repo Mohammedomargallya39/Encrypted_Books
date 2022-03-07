@@ -141,20 +141,36 @@ class _EngStudentAccessBookScreenState extends State<EngStudentAccessBookScreen>
                                         const Spacer(),
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                                          child: Icon(Icons.arrow_forward_ios,
+                                          child: IconButton(
+                                            icon: Icon(Icons.remove),
+                                            color: Colors.red,
+                                            onPressed:()
+                                            {
+                                              AppCubit.get(context).removeBookFromStudent(
+                                                bookId: widget.EngAccessIndexBookId,
+                                                studentId: AppCubit.get(context).engStudentsModel![index].sId ,
+                                              );
+                                              showToast(message: 'Book removed successfully to ${AppCubit.get(context).engStudentsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
+                                            },
+                                            //color: Colors.black,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                                          child: IconButton(icon: Icon(Icons.add),
+                                            onPressed:()
+                                            {
+                                              AppCubit.get(context).addBookToStudent(
+                                                bookId: widget.EngAccessIndexBookId,
+                                                studentId: AppCubit.get(context).engStudentsModel![index].sId ,
+                                              );
+                                              showToast(message: 'Book add successfully to ${AppCubit.get(context).engStudentsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
+                                            },
                                             //color: Colors.black,
                                           ),
                                         ),
                                       ],
                                     ),
-                                    onTap: ()
-                                    {
-                                      AppCubit.get(context).addBookToStudent(
-                                        bookId: widget.EngAccessIndexBookId,
-                                        studentId: AppCubit.get(context).engStudentsModel![index].sId ,
-                                      );
-                                      showToast(message: 'Book add successfully to ${AppCubit.get(context).engStudentsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
-                                    },
                                   ) ,
                                   margin: EdgeInsets.only(bottom: _w / 20),
                                   height: _w / 4,

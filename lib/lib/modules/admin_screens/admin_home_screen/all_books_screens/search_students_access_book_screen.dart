@@ -143,20 +143,36 @@ class SearchStudentAccessBookScreen extends StatelessWidget {
                                                 const Spacer(),
                                                 Padding(
                                                   padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                                                  child: Icon(Icons.add,
+                                                  child: IconButton(
+                                                    icon: Icon(Icons.add),
+                                                    color: Colors.red,
+                                                    onPressed:()
+                                                    {
+                                                      AppCubit.get(context).removeBookFromStudent(
+                                                        bookId: SearchAccessIndexBookId,
+                                                        studentId: AppCubit.get(context).searchStudentWithOutAdminsModel![index].sId ,
+                                                      );
+                                                      showToast(message: 'Book removed successfully from ${AppCubit.get(context).searchStudentWithOutAdminsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
+                                                    },
+                                                    //color: Colors.black,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                                                  child: IconButton(icon: Icon(Icons.add),
+                                                    onPressed:()
+                                                    {
+                                                    AppCubit.get(context).addBookToStudent(
+                                                    bookId: SearchAccessIndexBookId,
+                                                    studentId: AppCubit.get(context).searchStudentWithOutAdminsModel![index].sId ,
+                                                    );
+                                                    showToast(message: 'Book add successfully to ${AppCubit.get(context).searchStudentWithOutAdminsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
+                                                    },
                                                     //color: Colors.black,
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            onTap: ()
-                                            {
-                                              AppCubit.get(context).addBookToStudent(
-                                                  bookId: SearchAccessIndexBookId,
-                                                  studentId: AppCubit.get(context).searchStudentWithOutAdminsModel![index].sId ,
-                                              );
-                                              showToast(message: 'Book add successfully to ${AppCubit.get(context).searchStudentWithOutAdminsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
-                                            },
                                           ) ,
                                           margin: EdgeInsets.only(bottom: _w / 20),
                                           height: _w / 4,
