@@ -144,7 +144,7 @@ class SearchStudentAccessBookScreen extends StatelessWidget {
                                                 Padding(
                                                   padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                                                   child: IconButton(
-                                                    icon: Icon(Icons.add),
+                                                    icon: Icon(Icons.remove),
                                                     color: Colors.red,
                                                     onPressed:()
                                                     {
@@ -159,7 +159,9 @@ class SearchStudentAccessBookScreen extends StatelessWidget {
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                                                  child: IconButton(icon: Icon(Icons.add),
+                                                  child: IconButton(
+                                                    icon: Icon(Icons.add),
+                                                    color: Colors.green,
                                                     onPressed:()
                                                     {
                                                     AppCubit.get(context).addBookToStudent(
@@ -168,7 +170,6 @@ class SearchStudentAccessBookScreen extends StatelessWidget {
                                                     );
                                                     showToast(message: 'Book add successfully to ${AppCubit.get(context).searchStudentWithOutAdminsModel![index].email!.split('@').first}', state: ToastStates.SUCCESS);
                                                     },
-                                                    //color: Colors.black,
                                                   ),
                                                 ),
                                               ],

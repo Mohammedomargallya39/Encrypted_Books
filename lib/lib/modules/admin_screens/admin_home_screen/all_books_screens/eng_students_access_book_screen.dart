@@ -157,7 +157,9 @@ class _EngStudentAccessBookScreenState extends State<EngStudentAccessBookScreen>
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                                          child: IconButton(icon: Icon(Icons.add),
+                                          child: IconButton(
+                                            icon: Icon(Icons.add),
+                                            color: Colors.green,
                                             onPressed:()
                                             {
                                               AppCubit.get(context).addBookToStudent(
