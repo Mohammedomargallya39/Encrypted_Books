@@ -50,19 +50,23 @@ class _AnimatedDrawerState extends State<AdminAnimatedDrawerScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-          body: DrawerUserController(
-            screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.842,
-            animationController: (AnimationController animationController) {
-              sliderAnimationController = animationController;
-            },
-            onDrawerCall: (DrawerIndex drawerIndexData) {
-              changeIndex(drawerIndexData);
-            },
-            screenView: screenView,
+          body:Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+              child: DrawerUserController(
+                  screenIndex: drawerIndex,
+                  //drawerWidth: MediaQuery.of(context).size.width * 0.842,
+                  animationController: (AnimationController animationController) {
+                    sliderAnimationController = animationController;
+                  },
+                  onDrawerCall: (DrawerIndex drawerIndexData) {
+                    changeIndex(drawerIndexData);
+                  },
+                  screenView: screenView,
+                ),
+          ),
           ),
         ),
-      ),
     );
   }
   /// changing current item in drawer
@@ -272,20 +276,22 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                       children: [
                                         Row(
                                           children: [
-                                            Text(
-                                              ' ${AppCubit.get(context).userModel!.email.split('@').first}',
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold ,
-                                                  fontSize: size.width * 0.044,
-                                                  color: Colors.white
+                                            Expanded(
+                                              child: Text(
+                                                ' ${AppCubit.get(context).userModel!.email.split('@').first}',
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold ,
+                                                    fontSize: size.width * 0.044,
+                                                    color: Colors.white
+                                                ),
                                               ),
                                             ),
                                             Spacer(),
                                             InkWell(
-                                              child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
-                                              ),
+                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
+                                                ),
                                               onTap: ()
                                               {
                                                 ThemeCubit.get(context).changeTheme();
