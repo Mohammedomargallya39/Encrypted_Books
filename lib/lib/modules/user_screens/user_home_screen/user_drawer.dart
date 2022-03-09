@@ -24,18 +24,18 @@ class __UserDrawerScreenPage extends State<UserDrawerScreen> {
     return  BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return AnimatedDrawerScreen();
+        return UserAnimatedDrawerScreen();
       },
     );
   }
 }
-class AnimatedDrawerScreen extends StatefulWidget {
-  const AnimatedDrawerScreen({Key? key}) : super(key: key);
+class UserAnimatedDrawerScreen extends StatefulWidget {
+  const UserAnimatedDrawerScreen({Key? key}) : super(key: key);
 
   @override
   _AnimatedDrawerState createState() => _AnimatedDrawerState();
 }
-class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
+class _AnimatedDrawerState extends State<UserAnimatedDrawerScreen> {
   dynamic screenView;
   late DrawerIndex drawerIndex;
   late AnimationController sliderAnimationController;
@@ -58,7 +58,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
             return Scaffold(
               body: DrawerUserController(
                 screenIndex: drawerIndex,
-                drawerWidth: MediaQuery.of(context).size.width * 0.75,
+                drawerWidth: MediaQuery.of(context).size.width * 0.842,
                 animationController: (AnimationController animationController) {
                   sliderAnimationController = animationController;
                 },

@@ -21,16 +21,16 @@ class AdminDrawerScreen extends StatefulWidget {
 class __AdminDrawerScreenPage extends State<AdminDrawerScreen> {
   @override
   Widget build(BuildContext context) {
-    return const AnimatedDrawerScreen();
+    return const AdminAnimatedDrawerScreen();
   }
 }
-class AnimatedDrawerScreen extends StatefulWidget {
-  const AnimatedDrawerScreen({Key? key}) : super(key: key);
+class AdminAnimatedDrawerScreen extends StatefulWidget {
+  const AdminAnimatedDrawerScreen({Key? key}) : super(key: key);
 
   @override
   _AnimatedDrawerState createState() => _AnimatedDrawerState();
 }
-class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
+class _AnimatedDrawerState extends State<AdminAnimatedDrawerScreen> {
   dynamic screenView;
   late DrawerIndex drawerIndex;
   late AnimationController sliderAnimationController;
@@ -52,7 +52,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
         child: Scaffold(
           body: DrawerUserController(
             screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.69,
+            drawerWidth: MediaQuery.of(context).size.width * 0.842,
             animationController: (AnimationController animationController) {
               sliderAnimationController = animationController;
             },
