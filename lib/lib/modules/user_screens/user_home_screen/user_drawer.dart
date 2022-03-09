@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/about_us_screen/about_us_screen.dart';
 import 'package:social/lib/modules/help_screen/user_help_screen.dart';
 import 'package:social/lib/modules/settings_screen/user_settings_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_home_screen.dart';
@@ -79,26 +80,32 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
           //screenView = UserHomeScreen();
-          navigateTo(context, UserDrawerScreen());
+          navigateAndEnd(context, UserDrawerScreen());
         });
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {
           //screenView = UserProfileScreen();
-          navigateTo(context, UserProfileScreen());
+          navigateAndEnd(context, UserProfileScreen());
         });
       } else if (drawerIndex == DrawerIndex.Settings) {
         setState(() {
           // screenView = UserSettingsScreen();
-          navigateTo(context, UserSettingsScreen());
+          navigateAndEnd(context, UserSettingsScreen());
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
           //screenView = UserHelpScreen();
-          navigateTo(context, UserHelpScreen());
+          navigateAndEnd(context, UserHelpScreen());
+        });
+      }
+      else if (drawerIndex == DrawerIndex.AboutUs) {
+        setState(() {
+          //screenView = UserHelpScreen();
+          navigateAndEnd(context, AboutUsScreen());
         });
       } else {
         //Navigator.of(context).pop();
-        navigateTo(context, UserDrawerScreen());
+        navigateAndEnd(context, UserDrawerScreen());
       }
     }
   }
@@ -158,6 +165,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
         index: DrawerIndex.Help,
         labelName: 'Help',
         icon: const Icon(Icons.help),
+      ),
+      DrawerList(
+        index: DrawerIndex.AboutUs,
+        labelName: 'About Us',
+        icon: const Icon(Icons.announcement_rounded),
       ),
     ];
   }
@@ -500,7 +512,7 @@ enum DrawerIndex {
   Settings,
   Profile,
   Help,
-  About,
+  AboutUs,
 }
 class DrawerList {
   DrawerList({

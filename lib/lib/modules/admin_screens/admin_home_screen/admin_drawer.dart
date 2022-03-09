@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/modules/about_us_screen/about_us_screen.dart';
 import 'package:social/lib/modules/admin_screens/admin_profile_screen/admin_profile_screen.dart';
 import 'package:social/lib/modules/help_screen/user_help_screen.dart';
 import 'package:social/lib/modules/settings_screen/user_settings_screen.dart';
@@ -55,8 +56,8 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
             animationController: (AnimationController animationController) {
               sliderAnimationController = animationController;
             },
-            onDrawerCall: (DrawerIndex drawerIndexdata) {
-              changeIndex(drawerIndexdata);
+            onDrawerCall: (DrawerIndex drawerIndexData) {
+              changeIndex(drawerIndexData);
             },
             screenView: screenView,
           ),
@@ -65,32 +66,39 @@ class _AnimatedDrawerState extends State<AnimatedDrawerScreen> {
     );
   }
   /// changing current item in drawer
-  void changeIndex(DrawerIndex drawerIndexdata) {
-    if (drawerIndex != drawerIndexdata) {
-         drawerIndex = drawerIndexdata;
+  void changeIndex(DrawerIndex drawerIndexData) {
+    if (drawerIndex != drawerIndexData) {
+         drawerIndex = drawerIndexData;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
           //screenView = AdminHomeScreen();
-          navigateTo(context, AdminDrawerScreen());
+          navigateAndEnd(context, AdminDrawerScreen());
         });
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {
           //screenView = AdminProfileScreen();
-          navigateTo(context, AdminProfileScreen());
+          navigateAndEnd(context, AdminProfileScreen());
         });
       } else if (drawerIndex == DrawerIndex.Settings) {
         setState(() {
           // screenView = UserSettingsScreen();
-          navigateTo(context, UserSettingsScreen());
+          navigateAndEnd(context, UserSettingsScreen());
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
           //screenView = UserHelpScreen();
-          navigateTo(context, UserHelpScreen());
+          navigateAndEnd(context, UserHelpScreen());
+        });
+      }
+      else if (drawerIndex == DrawerIndex.AboutUs) {
+        setState(() {
+          //screenView = UserHelpScreen();
+          navigateAndEnd(context, AboutUsScreen());
         });
       } else {
         //Navigator.of(context).pop();
-        Navigator.pop(context);
+        //Navigator.pop(context);
+        navigateAndEnd(context, AdminDrawerScreen());
       }
     }
   }
@@ -152,6 +160,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
         index: DrawerIndex.Help,
         labelName: 'Help',
         icon: const Icon(Icons.help),
+      ),
+      DrawerList(
+        index: DrawerIndex.AboutUs,
+        labelName: 'About Us',
+        icon: const Icon(Icons.announcement_rounded),
       ),
     ];
   }
@@ -482,6 +495,7 @@ enum DrawerIndex {
   Settings,
   Profile,
   Help,
+  AboutUs,
 }
 class DrawerList {
   DrawerList({
@@ -528,8 +542,8 @@ class _DrawerUserControllerState extends State<DrawerUserController>
   late ScrollController scrollController;
   late AnimationController iconAnimationController;
   late AnimationController animationController;
-  double scrolloffset = 0.0;
-  bool isSetDawer = false;
+  double scrollOffset = 0.0;
+  bool isSetDrawer = false;
   @override
   void initState() {
     animationController = AnimationController(
@@ -547,9 +561,9 @@ class _DrawerUserControllerState extends State<DrawerUserController>
     scrollController
         .addListener(() {
       if (scrollController.offset <= 0) {
-        if (scrolloffset != 1.0) {
+        if (scrollOffset != 1.0) {
           setState(() {
-            scrolloffset = 1.0;
+            scrollOffset = 1.0;
             try {
               widget.drawerIsOpen!(true);
             } catch (_) {}
@@ -565,9 +579,9 @@ class _DrawerUserControllerState extends State<DrawerUserController>
             duration: const Duration(milliseconds: 0),
             curve: Curves.linear);
       } else if (scrollController.offset <= widget.drawerWidth) {
-        if (scrolloffset != 0.0) {
+        if (scrollOffset != 0.0) {
           setState(() {
-            scrolloffset = 0.0;
+            scrollOffset = 0.0;
             try {
               widget.drawerIsOpen!(false);
             } catch (_) {}
@@ -595,7 +609,7 @@ class _DrawerUserControllerState extends State<DrawerUserController>
     );
 
     setState(() {
-      isSetDawer = true;
+      isSetDrawer = true;
     });
     return true;
   }
@@ -610,7 +624,7 @@ class _DrawerUserControllerState extends State<DrawerUserController>
             scrollDirection: Axis.horizontal,
             physics: const PageScrollPhysics(parent: ClampingScrollPhysics()),
             child: Opacity(
-              opacity: isSetDawer ? 1 : 0,
+              opacity: isSetDrawer ? 1 : 0,
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width + widget.drawerWidth,
@@ -651,12 +665,12 @@ class _DrawerUserControllerState extends State<DrawerUserController>
                         child: Stack(
                           children: <Widget>[
                             IgnorePointer(
-                              ignoring: scrolloffset == 1 || false,
+                              ignoring: scrollOffset == 1 || false,
                               child: widget.screenView ?? Container(
                                 //  color: Colors.white,
                               ),
                             ),
-                            scrolloffset == 1.0
+                            scrollOffset == 1.0
                                 ? InkWell(
                               onTap: () {
                                 onDrawerClick();
