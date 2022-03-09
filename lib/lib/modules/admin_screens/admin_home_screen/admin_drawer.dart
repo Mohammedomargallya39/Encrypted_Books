@@ -334,6 +334,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                           ListTile(
                             title: Text(
                               'Sign Out',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontFamily: 'Bahij Janna',
                                 fontWeight: FontWeight.w600,
@@ -437,6 +439,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                       Expanded(
                         child: Text(
                           listData.labelName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: size.width * 0.044,
