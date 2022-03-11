@@ -20,6 +20,7 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
   //user data
+  // int? StudentIndex;
   UserData? userModel ;
   void getUserData() async {
     userModel = null;

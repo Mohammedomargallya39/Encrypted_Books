@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/shared/components/components.dart';
+import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import '../students_departments.dart';
 import 'business_student_details_screen.dart';
@@ -31,7 +32,33 @@ class _BusinessStudentsScreenState extends State<BusinessStudentsScreen> {
       builder: (context, state) {
         return ConditionalBuilder(
           condition: AppCubit.get(context).businessStudentsModel != null,
-          builder: (context) => Scaffold(
+          //state is EncryptionSuccessIndex,
+          builder: (context)
+          // {
+          //    return StudentsList(
+          //     onPressed: ()
+          //     {
+          //       navigateAndEnd(context, StudentsDepartmentsScreen());
+          //     },
+          //     onTap: ()
+          //     {
+          //       navigateTo(context, BusinessStudentDetailsScreen(
+          //         BusinessStudentId: indexStudent!,
+          //       ),
+          //       );
+          //     },
+          //     width: size.width,
+          //     height: size.height,
+          //     padding: _w,
+          //     itemCount: AppCubit.get(context).businessStudentsModel!.length,
+          //     image: AppCubit.get(context).businessStudentsModel![indexStudent!].image!,
+          //     name: AppCubit.get(context).businessStudentsModel![indexStudent!].name!,
+          //     id: AppCubit.get(context).businessStudentsModel![indexStudent!].email!.split('@').first,
+          // );
+          // },
+          //..................
+            =>
+              Scaffold(
             floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
               ,onPressed: ()
               {
