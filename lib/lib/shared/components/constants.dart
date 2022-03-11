@@ -20,3 +20,5 @@ void printLongString(dynamic text) {
 }
 String? token = '';
 bool? isAdmin = false;
+
+int? indexStudent;
