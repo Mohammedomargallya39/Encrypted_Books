@@ -1,14 +1,33 @@
-abstract class UserRegisterStates {}
-class UserRegisterInitialState extends UserRegisterStates{}
-class UserRegisterLoadingState extends UserRegisterStates{}
-class UserRegisterSuccessState extends UserRegisterStates{}
-class UserRegisterErrorState extends UserRegisterStates {
+import 'package:social/lib/models/login_model.dart';
+
+abstract class RegisterStates {}
+class UserRegisterInitialState extends RegisterStates{}
+class UserRegisterLoadingState extends RegisterStates{}
+class UserRegisterSuccessState extends RegisterStates{}
+class UserRegisterErrorState extends RegisterStates {
   final String error ;
   UserRegisterErrorState(this.error);
 }
-class UserChangeRegisterSuffixState extends UserRegisterStates{}
-class SelectedDepartmentState  extends UserRegisterStates{}
-class SelectDepartmentInitialState  extends UserRegisterStates{}
-class SelectDepartmentLoadingState extends UserRegisterStates{}
-class SelectDepartmentSuccessState extends UserRegisterStates{}
-class ChangeRadioButton extends UserRegisterStates{}
+class AdminRegisterLoadingState extends RegisterStates{}
+class AdminRegisterSuccessState extends RegisterStates{}
+class AdminRegisterErrorState extends RegisterStates {
+  final String error ;
+  AdminRegisterErrorState(this.error);
+}
+
+class AdminLoadingState extends RegisterStates {}
+class AdminSuccessState extends RegisterStates {
+  final UserData makeUserAdmins;
+  AdminSuccessState(this.makeUserAdmins);
+}
+class AdminErrorState extends RegisterStates {
+  final String error;
+  AdminErrorState(this.error);
+}
+
+class UserChangeRegisterSuffixState extends RegisterStates{}
+class SelectedDepartmentState  extends RegisterStates{}
+class SelectDepartmentInitialState  extends RegisterStates{}
+class SelectDepartmentLoadingState extends RegisterStates{}
+class SelectDepartmentSuccessState extends RegisterStates{}
+class ChangeRadioButton extends RegisterStates{}

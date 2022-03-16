@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
+import 'package:social/lib/modules/login_screens/register_cubit/register_cubit.dart';
 import 'package:social/lib/modules/login_screens/register_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/shared/components/components.dart';
@@ -24,7 +25,7 @@ class LoginScreen extends StatelessWidget {
     var passwordController = TextEditingController();
     return BlocProvider(
       create: (context) => UserLoginCubit(),
-      child: BlocConsumer<UserLoginCubit, UserLoginStates>(
+      child: BlocConsumer<UserLoginCubit, LoginStates>(
         listener: (context, state) {
               print("1"+'$token');
           if (state is UserLoginSuccessState) {
@@ -48,10 +49,37 @@ class LoginScreen extends StatelessWidget {
                 showToast(message: 'Login Successfully', state: ToastStates.SUCCESS);
               }
           }
-          if(state is UserLoginErrorState)
-          {
+          if(state is UserLoginErrorState) {
             showToast(message: 'Error! Check Your Email and Password and try again.', state: ToastStates.ERROR);
           }
+          if (state is AdminLoginSuccessState) {
+                print("2"+'$token');
+                CacheHelper.saveData(key: 'isAdmin', value: state.loginModel.isAdmin).then((value) {
+                  isAdmin = state.loginModel.isAdmin;
+                  print('is admin saved successfully');
+                });
+                CacheHelper.saveData(key: 'token', value: state.loginModel.token).then((value)
+                {
+                  token = state.loginModel.token;
+                  // if (emailController.text[0] != int)
+                  // {
+                  //   UserRegisterCubit.get(context).makeAdmin(studentId: state.loginModel.id);
+                  // }
+                  navigateAndEnd(
+                    context,
+                    UserLoginCubit.get(context).loginModel!.isAdmin
+                        ? AdminDrawerScreen()
+                        : UserDrawerScreen(),
+                  );
+                } );
+
+                {
+                  showToast(message: 'Login Successfully', state: ToastStates.SUCCESS);
+                }
+              }
+          if(state is AdminLoginErrorState) {
+                showToast(message: 'Error! Check Your Email and Password and try again.', state: ToastStates.ERROR);
+              }
         },
         builder: (context, state) {
           var cubit = UserLoginCubit.get(context);
@@ -149,11 +177,22 @@ class LoginScreen extends StatelessWidget {
                                           defaultButton(
                                             function: ()
                                             {
-                                            if (formKey.currentState!.validate()) {
-                                                  UserLoginCubit.get(context).userLogin(
-                                                      email: emailController.text,
-                                                      password: passwordController.text);
-                                                }
+                                            if (formKey.currentState!.validate())
+                                            {
+                                              if(emailController.text[0].contains(new RegExp(r'[0-9]')))
+                                              {
+                                                UserLoginCubit.get(context).userLogin(
+                                                    email: emailController.text,
+                                                    password: passwordController.text);
+                                              }else
+                                              {
+                                                UserLoginCubit.get(context).adminLogin(
+                                                    email: emailController.text,
+                                                    password: passwordController.text);
+                                              }
+
+                                            }
+
                                             },
                                             text: 'Login',
                                             fontSize: size.width * 0.035,

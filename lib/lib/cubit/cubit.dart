@@ -264,7 +264,7 @@ class AppCubit extends Cubit<AppStates> {
       token: token,
       query:
       {
-        'name':text
+        'email':text
       },
     ).then((value)
     {
@@ -685,5 +685,6 @@ class AppCubit extends Cubit<AppStates> {
       emit(AdminRemoveBookFromStudentErrorState(error.toString()));
     });
   }
+
 
 }

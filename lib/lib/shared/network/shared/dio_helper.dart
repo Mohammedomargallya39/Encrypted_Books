@@ -13,9 +13,9 @@ class DioHelper{
       ),
     );
   }
-//post
 
-  static Future<Response> postData({
+  //postUserData
+  static Future<Response> postUserData({
     dynamic data,
     Map<String, dynamic>? query,
     required String url,
@@ -37,6 +37,31 @@ class DioHelper{
       print(error.toString());
     });
   }
+
+  //postAdminData
+  static Future<Response> postAdminData({
+    dynamic data,
+    Map<String, dynamic>? query,
+    required String url,
+    String? token,
+  }) async {
+    return dio.post(
+      url,
+      data: data,
+      queryParameters: query,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          //'User-Agent': '${await FlutterUserAgent.getPropertyAsync('userAgent')}'
+          //'Authorization': token ?? '',
+        },
+      ),
+    ).catchError((error)
+    {
+      print(error.toString());
+    });
+  }
+
   //postDataWithToken
   static Future<Response?> postDataWithToken({
     required String url,

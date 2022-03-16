@@ -9,7 +9,7 @@ import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
 
-class UserRegisterCubit extends Cubit<UserRegisterStates> {
+class UserRegisterCubit extends Cubit<RegisterStates> {
   UserRegisterCubit() : super(UserRegisterInitialState());
   static UserRegisterCubit get(context) => BlocProvider.of(context);
   bool isPassword = true;
@@ -31,7 +31,7 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
   {
     print('--------userRegister-----------');
     emit(UserRegisterLoadingState());
-    DioHelper.postData(
+    DioHelper.postUserData(
       url: REGISTER,
       data: {
         'name': name,
@@ -52,6 +52,68 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
       emit(UserRegisterErrorState(error.toString()));
     });
   }
+
+  void adminRegister({
+    required String name,
+    required String email,
+    required String password,
+    required String phone,
+    required bool isMan,
+    required bool isEng,
+    required bool isCom,
+  })
+  {
+    print('--------AdminRegister-----------');
+    emit(AdminRegisterLoadingState());
+    DioHelper.postAdminData(
+      url: REGISTER,
+      data: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'phone': phone,
+        'isManagmentsection': isMan,
+        'isEnginneringsection': isEng,
+        'isComputerSciencesection': isCom,
+      },
+    ).then((value) {
+      print('--------AdminRegister----------- Success ${value.data.toString()}');
+      printLongString(value.data.toString());
+      emit(AdminRegisterSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      print('--------AdminRegister----------- Error ${error.toString()}');
+      emit(AdminRegisterErrorState(error.toString()));
+    });
+  }
+
+//   late UserData makeUserAdmins;
+//   void makeAdmin({
+//   required String? studentId
+// })
+//   {
+//     print('--------makeAdmin-----------');
+//     emit(AdminLoadingState());
+//     DioHelper.postAdminData(
+//       url: '$REGISTER/${studentId}',
+//       data:
+//       {
+//         'isAdmin':true,
+//         'isComputerSciencesection':false,
+//         'isEnginneringsection':false,
+//         'isManagmentsection':false,
+//       },
+//     ).then((value) {
+//       print('--------makeAdmin----------- Success ${value.data.toString()}');
+//       printLongString(value.data.toString());
+//       emit(AdminSuccessState(makeUserAdmins));
+//     }).catchError((error) {
+//       print(error.toString());
+//       print('--------makeAdmin----------- Error ${error.toString()}');
+//       emit(AdminErrorState(error.toString()));
+//     });
+//   }
+
   void changeSuffix() {
     isPassword = !isPassword;
     suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
