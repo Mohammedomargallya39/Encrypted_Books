@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:email_auth/email_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,18 +19,19 @@ class OTPScreen extends StatelessWidget {
         required this.isCS,
         required this.isEng,
         required this.isBusiness,
+        required this.firstIndexInEmail,
       }
       ) : super(key: key);
   var formKey = GlobalKey<FormState>();
   var otpController = TextEditingController();
   final dynamic name;
   final dynamic email;
+  final dynamic firstIndexInEmail;
   final dynamic phone;
   final dynamic password;
   final dynamic isCS;
   final dynamic isEng;
   final dynamic isBusiness;
-
   var verify;
 
 
@@ -42,7 +41,7 @@ class OTPScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => UserRegisterCubit() ,
-      child: BlocConsumer<UserRegisterCubit,UserRegisterStates>(
+      child: BlocConsumer<UserRegisterCubit,RegisterStates>(
         listener: (context, state) {
           // if (state is UserRegisterSuccessState){
           //   navigateAndEnd(
@@ -51,6 +50,10 @@ class OTPScreen extends StatelessWidget {
           // }
           // if (state is UserRegisterErrorState){
           //   showToast(message: 'Register failed try again please!', state: ToastStates.SUCCESS);
+          // }
+          // if(state is AdminSuccessState)
+          // {
+          //   UserRegisterCubit.get(context).makeAdmin(studentId: '${UserRegisterCubit.get(context).makeUserAdmins.id}');
           // }
         },
         builder: (context, state) {
@@ -129,30 +132,65 @@ class OTPScreen extends StatelessWidget {
 
                                     verifyOTP();
                                     print('verify is_________>${verify}');
+                                    print('firstIndexInEmail is_________>${firstIndexInEmail}');
+
                                     if (true == verify)
                                     {
-                                      print('test verify OTP');
-                                      UserRegisterCubit.get(context).userRegister(
-                                        email: email,
-                                        name:  name,
-                                        password: password,
-                                        phone:  phone,
-                                        isEng: isEng,
-                                        isMan: isBusiness,
-                                        isCom: isCS,
-                                      );
-                                      UserRegisterCubit.get(context).userRegister(
-                                        email: email,
-                                        name:  name,
-                                        password: password,
-                                        phone:  phone,
-                                        isEng: isEng,
-                                        isMan: isBusiness,
-                                        isCom: isCS,
-                                      );
-                                      showToast(message: 'Account Created', state: ToastStates.SUCCESS);
-                                      navigateAndEnd(context, LoginScreen());
-                                    }if (false == verify)
+
+                                      if(
+                                      firstIndexInEmail.contains(new RegExp(r'[0-9]'))
+                                     // firstIndexInEmail == '0'
+                                     //     ||
+                                     // firstIndexInEmail == '1'
+                                     //     ||
+                                     // firstIndexInEmail == '2'
+                                     //     ||
+                                     // firstIndexInEmail == '3'
+                                     //     ||
+                                     // firstIndexInEmail == '4'
+                                     //     ||
+                                     // firstIndexInEmail == '5'
+                                     //     ||
+                                     // firstIndexInEmail == '6'
+                                     //     ||
+                                     // firstIndexInEmail == '7'
+                                     //     ||
+                                     // firstIndexInEmail == '8'
+                                     //     ||
+                                     // firstIndexInEmail == '9'
+                                      )
+                                      {
+                                        print('************test************verify************OTP***************= user');
+                                        UserRegisterCubit.get(context).userRegister(
+                                          email: email,
+                                          name:  name,
+                                          password: password,
+                                          phone:  phone,
+                                          isEng: isEng,
+                                          isMan: isBusiness,
+                                          isCom: isCS,
+                                        );
+                                        showToast(message: 'Account Created', state: ToastStates.SUCCESS);
+                                        navigateAndEnd(context, LoginScreen());
+                                      }else
+                                      {
+                                        print('------------test-------------verify-----------OTP----------= admin');
+                                        UserRegisterCubit.get(context).adminRegister(
+                                          email: email,
+                                          name:  name,
+                                          password: password,
+                                          phone:  phone,
+                                          isEng: isEng,
+                                          isMan: isBusiness,
+                                          isCom: isCS,
+                                        );
+                                        showToast(message: 'Account Created', state: ToastStates.SUCCESS);
+                                        navigateAndEnd(context, LoginScreen());
+                                        //UserRegisterCubit.get(context).makeAdmin();
+                                      }
+                                    }
+
+                                    if (false == verify)
                                     {
                                       showToast(message: 'Failed! check code and try again please', state: ToastStates.ERROR);
                                     }if (null == verify)

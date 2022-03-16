@@ -27,7 +27,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserRegisterCubit(),
-      child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
+      child: BlocConsumer<UserRegisterCubit, RegisterStates>(
         listener: (context, state) {
           // if (state is UserRegisterSuccessState){
           //   navigateAndEnd(
@@ -37,6 +37,7 @@ class RegisterScreen extends StatelessWidget {
           // if (state is UserRegisterErrorState){
           //   showToast(message: 'Register failed try again please!', state: ToastStates.SUCCESS);
           // }
+
         },
         builder: (context, state) {
           var cubit = UserRegisterCubit.get(context);
@@ -123,7 +124,7 @@ class RegisterScreen extends StatelessWidget {
                                     ||
                                     !value.contains('hti.edu.eg')
                                 ) {
-                                  return 'You have to enter you academic e-mail. ex: 42018183@hti.edu.eg. then press on send icon.';
+                                  return 'You have to enter you academic e-mail. ex: xxxxxxxx@hti.edu.eg. then press on send icon.';
                                 }
                               },
                               type: TextInputType.emailAddress,
@@ -282,7 +283,8 @@ class RegisterScreen extends StatelessWidget {
                                         {
                                           if (
                                           formKey.currentState!.validate()
-                                              && UserRegisterCubit.get(context).currentIndex != 0
+                                              &&
+                                          UserRegisterCubit.get(context).currentIndex != 0
                                           ) {
                                             // UserRegisterCubit.get(context).userRegister(
                                             //   email: emailController.text,
@@ -299,12 +301,13 @@ class RegisterScreen extends StatelessWidget {
                                             sendOTP();
                                             navigateTo(context, OTPScreen(
                                                 email: emailController.value.text,
+                                                firstIndexInEmail: emailController.value.text[0],
                                                 name: nameController.text,
                                                 phone: phoneController.text,
                                                 password: passwordController.text,
                                                 isCS: UserRegisterCubit.get(context).isCom,
                                                 isEng: UserRegisterCubit.get(context).isEng,
-                                                isBusiness: UserRegisterCubit.get(context).isMan
+                                                isBusiness: UserRegisterCubit.get(context).isMan,
                                             ),
                                             );
                                             showToast(message: 'OTP code sent to your Academic E-mail', state: ToastStates.WARNING);

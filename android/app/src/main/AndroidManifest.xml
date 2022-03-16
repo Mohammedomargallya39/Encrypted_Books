@@ -3,7 +3,7 @@
     <!-- internet permission in release app -->
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="P for Book"
+        android:label="Book Spot"
         android:icon="@mipmap/logo_app">
         <activity
             android:name=".MainActivity"

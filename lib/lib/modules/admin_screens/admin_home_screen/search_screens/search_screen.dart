@@ -64,7 +64,7 @@ class StudentsSearchScreen extends StatelessWidget {
                           defaultFormField(
                             context: context,
                             controller: searchController,
-                            text: 'Search by name',
+                            text: 'Search by id',
                             prefix: Icons.search,
                             onChange: (value)
                             {

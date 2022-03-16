@@ -6,7 +6,7 @@ import 'package:social/lib/modules/login_screens/cubit/states.dart';
 import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
 
-class UserLoginCubit extends Cubit<UserLoginStates> {
+class UserLoginCubit extends Cubit<LoginStates> {
   UserLoginCubit() : super(UserLoginInitialState());
 
   static UserLoginCubit get(context) => BlocProvider.of(context);
@@ -17,7 +17,7 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
   void userLogin({required String email, required String password}) {
     print('-------------------------UserLogin--------------------');
     emit(UserLoginLoadingState());
-    DioHelper.postData(
+    DioHelper.postUserData(
       url: LOGIN,
       data: {
         'email': email,
@@ -35,6 +35,29 @@ class UserLoginCubit extends Cubit<UserLoginStates> {
       print('-------------------------UserLogin-------------------- error');
       print(error.toString());
       emit((UserLoginErrorState(error.toString())));
+    });
+  }
+  void adminLogin({required String email, required String password}) {
+    print('-------------------------UserAdmin--------------------');
+    emit(AdminLoginLoadingState());
+    DioHelper.postAdminData(
+      url: LOGIN,
+      data: {
+        'email': email,
+        'password': password,
+      },
+    ).then((value) {
+      print(value.data['token']);
+      loginModel = UserData.fromJson(value.data);
+      print(loginModel!.token);
+      print(loginModel!.id);
+
+      print('-------------------------UserAdmin-------------------- success');
+      emit(AdminLoginSuccessState(loginModel!));
+    }).catchError((error) {
+      print('-------------------------UserAdmin-------------------- error');
+      print(error.toString());
+      emit((AdminLoginErrorState(error.toString())));
     });
   }
   void changeSuffix() {
