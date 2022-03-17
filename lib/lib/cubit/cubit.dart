@@ -139,6 +139,7 @@ class AppCubit extends Cubit<AppStates> {
   List<StudentsModel>? businessStudentsModel = [];
   List<StudentsModel>? engStudentsModel = [];
   List<StudentsModel>? adminsModel = [];
+  List<StudentsModel>? addAdminsModel = [];
   List<StudentsModel>? withOutAdminsModel = [];
   //user with out admins
   void getCsStudents() {
@@ -178,6 +179,20 @@ class AppCubit extends Cubit<AppStates> {
     adminsModel =
         studentsModel!.where((element) =>
             element.isAdmin == true
+            // ||
+            // element.email![0].contains(new RegExp(r'[a-z]'))
+          // element.isEnginneringsection == true
+          //     element.isManagmentsection == true ||
+          // element.isComputerSciencesection == true
+        ).toList();
+  }
+  void getAddAdmins() {
+    addAdminsModel = [];
+    addAdminsModel =
+        studentsModel!.where((element) =>
+        element.isAdmin == false
+          &&
+          element.email![0].contains(new RegExp(r'[a-z]'))
           // element.isEnginneringsection == true
           //     element.isManagmentsection == true ||
           // element.isComputerSciencesection == true
@@ -202,6 +217,7 @@ class AppCubit extends Cubit<AppStates> {
     businessStudentsModel = [];
     engStudentsModel = [];
     adminsModel = [];
+    addAdminsModel = [];
     withOutAdminsModel = [];
     emit(EncryptionLoadingGetStudentsState());
     print('------------------test Loading get students-------------------');
@@ -221,6 +237,7 @@ class AppCubit extends Cubit<AppStates> {
       getBusinessStudents();
       getEngStudents();
       getAdmins();
+      getAddAdmins();
       //print(withOutAdminsModel!.length);
       print(csStudentsModel!.length);
       print(businessStudentsModel!.length);
@@ -687,4 +704,110 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
+void makeAdmin({
+  required String? studentId
+})
+{
+  print('--------makeAdmin-----------');
+  emit(AdminLoadingState());
+  DioHelper.patchData(
+    url: '$REGISTER/${studentId}',
+    data:
+    {
+      'isAdmin':true,
+      'isComputerSciencesection':false,
+      'isEnginneringsection':false,
+      'isManagmentsection':false,
+    },
+  ).then((value) {
+    print('--------makeAdmin----------- Success ${value!.data.toString()}');
+    printLongString(value.data.toString());
+    emit(AdminSuccessState());
+  }).catchError((error) {
+    print(error.toString());
+    print('--------makeAdmin----------- Error ${error.toString()}');
+    emit(AdminErrorState(error.toString()));
+  });
 }
+}
+
+
+
+//
+// void makeCs({
+//   required String? studentId
+// })
+// {
+//   print('--------makeCs-----------');
+//   emit(AdminLoadingState());
+//   DioHelper.patchData(
+//     url: '$REGISTER/${studentId}',
+//     data:
+//     {
+//       'isAdmin':false,
+//       'isComputerSciencesection':true,
+//       'isEnginneringsection':false,
+//       'isManagmentsection':false,
+//     },
+//   ).then((value) {
+//     print('--------makeCs----------- Success ${value!.data.toString()}');
+//     printLongString(value.data.toString());
+//     emit(AdminSuccessState());
+//   }).catchError((error) {
+//     print(error.toString());
+//     print('--------makeCs----------- Error ${error.toString()}');
+//     emit(AdminErrorState(error.toString()));
+//   });
+// }
+//
+// void makeEng({
+//   required String? studentId
+// })
+// {
+//   print('--------makeEng-----------');
+//   emit(AdminLoadingState());
+//   DioHelper.patchData(
+//     url: '$REGISTER/${studentId}',
+//     data:
+//     {
+//       'isAdmin':false,
+//       'isComputerSciencesection':false,
+//       'isEnginneringsection':true,
+//       'isManagmentsection':false,
+//     },
+//   ).then((value) {
+//     print('--------makeEng----------- Success ${value!.data.toString()}');
+//     printLongString(value.data.toString());
+//     emit(AdminSuccessState());
+//   }).catchError((error) {
+//     print(error.toString());
+//     print('--------makeEng----------- Error ${error.toString()}');
+//     emit(AdminErrorState(error.toString()));
+//   });
+// }
+//
+// void makeBusiness({
+//   required String? studentId
+// })
+// {
+//   print('--------makeBusiness-----------');
+//   emit(AdminLoadingState());
+//   DioHelper.patchData(
+//     url: '$REGISTER/${studentId}',
+//     data:
+//     {
+//       'isAdmin':false,
+//       'isComputerSciencesection':false,
+//       'isEnginneringsection':false,
+//       'isManagmentsection':true,
+//     },
+//   ).then((value) {
+//     print('--------makeBusiness----------- Success ${value!.data.toString()}');
+//     printLongString(value.data.toString());
+//     emit(AdminSuccessState());
+//   }).catchError((error) {
+//     print(error.toString());
+//     print('--------makeBusiness----------- Error ${error.toString()}');
+//     emit(AdminErrorState(error.toString()));
+//   });
+// }

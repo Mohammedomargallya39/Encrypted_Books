@@ -4,8 +4,10 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/lib/cubit/cubit.dart';
+import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
+import 'package:social/lib/shared/styles/colors.dart';
 
 class AdminsDetailsScreen extends StatelessWidget {
   const AdminsDetailsScreen({Key? key, required this.AdminId}) : super(key: key);
@@ -192,7 +194,69 @@ class AdminsDetailsScreen extends StatelessWidget {
                             border: Border(bottom:  BorderSide(color: Colors.grey , width: size.width * 0.003),),
                           ),
                         ),
-                        SizedBox(height: size.height * 0.02,),
+                        // SizedBox(
+                        //   height: size.height * 0.02,
+                        // ),
+                        // // ListTitle
+                        // defaultTextButton
+                        //   (
+                        //     onPressed: ()
+                        //     {
+                        //       AppCubit.get(context).makeAdmin(
+                        //           studentId: AppCubit.get(context).adminsModel![AdminId].sId!
+                        //       );
+                        //     },
+                        //     text: 'Admin',
+                        //     color: defaultColor,
+                        //   ),
+                        //
+                        // SizedBox(
+                        //   height: size.height * 0.02,
+                        // ),
+                        // // ListTitle
+                        // defaultTextButton
+                        //   (
+                        //   onPressed: ()
+                        //   {
+                        //     AppCubit.get(context).makeCs(
+                        //         studentId: AppCubit.get(context).adminsModel![AdminId].sId!
+                        //     );
+                        //   },
+                        //   text: 'Computer Science (student)',
+                        //   color: defaultColor,
+                        // ),
+                        //
+                        // SizedBox(
+                        //   height: size.height * 0.02,
+                        // ),
+                        // // ListTitle
+                        // defaultTextButton
+                        //   (
+                        //   onPressed: ()
+                        //   {
+                        //     AppCubit.get(context).makeEng(
+                        //         studentId: AppCubit.get(context).adminsModel![AdminId].sId!
+                        //     );
+                        //   },
+                        //   text: 'Engineering (student)',
+                        //   color: defaultColor,
+                        // ),
+                        //
+                        // SizedBox(
+                        //   height: size.height * 0.02,
+                        // ),
+                        // // ListTitle
+                        // defaultTextButton
+                        //   (
+                        //   onPressed: ()
+                        //   {
+                        //     AppCubit.get(context).makeBusiness(
+                        //         studentId: AppCubit.get(context).adminsModel![AdminId].sId!
+                        //     );
+                        //   },
+                        //   text: 'Business Management (student)',
+                        //   color: defaultColor,
+                        // ),
 
                       ],
                     ),

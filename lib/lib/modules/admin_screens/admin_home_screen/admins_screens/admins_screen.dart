@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/admins_details_screen.dart';
+import 'package:social/lib/modules/admin_screens/admin_home_screen/admins_screens/who_can_be_admin.dart';
 import 'package:social/lib/modules/admin_screens/admin_home_screen/students_departments.dart';
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
@@ -32,13 +33,36 @@ class _AdminsScreenState extends State<AdminsScreen> {
         return ConditionalBuilder(
           condition: AppCubit.get(context).adminsModel != null,
           builder: (context) => Scaffold(
-            floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
-              ,onPressed: ()
-              {
-                navigateAndEnd(context, StudentsDepartmentsScreen());
-              },
+            floatingActionButton: Stack(
+              // fit: StackFit.expand,
+              children: [
+                Positioned(
+                  top: 60,
+                  right: 0,
+                  child: IconButton(icon: Icon(Icons.add), onPressed: ()
+                  {
+                    navigateTo(context, AddAdmins());
+                  }, iconSize: 30,
+                  ),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 30,
+                  child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
+                  {
+                    navigateAndEnd(context, StudentsDepartmentsScreen());
+                  }, iconSize: 23,
+                  ),
+                ),
+              ],
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+            // floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+            //   ,onPressed: ()
+            //   {
+            //     navigateAndEnd(context, StudentsDepartmentsScreen());
+            //   },
+            // ),
+            // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
             body: Container(
               width: size.width,
               height: size.height,
