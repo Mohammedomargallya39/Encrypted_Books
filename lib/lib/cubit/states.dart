@@ -120,3 +120,12 @@ class AdminSearchBookForStudentErrorState extends AppStates {
   AdminSearchBookForStudentErrorState(this.error);
 }
 
+// make admins
+
+class AdminLoadingState extends AppStates {}
+class AdminSuccessState extends AppStates {}
+class AdminErrorState extends AppStates {
+  final String error;
+  AdminErrorState(this.error);
+}
+

@@ -15,16 +15,6 @@ class AdminRegisterErrorState extends RegisterStates {
   AdminRegisterErrorState(this.error);
 }
 
-class AdminLoadingState extends RegisterStates {}
-class AdminSuccessState extends RegisterStates {
-  final UserData makeUserAdmins;
-  AdminSuccessState(this.makeUserAdmins);
-}
-class AdminErrorState extends RegisterStates {
-  final String error;
-  AdminErrorState(this.error);
-}
-
 class UserChangeRegisterSuffixState extends RegisterStates{}
 class SelectedDepartmentState  extends RegisterStates{}
 class SelectDepartmentInitialState  extends RegisterStates{}
