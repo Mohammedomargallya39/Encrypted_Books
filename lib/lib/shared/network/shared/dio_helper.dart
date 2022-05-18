@@ -52,7 +52,8 @@ class DioHelper{
       options: Options(
         headers: {
           'Content-Type': 'application/json',
-          //'User-Agent': '${await FlutterUserAgent.getPropertyAsync('userAgent')}'
+          // 'User-Agent': '${await FlutterUserAgent.getPropertyAsync('userAgent')}'
+          'User-Agent': ''
           //'Authorization': token ?? '',
         },
       ),

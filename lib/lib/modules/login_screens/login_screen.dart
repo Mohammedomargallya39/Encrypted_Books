@@ -157,13 +157,13 @@ class LoginScreen extends StatelessWidget {
                                           return 'password must not be empty';
                                         }
                                       },
-                                      onSubmit: (String value) {
-                                        if (formKey.currentState!.validate()) {
-                                          cubit.userLogin(
-                                              email: emailController.text,
-                                              password: passwordController.text);
-                                        }
-                                      },
+                                      // onSubmit: (String value) {
+                                      //   if (formKey.currentState!.validate()) {
+                                      //     cubit.userLogin(
+                                      //         email: emailController.text,
+                                      //         password: passwordController.text);
+                                      //   }
+                                      // },
                                       type: TextInputType.visiblePassword,
                                       context: context),
                                   SizedBox(height: size.height *0.038,),
@@ -184,12 +184,17 @@ class LoginScreen extends StatelessWidget {
                                                 UserLoginCubit.get(context).userLogin(
                                                     email: emailController.text,
                                                     password: passwordController.text);
+                                                debugPrint('Second condition');
                                               }else
                                               {
                                                 UserLoginCubit.get(context).adminLogin(
                                                     email: emailController.text,
                                                     password: passwordController.text);
+
+                                                debugPrint('Third condition ${passwordController.text}');
                                               }
+
+                                              debugPrint('First condition');
 
                                             }
 

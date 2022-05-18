@@ -121,8 +121,8 @@ class RegisterScreen extends StatelessWidget {
                               prefix: Icons.email_outlined,
                               validate: (String value) {
                                 if (value.isEmpty
-                                    ||
-                                    !value.contains('hti.edu.eg')
+                                    /*||
+                                    !value.contains('hti.edu.eg')*/
                                 ) {
                                   return 'You have to enter you academic e-mail. ex: xxxxxxxx@hti.edu.eg. then press on send icon.';
                                 }
