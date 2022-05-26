@@ -22,3 +22,4 @@ String? token = '';
 bool? isAdmin = false;
 
 int? indexStudent;
+int? currentPage = 1;

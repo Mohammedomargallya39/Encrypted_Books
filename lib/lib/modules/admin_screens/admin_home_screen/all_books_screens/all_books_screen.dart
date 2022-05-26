@@ -147,8 +147,8 @@ class _AdminBooksScreenState extends State<AdminBooksScreen> {
                                 {
                                   navigateTo(context, AdminPDFBooksScreen(
                                       BookId: index
-                                  ),
-                                  );
+                                  ),);
+
                                 },
                                 onLongPress: ()
                                 {

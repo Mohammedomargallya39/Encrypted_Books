@@ -15,6 +15,7 @@ import 'package:social/lib/models/user_books_model.dart';
 import 'package:social/lib/shared/components/constants.dart';
 import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
+import 'package:social/lib/shared/network/shared/dio_ocr.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
@@ -729,8 +730,56 @@ void makeAdmin({
     emit(AdminErrorState(error.toString()));
   });
 }
+
+
+void ocrBookText({
+  required String? bookId,
+  required String? pageNumber,
+}) async {
+  emit(OCRBookTextLoadingState());
+  await DioOcr.postOCR(
+      url: OCR_BOOK_TEXT,
+      data: {
+        'bookId': bookId,
+        'pageNumber': pageNumber,
+      }
+  ).then((value) {
+    printLongString('--------ocrBookText----------- Success ${value.toString()}');
+    emit(OCRBookTextSuccessState());
+  }).catchError((error) {
+    printLongString('--------ocrBookText----------- Error ${error.toString()}');
+    emit(OCRBookTextErrorState());
+  });
 }
 
+
+  void ocrBookConverter({
+    required String? bookId,
+  }) async {
+    emit(OCRBookConverterLoadingState());
+    await DioOcr.postOCR(
+        url: OCR_BOOK_Converter,
+        data: {
+          'bookId': bookId,
+        }
+    ).then((value) {
+      printLongString('--------ocrBookText----------- Success ${value.toString()}');
+      emit(OCRBookConverterSuccessState());
+    }).catchError((error) {
+      printLongString('--------ocrBookText----------- Error ${error.toString()}');
+      emit(OCRBookConverterErrorState());
+    });
+  }
+
+
+  int currentPage =0;
+  void currentPdfPage()
+  {
+    currentPage;
+    emit(CurrentPageState());
+  }
+
+}
 
 
 //
