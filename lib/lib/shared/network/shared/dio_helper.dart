@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_user_agentx/flutter_user_agent.dart';
+import 'package:social/lib/shared/network/end_points.dart';
 class DioHelper{
 
   static late Dio dio;
@@ -182,4 +183,45 @@ class DioHelper{
       print(error.toString());
     }
   }
+}
+
+class DioHelperOCR{
+
+  static late Dio dio;
+  static init(){
+    dio = Dio(
+      BaseOptions(
+        baseUrl: BASE_URL,
+        receiveDataWhenStatusError: true,
+        connectTimeout: 10000,
+        receiveTimeout: 10000,
+      ),
+    );
+  }
+
+
+  //put
+  static Future<Response?> postData({
+    required String url,
+    required Map<String, dynamic> data,
+    Map<String, dynamic>? query,
+    String? token,
+  })async
+  {
+    try{
+      return await dio.post(
+        url,
+        data: data,
+        queryParameters: query,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+    }on DioError catch(error){
+      print(error.toString());
+    }
+  }
+
 }

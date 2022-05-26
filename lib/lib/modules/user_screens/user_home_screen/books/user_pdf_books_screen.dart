@@ -36,14 +36,14 @@ class UserPDFBooksScreen extends StatelessWidget {
                   {
                     AppCubit.get(context).ocrBookText(
                         bookId: '${AppCubit.get(context).homeModel!.books![bookId].sId}',
-                        pageNumber: '${AppCubit.get(context).currentPage}'
+                        pageNumber: '${AppCubit.get(context).currentPage +1}'
                     );
                   },
                     iconSize: 23,
                   ),
                 ),
                 Positioned(
-                  top: 60,
+                  top: 80,
                   left: 30,
                   child: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: ()
                   {

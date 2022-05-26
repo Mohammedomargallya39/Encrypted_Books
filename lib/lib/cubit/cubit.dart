@@ -745,14 +745,37 @@ void ocrBookText({
       }
   ).then((value) {
     printLongString('--------ocrBookText----------- Success ${value.toString()}');
+    currentPageData = value.toString();
+    printLongString('$currentPageData');
     emit(OCRBookTextSuccessState());
   }).catchError((error) {
     printLongString('--------ocrBookText----------- Error ${error.toString()}');
     emit(OCRBookTextErrorState());
   });
 }
+  // void debugPrintFullText(String text) {
+  //   final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
+  //   pattern.allMatches(text).forEach((match) => debugPrint(match.group(0)));
+  // }
 
 
+  // void ocrBookConverter({
+  //   required String? bookId,
+  // }) async {
+  //   emit(OCRBookConverterLoadingState());
+  //   await DioOcr.postOCR(
+  //       url: OCR_BOOK_Converter,
+  //       data: {
+  //         'bookId': bookId,
+  //       }
+  //   ).then((value) {
+  //     printLongString('--------ocrBookText----------- Success ${value.toString()}');
+  //     emit(OCRBookConverterSuccessState());
+  //   }).catchError((error) {
+  //     printLongString('--------ocrBookText----------- Error ${error.toString()}');
+  //     emit(OCRBookConverterErrorState());
+  //   });
+  // }
   void ocrBookConverter({
     required String? bookId,
   }) async {
@@ -763,16 +786,14 @@ void ocrBookText({
           'bookId': bookId,
         }
     ).then((value) {
-      printLongString('--------ocrBookText----------- Success ${value.toString()}');
       emit(OCRBookConverterSuccessState());
     }).catchError((error) {
-      printLongString('--------ocrBookText----------- Error ${error.toString()}');
+      printLongString('--------ocrBookConverter----------- Error ${error.toString()}');
       emit(OCRBookConverterErrorState());
     });
   }
 
-
-  int currentPage =0;
+  int currentPage = 1;
   void currentPdfPage()
   {
     currentPage;

@@ -9,6 +9,7 @@ import 'package:social/lib/modules/login_screens/login_screen.dart';
 import 'package:social/lib/modules/onboarding_screen/on_boarding_screen.dart';
 import 'package:social/lib/modules/user_screens/user_home_screen/user_drawer.dart';
 import 'package:social/lib/shared/bloc_observer.dart';
+import 'package:social/lib/shared/network/shared/dio_ocr.dart';
 import 'package:social/lib/shared/styles/themes.dart';
 import 'lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'lib/shared/components/constants.dart';
@@ -26,6 +27,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
   DioHelper.init();
+  DioOcr.init();
 
   bool isDark = CacheHelper.getData(key: 'isDark') == true;
   Widget? widget;

@@ -23,3 +23,4 @@ bool? isAdmin = false;
 
 int? indexStudent;
 int? currentPage = 1;
+String? currentPageData = '';
