@@ -129,3 +129,33 @@ class AdminErrorState extends AppStates {
   AdminErrorState(this.error);
 }
 
+class OCRBookTextLoadingState extends AppStates {}
+class OCRBookTextSuccessState extends AppStates {}
+class OCRBookTextErrorState extends AppStates {}
+
+class OCRBookConverterLoadingState extends AppStates {}
+class OCRBookConverterSuccessState extends AppStates {}
+class OCRBookConverterErrorState extends AppStates {}
+
+class CurrentPageState extends AppStates {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

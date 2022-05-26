@@ -16,6 +16,9 @@ class AdminPDFBooksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppCubit.get(context).ocrBookConverter(
+        bookId: AppCubit.get(context).adminBooksModel!.books![BookId].sId
+    );
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
