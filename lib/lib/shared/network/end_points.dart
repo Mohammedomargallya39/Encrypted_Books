@@ -14,6 +14,7 @@ const ADD_BOOK_TO_STUDENT= 'accessbook';
 const SEARCH_BOOKS= 'books/cs';
 const OCR_BOOK_TEXT= 'BookText/';
 const OCR_BOOK_Converter= 'BookConverter/';
+const BASE_URL_OCR = 'http://bookocr.ddns.net:8000/api/';
 
 
 
