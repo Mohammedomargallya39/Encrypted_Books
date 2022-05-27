@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:social/lib/cubit/cubit.dart';
-import 'package:social/lib/modules/admin_screens/admin_home_screen/admin_drawer.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 import 'package:social/lib/shared/cubit/states.dart';
 import 'package:social/lib/shared/styles/colors.dart';
@@ -92,6 +90,8 @@ Widget defaultTextButton({
       onPressed: onPressed,
       child: Text(
         text.toUpperCase(),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: color,
           fontSize: fontSize,
@@ -514,7 +514,7 @@ Widget ProfileScreen (
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: fontSize,
+                                      fontSize: cubitFontSize,
                                       color: ThemeCubit.get(context).darkTheme?Colors.grey.shade300 :Colors.grey.shade800
                                   ),),
                               ),

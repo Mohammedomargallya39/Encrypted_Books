@@ -43,57 +43,57 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).userModel != null,
-          builder: (context) => WillPopScope(
-            onWillPop: () async{
-              navigateAndEnd(
-                  context,
-                  AppCubit.get(context).userModel!.isAdmin
-                      ? AdminDrawerScreen()
-                      : UserDrawerScreen());
-              return true;
-            },
-            child: Scaffold(
-              floatingActionButton: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
-                onPressed: () {
-                  navigateAndEnd(
-                      context,
-                      AppCubit.get(context).userModel!.isAdmin
-                          ? AdminDrawerScreen()
-                          : UserDrawerScreen());
-                },
-              ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-              body: Container(
-                width: size.width,
-                height: size.height,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Image.asset(
-                        'assets/images/main_top.png',
-                        width: size.width * 0.35,
-                      ),
+        return WillPopScope(
+          onWillPop: () async{
+            navigateAndEnd(
+                context,
+                AppCubit.get(context).userModel!.isAdmin
+                    ? AdminDrawerScreen()
+                    : UserDrawerScreen());
+            return true;
+          },
+          child: Scaffold(
+            floatingActionButton: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                navigateAndEnd(
+                    context,
+                    AppCubit.get(context).userModel!.isAdmin
+                        ? AdminDrawerScreen()
+                        : UserDrawerScreen());
+              },
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+            body: Container(
+              width: size.width,
+              height: size.height,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset(
+                      'assets/images/main_top.png',
+                      width: size.width * 0.35,
                     ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Image.asset(
-                        'assets/images/login_bottom.png',
-                        width: size.width * 0.4,
-                      ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Image.asset(
+                      'assets/images/login_bottom.png',
+                      width: size.width * 0.4,
                     ),
-                    Form(
-                      key: formKey,
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
-                          child: Column(
+                  ),
+                  Form(
+                    key: formKey,
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
+                        child: ConditionalBuilder(
+                          condition: AppCubit.get(context).userModel != null,
+                          builder: (context) => Column(
                             children: <Widget>[
                               Center(
                                 child: GestureDetector(
@@ -152,7 +152,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                                     .split('@')
                                     .first,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: size.width * 0.044,),
+                                  fontWeight: FontWeight.bold, fontSize: size.width * 0.044,),
                               ),
                               SizedBox(
                                 height: size.height * 0.04,
@@ -229,15 +229,15 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                               ),
                             ],
                           ),
+                          fallback: (context) => Center(child: CircularProgressIndicator()),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
         );
       },
     );
