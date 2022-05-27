@@ -183,209 +183,206 @@ class _HomeDrawerState extends State<HomeDrawer> {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).userModel != null,
-          builder: (context) => BlocConsumer<ThemeCubit,ThemeStates>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return SafeArea(
-                top: true,
-                bottom: true,
-                child: Scaffold(
-
-                  backgroundColor: ThemeCubit.get(context).darkTheme ? Colors.grey.shade900:Colors.blue,
-                  body: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        width: size.width,
-                        padding:  EdgeInsets.only(top: size.height * 0.01),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(
-                            size.width * 0.02,
-                            size.height * 0.02,
-                            size.width * 0.02,
-                            size.height * 0.02,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              /// ---------------------------
-                              /// Animated Builder for drawer
-                              /// ---------------------------
-
-                              AnimatedBuilder(
-                                animation: widget.iconAnimationController,
-                                builder: (BuildContext context, Widget? child) {
-                                  return ScaleTransition(
-
-                                    scale: AlwaysStoppedAnimation<double>(
-                                        1.0 - (widget.iconAnimationController.value) * 0.2),
-                                    child: RotationTransition(
-                                      turns: AlwaysStoppedAnimation<double>(Tween<double>(
-                                          begin: 0.0, end: 24.0)
-                                          .animate(CurvedAnimation(
-                                          parent: widget.iconAnimationController,
-                                          curve: Curves.fastOutSlowIn))
-                                          .value /
-                                          360),
-                                      child: Container(
-                                          height: size.height * 0.11,
-                                          width: size.width ,
-                                          child: GestureDetector(
-                                            child: SizedBox(
-                                              width: size.width * 0.25,
-                                              height: size.height * 0.25,
-                                              child: Stack(
-                                                alignment: AlignmentDirectional.centerStart,
-                                                children:[
-
-                                                  Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 50,
-                                                        backgroundImage:  NetworkImage(
-                                                            '${AppCubit.get(context).userModel!.image}'
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: size.width * 0.044,),
-                                                      Expanded(
-                                                        child: Text(
-                                                          ' ${AppCubit.get(context).userModel!.name}',
-                                                          maxLines: 1,
-                                                          overflow: TextOverflow.ellipsis,
-                                                          style: TextStyle(
-                                                              fontWeight: FontWeight.bold ,
-                                                              fontSize: size.width * 0.044,
-                                                              color: Colors.white
+        return BlocConsumer<ThemeCubit,ThemeStates>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return SafeArea(
+              top: true,
+              bottom: true,
+              child: Scaffold(
+                backgroundColor: ThemeCubit.get(context).darkTheme ? Colors.grey.shade900:Colors.blue,
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: size.width,
+                      padding:  EdgeInsets.only(top: size.height * 0.01),
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(
+                          size.width * 0.02,
+                          size.height * 0.02,
+                          size.width * 0.02,
+                          size.height * 0.02,
+                        ),
+                        child: ConditionalBuilder(
+                          condition: AppCubit.get(context).userModel != null,
+                          builder: (context) => BlocBuilder<AppCubit,AppStates>(
+                            builder: (context, state) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                /// Animated Builder for drawer
+                                AnimatedBuilder(
+                                  animation: widget.iconAnimationController,
+                                  builder: (BuildContext context, Widget? child) {
+                                    return ScaleTransition(
+                                      scale: AlwaysStoppedAnimation<double>(1.0 - (widget.iconAnimationController.value) * 0.2),
+                                      child: RotationTransition(
+                                        turns: AlwaysStoppedAnimation<double>(Tween<double>(
+                                            begin: 0.0, end: 24.0)
+                                            .animate(CurvedAnimation(
+                                            parent: widget.iconAnimationController,
+                                            curve: Curves.fastOutSlowIn)
+                                        ).value / 360),
+                                        child: Container(
+                                            height: size.height * 0.11,
+                                            width: size.width ,
+                                            child: GestureDetector(
+                                              child: SizedBox(
+                                                width: size.width * 0.25,
+                                                height: size.height * 0.25,
+                                                child: Stack(
+                                                  alignment: AlignmentDirectional.centerStart,
+                                                  children:[
+                                                    Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 50,
+                                                          backgroundImage:  NetworkImage(
+                                                              '${AppCubit.get(context).userModel!.image}'
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ] ,
-                                              ),
-                                            ),
-                                          )
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                              Padding(
-                                padding:  EdgeInsets.fromLTRB(
-                                  size.width * 0.02,
-                                  size.height * 0.01,
-                                  size.width * 0.02,
-                                  size.height * 0,
-                                ),
-                                child: BlocConsumer<ThemeCubit,ThemeStates>(
-                                  listener: (context, state) {},
-                                  builder: (context, state) {
-                                    return Stack(
-                                      alignment: AlignmentDirectional.centerStart,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                ' ${AppCubit.get(context).userModel!.email.split('@').first}',
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold ,
-                                                    fontSize: size.width * 0.044,
-                                                    color: Colors.white
+                                                        SizedBox(width: size.width * 0.044,),
+                                                        Expanded(
+                                                          child: Text(
+                                                            ' ${AppCubit.get(context).userModel!.name}',
+                                                            maxLines: 1,
+                                                            overflow: TextOverflow.ellipsis,
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold ,
+                                                                fontSize: size.width * 0.044,
+                                                                color: Colors.white
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ] ,
                                                 ),
                                               ),
-                                            ),
-                                            Spacer(),
-                                            InkWell(
-                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size: size.width * 0.06,
-                                                ),
-                                              onTap: ()
-                                              {
-                                                ThemeCubit.get(context).changeTheme();
-                                              },
                                             )
-                                          ],
-                                        )
-                                      ],
+                                        ),
+                                      ),
                                     );
                                   },
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding:  EdgeInsets.fromLTRB(
+                                    size.width * 0.02,
+                                    size.height * 0.01,
+                                    size.width * 0.02,
+                                    size.height * 0,
+                                  ),
+                                  child: BlocConsumer<ThemeCubit,ThemeStates>(
+                                    listener: (context, state) {},
+                                    builder: (context, state) {
+                                      return Stack(
+                                        alignment: AlignmentDirectional.centerStart,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 5,
+                                                child: Text(
+                                                  ' ${AppCubit.get(context).userModel!.email.split('@').first}',
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold ,
+                                                      fontSize: size.width * 0.044,
+                                                      color: Colors.white
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: InkWell(
+                                                  child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
+                                                  ),
+                                                  onTap: ()
+                                                  {
+                                                    ThemeCubit.get(context).changeTheme();
+                                                  },
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                          fallback: (context) => Center(child: CircularProgressIndicator()),
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.001,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.001,
+                    ),
+                    Divider(
+                      height: size.height * 0.002,
+                      color: Colors.white.withOpacity(0.6),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.all(0.0),
+                        itemCount: drawerList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return inkwell(drawerList[index]);
+                        },
                       ),
-                      Divider(
-                        height: size.height * 0.002,
-                        color: Colors.white.withOpacity(0.6),
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.all(0.0),
-                          itemCount: drawerList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return inkwell(drawerList[index]);
+                    ),
+                    Divider(
+                      height: size.height * 0.002,
+                      color: Colors.white.withOpacity(0.6),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(
+                            'Sign Out',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Bahij Janna',
+                              fontWeight: FontWeight.w600,
+                              fontSize: size.width * 0.044,
+                              color: Colors.red,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          trailing:  Icon(
+                            Icons.logout,
+                            color: Colors.red,
+                            size: size.width * 0.06,
+                          ),
+                          onTap: ()
+                          {
+                            showDialog(context: context,
+                              builder: (context) => SignOutAlertDialog
+                                (
+                                  title: 'Sign Out',
+                                  description: 'Are you sure?'
+                              )
+                              ,);
                           },
                         ),
-                      ),
-                      Divider(
-                        height: size.height * 0.002,
-                        color: Colors.white.withOpacity(0.6),
-                      ),
-                      Column(
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              'Sign Out',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: 'Bahij Janna',
-                                fontWeight: FontWeight.w600,
-                                fontSize: size.width * 0.044,
-                                color: Colors.red,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                            trailing: Icon(
-                              Icons.logout,
-                              color: Colors.red,
-                              size: size.width * 0.06,
-                            ),
-                            onTap: ()
-                            {
-                              showDialog(context: context,
-                                builder: (context) => SignOutAlertDialog
-                                  (
-                                    title: 'Sign Out',
-                                    description: 'Are you sure?'
-                                )
-                                ,);
-                            },
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).padding.bottom,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                        SizedBox(
+                          height: MediaQuery.of(context).padding.bottom,
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-              );
-            },
-          ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
+              ),
+            );
+          },
         );
+
       },
     );
   }

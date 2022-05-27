@@ -91,125 +91,128 @@ class OTPScreen extends StatelessWidget {
                   ),
                   Form(
                     key: formKey,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: size.height * 0.1,
-                            ),
-                            SvgPicture.asset('assets/images/otp.svg',
-                              height: size.height * 0.3,),
-                            SizedBox(
-                              height: size.height * 0.04,
-                            ),
-                            defaultFormField(
-                              maxLines: 1,
-                              text: 'OTP code',
-                              controller: otpController,
-                              prefix: Icons.messenger_outline,
-                              // validate: (String value) {
-                              //   if (
-                              //   false == verify || null == verify
-                              //   ) {
-                              //     return 'You have to enter OTP code right';
-                              //   }
-                              // },
-                              type: TextInputType.phone,
-                              context: context,
-                            ),
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: size.height * 0.1,
+                              ),
+                              SvgPicture.asset('assets/images/otp.svg',
+                                height: size.height * 0.3,),
+                              SizedBox(
+                                height: size.height * 0.04,
+                              ),
+                              defaultFormField(
+                                maxLines: 1,
+                                text: 'OTP code',
+                                controller: otpController,
+                                prefix: Icons.messenger_outline,
+                                // validate: (String value) {
+                                //   if (
+                                //   false == verify || null == verify
+                                //   ) {
+                                //     return 'You have to enter OTP code right';
+                                //   }
+                                // },
+                                type: TextInputType.phone,
+                                context: context,
+                              ),
 
-                            SizedBox(
-                              height: size.height * 0.01,
-                            ),
-                            Center(
-                              child:  Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                                child: defaultButton(
-                                  function: ()
-                                  {
-
-                                    verifyOTP();
-                                    print('verify is_________>${verify}');
-                                    print('firstIndexInEmail is_________>${firstIndexInEmail}');
-
-                                    if (true == verify)
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+                              Center(
+                                child:  Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                                  child: defaultButton(
+                                    function: ()
                                     {
 
-                                      if(
-                                      firstIndexInEmail.contains(new RegExp(r'[0-9]'))
-                                     // firstIndexInEmail == '0'
-                                     //     ||
-                                     // firstIndexInEmail == '1'
-                                     //     ||
-                                     // firstIndexInEmail == '2'
-                                     //     ||
-                                     // firstIndexInEmail == '3'
-                                     //     ||
-                                     // firstIndexInEmail == '4'
-                                     //     ||
-                                     // firstIndexInEmail == '5'
-                                     //     ||
-                                     // firstIndexInEmail == '6'
-                                     //     ||
-                                     // firstIndexInEmail == '7'
-                                     //     ||
-                                     // firstIndexInEmail == '8'
-                                     //     ||
-                                     // firstIndexInEmail == '9'
-                                      )
+                                      verifyOTP();
+                                      print('verify is_________>${verify}');
+                                      print('firstIndexInEmail is_________>${firstIndexInEmail}');
+
+                                      if (true == verify)
                                       {
-                                        print('************test************verify************OTP***************= user');
-                                        UserRegisterCubit.get(context).userRegister(
-                                          email: email,
-                                          name:  name,
-                                          password: password,
-                                          phone:  phone,
-                                          isEng: isEng,
-                                          isMan: isBusiness,
-                                          isCom: isCS,
-                                        );
-                                        showToast(message: 'Account Created', state: ToastStates.SUCCESS);
-                                        navigateAndEnd(context, LoginScreen());
-                                      }else
-                                      {
-                                        print('------------test-------------verify-----------OTP----------= admin');
-                                        UserRegisterCubit.get(context).adminRegister(
-                                          email: email,
-                                          name:  name,
-                                          password: password,
-                                          phone:  phone,
-                                          isEng: isEng,
-                                          isMan: isBusiness,
-                                          isCom: isCS,
-                                        );
-                                        showToast(message: 'Account Created', state: ToastStates.SUCCESS);
-                                        navigateAndEnd(context, LoginScreen());
-                                        //UserRegisterCubit.get(context).makeAdmin();
+
+                                        if(
+                                        firstIndexInEmail.contains(new RegExp(r'[0-9]'))
+                                       // firstIndexInEmail == '0'
+                                       //     ||
+                                       // firstIndexInEmail == '1'
+                                       //     ||
+                                       // firstIndexInEmail == '2'
+                                       //     ||
+                                       // firstIndexInEmail == '3'
+                                       //     ||
+                                       // firstIndexInEmail == '4'
+                                       //     ||
+                                       // firstIndexInEmail == '5'
+                                       //     ||
+                                       // firstIndexInEmail == '6'
+                                       //     ||
+                                       // firstIndexInEmail == '7'
+                                       //     ||
+                                       // firstIndexInEmail == '8'
+                                       //     ||
+                                       // firstIndexInEmail == '9'
+                                        )
+                                        {
+                                          print('************test************verify************OTP***************= user');
+                                          UserRegisterCubit.get(context).userRegister(
+                                            email: email,
+                                            name:  name,
+                                            password: password,
+                                            phone:  phone,
+                                            isEng: isEng,
+                                            isMan: isBusiness,
+                                            isCom: isCS,
+                                          );
+                                          showToast(message: 'Account Created', state: ToastStates.SUCCESS);
+                                          navigateAndEnd(context, LoginScreen());
+                                        }else
+                                        {
+                                          print('------------test-------------verify-----------OTP----------= admin');
+                                          UserRegisterCubit.get(context).adminRegister(
+                                            email: email,
+                                            name:  name,
+                                            password: password,
+                                            phone:  phone,
+                                            isEng: isEng,
+                                            isMan: isBusiness,
+                                            isCom: isCS,
+                                          );
+                                          showToast(message: 'Account Created', state: ToastStates.SUCCESS);
+                                          navigateAndEnd(context, LoginScreen());
+                                          //UserRegisterCubit.get(context).makeAdmin();
+                                        }
                                       }
-                                    }
 
-                                    if (false == verify)
-                                    {
-                                      showToast(message: 'Failed! check code and try again please', state: ToastStates.ERROR);
-                                    }if (null == verify)
-                                    {
-                                      return null ;
-                                    }
-                                  },
-                                  text: 'Verified',
-                                  fontSize: size.width * 0.035,
-                                  context: context,
-                                  height: size.height * 0.1,
-                                  width: size.width,
+                                      if (false == verify)
+                                      {
+                                        showToast(message: 'Failed! check code and try again please', state: ToastStates.ERROR);
+                                      }if (null == verify)
+                                      {
+                                        return null ;
+                                      }
+                                    },
+                                    text: 'Verified',
+                                    fontSize: size.width * 0.035,
+                                    context: context,
+                                    height: size.height * 0.1,
+                                    width: size.width,
+                                  ),
                                 ),
                               ),
-                            ),
 
 
-                          ],
+                            ],
 
+                          ),
                         ),
                       ),
                     ),

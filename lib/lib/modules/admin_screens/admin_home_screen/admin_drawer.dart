@@ -178,9 +178,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).userModel != null,
-          builder: (context) => BlocConsumer<ThemeCubit,ThemeStates>(
+        return BlocConsumer<ThemeCubit,ThemeStates>(
             listener: (context, state) {},
             builder: (context, state) {
               return SafeArea(
@@ -202,109 +200,117 @@ class _HomeDrawerState extends State<HomeDrawer> {
                               size.width * 0.02,
                               size.height * 0.02,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              /// Animated Builder for drawer
-                              AnimatedBuilder(
-                                animation: widget.iconAnimationController,
-                                builder: (BuildContext context, Widget? child) {
-                                  return ScaleTransition(
-                                    scale: AlwaysStoppedAnimation<double>(1.0 - (widget.iconAnimationController.value) * 0.2),
-                                    child: RotationTransition(
-                                      turns: AlwaysStoppedAnimation<double>(Tween<double>(
-                                          begin: 0.0, end: 24.0)
-                                          .animate(CurvedAnimation(
-                                          parent: widget.iconAnimationController,
-                                          curve: Curves.fastOutSlowIn)
-                                      ).value / 360),
-                                      child: Container(
-                                          height: size.height * 0.11,
-                                          width: size.width ,
-                                          child: GestureDetector(
-                                            child: SizedBox(
-                                              width: size.width * 0.25,
-                                              height: size.height * 0.25,
-                                              child: Stack(
-                                                alignment: AlignmentDirectional.centerStart,
-                                                children:[
-                                                  Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 50,
-                                                        backgroundImage:  NetworkImage(
-                                                            '${AppCubit.get(context).userModel!.image}'
+                          child: ConditionalBuilder(
+                            condition: AppCubit.get(context).userModel != null,
+                            builder: (context) => BlocBuilder<AppCubit,AppStates>(
+                                builder: (context, state) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    /// Animated Builder for drawer
+                                    AnimatedBuilder(
+                                      animation: widget.iconAnimationController,
+                                      builder: (BuildContext context, Widget? child) {
+                                        return ScaleTransition(
+                                          scale: AlwaysStoppedAnimation<double>(1.0 - (widget.iconAnimationController.value) * 0.2),
+                                          child: RotationTransition(
+                                            turns: AlwaysStoppedAnimation<double>(Tween<double>(
+                                                begin: 0.0, end: 24.0)
+                                                .animate(CurvedAnimation(
+                                                parent: widget.iconAnimationController,
+                                                curve: Curves.fastOutSlowIn)
+                                            ).value / 360),
+                                            child: Container(
+                                                height: size.height * 0.11,
+                                                width: size.width ,
+                                                child: GestureDetector(
+                                                  child: SizedBox(
+                                                    width: size.width * 0.25,
+                                                    height: size.height * 0.25,
+                                                    child: Stack(
+                                                      alignment: AlignmentDirectional.centerStart,
+                                                      children:[
+                                                        Row(
+                                                          children: [
+                                                            CircleAvatar(
+                                                              radius: 50,
+                                                              backgroundImage:  NetworkImage(
+                                                                  '${AppCubit.get(context).userModel!.image}'
+                                                              ),
+                                                            ),
+                                                            SizedBox(width: size.width * 0.044,),
+                                                            Expanded(
+                                                              child: Text(
+                                                                ' ${AppCubit.get(context).userModel!.name}',
+                                                                maxLines: 1,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.bold ,
+                                                                    fontSize: size.width * 0.044,
+                                                                    color: Colors.white
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      SizedBox(width: size.width * 0.044,),
-                                                      Expanded(
-                                                        child: Text(
-                                                          ' ${AppCubit.get(context).userModel!.name}',
-                                                          maxLines: 1,
-                                                          overflow: TextOverflow.ellipsis,
-                                                          style: TextStyle(
-                                                              fontWeight: FontWeight.bold ,
-                                                              fontSize: size.width * 0.044,
-                                                              color: Colors.white
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                      ] ,
+                                                    ),
                                                   ),
-                                                ] ,
-                                              ),
+                                                )
                                             ),
-                                          )
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    Padding(
+                                      padding:  EdgeInsets.fromLTRB(
+                                        size.width * 0.02,
+                                        size.height * 0.01,
+                                        size.width * 0.02,
+                                        size.height * 0,
+                                      ),
+                                      child: BlocConsumer<ThemeCubit,ThemeStates>(
+                                        listener: (context, state) {},
+                                        builder: (context, state) {
+                                          return Stack(
+                                            alignment: AlignmentDirectional.centerStart,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Text(
+                                                      ' ${AppCubit.get(context).userModel!.email.split('@').first}',
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold ,
+                                                          fontSize: size.width * 0.044,
+                                                          color: Colors.white
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: InkWell(
+                                                      child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
+                                                      ),
+                                                      onTap: ()
+                                                      {
+                                                        ThemeCubit.get(context).changeTheme();
+                                                      },
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          );
+                                        },
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
-                              Padding(
-                                padding:  EdgeInsets.fromLTRB(
-                                    size.width * 0.02,
-                                    size.height * 0.01,
-                                    size.width * 0.02,
-                                    size.height * 0,
+                                  ],
                                 ),
-                                child: BlocConsumer<ThemeCubit,ThemeStates>(
-                                  listener: (context, state) {},
-                                  builder: (context, state) {
-                                    return Stack(
-                                      alignment: AlignmentDirectional.centerStart,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                ' ${AppCubit.get(context).userModel!.email.split('@').first}',
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold ,
-                                                    fontSize: size.width * 0.044,
-                                                    color: Colors.white
-                                                ),
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            InkWell(
-                                                child: Icon(Icons.brightness_4_outlined,color: Colors.white,size:size.width * 0.06,
-                                                ),
-                                              onTap: ()
-                                              {
-                                                ThemeCubit.get(context).changeTheme();
-                                              },
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
+                            ),
+                            fallback: (context) => Center(child: CircularProgressIndicator()),
                           ),
                         ),
                       ),
@@ -370,9 +376,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ),
               );
             },
-          ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
-        );
+          );
+
       },
     );
   }

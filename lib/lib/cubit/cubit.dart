@@ -25,7 +25,7 @@ class AppCubit extends Cubit<AppStates> {
   UserData? userModel ;
   void getUserData() async {
     userModel = null;
-    homeModel = null;
+    //homeModel = null;
     emit(EncryptionLoadingUserDataState());
     await DioHelper.getData(
       url: PROFILE,

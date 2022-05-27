@@ -26,10 +26,9 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
   }
   @override
   void initState() {
-
     pageController.addListener(listenScroll);
     super.initState();
-    AppCubit.get(context).getUserBooks();
+    // AppCubit.get(context).getUserBooks();
   }
   @override
   void dispose() {
@@ -46,46 +45,46 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
       builder: (context, state) {
         return BlocBuilder<ThemeCubit,ThemeStates>(
           builder: (context, state) {
-            return ConditionalBuilder(
-              condition: AppCubit.get(context).homeModel != null,
-              builder: (context) => Scaffold(
-                floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
-                  ,onPressed: ()
-                  {
-                    Navigator.pop(context);
-                  },
-                ),
-                floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-                backgroundColor: ThemeCubit.get(context).darkTheme? Colors.grey.shade900 :Colors.white,
-                body: Container(
-                  width: size.width,
-                  height: size.height,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Image.asset('assets/images/main_top.png',
-                          width: size.width * 0.35,),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Image.asset('assets/images/login_bottom.png',
-                          width: size.width * 0.4,),
-                      ),
-                      Center(
-                        child: Column(
+            return Scaffold(
+              floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
+                ,onPressed: ()
+                {
+                  Navigator.pop(context);
+                },
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+              backgroundColor: ThemeCubit.get(context).darkTheme? Colors.grey.shade900 :Colors.white,
+              body: Container(
+                width: size.width,
+                height: size.height,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Image.asset('assets/images/main_top.png',
+                        width: size.width * 0.35,),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Image.asset('assets/images/login_bottom.png',
+                        width: size.width * 0.4,),
+                    ),
+                    Center(
+                      child: ConditionalBuilder(
+                        condition: AppCubit.get(context).homeModel != null,
+                        builder: (context) => Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 0, 55),
                               child: Text('Your Books',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -162,12 +161,13 @@ class _UserBooksScreenState extends State<UserBooksScreen> {
                             ),
                           ],
                         ),
+                        fallback: (context) => Center(child: CircularProgressIndicator()),
+
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              fallback: (context) => Center(child: CircularProgressIndicator()),
             );
           },
         );
