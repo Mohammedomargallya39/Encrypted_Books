@@ -7,6 +7,7 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
+import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
 
 import '../../../../shared/components/constants.dart';
@@ -53,12 +54,23 @@ class _UserPDFBooksScreenState extends State<UserPDFBooksScreen> {
                   top: 80,
                   right: 0,
                   child: IconButton(
-                    icon: Icon(Icons.headset_mic_outlined), onPressed: ()
+                    icon: Icon(Icons.sim_card_download_outlined), onPressed: ()
                   {
                     AppCubit.get(context).ocrBookText(
                         bookId: '${AppCubit.get(context).homeModel!.books![widget.bookId].sId}',
                         pageNumber: '${AppCubit.get(context).currentPage +1}'
                     );
+                    showToast(message: 'Wait 5 second then press another Icon to listen.', state: ToastStates.SUCCESS);
+                  },
+                    iconSize: 23,
+                  ),
+                ),
+                Positioned(
+                  top: 80,
+                  right: 80,
+                  child: IconButton(
+                    icon: Icon(Icons.headset_mic_outlined), onPressed: ()
+                  {
                     _speak(currentPageData!);
                   },
                     iconSize: 23,

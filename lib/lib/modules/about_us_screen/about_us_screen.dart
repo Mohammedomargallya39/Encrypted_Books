@@ -92,14 +92,14 @@ class AboutUsScreen extends StatelessWidget {
                           width: size.width,
                           child:
                           AppCubit.get(context).userModel!.isAdmin?
-                          Text('You are Admin. You can give the book to each student who studies with you on your own, where you will go to the Books page and double click on the book you want to give to the student and then select the section in which the student is located and give him the book or delete it from it. And if you press one click, you can see the book and you can see the book and read it, and you can delete the book and add a new book, and you can search for a specific book if there are many books. And in the Departments screen you can see all the departments and you can delete a student and see his data and you can add a book to him and delete a book from this page. And if there is a doctor or teaching assistant you want to make him admin, you can do that by clicking on the admin icon to add a new admin .',
+                          Text('You are Admin. You can give the book to each student who studies with you on your own, where you will go to the Books page and double click on the book you want to give to the student and then select the section in which the student is located and give him the book or delete it from it. And if you press one click, you can see the book and read it, you can delete the book and add a new book, you can search for a specific book if there are many books. in the Departments screen you can see all the departments and you can delete a student and see his data and you can add a book to him and delete a book from this page. If there is a doctor or teaching assistant you want to make him admin, you can do that by clicking on the admin icon to add a new admin .',
                             maxLines: 22,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ) :
-                          Text('you are a student . You can see what I wrote and you can listen to a specific book. If you do not want to read the book yourself, click on the listen icon. After clicking on it, you will listen to the page you are standing on.',
+                          Text('you are a student. You can see what I wrote and you can listen to a specific book. If you do not want to read the book yourself, click on the listen icon. After clicking on it, you will listen to the page you are standing on.',
                             maxLines: 22,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -147,9 +147,9 @@ class AboutUsScreen extends StatelessWidget {
                             launchUrlString(
                                 'mailto:okacrazyoka@gmail.com?'
                                 'subject= Found Issue with Book Spot'
-                                '&body= Hi Hussien, ' );
+                                '&body= Hi Hussein, ' );
                           },
-                          text: 'Backend: Hussien Ashraf',
+                          text: 'Backend: Hussein Ashraf',
                           fontSize: size.width * 0.033,
                         ),
 
