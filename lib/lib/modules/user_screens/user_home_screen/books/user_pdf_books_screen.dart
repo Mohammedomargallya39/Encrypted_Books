@@ -42,7 +42,12 @@ class _UserPDFBooksScreenState extends State<UserPDFBooksScreen> {
     }
 
     return BlocConsumer<AppCubit,AppStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is OCRBookTextSuccessState)
+        {
+          _speak(currentPageData!);
+        }
+      },
       builder: (context, state) {
         return  ConditionalBuilder(
           condition:  AppCubit.get(context).homeModel!.books![widget.bookId].pdf  != null,
@@ -50,28 +55,31 @@ class _UserPDFBooksScreenState extends State<UserPDFBooksScreen> {
             floatingActionButton: Stack(
               // fit: StackFit.expand,
               children: [
+                // Positioned(
+                //   top: 80,
+                //   right: 0,
+                //   child: IconButton(
+                //     icon: Icon(Icons.sim_card_download_outlined), onPressed: ()
+                //   {
+                //     AppCubit.get(context).ocrBookText(
+                //         bookId: '${AppCubit.get(context).homeModel!.books![widget.bookId].sId}',
+                //         pageNumber: '${AppCubit.get(context).currentPage +1}'
+                //     );
+                //     showToast(message: 'Wait 5 second then press another Icon to listen.', state: ToastStates.SUCCESS);
+                //   },
+                //     iconSize: 23,
+                //   ),
+                // ),
                 Positioned(
                   top: 80,
-                  right: 0,
+                  right: 20,
                   child: IconButton(
-                    icon: Icon(Icons.sim_card_download_outlined), onPressed: ()
+                    icon: Icon(Icons.headset_mic_outlined), onPressed: ()
                   {
                     AppCubit.get(context).ocrBookText(
                         bookId: '${AppCubit.get(context).homeModel!.books![widget.bookId].sId}',
                         pageNumber: '${AppCubit.get(context).currentPage +1}'
                     );
-                    showToast(message: 'Wait 5 second then press another Icon to listen.', state: ToastStates.SUCCESS);
-                  },
-                    iconSize: 23,
-                  ),
-                ),
-                Positioned(
-                  top: 80,
-                  right: 80,
-                  child: IconButton(
-                    icon: Icon(Icons.headset_mic_outlined), onPressed: ()
-                  {
-                    _speak(currentPageData!);
                   },
                     iconSize: 23,
                   ),
