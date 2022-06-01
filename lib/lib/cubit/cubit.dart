@@ -17,6 +17,8 @@ import 'package:social/lib/shared/network/end_points.dart';
 import 'package:social/lib/shared/network/shared/dio_helper.dart';
 import 'package:social/lib/shared/network/shared/dio_ocr.dart';
 
+import '../models/upload_book_model.dart';
+
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(EncryptionAppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
@@ -555,6 +557,7 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  UploadBookModel? uploadBooksModel;
   //upload book
   void uploadBookData({
     required String name,
@@ -596,6 +599,9 @@ class AppCubit extends Cubit<AppStates> {
       print("***********************success*****************${pdf}");
       print('--------success upload books-----------');
       //print();
+      uploadBooksModel = UploadBookModel.fromJson(value!.data);
+      debugPrint(uploadBooksModel!.sId);
+      ocrBookConverter(bookId: uploadBooksModel!.sId);
       emit(AdminUploadBooksSuccessState());
     }).catchError((error) {
       print(error.toString());
