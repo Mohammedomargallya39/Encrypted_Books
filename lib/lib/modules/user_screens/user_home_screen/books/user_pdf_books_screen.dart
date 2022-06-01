@@ -7,9 +7,7 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:social/lib/cubit/cubit.dart';
 import 'package:social/lib/cubit/states.dart';
-import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/cubit/cubit.dart';
-
 import '../../../../shared/components/constants.dart';
 
 class UserPDFBooksScreen extends StatefulWidget {
@@ -37,8 +35,13 @@ class _UserPDFBooksScreenState extends State<UserPDFBooksScreen> {
     _speak(String text) async{
       print(await flutterTts.getLanguages);
       await flutterTts.setLanguage('en-US');
-      await flutterTts.setPitch(1);
+      await flutterTts.setPitch(0.6);
+      await flutterTts.setSpeechRate(0.5);
       await flutterTts.speak(text);
+    }
+
+    _stop() async{
+      await flutterTts.stop();
     }
 
     return BlocConsumer<AppCubit,AppStates>(
@@ -55,21 +58,6 @@ class _UserPDFBooksScreenState extends State<UserPDFBooksScreen> {
             floatingActionButton: Stack(
               // fit: StackFit.expand,
               children: [
-                // Positioned(
-                //   top: 80,
-                //   right: 0,
-                //   child: IconButton(
-                //     icon: Icon(Icons.sim_card_download_outlined), onPressed: ()
-                //   {
-                //     AppCubit.get(context).ocrBookText(
-                //         bookId: '${AppCubit.get(context).homeModel!.books![widget.bookId].sId}',
-                //         pageNumber: '${AppCubit.get(context).currentPage +1}'
-                //     );
-                //     showToast(message: 'Wait 5 second then press another Icon to listen.', state: ToastStates.SUCCESS);
-                //   },
-                //     iconSize: 23,
-                //   ),
-                // ),
                 Positioned(
                   top: 80,
                   right: 20,
@@ -80,6 +68,17 @@ class _UserPDFBooksScreenState extends State<UserPDFBooksScreen> {
                         bookId: '${AppCubit.get(context).homeModel!.books![widget.bookId].sId}',
                         pageNumber: '${AppCubit.get(context).currentPage +1}'
                     );
+                  },
+                    iconSize: 23,
+                  ),
+                ),
+                Positioned(
+                  top: 80,
+                  right: 80,
+                  child: IconButton(
+                    icon: Icon(Icons.stop), onPressed: ()
+                  {
+                    _stop();
                   },
                     iconSize: 23,
                   ),

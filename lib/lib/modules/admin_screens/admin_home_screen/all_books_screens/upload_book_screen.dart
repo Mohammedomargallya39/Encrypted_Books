@@ -17,7 +17,16 @@ class UploadBookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return  BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        // if(state is AdminUploadBooksSuccessState)
+        // {
+        //   AppCubit.get(context).ocrBookConverter(
+        //       bookId: AppCubit.get(context).uploadBooksModel!.sId
+        //   );
+        //   print('IIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDD${AppCubit.get(context).uploadBooksModel!.sId}');
+        // }
+        //
+      },
       builder: (context, state) {
         return Scaffold(
           floatingActionButton: IconButton(icon:Icon(Icons.arrow_back_ios)
