@@ -1,8 +1,8 @@
+import 'dart:math';
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:email_auth/email_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/lib/modules/login_screens/login_screen.dart';
@@ -12,6 +12,8 @@ import 'package:social/lib/modules/login_screens/register_cubit/register_states.
 import 'package:social/lib/shared/components/components.dart';
 import 'package:social/lib/shared/styles/colors.dart';
 import 'cubit/states.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -22,6 +24,12 @@ class RegisterScreen extends StatelessWidget {
   var passwordController = TextEditingController();
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
+  String username = 'bookspot.mailsupp0rt@gmail.com';
+  String password = 'hddalvmiwssrzogu';
+  // generate a random 6 number otp
+  String otp = Random().nextInt(999999).toString().padLeft(6, '0');
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -121,8 +129,8 @@ class RegisterScreen extends StatelessWidget {
                               prefix: Icons.email_outlined,
                               validate: (String value) {
                                 if (value.isEmpty
-                                    /*||
-                                    !value.contains('hti.edu.eg')*/
+                                    ||
+                                    !value.contains('hti.edu.eg')
                                 ) {
                                   return 'You have to enter you academic e-mail. ex: xxxxxxxx@hti.edu.eg. then press on send icon.';
                                 }
@@ -280,7 +288,7 @@ class RegisterScreen extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
                                       child: defaultButton(
                                         function: ()
-                                        {
+                                        async {
                                           if (
                                           formKey.currentState!.validate()
                                               &&
@@ -298,8 +306,33 @@ class RegisterScreen extends StatelessWidget {
                                             //   isCom:
                                             //   UserRegisterCubit.get(context).isCom,
                                             // );
-                                            sendOTP();
+
+
+                                            final smtpServer = gmail(username, password);
+
+                                            final message = Message()
+                                              ..from = Address(username, 'HTI Supporter')
+                                              ..recipients.add(emailController.text)
+                                              ..subject = 'OTP Verified ${DateTime.now()}'
+                                              ..text = otp
+                                             ..html = "<h1>Your OTP Verification code is $otp</h1>";
+                                            print(otp);
+
+
+                                            try {
+                                              final sendReport = await send(message, smtpServer);
+                                              print('Message sent: ' + sendReport.toString());
+                                            } on MailerException catch (e) {
+                                              print('Message not sent.');
+                                              for (var p in e.problems) {
+                                                print('Problem: ${p.code}: ${p.msg}');
+                                              }
+                                            }
+
+
+                                            // sendOTP();
                                             navigateTo(context, OTPScreen(
+                                                otp: otp,
                                                 email: emailController.value.text,
                                                 firstIndexInEmail: emailController.value.text[0],
                                                 name: nameController.text,
@@ -358,15 +391,19 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
-  void sendOTP() async {
-    var emailAuth = new EmailAuth(sessionName: 'Send OTP');
-    var res = await emailAuth.sendOtp(recipientMail: emailController.text);
-    if (res) {
-      print('OTP sent');
-    } else {
-      print('try again later');
-    }
-  }
+  // void sendOTP() async {
+  //   var emailAuth = new EmailAuth(sessionName: 'Send OTP');
+  //   var res = await emailAuth.sendOtp(recipientMail: emailController.text);
+  //   if (res) {
+  //     print('OTP sent');
+  //   } else {
+  //     print('try again later');
+  //   }
+  // }
+
+
+
+
 // void verifyOTP() async {
 //   var emailAuth = new EmailAuth(sessionName: 'Verify OTP');
 //   var res = await emailAuth.validateOtp(

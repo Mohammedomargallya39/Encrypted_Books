@@ -57,6 +57,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   flutter_user_agentx: ^1.2.4
   flutter_tts: ^3.3.3
+  mailer: ^5.1.1
 
 
 
