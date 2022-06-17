@@ -20,6 +20,7 @@ class OTPScreen extends StatelessWidget {
         required this.isEng,
         required this.isBusiness,
         required this.firstIndexInEmail,
+        required this.otp,
       }
       ) : super(key: key);
   var formKey = GlobalKey<FormState>();
@@ -32,6 +33,7 @@ class OTPScreen extends StatelessWidget {
   final dynamic isCS;
   final dynamic isEng;
   final dynamic isBusiness;
+  final dynamic otp;
   var verify;
 
 
@@ -132,11 +134,14 @@ class OTPScreen extends StatelessWidget {
                                     function: ()
                                     {
 
-                                      verifyOTP();
-                                      print('verify is_________>${verify}');
-                                      print('firstIndexInEmail is_________>${firstIndexInEmail}');
+                                      // verifyOTP();
+                                      // print('verify is_________>${verify}');
+                                      // print('firstIndexInEmail is_________>${firstIndexInEmail}');
 
-                                      if (true == verify)
+                                      print('otp is $otp');
+                                      print('otpController is ${otpController.text}');
+
+                                      if (otp == otpController.text)
                                       {
 
                                         if(
@@ -192,12 +197,9 @@ class OTPScreen extends StatelessWidget {
                                         }
                                       }
 
-                                      if (false == verify)
+                                      if (otp != otpController.text)
                                       {
                                         showToast(message: 'Failed! check code and try again please', state: ToastStates.ERROR);
-                                      }if (null == verify)
-                                      {
-                                        return null ;
                                       }
                                     },
                                     text: 'Verified',
@@ -226,23 +228,24 @@ class OTPScreen extends StatelessWidget {
     );
   }
 
-  void verifyOTP() async {
-    var emailAuth = new EmailAuth(sessionName: 'Verify OTP');
-    //emailAuth.config(remoteServerConfiguration);
-    var res = await emailAuth.validateOtp(
-        recipientMail: email, userOtp: otpController.value.text);
-    verify = res ;
-    print('++++++++ ${res}');
-    print('++++++++ ${verify}');
-    if (res) {
-      print('+++++++OTP verified++++++++ ${res}');
-    } else {
-      print('+++++++try again later++++++++ ${res}');
-    }
-    // bool? verify() {
-    //   print(emailAuth.validateOtp(
-    //       recipientMail:  email.value,
-    //       userOtp: otpController.value.text));
-    // }
-  }
+  // void verifyOTP() async {
+  //   var emailAuth = new EmailAuth(sessionName: 'Verify OTP');
+  //   //emailAuth.config(remoteServerConfiguration);
+  //   var res = await emailAuth.validateOtp(
+  //       recipientMail: email, userOtp: otpController.value.text);
+  //   verify = res ;
+  //   print('++++++++ ${res}');
+  //   print('++++++++ ${verify}');
+  //   if (res) {
+  //     print('+++++++OTP verified++++++++ ${res}');
+  //   } else {
+  //     print('+++++++try again later++++++++ ${res}');
+  //   }
+  //   // bool? verify() {
+  //   //   print(emailAuth.validateOtp(
+  //   //       recipientMail:  email.value,
+  //   //       userOtp: otpController.value.text));
+  //   // }
+  // }
+
 }
